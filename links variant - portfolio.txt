@@ -1,0 +1,19 @@
+base e navegacao
+https://variant.com/shared/82f8970b-77df-429b-88cd-d9beeb46140b?t=1789092847356
+
+posicao da headline, microitneracao do dot piscando, botao voltar com fade
+https://variant.com/shared/deb87843-f905-4bf9-bbb4-222b3625d303?t=1789096571343
+
+text hover + microanimacao, microinteracao de abrir e fechar paginas
+https://variant.com/shared/420d6164-98af-453b-9560-f3168ab0304b?t=1789098919603
+
+case page padrao
+https://variant.com/shared/312c33e1-537c-4967-9f5b-1135d2ad6210?t=1789097359084
+
+DS principal
+https://variant.com/shared/6ca7680a-e11f-452a-8d00-b66cf387306d?t=1789102473588
+
+DS secundario - botao voltar, text hover do dot acima do ponto, : 
+https://variant.com/shared/2ebe2c7c-34d8-4a0b-85ca-95c44f5d2bde?t=1789102476121
+
+
