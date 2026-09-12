@@ -82,13 +82,7 @@ export function HomeStage() {
               }`}
               aria-hidden={active !== "contato"}
             >
-              <a
-                href="mailto:mv@mvpaiva.com"
-                tabIndex={active === "contato" ? 0 : -1}
-              >
-                mv@mvpaiva.com
-              </a>
-              {" · "}
+              Você pode me encontrar no{" "}
               <a
                 href="https://www.linkedin.com/in/mvpaiva/"
                 target="_blank"
@@ -97,7 +91,7 @@ export function HomeStage() {
               >
                 LinkedIn
               </a>
-              {" · "}
+              , ver meu{" "}
               <a
                 href="https://drive.google.com/file/d/1uvIujKmLz8Pi8DUtY6Csqd97fqrKSyDz/view?usp=sharing"
                 target="_blank"
@@ -106,6 +100,14 @@ export function HomeStage() {
               >
                 CV
               </a>
+              , ou mandar um e-mail pra{" "}
+              <a
+                href="mailto:mv@mvpaiva.com"
+                tabIndex={active === "contato" ? 0 : -1}
+              >
+                mv@mvpaiva.com
+              </a>
+              .
             </p>
           </div>
         </div>
