@@ -18,7 +18,7 @@ const instrumentSans = Instrument_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Matheus Vieira — Product Designer",
+  title: "Matheus Paiva — Product Designer",
   description:
     "Product designer júnior em interação e IA. Procurando vaga full-time em São Paulo.",
 };

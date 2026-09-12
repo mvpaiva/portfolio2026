@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "@/app/page.module.css";
 
 type PanelKey = "projetos" | "sobre" | "contato";
@@ -18,63 +18,95 @@ export function HomeStage() {
     setActive((current) => (current === key ? null : key));
   }
 
+  useEffect(() => {
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setActive(null);
+      }
+    }
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, []);
+
   return (
     <main className={styles.stage}>
       <div className={styles.header}>
         <div className={styles.logoBlock}>
-          <p className={styles.name}>Matheus Vieira</p>
-          <p className={styles.role}>Designer de Produto</p>
+          <p className={styles.name}>Matheus Paiva</p>
+          <p className={styles.role}>Product Designer</p>
 
           <div className={styles.textStage}>
-            {active === null && (
-              <p key="tagline" className={styles.tagline}>
-                Product designer júnior em interação e IA. Procurando vaga
-                full-time em São Paulo.
-              </p>
-            )}
+            <p
+              className={`${styles.tagline} ${
+                active === null ? styles.visible : styles.hidden
+              }`}
+              aria-hidden={active !== null}
+            >
+              Product designer júnior em interação e IA. Procurando vaga
+              full-time em São Paulo.
+            </p>
 
-            {active === "projetos" && (
-              <p key="projetos" className={styles.panelText}>
-                <a href="/case/square-self-checkout">Square Self-Checkout</a>
-                <span className={styles.faded}>
-                  {" "}
-                  — Interação, redução de 40% em erros.{" "}
-                </span>
-                <a href="/case/essavie">Essavie</a>
-                <span className={styles.faded}>
-                  {" "}
-                  — E-commerce, checkout circular.{" "}
-                </span>
-                <a href="/case/fireflies-system">Fireflies System</a>
-                <span className={styles.faded}> — IA, síntese de reuniões.</span>
-              </p>
-            )}
+            <p
+              className={`${styles.panelText} ${
+                active === "projetos" ? styles.visible : styles.hidden
+              }`}
+              aria-hidden={active !== "projetos"}
+            >
+              <a
+                href="/case/square-self-checkout"
+                tabIndex={active === "projetos" ? 0 : -1}
+              >
+                Square Self-Checkout
+              </a>
+              <span className={styles.faded}>
+                {" "}
+                — Pulando a fila do caixa. Erro reduzido de 40% para 0%.
+              </span>
+            </p>
 
-            {active === "sobre" && (
-              <p key="sobre" className={styles.panelText}>
-                18 meses em e-commerce. Converto dados em experiências
-                fluidas. Explorando design de IA e interação. Baseado em São
-                Paulo.
-              </p>
-            )}
+            <p
+              className={`${styles.panelText} ${
+                active === "sobre" ? styles.visible : styles.hidden
+              }`}
+              aria-hidden={active !== "sobre"}
+            >
+              Product Designer júnior em transição de carreira. 18 meses em
+              e-commerce rodando testes A/B e redesenhando checkout de ponta a
+              ponta — hoje busco minha primeira posição formal em produto
+              digital. Baseado em São Paulo.
+            </p>
 
-            {active === "contato" && (
-              <p key="contato" className={styles.panelText}>
-                <a href="mailto:hello@matheus.com">hello@matheus.com</a>
-                {" · "}
-                <a
-                  href="https://linkedin.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  LinkedIn
-                </a>
-                {" · "}
-                <a href="/cv.pdf" target="_blank" rel="noopener noreferrer">
-                  CV
-                </a>
-              </p>
-            )}
+            <p
+              className={`${styles.panelText} ${
+                active === "contato" ? styles.visible : styles.hidden
+              }`}
+              aria-hidden={active !== "contato"}
+            >
+              <a
+                href="mailto:mv@mvpaiva.com"
+                tabIndex={active === "contato" ? 0 : -1}
+              >
+                mv@mvpaiva.com
+              </a>
+              {" · "}
+              <a
+                href="https://www.linkedin.com/in/mvpaiva/"
+                target="_blank"
+                rel="noopener noreferrer"
+                tabIndex={active === "contato" ? 0 : -1}
+              >
+                LinkedIn
+              </a>
+              {" · "}
+              <a
+                href="https://drive.google.com/file/d/1uvIujKmLz8Pi8DUtY6Csqd97fqrKSyDz/view?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+                tabIndex={active === "contato" ? 0 : -1}
+              >
+                CV
+              </a>
+            </p>
           </div>
         </div>
 
