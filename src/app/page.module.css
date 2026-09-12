@@ -51,10 +51,14 @@
 }
 
 /* All panels share the same grid cell, so switching between them
-   crossfades in place instead of the content jumping/reflowing. */
+   crossfades in place instead of the content jumping/reflowing. Pure
+   opacity — no translateY. Content should feel like it surfaces from the
+   background itself, not slide into place (calm-ui restraint; the 10-20px
+   "reveal effect" rise documented in the ui kit is for page/overlay
+   entrances, not this in-place text swap). */
 .textStage > * {
   grid-area: 1 / 1;
-  transition: opacity 0.5s var(--ease-primary), transform 0.5s var(--ease-primary);
+  transition: opacity 0.5s var(--ease-primary);
 }
 
 .tagline,
@@ -69,13 +73,11 @@
 
 .hidden {
   opacity: 0;
-  transform: translateY(6px);
   pointer-events: none;
 }
 
 .visible {
   opacity: 1;
-  transform: translateY(0);
   pointer-events: auto;
 }
 

@@ -42,8 +42,8 @@ export function HomeStage() {
               }`}
               aria-hidden={active !== null}
             >
-              Product designer júnior em interação e IA. Procurando vaga
-              full-time em São Paulo.
+              Product Designer Júnior focado em UX Research, interação e
+              produtos com IA. Disponível para full-time em São Paulo.
             </p>
 
             <p
@@ -56,11 +56,10 @@ export function HomeStage() {
                 href="/case/square-self-checkout"
                 tabIndex={active === "projetos" ? 0 : -1}
               >
-                Square Self-Checkout
+                Square
               </a>
               <span className={styles.faded}>
-                {" "}
-                — Pulando a fila do caixa. Erro reduzido de 40% para 0%.
+                . App e totem de autoatendimento para supermercados.
               </span>
             </p>
 
@@ -70,10 +69,11 @@ export function HomeStage() {
               }`}
               aria-hidden={active !== "sobre"}
             >
-              Product Designer júnior em transição de carreira. 18 meses em
-              e-commerce rodando testes A/B e redesenhando checkout de ponta a
-              ponta — hoje busco minha primeira posição formal em produto
-              digital. Baseado em São Paulo.
+              18 meses em e-commerce com produto em produção, onde cada
+              decisão de design tinha impacto direto em conversão. Hoje
+              aplico pesquisa e análise comportamental para orientar decisões
+              de interação. Explorando design de produtos com IA como
+              próxima fronteira. Baseado em Arujá, São Paulo.
             </p>
 
             <p
