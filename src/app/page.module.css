@@ -87,25 +87,37 @@
   pointer-events: auto;
 }
 
+/* Secondary content: 70% ink — matches the project's documented
+   secondary-content tier and holds ~6.1:1 contrast against --color-bg,
+   comfortably past WCAG AA's 4.5:1 for normal text. (40% measured ~2.5:1
+   and 60% ~4.4:1 — both fail; verify contrast math before touching this.) */
 .tagline.visible {
-  opacity: 0.6;
+  opacity: 0.7;
 }
 
 .faded {
-  opacity: 0.4;
+  opacity: 0.7;
 }
 
 .panelText p:not(:last-child) {
   margin-bottom: var(--space-2);
 }
 
+/* Links are distinguished from body copy by underline + weight, not by
+   color/opacity alone (WCAG 1.4.1) — full-strength ink text with a quiet
+   30%-ink underline at rest, strengthening to full ink on hover/focus. */
 .panelText a {
   cursor: pointer;
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: var(--color-border-hover);
+  text-underline-offset: 2px;
+  transition: text-decoration-color 0.3s ease-in-out;
 }
 
-.panelText a:hover {
-  opacity: 0.7;
-  transition: opacity 0.3s ease;
+.panelText a:hover,
+.panelText a:focus-visible {
+  text-decoration-color: var(--color-ink);
 }
 
 .navRevealZone {
