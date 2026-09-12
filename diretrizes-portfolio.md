@@ -9,13 +9,16 @@ Para tokens, valores e regras de sistema, ver
 [visual-language-specification.md](visual-language-specification.md). Para status do
 projeto e como retomar o trabalho, ver [handoff.md](handoff.md).
 
-> **Nota de decisão (2026-09-11):** a filosofia abaixo cita darn.fish/talhask como
-> inspiração para "navegação embutida numa foto real de artefato físico". Na prática,
-> essa ideia foi explorada e depois abandonada — a home usa um retângulo abstrato com
-> 3 pontos, não uma fotografia (ver visual-language-specification.md §0 e §11 para o
-> estado atual confirmado). Mantenha as referências abaixo como a origem conceitual do
-> porquê dos pontos/navegação espacial existirem, não como descrição literal da
-> implementação atual.
+> **Nota de decisão (2026-09-11, revisada no mesmo dia):** a filosofia abaixo cita
+> darn.fish/talhask como inspiração para "navegação embutida numa foto real de
+> artefato físico". Essa ideia passou por duas iterações: primeiro foi simplificada
+> para um retângulo abstrato com 3 pontos; depois, comparando a spec com o código
+> real importado no Figma, ficou confirmado que **nem o retângulo com pontos chegou a
+> ser implementado** — a home real usa nav hover-reveal + panel-toggle (clique em
+> Projetos/Sobre/Contato substitui a bio no mesmo espaço). Ver
+> visual-language-specification.md §0 e §11 (v2) para o padrão oficial atual. Mantenha
+> as referências abaixo como a origem conceitual do porquê da navegação ser tratada
+> como parte do mesmo objeto/espaço, não como descrição literal da implementação.
 
 ## Filosofia geral
 

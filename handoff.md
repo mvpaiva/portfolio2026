@@ -52,9 +52,12 @@ ver a lista de itens "verificar antes de usar" em
 
 ## Estado atual (2026-09-11)
 
-- **Decisão de artefato da home:** fechada. É um retângulo abstrato com 3
-  pontos — não uma foto (ver visual-language-specification.md §0). Não há
-  foto pendente de ser tirada.
+- **Decisão de artefato da home: REVERTIDA nesta mesma data.** A ideia de um
+  retângulo abstrato com 3 pontos foi abandonada — comparando a spec com o
+  Figma importado (`kGgmy2zYCzFzi0ZyLU9iMU`), ficou confirmado que o código
+  real da home implementa nav hover-reveal + panel-toggle (clique em
+  Projetos/Sobre/Contato substitui a bio no mesmo espaço). Este é o padrão
+  oficial agora — ver visual-language-specification.md §0 e §11 (v2).
 - **Sistema de blocos da case page:** fechado em 9 blocos (ver
   visual-language-specification.md §13).
 - **Case study Square:** conteúdo real existe e está mapeado, mas a pasta
