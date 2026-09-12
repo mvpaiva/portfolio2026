@@ -14,8 +14,15 @@ fundo. Stack alvo: **Next.js + React + CSS + View Transitions API,
 deploy na Vercel** — sem WebGL, Canvas, Three.js ou bibliotecas de
 animação pesadas.
 
-Ainda não existe código do site neste diretório — este é o estágio de
-especificação/planejamento. Não é um repositório git ainda.
+**Atualização (2026-09-12): o código do site foi iniciado.** Next.js (App
+Router) + CSS puro, scaffolded na raiz do repo (`app/`, `components/`) — os
+documentos de planejamento foram movidos para `docs/` (este arquivo incluso)
+para não ficarem misturados com o código. A home (`app/page.tsx` +
+`components/home-stage.tsx`) já implementa o padrão nav hover-reveal +
+panel-toggle descrito em `visual-language-specification.md` §11 (v2),
+construída a partir do frame real do Figma
+(`srfFKPHCUBOrQ1rHCGXsum`, node `2:500`). A case page ainda não foi
+implementada em código.
 
 ## Ordem de leitura dos documentos
 

@@ -1,0 +1,73 @@
+:root {
+  --color-bg: #f5f2f0;
+  --color-ink: #1a1a1a;
+  --color-stone: #e6e2df;
+  --color-sage: #a5b8b1;
+  --color-terracotta: #c4705a;
+  --color-border: rgba(26, 26, 26, 0.1);
+  --color-border-hover: rgba(26, 26, 26, 0.3);
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-24: 96px;
+  --space-32: 128px;
+  --space-40: 160px;
+  --space-64: 256px;
+
+  --max-width-content: 1280px;
+  --max-width-narrow: 420px;
+  --gutter-desktop: 32px;
+  --gutter-mobile: 30px;
+
+  --font-display: var(--font-fraunces), serif;
+  --font-body: var(--font-instrument-sans), sans-serif;
+
+  --ease-primary: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  cursor: crosshair;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 1px solid var(--color-sage);
+  outline-offset: 4px;
+}

@@ -1,33 +1,51 @@
-# Dependencies
-node_modules/
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# Next.js
-.next/
-out/
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
 
-# Env
-.env
-.env.local
-.env.*.local
+# testing
+/coverage
 
-# Build
-build/
-dist/
+# next.js
+/.next/
+/out/
 
-# OS
+# production
+/build
+
+# misc
 .DS_Store
 Thumbs.db
+*.pem
 
-# Editor
+# editor
 .vscode/
 .idea/
 
-# .agents/skills has its own independent .git (empty, no remote) - excluded
-# to avoid nesting an unrelated repo inside this one. Content is mirrored
-# in .claude/skills/, which is tracked normally.
-.agents/skills/
+# .agents/skills mirrors .claude/skills/ (tracked normally); excluded here
+# only if it ever gets its own independent .git again, to avoid nesting an
+# unrelated repo inside this one.
+.agents/skills/.git/
 
-# Logs
+# debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
