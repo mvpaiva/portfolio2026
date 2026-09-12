@@ -7,14 +7,19 @@ Transitions API. Deploy alvo: Vercel.
 ## Estrutura
 
 ```
-app/                  rotas (App Router)
-  layout.tsx          fontes, metadata, <meta name="view-transition">
-  globals.css         tokens de design (cor, spacing, radius) e reset
-  page.tsx            rota "/" — home
-  page.module.css     estilos da home
-components/           componentes de UI compartilhados
+src/
+  app/                rotas (App Router)
+    layout.tsx        fontes, metadata, <meta name="view-transition">
+    globals.css       tokens de design (cor, spacing, radius) e reset
+    page.tsx          rota "/" — home
+    page.module.css   estilos da home
+  components/         componentes de UI compartilhados
 docs/                 specs de planejamento (ver docs/handoff.md primeiro)
 ```
+
+Arquivos de configuração (`package.json`, `tsconfig.json`, `next.config.ts`,
+`next-env.d.ts`) ficam na raiz do repo — é onde o Next.js e o Vercel esperam
+encontrá-los para build e deploy zero-config.
 
 ## Documentação do projeto
 
