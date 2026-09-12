@@ -5,12 +5,10 @@ você mesmo) consiga retomar o projeto do zero, em qualquer computador, sem
 acesso ao histórico de conversa que gerou as decisões abaixo. Leia este
 arquivo primeiro.
 
-> **Nome (2026-09-13):** o site real (código) exibe "Matheus Paiva", não
-> "Matheus Vieira". Os documentos de spec mais antigos (`diretrizes-portfolio.md`,
-> o log `.txt`) ainda foram escritos com "Vieira" — não foram todos
-> atualizados retroativamente, então trate o nome como "Paiva" (o que está
-> no código é a fonte de verdade) e ignore "Vieira" onde aparecer nos docs
-> antigos como resíduo histórico.
+> **Nome (confirmado em 2026-09-13):** é "Matheus Paiva". O log bruto
+> `Visual Language Specification.txt` ainda tem "Vieira" espalhado — é
+> histórico congelado, não vale a pena reescrever, mas nunca é a fonte
+> correta pra esse dado. Todo o resto (docs `.md`, código) já usa "Paiva".
 
 ## O que é este projeto
 

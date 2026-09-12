@@ -1,4 +1,4 @@
-# Portfólio — Matheus Vieira
+# Portfólio — Matheus Paiva
 
 Portfólio pessoal, Next.js (App Router) + CSS puro (sem framework de utilitários),
 fontes via `next/font/google` (Fraunces + Instrument Sans), preparado para View
