@@ -95,6 +95,15 @@ export function HomeStage() {
                 tabIndex={active === "contato" ? 0 : -1}
               >
                 LinkedIn
+              </a>{" "}
+              ou{" "}
+              <a
+                href="https://x.com/heymvpaiva"
+                target="_blank"
+                rel="noopener noreferrer"
+                tabIndex={active === "contato" ? 0 : -1}
+              >
+                X
               </a>
               , ver meu{" "}
               <a
@@ -105,7 +114,7 @@ export function HomeStage() {
               >
                 CV
               </a>
-              , ou mandar um e-mail pra{" "}
+              , ou mandar um e-mail pra{" "}
               <a
                 href="mailto:mv@mvpaiva.com"
                 tabIndex={active === "contato" ? 0 : -1}
