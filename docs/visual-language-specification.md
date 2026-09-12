@@ -579,23 +579,35 @@ linhas decrescentes (nunca hambúrguer), revela lista vertical de seções.
 
 ## 16. Interações e motion (v2 — supera a v1)
 
-**Easing canônico:** `cubic-bezier(0.16, 1, 0.3, 1)` — usado em overlays,
-painéis, transição de case. Curva de desaceleração suave (início rápido, fim
-lento) — "porta de galeria pesada abrindo devagar", nunca estala, nunca tem
-bounce.
+Três categorias de motion, com pesos diferentes — usar a categoria errada
+(ex: curva de "Primary Transition" numa troca de texto pequena) é o que faz
+uma microinteração parecer pesada demais, mesmo sem nenhum erro técnico.
+
+**1. Primary Transition** — `0.8s cubic-bezier(0.16, 1, 0.3, 1)`. Curva de
+desaceleração suave (início rápido, fim lento) — "porta de galeria pesada
+abrindo devagar". Reservada **só** para revelações de página cheia e
+overlays (entrada/saída do case study, transformação de página). Nunca usar
+essa curva/duração em algo que acontece dentro da mesma view.
+
+**2. Microinteractions** — `0.3s ease-in-out`. Hovers, sublinhados, trocas
+rápidas de estado dentro da mesma view. **Inclui o panel-toggle da home**
+(troca de conteúdo entre Projetos/Sobre/Contato/tagline): fade puro de
+opacidade, `0.3s ease-in-out`, **sem transform** — é uma troca de estado
+local, não uma revelação de página, então usa a curva leve, não a pesada.
+
+**3. Reveal Effect** — `opacity: 0` + `translateY(10–20px)` → `opacity: 1`
++ `translateY(0)`. Elementos "sobem" levemente ao aparecer, criando sensação
+de profundidade. Aplica-se a **entradas** de elemento (nav reveal no hover
+do header, entrada de overlay/modal) — nunca a uma troca de conteúdo no
+mesmo lugar (panel-toggle), que deve ler como o texto "surgindo do fundo"
+(fade puro), não subindo.
 
 **Durações:**
-| Duração | Uso |
-|---|---|
-| 0.3s | Micro-interações: underline de hover, shift de opacidade, borda de card |
-| 0.4s | Reveal de nav, transições de painel |
-| 0.5s | Fade de painel de conteúdo (panel toggle) |
-| 0.8s | Transições maiores: entrada/saída de overlay, transformação de página |
-
-**Reveals:** `opacity: 0` + `translateY(10–20px)` → `opacity: 1` +
-`translateY(0)` — elementos "sobem" levemente ao aparecer (10–20px),
-criando sensação de profundidade. Aplica-se a nav reveal, entrada de
-overlay/modal e reveals de conteúdo.
+| Duração | Categoria | Uso |
+|---|---|---|
+| 0.3s | Microinteraction | underline de hover, shift de opacidade, borda de card, panel-toggle da home |
+| 0.4s | Reveal Effect | reveal de nav (hover do header) |
+| 0.8s | Primary Transition | entrada/saída de overlay, transformação de página |
 
 **Hover de link de texto:** opacidade 100%→60–70%, ou sublinhado via
 `transform: scaleX(0→1)`, 0.3s ease.

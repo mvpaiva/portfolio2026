@@ -55,10 +55,15 @@
    opacity — no translateY. Content should feel like it surfaces from the
    background itself, not slide into place (calm-ui restraint; the 10-20px
    "reveal effect" rise documented in the ui kit is for page/overlay
-   entrances, not this in-place text swap). */
+   entrances, not this in-place text swap).
+
+   This is a microinteraction (a quick state change within the same view),
+   not a page/overlay reveal — so it uses the ui kit's "Microinteractions"
+   timing (0.3s ease-in-out), not the heavier 0.8s/0.16,1,0.3,1 "Primary
+   Transition" curve reserved for full-page/overlay entrances. */
 .textStage > * {
   grid-area: 1 / 1;
-  transition: opacity 0.5s var(--ease-primary);
+  transition: opacity 0.3s ease-in-out;
 }
 
 .tagline,
@@ -67,7 +72,8 @@
   font-weight: 400;
   font-size: 13px;
   line-height: 20.8px;
-  text-align: center;
+  text-align: left;
+  text-wrap: pretty;
   max-width: 420px;
 }
 
@@ -87,6 +93,10 @@
 
 .faded {
   opacity: 0.4;
+}
+
+.panelText p:not(:last-child) {
+  margin-bottom: var(--space-2);
 }
 
 .panelText a {

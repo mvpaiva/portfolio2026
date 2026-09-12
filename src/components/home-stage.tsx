@@ -43,7 +43,7 @@ export function HomeStage() {
               aria-hidden={active !== null}
             >
               Product Designer Júnior focado em UX Research, interação e
-              produtos com IA. Disponível para full-time em São Paulo.
+              produtos com IA. Disponível para full-time em São{" "}Paulo.
             </p>
 
             <p
@@ -59,22 +59,27 @@ export function HomeStage() {
                 Square
               </a>
               <span className={styles.faded}>
-                . App e totem de autoatendimento para supermercados.
+                . App e totem de autoatendimento para{" "}supermercados.
               </span>
             </p>
 
-            <p
+            <div
               className={`${styles.panelText} ${
                 active === "sobre" ? styles.visible : styles.hidden
               }`}
               aria-hidden={active !== "sobre"}
             >
-              18 meses em e-commerce com produto em produção, onde cada
-              decisão de design tinha impacto direto em conversão. Hoje
-              aplico pesquisa e análise comportamental para orientar decisões
-              de interação. Explorando design de produtos com IA como
-              próxima fronteira. Baseado em Arujá, São Paulo.
-            </p>
+              <p>
+                Sou Product Designer Júnior em transição de carreira, com
+                formação em Arquitetura e{" "}Urbanismo.
+              </p>
+              <p>
+                Passei os últimos 18 meses gerindo um e-commerce em
+                produção, tomando decisões com dados e usuários reais. Hoje
+                aplico essa disciplina em pesquisa, traduzindo entrevistas e
+                testes em decisões de{" "}interação.
+              </p>
+            </div>
 
             <p
               className={`${styles.panelText} ${
