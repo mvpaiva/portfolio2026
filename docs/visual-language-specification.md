@@ -1,4 +1,4 @@
-# Visual Language Specification v2 — Matheus Vieira Portfolio
+# Visual Language Specification v2 — Matheus Paiva Portfolio
 
 > **Esta é a v2, que substitui integralmente a v1.** A v1 foi construída a partir
 > de um log de conversa exploratório (`Visual Language Specification.txt` da

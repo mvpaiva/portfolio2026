@@ -1,28 +1,62 @@
-# Handoff — Portfólio Matheus Vieira
+# Handoff — Portfólio Matheus Paiva
 
 Este arquivo existe para que qualquer sessão de trabalho (Claude Code ou
 você mesmo) consiga retomar o projeto do zero, em qualquer computador, sem
 acesso ao histórico de conversa que gerou as decisões abaixo. Leia este
 arquivo primeiro.
 
+> **Nome (2026-09-13):** o site real (código) exibe "Matheus Paiva", não
+> "Matheus Vieira". Os documentos de spec mais antigos (`diretrizes-portfolio.md`,
+> o log `.txt`) ainda foram escritos com "Vieira" — não foram todos
+> atualizados retroativamente, então trate o nome como "Paiva" (o que está
+> no código é a fonte de verdade) e ignore "Vieira" onde aparecer nos docs
+> antigos como resíduo histórico.
+
 ## O que é este projeto
 
-Portfólio pessoal de Matheus Vieira, Product Designer júnior em transição
+Portfólio pessoal de Matheus Paiva, Product Designer júnior em transição
 de carreira (ex-arquitetura, depois e-commerce, agora product design/UX).
 Público duplo: recrutador que escaneia em segundos, e design lead que lê a
 fundo. Stack alvo: **Next.js + React + CSS + View Transitions API,
 deploy na Vercel** — sem WebGL, Canvas, Three.js ou bibliotecas de
 animação pesadas.
 
-**Atualização (2026-09-12): o código do site foi iniciado.** Next.js (App
-Router) + CSS puro, scaffolded na raiz do repo (`app/`, `components/`) — os
-documentos de planejamento foram movidos para `docs/` (este arquivo incluso)
-para não ficarem misturados com o código. A home (`app/page.tsx` +
-`components/home-stage.tsx`) já implementa o padrão nav hover-reveal +
-panel-toggle descrito em `visual-language-specification.md` §11 (v2),
-construída a partir do frame real do Figma
-(`srfFKPHCUBOrQ1rHCGXsum`, node `2:500`). A case page ainda não foi
-implementada em código.
+**Atualização (2026-09-13): a home está funcionalmente completa e no ar
+localmente.** Next.js (App Router) + CSS puro, código em `src/` (convenção
+nativa do Next — `src/app/`, `src/components/`), config na raiz
+(`package.json`, `tsconfig.json`, etc., como o Vercel espera pro deploy
+zero-config). Docs de planejamento vivem em `docs/`.
+
+`src/components/home-stage.tsx` implementa o padrão nav hover-reveal +
+panel-toggle de `visual-language-specification.md` §11 (v2), construído a
+partir do frame real do Figma (`srfFKPHCUBOrQ1rHCGXsum`, node `2:500`), com
+conteúdo real (não placeholder):
+- Nome/cargo: Matheus Paiva / Product Designer
+- Tagline: foco em UX Research, interação e produtos com IA
+- Projetos: só Square (Essavie e Fireflies removidos da home — continuam
+  documentados como fictícios em `visual-language-specification.md` §14,
+  só não aparecem mais na UI)
+- Sobre: 2 parágrafos condensados da bio real (formação em Arquitetura →
+  e-commerce → pesquisa), sem repetir o que já está na tagline
+- Contato: e-mail (`mv@mvpaiva.com`), LinkedIn, X e CV reais
+
+**Motion:** implementado o sistema de 3 categorias descrito em
+`visual-language-specification.md` §16 (Primary Transition / Microinteractions
+/ Reveal Effect) — o panel-toggle usa a categoria "Microinteraction" (fade
+puro de opacidade, `0.3s ease-in-out`, sem `translateY`), não a curva
+pesada de página cheia.
+
+**Acessibilidade:** passei por uma auditoria de contraste real nesta
+sessão — texto secundário a 40% de opacidade (o valor "gostoso
+visualmente" do Figma original) mede ~2.46:1 de contraste, bem abaixo do
+mínimo WCAG AA (4.5:1). **65% de opacidade é o piso** que ainda passa com
+margem real (~5.1:1); 60% já falha (~4.4:1). Links são diferenciados do
+texto normal por sublinhado + peso, não só por cor/opacidade (exigência
+real da WCAG 1.4.1, não só preferência). Guarde esse número (65%) — é fácil
+alguém tentar "deixar mais clarinho" de novo sem saber que já foi testado e
+é o limite.
+
+A case page ainda não foi implementada em código.
 
 ## Ordem de leitura dos documentos
 
@@ -57,33 +91,44 @@ case Square precisa ser confirmado com Matheus antes de virar copy final —
 ver a lista de itens "verificar antes de usar" em
 `visual-language-specification.md` §14.
 
-## Estado atual (2026-09-11)
+## Estado atual (atualizado 2026-09-13)
 
-- **Decisão de artefato da home: REVERTIDA nesta mesma data.** A ideia de um
-  retângulo abstrato com 3 pontos foi abandonada — comparando a spec com o
-  Figma importado (`kGgmy2zYCzFzi0ZyLU9iMU`), ficou confirmado que o código
-  real da home implementa nav hover-reveal + panel-toggle (clique em
-  Projetos/Sobre/Contato substitui a bio no mesmo espaço). Este é o padrão
-  oficial agora — ver visual-language-specification.md §0 e §11 (v2).
+- **Home implementada e funcional** (ver seção acima) — nav hover-reveal +
+  panel-toggle, conteúdo real, motion e acessibilidade já auditados nesta
+  sessão. Isso substitui o antigo "artefato + 3 pontos" (v1), que já tinha
+  sido revertido antes de qualquer código existir.
 - **Sistema de blocos da case page:** fechado em 9 blocos (ver
-  visual-language-specification.md §13).
+  visual-language-specification.md §13) — **ainda não implementado em
+  código**, só especificado.
 - **Case study Square:** conteúdo real existe e está mapeado, mas a pasta
   `docs squareup/` (fonte primária dos dados de pesquisa) foi removida do
   repo — os números listados como "não corroborados" em
   visual-language-specification.md §14 precisam ser confirmados
   diretamente com Matheus antes de publicar.
-- **Cases "Essavie" e "Fireflies.ai":** fictícios, usados só para testar se
-  o sistema de blocos aguenta menos conteúdo. Não publicar como projetos
-  reais.
-- **Pendências técnicas em aberto** (nunca resolvidas no processo de
-  exploração, precisam de decisão/implementação real):
-  - `prefers-reduced-motion` — requisito, nunca implementado/testado.
+- **Cases "Essavie" e "Fireflies.ai":** fictícios. Removidos da listagem de
+  Projetos na home (só Square aparece lá agora); continuam documentados
+  como material de teste de estresse do sistema de blocos, não publicar
+  como reais.
+- **Mistério resolvido:** um link "Curadoria" que aparecia perto de
+  "Essavie" numa versão antiga do Figma intrigou uma sessão anterior — não
+  é um 4º projeto, é a segunda palavra do nome completo do projeto
+  ("Essavie Curadoria"), confirmado no card de exemplo do ui kit de
+  referência do Figma.
+- **Pendências técnicas em aberto:**
+  - `prefers-reduced-motion` — requisito, ainda não implementado/testado.
   - Arquitetura real de rotas Next.js (`/` e `/case/[slug]`) com View
     Transitions API nativa — só existe a meta tag preparatória
     (`<meta name="view-transition" content="same-origin">`), a transição
-    real é trabalho de build.
-  - Legibilidade de Fraunces itálico em tamanhos grandes (64px+) com
-    acentuação em português (ã, ç, õ) — nunca confirmada visualmente.
+    real é trabalho de build quando a case page existir.
+  - **Fonte de display na case page ainda em aberto:** o Figma real
+    (`srfFKPHCUBOrQ1rHCGXsum`, node `2:546`) usa Instrument Sans (não
+    Fraunces) em praticamente todos os headlines/números grandes do case
+    Square, contrariando a suposição antiga de que headlines usam Fraunces
+    itálico. Confirmado com Matheus que isso é intencional pro que já
+    existe no Figma — mas não decidido ainda se a *case page a construir*
+    deve seguir esse padrão real (Instrument Sans em headlines) ou usar
+    Fraunces como o resto da spec sugere. Perguntar antes de começar a
+    case page.
 
 ## O que foi limpo nesta sessão (2026-09-11)
 
@@ -108,15 +153,19 @@ dos documentos" acima.
 ## Como retomar o trabalho numa sessão nova
 
 1. Leia este arquivo, depois os dois `.md` de spec.
-2. Se for construir a home: comece pelo artefato (retângulo + 3 pontos),
-   depois o header responsivo, depois os 3 overlays (drawer Projetos,
-   drawer Sobre, modal Contato). Não implemente a transição real de rota
-   até o esqueleto visual estar validado.
+2. A home já está pronta (`src/components/home-stage.tsx`) — não reconstruir
+   do zero. Rode `npm run dev` e confira o estado atual antes de assumir
+   que algo está faltando.
 3. Se for construir a case page: comece pelo sistema de 9 blocos como
    componentes genéricos antes de preencher com conteúdo do Square — o
-   objetivo é o sistema reutilizável, não uma página fixa.
+   objetivo é o sistema reutilizável, não uma página fixa. **Antes de
+   escolher a fonte dos headlines**, ver a pendência sobre Instrument Sans
+   vs. Fraunces acima — não assumir Fraunces sem perguntar.
 4. Qualquer número, citação ou fato do case Square: confirme com Matheus
    (a fonte local `docs squareup/` não existe mais neste repo) antes de
    considerar final.
 5. Rode o checklist de audit em diretrizes-portfolio.md antes de publicar
    qualquer coisa.
+6. Se for mexer em opacidade/contraste de texto: 65% de ink sobre `--bg` é
+   o piso mínimo testado que passa WCAG AA (~5.1:1) — não reduzir sem
+   recalcular o contraste.
