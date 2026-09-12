@@ -142,8 +142,12 @@
   transform: translateY(10px);
 }
 
+/* :focus-visible (not :focus-within) so the nav only stays revealed for
+   keyboard tabbing — a mouse click also sets focus, and :focus-within
+   would keep the nav stuck visible until something else stole focus,
+   instead of hiding as soon as the pointer leaves the block. */
 .header:hover .navList,
-.header:focus-within .navList {
+.header:has(:focus-visible) .navList {
   opacity: 1;
   transform: translateY(0);
 }
