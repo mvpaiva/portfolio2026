@@ -121,15 +121,20 @@
   text-decoration-color: var(--color-ink);
 }
 
+/* padding-top (not margin-top) closes the gap between the text block and
+   the nav row into the hoverable box itself — margin sits outside the
+   element's hit area, so the mouse would exit :hover crossing that space
+   and the nav would flicker off/on before reaching the buttons. */
 .navRevealZone {
   position: absolute;
   top: 100%;
   left: 0;
-  margin-top: var(--space-6);
+  box-sizing: border-box;
+  padding-top: var(--space-6);
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 40px;
+  height: calc(40px + var(--space-6));
   width: 100%;
 }
 
