@@ -436,23 +436,54 @@ interface é um objeto de design, não um documento web padrão);
   topo da case page durante todo o scroll (`position: fixed; z-index: 110`);
   conteúdo recebe `padding-top` suficiente para não colidir.
 
-## 13. Sistema de blocos da case page (canônico — 9 blocos, preservado da v1)
+## 13. Sistema de blocos da case page (canônico — 13 blocos, v3 — 2026-09-13)
 
-Regra geral: desenhar o sistema de blocos reutilizável, não uma página fixa
-do Square — cada bloco é um componente com variantes de tamanho de conteúdo.
+> **Substitui a lista de 9 blocos genéricos da v1/v2.** Aquela lista era
+> especulativa (escrita antes da síntese real existir). A estrutura abaixo
+> veio direto da página real do case Square (node `13440-2`,
+> `Case---Square-Privado`), que já tem copy final escrito — não é mais
+> hipotética. Numeração renumerada sequencialmente (01→13); a fonte
+> original pulava do bloco 01 pro 03 sem nunca ter tido um bloco "02" —
+> confirmado com Matheus que é só falha de numeração, não um bloco
+> removido de propósito.
 
-1. **Hero do case** — eyebrow, headline, subhead, metadados (papel, duração,
-   ferramentas), resultado principal em destaque
-2. **Bloco de evidência/números** — métricas de pesquisa reais
-3. **Bloco de contexto** — problema mapeado como service blueprint
-4. **Bloco de research** — fotos de campo reais, metodologia (double
-   diamond), pain points, personas reais
-5. **Bloco de benchmark/competitive** — comparação com concorrentes reais
-6. **Bloco de evolução** — a mesma tela em fidelidades diferentes
-7. **Bloco de solução** (repetível ×N) — nome, pain point, tag de
-   dispositivo real, telas reais
-8. **Bloco de impacto/next steps**
-9. **Footer do case** — voltar para home, próximo case
+Regra geral continua valendo: desenhar como sistema de blocos reutilizável
+— cada bloco é um componente que outros cases (além do Square) também
+podem usar, com variantes de tamanho de conteúdo.
+
+| # | Bloco | O que prova/comunica |
+|---|---|---|
+| 01 | **Hero** | Eyebrow + headline + subhead + stat row (40%→0%, 18/247/5) + metadados — tudo já na dobra 1 |
+| 02 | **Contexto** | O briefing e o escopo do projeto |
+| 03 | **Research (comprimido)** | Campo, survey, entrevistas, personas, 7 pain points numerados — link externo pra pesquisa completa no Miro |
+| 04 | **Panorama competitivo** | Benchmark contra Zara/Amazon Go/Carrefour/Extra/Walmart |
+| 05 | **Evolução do wireframe** | Papel → hi-fi → final, usando a tela de Scan como fio condutor |
+| 06 | **Intro das soluções** | Ponte pro bloco de soluções |
+| 07–11 | **Solução 1–5** | Um bloco por solução — título próprio, tag numerada, quote real, wireframe real (ver §14) |
+| 12 | **Impacto** | 3 métricas reais de resultado |
+| 13 | **Próximos passos** | O que fica deliberadamente fora de escopo por enquanto |
+| — | **Footer** | Metadados completos, links reais (protótipo Figma, board Miro), navegação pro próximo case |
+
+**Fundido/removido em relação à lista antiga de 9 blocos:**
+- "Evidência/números" (bloco solto) → virou a stat row dentro do próprio
+  Hero, não é mais um bloco separado.
+- "Solução ×5" (1 bloco genérico repetido) → virou 6 blocos reais: 1 intro
+  + 5 blocos individuais, cada um com nome, pain point numerado e quote
+  próprios — não é mais um componente repetido com conteúdo trocado.
+- "Next steps" deixou de ser um sub-item do bloco de impacto e virou bloco
+  próprio (13).
+
+**Camada principal vs. secundária (confirmado):** o bloco de Research
+(03) tem um link "→ Ver a pesquisa completa" que aponta pra um board
+**externo no Miro** (`https://miro.com/app/board/uXjVHJ5Co14=/`) — não é
+um accordion/expansor dentro da própria página. A pesquisa completa nunca
+carrega no case page; ela mora inteira fora, e o link sai do site. Isso
+é o mecanismo real da regra "página principal enxuta, pesquisa completa
+em um só lugar" de `diretrizes-portfolio.md`.
+
+**Índice de seção (Quick Nav):** existe um componente de navegação rápida
+com âncoras pros 13 blocos + as 5 soluções individuais (14 âncoras no
+total). Ver §10 pro ícone (nunca hambúrguer).
 
 **Modelo híbrido imagem/texto:** imagem grande faz o trabalho visual; texto
 sempre HTML real por cima ou ao lado — nunca embutido no pixel da imagem.
@@ -579,32 +610,293 @@ pra sempre — o escopo é por bloco.
 - Isso vale pra cada um dos 5 blocos de Solução do Square individualmente
   — nunca um sticky global que atravessa blocos diferentes.
 
-## 14. Case study real — Square (fatos confirmados vs. exemplo — preservado da v1)
+## 14. Case study real — Square (copy final, v3 — 2026-09-13)
 
-**Fatos reais do projeto** (não fabricar, não alterar):
-- Referência publicada: `mvpaiva.com/square`
-- Eyebrow: "SELF-CHECKOUT REDESIGN · SQUARE"
-- Headline pt-BR: "Pulando a fila do caixa."
-- Subhead: 6 meses de redesign de self-checkout para Square Register e um
-  app complementar — do estacionamento até o portão de saída. Um fix de
-  identificação de produto sozinho levou a taxa de erro de 40% para 0%.
-- Metadados: Product Designer (solo) · Fev–Jun 2026 · Figma · Miro ·
-  Treejack · Maze
-- Evidência principal: **40% → 0%**
-- Escala real: ~8.000 palavras, 15 seções, 18 entrevistas, 247 respostas de
-  survey, personas reais, JTBD, card sorting, tree testing, 5 blocos de
-  solução, next steps
-- Dispositivos reais: Square App (mobile, 393×852) e Square Register
-  Totem/Kiosk (1920×1080)
-- A pasta `docs squareup/` (fonte primária de pesquisa) foi removida do
-  repositório — qualquer número marcado "não confirmado" precisa ser checado
-  com Matheus ou contra `mvpaiva.com/square` antes de virar copy final
+> **Substitui integralmente a v1/v2 desta seção.** O copy abaixo veio
+> verbatim da página real do case (node `13440-2`), extraído via prompt
+> dedicado (`docs/square-case-extraction-prompt.md`) contra o chat que
+> tem todo o contexto de pesquisa, e traduzido pra pt-BR nesta sessão.
+> Todo número aqui é confirmado — a lista antiga de "não confirmados" foi
+> resolvida (ver tabela abaixo). Fontes reais adicionais: protótipo
+> completo no Figma
+> (`UOGBjtsvGNFNs8O8qUSxjk/SquareUp---Matheus-Paiva`, node `12084:23891`)
+> e board de pesquisa no Miro (`miro.com/app/board/uXjVHJ5Co14=`).
 
-**Números não confirmados — verificar antes de usar:** "12h de campo", "23
-pontos de atrito", lista de concorrentes do benchmark (inconsistente entre
-versões do log), "73% abandonavam no terceiro toque" (sinalizado como
-possível invenção de IA), "+24% Revenue/Hour" / "-65%, 12s, 89%"
-(prováveis placeholders de template).
+### Números que estavam marcados "não confirmado" — resolvidos
+
+| Número | Status final |
+|---|---|
+| Rodadas de teste | **5**: 1 papel (app) + 2 mid-fi (totem) + 2 hi-fi (1 app + 1 totem) |
+| Timeline | **6 meses, Fev–Jul 2026** (não "Fev–Jun" nem "Fev–Abr", que apareciam em versões antigas) |
+| "12h de campo", "23 pontos de atrito" | Confirmados — 12h em 3 redes (Carrefour, Extra, Walmart) |
+| Lista de concorrentes | **Zara, Amazon Go, Carrefour, Extra, Walmart** (5 nomes). "Clover, Shopify, Toshiba" não existe em nenhuma fonte real — descartado |
+| "73% abandonavam no terceiro toque" | **Não existe em nenhuma fonte real — descartado.** (O único "73%" real é sobre hábito de lista de compras, contexto totalmente diferente) |
+| "+24% Revenue/Hour", "-65%, 12s, 89%" | **Não existem em nenhuma fonte real — descartados.** Os números reais de Impacto são outros (ver bloco 12 abaixo) |
+| Onboarding (6 variantes) e Payment Method | **Fora do escopo do case, de propósito** — as 5 soluções reais não incluem esses fluxos |
+
+### 01 · Hero
+
+- Eyebrow: `SELF-CHECKOUT REDESIGN · SQUARE`
+- Headline: **"Pulando a fila do caixa."**
+- Subhead: "Um redesign de 6 meses do autoatendimento do Square Register
+  e de um app complementar — do estacionamento até o portão de saída. Só
+  o fix de identificação de produtos levou a taxa de erro de 40% para 0%."
+- Stats: **40% → 0%** (erros de identificação de produto, antes vs.
+  depois dos testes) · **18 entrevistas** · **247 respostas de survey** ·
+  **5 rodadas de teste de usabilidade**
+- Metadados: PAPEL — Product Designer (solo) · DURAÇÃO — Fev–Jul 2026 ·
+  FERRAMENTAS — Figma · Miro · Treejack · Maze
+
+### 02 · Contexto
+
+- Eyebrow: `O CONTEXTO`
+- Headline: "Transformando um terminal de pagamento num sistema completo
+  de autoatendimento"
+- Tag: Projeto solo · sem afiliação com a Square
+- Corpo: "O briefing: transformar o Register em autoatendimento de
+  verdade, lançar um app complementar que apoie a jornada inteira (não só
+  o pagamento), manter o fluxo utilizável por qualquer idade ou perfil
+  sem exigir assistência, e manter todo item rastreável. Este case
+  acompanha a fase entre pegar o primeiro item e sair pela porta."
+
+### 03 · Research (comprimido)
+
+- Eyebrow: `A PESQUISA`
+- Headline: "18 conversas, 3 redes de varejo, um tema que não parava de
+  se repetir"
+- Subhead: "As pessoas não confiam que a máquina vai cobrir elas."
+- Nota de campo: "Observação de campo — 12 horas em 3 redes de varejo em
+  São Paulo, mapeando o serviço do estacionamento ao portão de saída."
+- Nota de métodos: "Fluxos de usuário, card sorting, tree testing, Crazy
+  8s — os métodos por trás dos wireframes."
+- Link: **"→ Ver a pesquisa completa"** — externo, abre o board no Miro
+  (não é accordion interno; ver §13)
+
+**7 pain points reais (numerados):**
+
+| # | Título | Quote/observação real |
+|---|---|---|
+| 01 | Fricção no escaneamento — parar pra checar o carrinho quebrava o escaneamento | "Cada olhada pra longe da câmera pra confirmar um item significava perder o fluxo e ter que se reencontrar." |
+| 02 | Seleção de item errado — escolher o item certo vinha antes de precificá-lo | "Sem uma etapa de categoria antes, 40% dos participantes do teste escanearam o item errado por completo." |
+| 03 | Busca de produto solto — o momento mais odiado do fluxo inteiro | "Busca manual de código pra produtos soltos — as pessoas desistiam no meio do escaneamento e pediam ajuda." |
+| 04 | Verificação 18+ — pedir documento parecia um espetáculo público | "Verificação de idade assistida por funcionário, feita à vista de toda a fila atrás de você." |
+| 05 | Ansiedade no portão de saída — um link escondido separava o cliente da porta | "O teste em papel revelou pessoas que disseram que precisariam de um funcionário só pra sair." |
+| 06 | Desconexão entre lista e scanner — a lista de compras e o scanner não se falavam | "Manuela, 33, ainda faz compra com papel porque o app não ajuda ela enquanto está no corredor." |
+| 07 | Lacuna de pagamento — o Pix era invisível em todo autoatendimento | "100% dos respondentes do survey disseram que é assim que preferem pagar. Nenhum totem testado aceitava." |
+
+**3 personas reais:**
+
+| Persona | Perfil | Quote | Tags |
+|---|---|---|---|
+| Xênia | 54–62 · baixa familiaridade com tecnologia | "Quero fazer compras rápido, mas tenho medo de errar." | Texto pequeno · Etapas demais · Medo de travar |
+| João | 18–25 · alta familiaridade com tecnologia | "Sem fila, sem papo. Só pagar e ir embora." | Velocidade · Sempre usa Pix · Zero fricção |
+| Manuela | 28–38 · familiaridade moderada com tecnologia | "Quero saber o que está acontecendo em cada etapa." | Clareza · Privacidade · Sem julgamento |
+
+**Metodologia (Double Diamond) — bloco de keywords pra SEO/ATS:**
+
+Requisito real de produto, não só estético: recrutadores usam ATS que
+buscam por nome de método (card sorting, JTBD, tree testing etc.), então
+esse bloco precisa ser **texto real, selecionável, nunca dentro de
+imagem** — o mesmo motivo pelo qual todo o resto do case já segue a regra
+"texto HTML por cima da imagem, nunca embutido no pixel" (§13).
+
+A versão ao vivo (`mvpaiva.com/square`) usa losangos com cor de destaque
+pra representar o Double Diamond — **isso não é o padrão aqui**: losango
+decorativo colorido contraria duas regras já existentes ("nunca formas
+geométricas decorativas", "no máximo uma cor de destaque por viewport").
+A informação é a mesma; a forma visual muda.
+
+**Padrão canônico: "escada tipográfica" de 4 colunas** (empilha em
+coluna única no mobile):
+- Cada fase = header em `Portfolio/Body/Label` (10px, caps, tracking
+  0.12em) na cor sage — único uso de cor no bloco inteiro, consistente com
+  "sage só como prefixo de label de seção" (§6)
+- Métodos de cada fase = lista sem bullet, uma técnica por linha, `Body`
+  padrão (13px), ink 100% — é a parte keyword-densa, tem que ficar em
+  contraste total, nunca em opacidade reduzida
+- Divisor entre as 4 colunas = hairline vertical 1px a 10% (o mesmo
+  divisor usado em tabelas/listas em todo o resto do sistema) — nunca
+  seta, nunca losango, nunca ícone de convergência/divergência literal
+- Progressão comunicada por sequência esquerda→direita + hairline, não
+  por forma geométrica
+
+**Conteúdo real (4 fases, `mvpaiva.com/square`):**
+
+| DESCOBRIR | DEFINIR | DESENVOLVER | ENTREGAR |
+|---|---|---|---|
+| Estudo de campo | Personas | Crazy 8s | 5 rodadas de teste |
+| Survey | JTBD | Wireframes low-fidelity | Protótipos mid-fi ×3 |
+| Entrevistas | MoSCoW | Protótipo em papel | Protótipos hi-fi ×4 |
+| Service blueprint | Avaliação de heurísticas | Wireframes high-fidelity | Maze + testes presenciais |
+| Desk research | Card sorting / Tree testing | | |
+
+**Atenção pra não confundir dois números parecidos:** "5 rodadas de
+teste" (ENTREGAR) é a contagem de **sessões de teste realizadas** — 1
+papel + 2 mid-fi + 2 hi-fi, já confirmado em §01. "Protótipos mid-fi ×3" e
+"hi-fi ×4" são a contagem de **iterações de protótipo produzidas**, uma
+métrica diferente (quantas versões foram desenhadas, não quantas vezes
+foram testadas). Os dois números convivem sem contradição — só não
+confundir "rodada de teste" com "iteração de protótipo" ao escrever copy.
+
+Nota de rodapé do bloco (texto pequeno, ink 65%, keyword extra sem
+disputar hierarquia visual): "Outras técnicas aplicadas mas não
+apresentadas em detalhe: tree testing adicional, análise de jobs
+stories, benchmarking de acessibilidade WCAG AA e análise comparativa de
+interfaces existentes."
+
+### 04 · Panorama competitivo
+
+- Eyebrow: `PANORAMA COMPETITIVO`
+- Headline: "Como o bom já se parece, em outro lugar"
+- Subhead: "5 players diretos e adjacentes, comparados nos momentos que
+  realmente quebravam nos testes."
+- Logos: Zara · Amazon Go · Carrefour · Extra · Walmart
+
+| # | Critério | Quem já resolve |
+|---|---|---|
+| 01 | Identificação de item | Zara, Amazon Go — totalmente automático, sem escaneamento item a item |
+| 02 | Recomendações | Zara, Amazon Go — contextuais ao corredor onde você está |
+| 03 | Orientação na loja | Amazon Go — busca dentro da loja guia até a prateleira |
+| 04 | Verificação de idade | Ninguém, ainda — todo totem observado ainda direciona pra um funcionário visível |
+
+### 05 · Evolução do wireframe
+
+- Eyebrow: `COMO EVOLUIU`
+- Headline: "Papel primeiro, tela por último"
+- Subhead: "De um mock em papel até a tela final — como a interação
+  central de escaneamento evoluiu de verdade."
+- **Papel · Teste 1** — "Impresso no tamanho do iPhone 15 Pro, testado com
+  pensamento em voz alta antes de um único pixel ser desenhado."
+- **Hi-fi · depois do teste no totem** — "Mid-fi digital foi pulado —
+  testado direto no totem físico, e então saltou direto pra alta
+  fidelidade."
+- **Final · entregue** — "Passagem real de câmera, carrinho sempre visível
+  numa bottom sheet escurecida — itens confirmados animam sem parar o
+  escaneamento."
+- Wireframe usado: `scan-v1` (mesma tela nos 3 estágios da evolução)
+
+### 06 · Intro das soluções
+
+- Eyebrow: `AS SOLUÇÕES`
+- Headline: "Cinco soluções, mapeadas pro que realmente quebrava"
+- Subhead: "App e totem, trabalhando juntos — cada uma remonta a um pain
+  point específico acima."
+
+### 07 · Solução 1 — Escaneamento contínuo
+
+- Tag: APP · 01 · fricção no escaneamento, interrupção do carrinho
+- Headline: "Escaneie sem parar"
+- Quote: "Quero escanear tudo com o celular e ir embora. Sem fila, sem
+  conversa." — Survey
+- Corpo: "A câmera fica ativa enquanto o carrinho fica numa bottom sheet
+  abaixo dela. Um item escaneado confirma com uma animação rápida de mola
+  que nunca interrompe o fluxo — a câmera continua visível (só
+  escurecida) pra deixar claro que você ainda está escaneando."
+- Wireframes: `scan-v1` (tela única) + `scan-fab-bottomsheet` (imagem
+  full-bleed)
+
+### 08 · Solução 2 — Identificação de produto
+
+- Tag: APP · 02 · 03 · seleção de item errado, busca de produto solto
+- Headline: "Categoria primeiro, código nunca"
+- Stat: **40% → 0%** (erros de item errado, com vs. sem essa tela)
+- Corpo: "Uma tela de categoria agora vem antes da grade de produtos.
+  Escolha uma categoria, depois identifique o item por uma foto de alta
+  qualidade — a balança captura o peso e o preço calcula
+  automaticamente. Sem essa tela, 40% dos participantes do teste
+  escolheram o item errado. Com ela: zero."
+- Quote: "A tabela de busca de produto é péssima. Nunca sei o código
+  certo. Desisto no meio do caminho." — Xênia, 54
+- Wireframe: `weigh-item` (sequência completa: header → busca → grade de
+  produtos → painel de peso/confirmação)
+
+### 09 · Solução 3 — Verificação de idade
+
+- Tag: APP · TOTEM · 04 · constrangimento na verificação 18+
+- Headline: "Prove sua idade sem plateia"
+- Quote: "No Extra, um funcionário confere o documento do cliente na
+  frente de todo mundo." — Observação de campo
+- Corpo: "Quando o sistema sinaliza um item com restrição de idade, ele
+  oferece três caminhos: confirmar com um CPF já cadastrado, verificar
+  pelo app, ou pedir ajuda — nenhum caminho exige se destacar. Se o CPF
+  já está cadastrado, a verificação é automática."
+- Callout — o que mudou no meio do projeto: "O participante P5 se recusou
+  a digitar o CPF — até ler que ele não seria compartilhado. O aviso de
+  privacidade agora aparece antes do campo, não depois."
+- Wireframe: `age-verification` (totem, modal overlay)
+
+### 10 · Solução 4 — Recuperação no portão de saída
+
+- Tag: APP · 05 · ansiedade no portão de saída
+- Headline: "Um portão travado não é um beco sem saída"
+- Quote: "Se fosse uma loja de verdade, eu teria chamado um funcionário.
+  Eu teria ficado preso ali." — Teste em papel
+- Antes/Depois: link de texto escondido → tela dedicada de recuperação
+- Corpo: "O caminho antigo de recuperação era um linkzinho de texto
+  escondido no fim da tela de saída — fácil de perder sob estresse. O
+  novo é uma tela dedicada: duas opções de largura total, impossíveis de
+  não ver, que deixam o cliente se autodeclarar e liberar a saída sem
+  esperar por um funcionário."
+- Wireframes: `exit-fix-exit` (antes) + `exit-help` (depois)
+
+### 11 · Solução 5 — Lista de compras
+
+- Tag: APP · 06 · desconexão entre lista e escaneamento
+- Headline: "A lista te acompanha enquanto você compra"
+- Quote: "O app não me ajuda de verdade enquanto eu compro. Ainda uso
+  papel." — Manuela, 33
+- Corpo: "Um hub de lista dedicado deixa a pessoa montar a lista antes de
+  sair de casa. Durante o escaneamento, duas abas ficam visíveis —
+  Escaneados e Na Lista — e uma barra de progresso mostra o quanto falta.
+  Os itens se marcam sozinhos conforme são escaneados."
+- Wireframe: `scan-with-list`
+
+### 12 · Impacto
+
+- Eyebrow: `ONDE CHEGOU`
+- Headline: "Cinco soluções, remontadas a cinco pain points específicos —
+  validadas com as pessoas que realmente enfrentavam eles."
+- Stats: **40% → 0%** (erros de identificação de produto) · **85,1%**
+  (sucesso de navegação direta, tree test final) · **5/5** (soluções
+  remontadas a um pain point específico)
+
+### 13 · Próximos passos
+
+- Eyebrow: `PRÓXIMOS PASSOS`
+- Headline: "O que está deliberadamente fora de escopo, por enquanto"
+- Mapa de corredores da loja + orientação de rota — precisa de um mapa
+  interno por loja
+- Programa de fidelidade — cada rede roda seu próprio sistema; precisa de
+  parcerias
+- Acompanhamento de orçamento mensal — empurra o produto pra além do
+  autoatendimento, rumo a finanças pessoais
+- Escalabilidade multi-rede — precisa antes de um fluxo de seleção de loja
+
+### Footer do case
+
+- PAPEL — Product Designer · DATA — Fevereiro 2026 – Julho 2026 ·
+  FERRAMENTAS — Figma · Miro · Google Forms · Optimal Workshop · Treejack
+  · Maze · SETOR — Autoatendimento
+- Links reais: ↗ Protótipo completo no Figma
+  (`UOGBjtsvGNFNs8O8qUSxjk`, node `12084:23891`) · ↗ Board de pesquisa no
+  Miro (`miro.com/app/board/uXjVHJ5Co14=`)
+- Navegação: ← Fireflies.ai · Essavie → (navegação entre cases do
+  portfólio — não é conteúdo do case Square, ver nota abaixo)
+
+### Wireframes: usados vs. fora do escopo
+
+Dos 24 exportados em `docs/assets/square-wireframes-raw/`, só **7 são
+usados** no case real:
+
+- **Usados:** `scan-v1` (Solução 1 + Evolução), `scan-fab-bottomsheet`
+  (Solução 1), `weigh-item` (Solução 2), `age-verification` (Solução 3),
+  `exit-fix-exit` + `exit-help` (Solução 4), `scan-with-list` (Solução 5)
+- **Fora do escopo, de propósito** (confirmado com Matheus — onboarding e
+  pagamento não fazem parte da narrativa condensada): `scan-v2`,
+  `scan-radial-menu`, `payment-method`, `cart-review`,
+  `scan-with-list-full`, as 6 variantes de `onboarding-*`, e do Totem:
+  `weigh-confirm`, `review-pay`, `payment-approved`, `splash-entry`,
+  `scan-cart`
 
 **Regra permanente:** nunca fabricar métricas, clientes, entrevistas,
 citações, participantes, resultados, prêmios, depoimentos, links

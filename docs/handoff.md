@@ -126,19 +126,30 @@ ver a lista de itens "verificar antes de usar" em
   montado como placeholder no Figma, página "exploracao de banners"
   (`srfFKPHCUBOrQ1rHCGXsum`, node `2020:121`) — usar como guia de proporção
   antes de entrar com os wireframes reais do Square.
-- **⚠ O conteúdo atual do bloco de 9 partes (`2:546`) NÃO é a versão final
-  pretendida do case Square.** O texto/copy que está lá hoje foi populado
-  pelo variant.com de forma genérica, tipo template de case-page — não é a
-  síntese real que Matheus já elaborou. Existe: (1) um esboço de estrutura
-  em `Case---Square-Privado` (`2WJo488vVIQUVjSsgspVcb`, node `13440-2`)
-  feito a partir de (2) uma conversa dedicada só sobre esse case, com todo
-  o contexto (Matheus tem esse chat salvo, mas não está neste repo). O
-  case ao vivo (`mvpaiva.com/square`) está, nas palavras do próprio
-  Matheus, "muito longo, cansativo e sem graça" — o objetivo dessa
-  reescrita é justamente sintetizar melhor, não replicar a estrutura
-  atual. **Antes de escrever copy final pra qualquer bloco de solução,
-  perguntar a Matheus se deve seguir o esboço `13440-2` em vez do que já
-  está em `2:546`.**
+- **✅ RESOLVIDO (2026-09-13): conteúdo final do case Square fechado.** A
+  pendência antiga (bloco de 9 partes em `2:546` era filler genérico do
+  variant.com, não a síntese real) foi resolvida rodando
+  `docs/square-case-extraction-prompt.md` contra o chat dedicado ao case —
+  ele tinha a página real já escrita (node `13440-2`), não um esboço vago.
+  Resultado: estrutura de **13 blocos** (não mais 9) com copy final em
+  pt-BR, todos os números antigos "não confirmados" resolvidos, e
+  mapeamento de qual dos 24 wireframes exportados vai em qual solução —
+  tudo em `visual-language-specification.md` §13 e §14 (v3). **Isso ainda
+  não foi aplicado no Figma** (`2:546` continua com o filler antigo) —
+  próximo passo é levar esse conteúdo pros placeholders reais.
+  - Decisões fechadas nessa sessão: 5 rodadas de teste (1 papel + 2 mid-fi
+    + 2 hi-fi); timeline real 6 meses, Fev–Jul 2026; onboarding/payment
+    method ficam fora do escopo do case de propósito; bloco "02" nunca
+    existiu, era só erro de numeração.
+  - Links reais novos: protótipo completo no Figma
+    (`UOGBjtsvGNFNs8O8qUSxjk/SquareUp---Matheus-Paiva`, node `12084:23891`)
+    e board de pesquisa completa no Miro
+    (`miro.com/app/board/uXjVHJ5Co14=`) — o link "ver pesquisa completa"
+    do case aponta pra esse Miro, não é um accordion interno.
+  - Bloco de metodologia (Double Diamond) documentado como "escada
+    tipográfica" de 4 colunas com hairline — substitui os losangos
+    coloridos do site ao vivo, mantendo o conteúdo keyword-denso pra
+    ATS/SEO (ver §14, dentro do bloco 03).
 - **Sticky da coluna de texto (2026-09-13):** cada bloco de Solução tem sua
   coluna de texto (`col-span-5`) grudada (`position: sticky; top: 96px`)
   ao lado da imagem enquanto aquele bloco específico está na viewport —
