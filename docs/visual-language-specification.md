@@ -641,11 +641,19 @@ pra sempre — o escopo é por bloco.
 - Subhead: "Um redesign de 6 meses do autoatendimento do Square Register
   e de um app complementar — do estacionamento até o portão de saída. Só
   o fix de identificação de produtos levou a taxa de erro de 40% para 0%."
-- Stats: **40% → 0%** (erros de identificação de produto, antes vs.
-  depois dos testes) · **18 entrevistas** · **247 respostas de survey** ·
-  **5 rodadas de teste de usabilidade**
+- Stats (3, não 4 — ver nota abaixo): **18 entrevistas** · **247
+  respostas de survey** · **5 rodadas de teste de usabilidade**
 - Metadados: PAPEL — Product Designer (solo) · DURAÇÃO — Fev–Jul 2026 ·
-  FERRAMENTAS — Figma · Miro · Treejack · Maze
+  FERRAMENTAS — Figma · Miro · Treejack · Maze · SETOR — Autoatendimento
+
+**Nota sobre o "40% → 0%" (2026-09-13):** originalmente planejado como um
+4º stat tile no Hero, mas é redundante — o subhead já menciona esse
+mesmo número. Removido do stat row; o número continua vivendo no
+subhead e reaparece como stat real no bloco 08 (Solução 2) e no bloco 12
+(Impacto). **Não usar NPS nem SEQ em nenhum bloco do case** — Matheus
+pediu explicitamente pra evitar essas duas métricas, mesmo estando
+confirmadas em outras partes da pesquisa (não aparecem no case page
+real de qualquer forma).
 
 ### 02 · Contexto
 
