@@ -78,6 +78,13 @@ A case page ainda não foi implementada em código.
    visual-language-specification.md §13.1 (com uma correção de
    acessibilidade); ler o `.txt` original só se precisar do raciocínio
    completo por trás dos números.
+6. **[square-case-extraction-prompt.md](square-case-extraction-prompt.md)**
+   — prompt pronto pra rodar contra o chat dedicado ao case Square e/ou o
+   site ao vivo (`mvpaiva.com/square`), pra puxar a síntese real (estrutura,
+   números confirmados, mapeamento dos 24 wireframes exportados pros 5
+   blocos de Solução). Use isso **antes** de escrever qualquer copy final
+   pro case ou de tocar nos placeholders do Figma — ver pendência logo
+   abaixo em "Estado atual".
 
 > A pasta `docs squareup/` (PRD + research real do case Square) existiu
 > neste diretório e foi removida pelo próprio Matheus em 2026-09-11 — o
