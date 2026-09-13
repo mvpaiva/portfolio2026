@@ -137,8 +137,13 @@ ver a lista de itens "verificar antes de usar" em
   ao lado da imagem enquanto aquele bloco específico está na viewport —
   solta quando o próximo bloco começa. Escopo por bloco, nunca sticky
   global. Ver visual-language-specification.md §13.2.
-  WCAG AA (medido nesta mesma sessão pra outro contexto); a spec já foi
-  ajustada pra 65% mínimo.
+- **Wireframes reais do Square exportados (2026-09-13):** 24 telas finais
+  (6 Totem + 18 Mobile, as únicas visíveis entre as variantes A/B de cada
+  seção do arquivo `Case---Square-Privado`) exportadas como PNG em
+  `docs/assets/square-wireframes-raw/` — substituem os wireframes antigos
+  da seção `13597-2037` como fonte de imagem. Ainda **não mapeadas** pra
+  nenhum dos 5 blocos de Solução (índice completo no README daquela
+  pasta) — depende da síntese real do case (ver bullet acima).
 - **Case study Square:** conteúdo real existe e está mapeado, mas a pasta
   `docs squareup/` (fonte primária dos dados de pesquisa) foi removida do
   repo — os números listados como "não corroborados" em
