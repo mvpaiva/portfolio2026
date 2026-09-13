@@ -704,19 +704,30 @@ A versão ao vivo (`mvpaiva.com/square`) usa losangos com cor de destaque
 pra representar o Double Diamond — **isso não é o padrão aqui**: losango
 decorativo colorido contraria duas regras já existentes ("nunca formas
 geométricas decorativas", "no máximo uma cor de destaque por viewport").
-A informação é a mesma; a forma visual muda.
+Uma segunda referência (gerada pelo variant.com) tentou resolver isso com
+headers em Fraunces itálico + parágrafo descritivo por fase + nomes de
+método como link azul + marcador quadrado preenchido/vazado — melhor
+tipograficamente, mas ainda usa cor fora da paleta (azul) e adiciona 4
+frases de descrição que vão contra o objetivo de ser **mais breve** que a
+página ao vivo, não mais longo. A ideia de usar Fraunces itálico pro nome
+da fase foi aproveitada; o resto (azul, quadrados, parágrafo) foi
+descartado.
 
-**Padrão canônico: "escada tipográfica" de 4 colunas** (empilha em
-coluna única no mobile):
-- Cada fase = header em `Portfolio/Body/Label` (10px, caps, tracking
-  0.12em) na cor sage — único uso de cor no bloco inteiro, consistente com
-  "sage só como prefixo de label de seção" (§6)
+**Padrão canônico: nome da fase em Fraunces + lista em 2 linhas** (empilha
+em coluna única no mobile, sem descrição por fase):
+- Header de cada fase = uma linha só: numeral (`01 —`, `Portfolio/Body/Label`
+  10px caps tracking 0.12em, cor **sage** — único uso de cor no bloco
+  inteiro) + nome da fase em **Fraunces Light Italic, ~24px** (mesma
+  família de display usada em todo o resto do case, não uma família nova)
 - Métodos de cada fase = lista sem bullet, uma técnica por linha, `Body`
   padrão (13px), ink 100% — é a parte keyword-densa, tem que ficar em
   contraste total, nunca em opacidade reduzida
-- Divisor entre as 4 colunas = hairline vertical 1px a 10% (o mesmo
-  divisor usado em tabelas/listas em todo o resto do sistema) — nunca
-  seta, nunca losango, nunca ícone de convergência/divergência literal
+- Divisor entre header e lista = hairline horizontal 1px a 10%; divisor
+  entre as 4 colunas = hairline vertical 1px a 10% — nunca seta, nunca
+  losango, nunca quadrado, nunca ícone de convergência/divergência literal
+- **Sem parágrafo descritivo por fase** — o nome em Fraunces já é a pista
+  visual suficiente; qualquer explicação extra vai contra o objetivo de
+  brevidade
 - Progressão comunicada por sequência esquerda→direita + hairline, não
   por forma geométrica
 
