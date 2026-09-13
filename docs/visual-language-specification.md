@@ -556,6 +556,29 @@ de 65% pra texto que precisa ser lido.
 Fraunces, 120px+, 5–20% opacidade, não-interativos, puramente atmosféricos,
 orientação de scroll sem interferir.
 
+### 13.2 Comportamento sticky da coluna de texto (bloco de solução)
+
+Confirmado em 2026-09-13: a coluna de texto (`col-span-5` — label, headline,
+problema, citação, descrição da solução) de cada bloco de Solução acompanha
+a(s) imagem(s) ao lado (`col-span-7`, wireframe) durante o scroll — fica
+"grudada" (`position: sticky`) enquanto o bloco ainda está passando pela
+viewport, e solta assim que o próximo bloco de Solução começa. Não é sticky
+pra sempre — o escopo é por bloco.
+
+**Implementação (CSS):**
+- O bloco de Solução inteiro (`col-span-5` + `col-span-7` juntos) é o
+  container de referência: `position: relative`, altura = altura do
+  conteúdo mais alto entre texto e imagem (geralmente a imagem, se for
+  Mobile 694px, ou o texto, se for mais longo que isso).
+- A coluna de texto (`col-span-5`) recebe `position: sticky; top: 96px`
+  (mesmo valor de `--space-24`, consistente com o espaçamento de seção) —
+  ela gruda a 96px do topo da viewport enquanto o container pai (o bloco)
+  ainda está visível, e sai de cena naturalmente quando o container pai
+  termina (comportamento nativo de `position: sticky`, não precisa de JS
+  pra "desgrudar" — o limite é o próprio container).
+- Isso vale pra cada um dos 5 blocos de Solução do Square individualmente
+  — nunca um sticky global que atravessa blocos diferentes.
+
 ## 14. Case study real — Square (fatos confirmados vs. exemplo — preservado da v1)
 
 **Fatos reais do projeto** (não fabricar, não alterar):

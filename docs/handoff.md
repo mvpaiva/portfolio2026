@@ -119,6 +119,24 @@ ver a lista de itens "verificar antes de usar" em
   montado como placeholder no Figma, página "exploracao de banners"
   (`srfFKPHCUBOrQ1rHCGXsum`, node `2020:121`) — usar como guia de proporção
   antes de entrar com os wireframes reais do Square.
+- **⚠ O conteúdo atual do bloco de 9 partes (`2:546`) NÃO é a versão final
+  pretendida do case Square.** O texto/copy que está lá hoje foi populado
+  pelo variant.com de forma genérica, tipo template de case-page — não é a
+  síntese real que Matheus já elaborou. Existe: (1) um esboço de estrutura
+  em `Case---Square-Privado` (`2WJo488vVIQUVjSsgspVcb`, node `13440-2`)
+  feito a partir de (2) uma conversa dedicada só sobre esse case, com todo
+  o contexto (Matheus tem esse chat salvo, mas não está neste repo). O
+  case ao vivo (`mvpaiva.com/square`) está, nas palavras do próprio
+  Matheus, "muito longo, cansativo e sem graça" — o objetivo dessa
+  reescrita é justamente sintetizar melhor, não replicar a estrutura
+  atual. **Antes de escrever copy final pra qualquer bloco de solução,
+  perguntar a Matheus se deve seguir o esboço `13440-2` em vez do que já
+  está em `2:546`.**
+- **Sticky da coluna de texto (2026-09-13):** cada bloco de Solução tem sua
+  coluna de texto (`col-span-5`) grudada (`position: sticky; top: 96px`)
+  ao lado da imagem enquanto aquele bloco específico está na viewport —
+  solta quando o próximo bloco começa. Escopo por bloco, nunca sticky
+  global. Ver visual-language-specification.md §13.2.
   WCAG AA (medido nesta mesma sessão pra outro contexto); a spec já foi
   ajustada pra 65% mínimo.
 - **Case study Square:** conteúdo real existe e está mapeado, mas a pasta
