@@ -322,7 +322,7 @@ site/case.
 |---|---|---|
 | radius-0 | 0px | Canônico — cards, botões, inputs, imagens, tags, modais, containers de conteúdo |
 | radius-sm | 2px | Skeleton blocks |
-| radius-md | 4px | Frame externo de mockup de device (hardware); a tela interna do mockup permanece 0px |
+| radius-md | 4px | Reservado — não usado atualmente. Ver §13.1: os wireframes da case page **não** usam frame de hardware/device mockup, então nenhum bloco de solução usa este token hoje. |
 | radius-full | 9999px | Só elementos circulares utilitários (trigger de menu flutuante) |
 
 Nunca misturar cantos retos e arredondados dentro do mesmo grupo de
@@ -457,13 +457,100 @@ do Square — cada bloco é um componente com variantes de tamanho de conteúdo.
 **Modelo híbrido imagem/texto:** imagem grande faz o trabalho visual; texto
 sempre HTML real por cima ou ao lado — nunca embutido no pixel da imagem.
 
-**Tag de dispositivo (app vs. totem):**
-- App: container max-width 280px, cantos 4px (hardware), caption sage 10px
-  caps: "MOBILE — 393 × 852"
-- Totem: container full-width, cantos 4px, escala 16:9, caption:
-  "TOTEM — 1920 × 1080"
+**Tag de dispositivo (app vs. totem):** identificação é só por proporção
+real da imagem + label tipográfico — nunca por frame de hardware, ícone de
+device, chrome de browser ou mockup 3D. Ver §13.1 para as regras completas
+de composição (substituem os números antigos de "container max-width
+280px"/"cantos 4px" abaixo, que assumiam um frame de device que não existe
+mais nesta decisão).
 - Nunca inventar um rótulo de público/dispositivo que não existe de fato no
   case
+
+### 13.1 Composição de wireframes nos blocos de solução (2026-09-13)
+
+Regras derivadas de uma exploração de composição dedicada (ver
+`docs/Visual Diagnosis.txt` para o raciocínio completo) — o problema real:
+a coluna de conteúdo é fixa em ~696px, mas Totem (16:9) e Mobile (9:19,5)
+têm proporções radicalmente diferentes, e forçar os dois na mesma caixa
+distorce ou infla artificialmente um dos dois.
+
+**Princípios (valem pra qualquer bloco de solução, não só Square):**
+1. **Proporção nativa é lei** — nunca distorcer, nunca "stretchar" pra
+   preencher o container.
+2. **Espaço negativo é intencional, não decorado** — se a imagem do mobile
+   sobra espaço na coluna, esse espaço fica vazio (`--color-bg`), nunca
+   preenchido com elemento decorativo só pra "não parecer quebrado".
+3. **O label tipográfico é o frame** — sem ícone de device, sem moldura de
+   hardware, sem chrome de browser, sem mockup 3D/perspectiva. A imagem é
+   documentação (evidência de design), não render promocional.
+4. **Superfície plana, não card flutuante** — sem sombra, nunca (nem
+   "sutil"). O resto do sistema já rejeita elevação; wireframe não é
+   exceção.
+5. **Uma gramática por família de device** — todo wireframe de Totem usa o
+   mesmo tratamento; todo wireframe de Mobile usa o mesmo tratamento.
+   Consistência entre os 5 blocos de solução é mais importante que otimizar
+   cada um individualmente.
+6. **Alinhamento flush-left** dentro de `col-start-5 col-span-7` — nunca
+   centralizado dentro da própria coluna de conteúdo.
+
+**Totem (1920×1080):**
+- Padrão: uma tela só, largura 696px, altura 392px (16:9 exato,
+  `696 × 9/16`), sem borda, sem sombra.
+- Exceção — transição de estado (ex.: erro → resolução): par de 2 estados,
+  cada um 320px, gap 32px (total 672px, cabe nos 696px). Usar no máximo uma
+  vez por case study — se todo bloco tiver 2 estados, deixa de ser exceção
+  e vira ruído.
+- Alternativa — crop editorial: só quando a narrativa é sobre uma
+  micro-interação específica (ex.: painel de pesagem, overlay de
+  reconhecimento). O crop preserva 16:9, largura 696px, e a borda do crop
+  alinha com uma região real da UI (painel, botão) — nunca um corte
+  arbitrário no meio de um elemento.
+
+**Mobile (393×852):**
+- Padrão: uma tela só, largura 320px, altura ~694px (`320 × 852/393`,
+  proporção 9:19,5 exata) — **não** a largura proporcional real (228px);
+  320px é "ampliado mas honesto": grande o suficiente pra ler a interface,
+  sem violar a proporção. Alinhado flush-left; os ~376px restantes da
+  coluna ficam vazios (`--color-bg`), sem preenchimento.
+- Exceção — sequência/fluxo (onboarding, verificação): par de 2 estados,
+  cada um 280px, gap 32px (total 592px). Usar quando a narrativa é sobre
+  transição/tempo, não como padrão default.
+- Crop: raro, só se uma interação específica for o ponto inteiro da
+  solução. Preserva 9:19,5, largura 320px — nunca cropar pra uma proporção
+  não-nativa (ex.: nunca virar quadrado).
+
+**Bloco de evolução (Legado vs. Proposta):** substitui os dois placeholders
+idênticos de 256×384px que existiam antes (proporção arbitrária, não
+representa nenhum device real).
+- Alinhamento por **linha de base óptica**, não por caixa idêntica: os dois
+  lados compartilham a borda inferior, não a superior nem dimensões iguais.
+- Lado esquerdo (Legado, ex. Totem manual): 480px largura × 270px altura
+  (16:9).
+- Lado direito (Proposta, ex. visão computacional/mobile): 240px largura ×
+  510px altura (9:19,5).
+- Gap entre os dois: 64px.
+- Labels ("Legado (2022)" / "Proposta (2023)") acima de cada visualização,
+  alinhados à esquerda de cada uma — nunca centralizados.
+- Sem canvas/fundo compartilhado, sem linha separadora, sem seta ou "VS"
+  conectando os dois — a justaposição já comunica sozinha.
+- Os dois lados **não precisam ter a mesma dimensão** — o objetivo é
+  equilíbrio óptico (massa visual), não igualdade geométrica. Nunca
+  distorcer a proporção de nenhum dos dois pra forçar simetria.
+
+**Borda:** nenhuma por padrão. Só adicionar hairline (`rgba(26,26,26,0.1)`,
+1px) se o wireframe tiver fundo claro/bordas ambíguas contra `--color-bg`
+— a maioria dos wireframes já tem contraste interno suficiente e não
+precisa.
+
+**Sombra:** nunca, em nenhuma circunstância, nem "sutil". Wireframe é
+documentação, não card de produto flutuante.
+
+**Label do device — correção de acessibilidade:** o rascunho de exploração
+sugeriu ink a 40% de opacidade pro texto do label ("TOTEM — 1920 × 1080").
+**Não usar 40%** — essa sessão já mediu esse valor pra texto secundário da
+home e ele falha WCAG AA (~2.46:1, mínimo é 4.5:1). Usar **65%** (piso já
+validado, ~5.1:1) ou a Label style já definida em §5 a 100% — nunca menos
+de 65% pra texto que precisa ser lido.
 
 **Marcos de seção (ghost markers):** "Descoberta", "Síntese", "Design" —
 Fraunces, 120px+, 5–20% opacidade, não-interativos, puramente atmosféricos,

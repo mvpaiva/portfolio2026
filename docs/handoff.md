@@ -72,6 +72,12 @@ A case page ainda não foi implementada em código.
    protótipos visuais gerados durante a exploração (base, navegação,
    microinterações, DS principal e secundário, case page padrão). Útil para
    ver visualmente o que os documentos descrevem em texto.
+5. **`Visual Diagnosis.txt`** — exploração dedicada de composição de
+   wireframes (Totem/Mobile/Evolução) dentro dos blocos de solução da case
+   page. As conclusões já foram incorporadas em
+   visual-language-specification.md §13.1 (com uma correção de
+   acessibilidade); ler o `.txt` original só se precisar do raciocínio
+   completo por trás dos números.
 
 > A pasta `docs squareup/` (PRD + research real do case Square) existiu
 > neste diretório e foi removida pelo próprio Matheus em 2026-09-11 — o
@@ -98,6 +104,17 @@ ver a lista de itens "verificar antes de usar" em
 - **Sistema de blocos da case page:** fechado em 9 blocos (ver
   visual-language-specification.md §13) — **ainda não implementado em
   código**, só especificado.
+- **Composição de wireframes nos blocos de solução (2026-09-13):** regras
+  concretas fechadas em visual-language-specification.md §13.1 — Totem
+  696×392px sem borda/sombra; Mobile 320×694px ("ampliado mas honesto",
+  não a largura proporcional real de 228px), espaço negativo à direita
+  fica vazio de propósito; bloco de Evolução usa alinhamento por linha de
+  base óptica (480×270 vs. 240×510, gap 64px), não mais os dois
+  placeholders idênticos de 256×384px. Fonte: `docs/Visual Diagnosis.txt`
+  (exploração dedicada, trazida por Matheus). **Correção feita nessa
+  adoção:** a fonte sugeria label do device a 40% de opacidade — isso falha
+  WCAG AA (medido nesta mesma sessão pra outro contexto); a spec já foi
+  ajustada pra 65% mínimo.
 - **Case study Square:** conteúdo real existe e está mapeado, mas a pasta
   `docs squareup/` (fonte primária dos dados de pesquisa) foi removida do
   repo — os números listados como "não corroborados" em

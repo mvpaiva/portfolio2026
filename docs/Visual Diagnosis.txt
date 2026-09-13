@@ -1,0 +1,184 @@
+A. Visual Diagnosis
+
+What is working: The existing portfolio has a sophisticated editorial rhythm. The asymmetric 12-column grid (labels at col-start-1 col-span-3, content at col-start-5 col-span-7) creates intentional negative space. The stone-colored (#E6E2DF) placeholder blocks currently act as visual anchors. The device labels ("TOTEM — 1920 × 1080", "MOBILE — 393 × 852") are typographic metadata that establish an evidence-based, documentary tone. The overall flat, border-based, shadow-free aesthetic means wireframes sit directly on the page surface.
+
+What is creating the compositional problem: The current placeholders are uniform rectangles with identical visual treatment regardless of device. The 696px content column is fixed, but the two devices have radically different aspect ratios:
+
+Totem at 16:9 fills the width beautifully (696×392px)
+Mobile at 9:19.5 would be 696×1508px if full-width, or 228×468px at proportional width within the column
+The current placeholder system ignores this reality. All five Solution blocks use the same generic stone block. The "Evolução do Sistema" section uses two identical 256×384px boxes that distort the device proportions. The mobile wireframes have not been composed—they have been boxed.
+
+The core tension is: the portfolio's visual language celebrates restraint and intentional whitespace, but the wireframe containers currently feel like missing images rather than composed editorial elements.
+
+B. Composition Principles
+
+Based on the existing visual language, the following principles govern how wireframes should be composed:
+
+Native ratio is law. Never distort an aspect ratio to fill a container.
+Negative space is intentional, not accidental. Empty space should feel editorial, not broken.
+The device label is the frame. No device chrome, no mockup frames, no 3D renders. The typographic label establishes context.
+Flat surface, not floating card. Wireframes sit on the page like printed diagrams, not hovering UI cards.
+Evidence over impressiveness. The composition serves the design decision, not the portfolio aesthetic.
+One compositional grammar across all five solutions. The viewer should recognize the pattern immediately.
+Hairline border only when needed. Use border: 1px solid rgba(26,26,26,0.1) if the wireframe edges need definition against the off-white; omit if the wireframe has its own visible bounds.
+No shadow. The existing portfolio rejects elevation; wireframes must follow this rule.
+Scale consistency within a device family. All Totem wireframes should share the same treatment. All Mobile wireframes should share the same treatment.
+The grid is the guide. Wireframes align to the existing 12-column structure, not arbitrary centers.
+C. Exploration — 12 Composition Concepts
+
+Concept 1 — Totem: Full-Width Native The 1920×1080 wireframe is displayed at 696px wide, maintaining its native 16:9 ratio (height: ~392px). It sits flush-left within the col-start-5 col-span-7 content column. No border. The device label "TOTEM — 1920 × 1080" sits 8px above the image in standard label style.
+
+Assessment: Clean, natural, fills the column width without distortion. The wide landscape format feels editorial and cinematic. Works perfectly for the Totem because 16:9 is inherently panoramic. Narrative clarity: excellent. Device fidelity: perfect. Negative space: none needed—the image fills the width. Editorial quality: high. Consistency: strong. Scalability: applies naturally to all Totem screens. Restraint: maximal.
+
+Concept 2 — Totem: Editorial Crop (Detail-First) Instead of the full 1920×1080 screen, crop to the most critical interaction region (e.g., the weight calibration panel or the camera recognition overlay). The crop maintains 16:9 ratio but is effectively a "pan within the screen." Display at 696px wide, height ~392px. The crop is intentional—showing approximately 60% of the screen centered on the active UI.
+
+Assessment: Better narrative clarity when the point is a specific micro-interaction. However, cropping a wireframe can feel arbitrary if the crop boundary doesn't align with UI regions. Better for showing a specific design decision than for giving system context. Best used sparingly, not as the default.
+
+Concept 3 — Totem: Primary + Ghost Secondary The main wireframe at 100% width (696px). A second state (e.g., error state, success state) sits behind it at 85% scale, offset 24px to the right and 16px down, with 30% opacity. No blur. The secondary screen is visually subordinate.
+
+Assessment: Communicates state transition effectively. The offset and opacity create depth without shadows. However, it risks looking like a Dribbble mockup if not handled with extreme restraint. The 30% opacity is critical—any higher and it competes. Good for transitions, unnecessary for static screens.
+
+Concept 4 — Mobile: Small Native (Proportional Width) The 393×852 wireframe displayed at its true proportional width within the 696px column: 228px wide, 468px tall. It sits flush-left in the content column. The remaining 468px to the right is empty off-white space. No decorative filler. The device label sits above.
+
+Assessment: The wireframe is small but readable. The 468px negative space is substantial—roughly 2/3 of the column width. On first glance, this risks looking like a broken layout. However, in the context of the portfolio's extreme minimalism, this negative space could feel like a deliberate editorial pause. The question is whether the small wireframe carries enough visual weight to balance the large sticky text column to its left. Verdict: acceptable only if the wireframe is exceptionally clear at 228px. Narrative clarity: good. Visual hierarchy: the wireframe might feel too small compared to the large Fraunces headline above it.
+
+Concept 5 — Mobile: Enlarged But Honest The mobile wireframe is enlarged to 320px wide (approximately 814px tall at 9:19.5 ratio). It sits flush-left. The remaining 376px to the right is empty. The enlargement exceeds strict proportionality relative to the Totem, but the aspect ratio remains exact.
+
+Assessment: This is the most practical solution. 320px is large enough to read interface elements comfortably. 814px height creates a tall vertical element that balances the sticky text column. The negative space is reduced to 376px—still significant, but less jarring than 468px. The key question: does the enlargement feel visually dishonest? In a portfolio context, where the wireframe is evidence rather than a mockup, slight enlargement is acceptable as long as the ratio is true. This feels like a magazine layout where the image is printed larger than life-size for clarity. Recommended.
+
+Concept 6 — Mobile: Two-State Horizontal Pair Two mobile screens shown side by side. Each at 280px wide (maintaining 9:19.5 ratio, so ~575px tall). Total width: 560px + 32px gap = 592px. This leaves 104px of negative space on the right. Both screens sit flush-left in the content column.
+
+Assessment: Excellent for showing before/after or state transitions. Two screens create visual mass that a single small screen cannot. The pair reads as a sequence. The 104px remaining negative space feels intentional—a margin rather than a void. However, two tall screens create a 575px tall block that competes with the sticky left-column text. The composition must ensure the text column remains visually dominant. Good for onboarding sequences or multi-step flows.
+
+Concept 7 — Mobile: Primary + Secondary Offset One screen at 320px wide (~814px tall). A second screen at 200px wide (~509px tall) sits to its right, baseline-aligned at the bottom, creating an L-shaped composition. The secondary screen is partially behind or beside the primary.
+
+Assessment: Creates dynamic asymmetry. The smaller secondary screen reads as supporting evidence. However, the L-shape might feel unbalanced in the rigid grid system of the portfolio. The existing design uses strict alignment; this introduces an organic offset that may feel foreign. Requires careful testing.
+
+Concept 8 — Mobile: Single Screen with Text Relation The 320px-wide mobile wireframe sits flush-left. The device label "MOBILE — 393 × 852" sits above. To the right of the wireframe, within the remaining 376px, no decorative elements are added. However, the existing supporting text in the left column (col-span-5 sticky) and the wireframe in the right column (col-span-7) already create a text/image relationship. The negative space is simply the gutter.
+
+Assessment: This is essentially Concept 5 but acknowledging that the negative space is part of the grid, not a problem to solve. The 376px empty space is the natural result of the asymmetric layout. In the existing portfolio, the left column contains the label, headline, problem statement, user quote, and solution description. The right column contains the wireframe. The empty space is merely the unconstrained portion of the right column. This feels correct. The wireframe is evidence; the text is argument. They don't need to fill the column—they need to coexist.
+
+Concept 9 — Evolução: Optical-Height Alignment The "Evolução do Sistema" section compares two states. Instead of identical boxes, align both visualizations by their optical height (not their pixel dimensions). The Totem visualization (e.g., the old manual grid) is displayed at 480px wide × 270px tall. The mobile visualization (e.g., the new AI vision interface) is displayed at 240px wide × 510px tall. Both sit on the same baseline. The Totem is wide and low; the mobile is narrow and tall. They share the same visual bottom edge.
+
+Assessment: This is the correct way to handle mixed proportions. Optical-height alignment respects the different aspect ratios while creating a unified row. The viewer's eye travels across the baseline, not across the tops. The contrast between the wide totem and the tall mobile becomes a visual statement about the transformation from horizontal/manual to vertical/assisted. Strong editorial quality.
+
+Concept 10 — Evolução: Shared Canvas Both visualizations sit within a single stone-colored (#E6E2DF) background block that spans the content width. The old state (Totem) occupies the left 60% of the block at its native ratio. The new state (Mobile) occupies the right 40%, smaller, offset downward. A thin vertical line (1px, ink at 10%) separates them.
+
+Assessment: The shared canvas unifies disparate proportions. The stone background grounds the images as evidence within a "figure." The separator line is consistent with the portfolio's border language. However, the stone background might feel heavy in the otherwise airy layout. Best used if the section needs stronger visual presence.
+
+Concept 11 — Wireframe with Hairline Border The wireframe image sits with no border (Concept 5/8). A second version adds border: 1px solid rgba(26,26,26,0.1) around the wireframe. Tested on both Totem and Mobile.
+
+Assessment: The hairline border defines the wireframe edge against the off-white page. If the wireframe itself has a light background or subtle edges, the border provides necessary definition. If the wireframe has strong rectangular boundaries, the border is redundant. Recommendation: use the border only when the wireframe edges are visually ambiguous. Most wireframes have sufficient internal contrast; border is likely unnecessary.
+
+Concept 12 — Wireframe with No Shadow vs. Subtle Shadow Test A: No shadow. The wireframe sits flat on the off-white. Test B: box-shadow: 0 1px 3px rgba(26,26,26,0.04) — an almost imperceptible shadow.
+
+Assessment: The portfolio explicitly rejects shadows and elevation. The device frames in the existing code use 8px solid stone borders to simulate physical hardware mass—not shadows. Wireframes are documentation, not products. Any shadow, even subtle, introduces a material language that conflicts with the flat editorial aesthetic. Recommendation: no shadow ever.
+
+D. Comparison
+
+Concept	Narrative Clarity	Visual Hierarchy	Device Fidelity	Negative Space	Editorial Quality	Consistency	Scalability	Restraint
+1 Totem Full-Width	★★★★★	★★★★★	★★★★★	N/A	★★★★★	★★★★★	★★★★★	★★★★★
+2 Totem Crop	★★★★☆	★★★★☆	★★★☆☆	N/A	★★★★☆	★★★☆☆	★★★☆☆	★★★★☆
+3 Totem Primary+Ghost	★★★★★	★★★☆☆	★★★★☆	Good	★★★☆☆	★★★☆☆	★★★☆☆	★★★☆☆
+4 Mobile Small Native	★★★☆☆	★★★☆☆	★★★★★	Too much	★★★☆☆	★★★★☆	★★★★☆	★★★★★
+5 Mobile Enlarged	★★★★☆	★★★★☆	★★★★★	Intentional	★★★★☆	★★★★★	★★★★★	★★★★☆
+6 Mobile Two-State	★★★★★	★★★★☆	★★★★★	Good	★★★★☆	★★★★☆	★★★☆☆	★★★★☆
+7 Mobile Offset Pair	★★★★☆	★★★☆☆	★★★★☆	Good	★★★☆☆	★★☆☆☆	★★☆☆☆	★★★☆☆
+8 Mobile with Text Relation	★★★★☆	★★★★☆	★★★★★	Intentional	★★★★★	★★★★★	★★★★★	★★★★★
+9 Evolução Optical Height	★★★★★	★★★★★	★★★★★	Balanced	★★★★★	★★★★★	★★★★☆	★★★★★
+10 Evolução Shared Canvas	★★★★☆	★★★★☆	★★★★☆	Contained	★★★★☆	★★★☆☆	★★★☆☆	★★★☆☆
+11 Hairline Border	—	—	—	—	—	—	—	—
+12 No Shadow	—	—	—	—	—	—	—	—
+Key insight: Concepts 1, 5, 8, and 9 score highest across all criteria. They share a common trait: they respect native ratios, use negative space intentionally, and avoid decorative effects. Concepts 3, 7, and 10 introduce visual complexity that conflicts with the portfolio's restraint.
+
+E. Final Recommendation
+
+Canonical Composition System
+
+For Totem (1920 × 1080):
+
+Single screen, full-width native ratio.
+Width: 696px (full content column width)
+Height: 392px (maintaining 16:9)
+Position: flush-left within col-span-7
+Border: none
+Shadow: none
+Device label: 8px above in standard label style
+When to use: All Totem solutions except when the design decision is explicitly about a state transition.
+Exception: If a Solution block needs to show a transition (e.g., error → resolution), use a two-state horizontal pair at 320px each with 32px gap, total 672px, centered within the 696px column.
+For Mobile (393 × 852):
+
+Single screen, enlarged but honest.
+Width: 320px
+Height: ~814px (maintaining exact 9:19.5 ratio)
+Position: flush-left within col-span-7
+Border: none
+Shadow: none
+Device label: 8px above
+The remaining 376px of the content column is empty. This is intentional negative space.
+When to use: All Mobile solutions as the default.
+Exception for sequence: If the solution is about a flow (onboarding, pre-scan, verification), use a two-screen horizontal pair. Each screen at 280px wide × 575px tall. Gap: 32px. Total width: 592px. Position: flush-left. This is more effective than enlarging a single screen when the narrative is temporal.
+For Evolução do Sistema:
+
+Optical-height alignment with baseline grounding.
+Left visualization (Legacy Totem): 480px wide × 270px tall (16:9)
+Right visualization (Proposal): 240px wide × 510px tall (9:19.5, the mobile proposal)
+Both sit on a shared invisible baseline
+Vertical gap between the two: 0px (they share the same row, separated by whitespace)
+The different heights create a visual rhythm; the baseline creates unity
+No background block, no separator line, no border
+Labels "Legado (2022)" and "Proposta (2023)" sit above each visualization in standard label style
+F. Implementation Rules
+
+General Rules (All Wireframes):
+
+Maximum width: 696px (the content column width).
+Aspect ratio: Preserved exactly. No stretching, no letterboxing, no cropping (unless using the detail-crop exception).
+Border treatment: No border by default. If the wireframe has ambiguous edges against #F5F2F0, add border: 1px solid rgba(26,26,26,0.1).
+Shadow treatment: Never. No box-shadow, no drop-shadow, no elevation.
+Background: Transparent. The wireframe sits on the page background (#F5F2F0). No colored backing blocks.
+Alignment: Flush-left within the col-start-5 col-span-7 content area.
+Device label: 8px margin-bottom from label to wireframe. Label in standard 10px uppercase Instrument Sans, 0.12em tracking, ink at 40% opacity.
+Totem-Specific Rules:
+
+Standard width: 696px
+Standard height: calc(696 * 9/16) = 391.5px → 392px
+Gap to next element: 32px–48px below the wireframe
+When to use one screen: Default for all Solution blocks showing a single Totem interface state.
+When to use two screens: Only for explicit state transitions. Secondary screen at 85% scale, offset 24px right and 16px down, 30% opacity. Use sparingly (maximum once per case study).
+Mobile-Specific Rules:
+
+Standard width: 320px
+Standard height: calc(320 * 852/393) = 693.7px → 694px
+Position: Flush-left within the 696px column
+Negative space: 376px empty space to the right. Do not fill this space with decorative elements, side text, or annotations.
+When to use one screen: Default for all Mobile solutions showing a single state.
+When to use two screens: For onboarding or multi-step flows. Each screen: 280px wide. Gap: 32px. Total: 592px. Remaining column space: 104px. Position: flush-left.
+When to use detail crop: Rarely. Only if a specific interaction region is the entire point of the solution. Crop must maintain 9:19.5 ratio. Width: 320px.
+Evolução do Sistema Rules:
+
+Alignment: Optical baseline (bottom edges align).
+Left element (Legacy): 480px wide × 270px tall. Position: flush-left.
+Right element (Proposal): 240px wide × 510px tall. Position: to the right of left element with 64px gap.
+Top edge: Allowed to differ. The bottom edge is the anchor.
+Labels: Sit above each element, aligned to the left edge of each visualization.
+No connecting elements: No arrows, no lines between old and new, no "VS" text. The juxtaposition speaks for itself.
+Crop Rules:
+
+Crop only when the narrative is about a single micro-interaction.
+Crop must preserve the original aspect ratio.
+Crop boundary should align with UI regions (e.g., crop at the edge of a panel, not through a button).
+Never crop to a non-standard aspect ratio (e.g., don't crop a mobile screen to a square).
+Scale Rules:
+
+Totem: 100% of column width (696px).
+Mobile single: ~46% of column width (320px).
+Mobile pair: Each ~40% of column width (280px).
+These ratios are fixed across all Solution blocks for consistency.
+Figma Implementation Notes:
+
+Wireframes should be imported as images (PNG/SVG from the source Figma files), not recreated.
+Use Figma's "Constrain proportions" lock on all wireframe frames.
+For the Mobile enlarged treatment, create a 320×694px frame. Place the wireframe inside. Do not stretch the wireframe to fit—let it fill the frame width naturally.
+For negative space, do not create placeholder rectangles. The empty space is simply the absence of content.
+If the wireframe source has a white or light background that clashes with #F5F2F0, verify whether a 1px border is needed. Most wireframes should have sufficient contrast.
