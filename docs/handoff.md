@@ -113,6 +113,12 @@ ver a lista de itens "verificar antes de usar" em
   placeholders idênticos de 256×384px. Fonte: `docs/Visual Diagnosis.txt`
   (exploração dedicada, trazida por Matheus). **Correção feita nessa
   adoção:** a fonte sugeria label do device a 40% de opacidade — isso falha
+  WCAG AA (~2.46:1); a spec já foi ajustada pra 65% mínimo. **Referência
+  visual:** cada conceito canônico
+  (Totem single/two-state/crop, Mobile single/pair/crop, Evolução) está
+  montado como placeholder no Figma, página "exploracao de banners"
+  (`srfFKPHCUBOrQ1rHCGXsum`, node `2020:121`) — usar como guia de proporção
+  antes de entrar com os wireframes reais do Square.
   WCAG AA (medido nesta mesma sessão pra outro contexto); a spec já foi
   ajustada pra 65% mínimo.
 - **Case study Square:** conteúdo real existe e está mapeado, mas a pasta
