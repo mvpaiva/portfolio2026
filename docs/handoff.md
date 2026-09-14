@@ -532,6 +532,26 @@ ver a lista de itens "verificar antes de usar" em
     Figma com conteúdo real.** Pendências que restam: colar as imagens
     reais nos placeholders (API não suporta upload) e revisão visual
     geral.
+  - **📋 Proposta de TOC (sumário navegável) criada como referência solta
+    no Figma (2026-09-14), `2174:177` "TOC — Proposta"** — fora do fluxo
+    do documento (canvas livre, x:-260 y:13800, ao lado do case), não
+    integrada na página ainda. Contexto: o link do variant.com que
+    Matheus mandou revisar como referência de TOC redireciona pra raiz
+    do site hoje (não carrega mais) — não deu pra revisar ao vivo.
+    Baseado numa referência do portfólio do Benji Taylor (estrutura, não
+    o visual — sem cor/hover, já descartado nesta sessão por não bater
+    com nossa linguagem), a proposta reaproveita as **4 fases do Double
+    Diamond já documentadas no bloco Metodologia** como categorias do
+    sumário, em vez de inventar rótulos novos: Contexto → Descobrir →
+    Definir → Desenvolver → Entregar → Soluções → Resultado (7 itens,
+    curto). Item ativo em peso Medium + ink 100%, resto em ink 50% — só
+    peso, sem cor, mesmo padrão de toda a Design e Prototipação/Solução.
+    Testei uma versão com "card" de fundo e uma sem — a sem fundo bate
+    melhor com o minimal chrome do resto do case (nenhuma outra seção
+    usa card/borda pra agrupar texto). **Ainda não implementado:** é só
+    a estrutura/conteúdo pra aprovação; a versão funcional (sticky,
+    scroll-spy, ancoragem real) é trabalho de código, quando a case page
+    for implementada em Next.js.
   - **✅ Auditoria geral do case (2026-09-14):** revisão completa de todos
     os blocos (ordem, espaçamento, tipografia, divisórias). Achados:
     divisória de topo tinha sido perdida em Resultado e nunca existiu em
