@@ -127,25 +127,38 @@ ver a lista de itens "verificar antes de usar" em
     metodologia Double Diamond, tudo junto) foi **decomposto** — feedback
     do Matheus foi que ler personas+problemas+pesquisa+metodologia
     empilhados é "coisa demais pra ler". Nova ordem, cada um como bloco
-    próprio: **Pesquisa** (pronto — label 2 linhas eyebrow+headline,
-    subhead, notas, link) → **Field Exploration + Jornada** (pronto —
-    absorve os 7 pain points como achados condensados de 1 linha cada,
-    numeral sage + título, sem citação — bem mais visual/escaneável que a
-    versão anterior com quote em cada item) → **Arquétipos** (pronto —
-    3 personas, JTBD dobrado como 1 frase antes da citação de cada
-    persona, sem seção própria) → Design e Prototipação (papel→high-fi,
-    ainda não construído) → Testes (faixa curta antes de Soluções, ainda
-    não construído) → Soluções → Resultados.
+    próprio, seguindo a ordem do Double Diamond: Pesquisa → Field
+    Exploration + Problemas + Jornada (fundidos num só) → Arquétipos →
+    Design e Prototipação (papel→high-fi) → Testes → Soluções →
+    Resultados.
+  - **Pesquisa (`2067:261`) — travado, não mexer.** Label de 2 linhas
+    (eyebrow "A PESQUISA" + headline como "question"), subhead, notas,
+    link. Decisão do Matheus: fica assim por enquanto.
+  - **Field Exploration + Problemas + Jornada (`2030:177`) — pronto,
+    fundido num só composto full-bleed:** banner de fotos de campo
+    (placeholder) → **recorte do service blueprint** (3 estágios reais —
+    Escaneamento/Verificação/Saída — reaproveitando a tira de 3 colunas
+    que já existia pro bloco antigo "Jornada do Usuário", só repopulada
+    com dores reais em vez das fictícias do variant.com; a seção
+    "Jornada" separada foi removida, absorvida aqui) → div de texto
+    (observação de campo real + achados condensados de 1 linha cada,
+    numeral sage + título, sem citação — bem mais visual/escaneável que
+    a versão anterior com quote em cada item). **Correção feita:** os
+    labels "Pain:" estavam em terracota — cor reservada só pra erro/
+    destrutivo no design system — trocados pra ink 65%.
+  - **Arquétipos (`2067:578`) — travado por enquanto, não mexer.** 3
+    personas, JTBD dobrado como 1 frase antes da citação de cada
+    persona, sem seção própria.
   - **Metodologia (Double Diamond) não vira mais bloco-parede próprio** —
     decisão explícita de distribuir as keywords de método como tags
-    discretas dentro de cada bloco de fase correspondente (ex.: "Estudo
-    de campo · Survey · Entrevistas" sob Field Exploration), preservando
-    a densidade de keyword pro ATS sem concentrar tudo num grid isolado.
+    discretas dentro de cada bloco de fase correspondente, preservando a
+    densidade de keyword pro ATS sem concentrar tudo num grid isolado.
     **Ainda não aplicado** — o conteúdo de fases/métodos que eu já tinha
     montado ficou preservado fora da página (`2030:415`, frame solto,
     fora do fluxo) só como fonte de texto até essa distribuição acontecer.
-  - Próximo: distribuir as tags de método, depois seguir pra Design e
-    Prototipação.
+  - Próximo: Design e Prototipação (papel→high-fi) e Testes, os dois
+    ainda não construídos — há um espaço reservado vazio na página pra
+    eles (entre `2030:361` e `2030:213`).
 - **Composição de wireframes nos blocos de solução (2026-09-13):** regras
   concretas fechadas em visual-language-specification.md §13.1 — Totem
   696×392px sem borda/sombra; Mobile 320×694px ("ampliado mas honesto",
