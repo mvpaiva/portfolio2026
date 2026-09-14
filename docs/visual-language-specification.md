@@ -791,28 +791,36 @@ shift manual via `.y` só funciona dentro de blocos que ainda são
 `layoutMode: NONE` internamente — no nível da página, usar `insertChild`
 pra reordenar.
 
-### 13.5 Link de volta pro problema original (bloco de Solução, 2026-09-14)
+### 13.5 Link de volta pro problema original (bloco de Solução, 2026-09-14, v2)
 
-Cada bloco de Solução referencia um pain point real mapeado na pesquisa
-(já visível na Tag, ex.: "APP · 01 · Fricção no escaneamento,
-interrupção do carrinho"). Além da Tag, adicionar um **link de
-cross-reference** de volta pro chip correspondente no bloco Field Notes
-(dentro do composto "Pesquisa + Field Exploration") — fecha o loop
-"aqui está o problema" → "aqui está a solução" pro leitor.
+Cada bloco de Solução referencia um pain point real mapeado na pesquisa.
+Em vez de repetir isso em texto corrido, ele vira **dois chips lado a
+lado** no topo da coluna de texto (`col-span-5`), antes do Headline —
+fecha o loop "aqui está o problema" → "aqui está a solução" de forma
+visual, não textual.
 
-**Padrão:** texto pequeno (13px, Instrument Sans Medium, cor **sage**,
-único uso de cor nesse ponto do bloco) com a seta `↑` + "Ver o problema
-na pesquisa", inserido logo depois da Tag e antes do Headline, dentro da
-coluna de texto (`col-span-5`). No Figma, usar um **hyperlink de nó**
-(`node.hyperlink = { type: 'NODE', value: chipNodeId }`) apontando pro
-chip exato em Field Notes — no modo de apresentação do Figma isso já
-pula direto pro problema. **No código, vira um anchor link real**
-(`<a href="#pain-point-fricção-no-escaneamento">`), então cada chip em
-Field Notes precisa de um `id` correspondente no HTML final.
+**Padrão final (v2 — corrige a v1, que usava uma Tag longa em texto
+solto E um link separado em texto, duplicando a mesma informação):**
+- **Chip 1 — dispositivo:** "APP" ou "TOTEM", borda hairline (ink 15%),
+  13px Instrument Sans Regular, sem cor.
+- **Chip 2 — problema:** número + nome curto do pain point (ex.: "01 ·
+  Fricção no escaneamento"), mesmo estilo visual do Chip 1 e dos chips
+  de pain points em Field Notes (reconhecimento visual direto) — com
+  **hyperlink de nó** (`node.hyperlink = { type: 'NODE', value:
+  chipNodeId }`) apontando pro chip exato em Field Notes. No modo de
+  apresentação do Figma isso já pula direto pro problema; **no código,
+  vira um anchor link real** (`<a href="#pain-point-fricção-no-
+  escaneamento">`), então cada chip em Field Notes precisa de um `id`
+  correspondente no HTML final.
 
-**Já aplicado:** Solução 1 → chip "Fricção no escaneamento". **Replicar
-nas Soluções 2–5**, linkando pro(s) chip(s) certo(s) de cada Tag (ver
-mapeamento completo de pain points → soluções em §14).
+**Não incluir** a versão antiga de Tag ("APP · 01 · nome completo do
+pain point, detalhe extra") como texto solto — ela duplicava o mesmo
+dado que o chip já mostra.
+
+**Já aplicado:** Solução 1 → chips "APP" + "01 · Fricção no
+escaneamento". **Replicar nas Soluções 2–5**, linkando pro(s) chip(s)
+certo(s) de cada uma (ver mapeamento completo de pain points → soluções
+em §14).
 
 ## 14. Case study real — Square (copy final, v3 — 2026-09-13)
 

@@ -341,12 +341,45 @@ ver a lista de itens "verificar antes de usar" em
       convertidos pra `HORIZONTAL` real, seção ajustada pro padrão
       1290/315, coluna de texto fixa em 488px e coluna de imagem em
       `FILL` (absorve os 10px extras, mesma lógica de sempre).
-    - **✅ Link de volta pro problema original (2026-09-14):** cada
-      Solução agora linka pro chip correspondente em Field Notes —
-      hyperlink de nó no Figma (pula direto no modo apresentação),
-      documentado como anchor link real pro código em
-      visual-language-specification.md §13.5. Aplicado na Solução 1
-      (→ chip "Fricção no escaneamento"); replicar nas 2–5.
+    - **✅ Link de volta pro problema original — virou chip visual
+      (2026-09-14):** Matheus notou que o link em texto ("↑ Ver o
+      problema na pesquisa") era mais uma linha de prosa num projeto que
+      já tem texto demais. Trocado por um **chip com borda** (mesmo
+      componente visual dos chips de pain points em Field Notes) —
+      hyperlink de nó preservado, lê como elemento de UI clicável, não
+      como frase. Documentado em §13.5. **Texto do chip corrigido
+      (2026-09-14):** de "↗ Ver problema" (genérico) pra **"01 · Fricção
+      no escaneamento"** (mostra qual problema é, não só que existe um
+      link). **Tag antiga removida por redundância:** a Tag longa ("APP ·
+      01 · Fricção no escaneamento, interrupção do carrinho") duplicava
+      exatamente o que o chip já dizia — trocada por um **chip curto
+      "APP"** ao lado do chip do problema, os dois na mesma linha.
+      Aplicado na Solução 1; replicar nas 2–5.
+    - **✅ Wireframes em tamanho real (2026-09-14):** os placeholders de
+      imagem estavam em 320×694 (herdado da fase de exploração, antes de
+      termos os assets reais) — Matheus perguntou por que não usar
+      393×852 (resolução real do iPhone 15 Pro em que os wireframes
+      foram desenhados). Mesma proporção, só maior — trocado, já que a
+      coluna de imagem (706px em `FILL`) tem espaço de sobra. Corrigido
+      na Solução 1; usar 393×852 em todas as próximas.
+    - **✅ Design e Prototipação — reestruturado (2026-09-14, v2):** a
+      pilha vertical inicial não ficou legível (sem labels de estágio, 3
+      telas empilhadas viravam parede sem contexto de progressão).
+      **Solução final:** texto no topo em largura total, galeria de
+      imagem **abaixo** do texto (não mais ao lado) — libera 1226px de
+      largura total em vez dos 754px da coluna de conteúdo, cabendo as 3
+      telas em **393×852 nativo lado a lado** com gap real de 24px (quase
+      sem sobra: 393×3+24×2=1227≈1226). Cada imagem ganhou um label de
+      estágio acima ("01 · Onboarding", "02 · Escaneamento", "03 · Menu
+      expandido") pra comunicar a progressão. Label Column virou
+      full-width (era 440px fixo); Row virou `VERTICAL` (era
+      `HORIZONTAL`).
+    - **Tipografia avaliada, considerada correta (2026-09-14):** corpo
+      18px/28px (155% de line-height) e citação 20px/28px (140%) já têm
+      espaçamento generoso e hierarquia clara (13→36→20→18) — não mexida.
+      O ganho real de escaneabilidade veio das duas correções acima
+      (imagem maior tira peso visual do texto; chip substitui uma linha
+      de prosa por UI), não de trocar tamanhos de fonte.
   - **⚠️ Regressão encontrada (2026-09-14), não mexida a pedido do
     Matheus:** o bloco **Pesquisa** (`2067:261`) voltou a ter o conteúdo
     fictício antigo do variant.com na coluna de conteúdo (parágrafo
