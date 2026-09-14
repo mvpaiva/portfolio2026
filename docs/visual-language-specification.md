@@ -711,7 +711,10 @@ editorial em vez de repetir o mesmo tratamento em todo bloco.
 - Label 1 (categoria): `O CONTEXTO` (label-caps padrão, Instrument Sans
   Medium 10px caps tracking 0.12em)
 - Label 2 (pergunta): *"O que o projeto precisa resolver?"* (Fraunces
-  Light Italic 15px, 8px abaixo do label 1)
+  Light Italic **32px**, line-height 120%, 12px abaixo do label 1) — precisa
+  ser maior que o corpo (24px), não menor, senão vira legenda subordinada
+  em vez de âncora de fast-scan. Escala final do bloco: 10px (label-caps)
+  → 32px (pergunta/fast-scan) → 24px (corpo/leitura aprofundada).
 - Corpo (sem headline separado): "O briefing: transformar o Register em
   autoatendimento de verdade, lançar um app complementar que apoie a
   jornada inteira (não só o pagamento), manter o fluxo utilizável por
