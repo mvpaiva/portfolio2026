@@ -610,6 +610,35 @@ pra sempre — o escopo é por bloco.
 - Isso vale pra cada um dos 5 blocos de Solução do Square individualmente
   — nunca um sticky global que atravessa blocos diferentes.
 
+### 13.3 Grid: guia visual vs. motor de posicionamento (2026-09-13)
+
+Existem dois mecanismos de grid diferentes no Figma, e a confusão entre
+eles gerou uma redundância real que já foi corrigida:
+
+1. **Guia visual (`layoutGrids`, "Portfolio/Grid/Desktop 12-col")** — o
+   overlay de 12 colunas aplicado no frame de topo (`square-case`). É só
+   uma referência visual (liga/desliga), não posiciona nada sozinho.
+2. **Motor estrutural (`layoutMode: "GRID"`)** — um recurso do Figma que
+   posiciona filhos de verdade, como CSS Grid. O import do variant.com
+   aplicou isso em cada seção individualmente, cada uma com suas próprias
+   faixas de coluna — redundante com o guia visual e desnecessariamente
+   complexo comparado ao resto da página, que usa posição absoluta simples.
+
+**Regra daqui pra frente:** seções de conteúdo usam `layoutMode: "NONE"`
+com posição absoluta (`x`/`y` fixos), não um motor de grid estrutural
+próprio — mesmo padrão do resto da página. Os valores de posição
+continuam batendo com a matemática do grid assimétrico de 12 colunas
+(§4): label em `col-start-1 col-span-3` = `x:32, width:304` (dentro do
+container de 1216px útil); conteúdo em `col-start-5 col-span-7` =
+`x:437.33, width:709.33`. Preservar esses números exatos ao converter uma
+seção de `GRID` pra `NONE` — a matemática já estava certa, só o mecanismo
+por trás era redundante.
+
+**Gap entre colunas de linhas de dados (stats, metadados):** sempre
+`--gutter-desktop` (32px), nunca um valor arbitrário — a linha de
+metadados do Hero e a stats row devem usar o mesmo gap, não dois valores
+diferentes pro mesmo tipo de elemento.
+
 ## 14. Case study real — Square (copy final, v3 — 2026-09-13)
 
 > **Substitui integralmente a v1/v2 desta seção.** O copy abaixo veio
