@@ -461,19 +461,40 @@ ver a lista de itens "verificar antes de usar" em
     Totem), Solução 4 = `exit-fix-exit` + `exit-help`, Solução 5 =
     `scan-with-list`. **Pendente:** Matheus colar as imagens reais
     (API não suporta upload) e revisar visualmente as 5 no Figma.
-  - **✅ Intro das Soluções (bloco 06, `2030:440`) e Impacto/Resultado
-    (bloco 12, `section#resultado` `2030:441`) construídos (2026-09-14).**
-    Intro reaproveitou uma instância genérica do template que já estava
-    na posição certa (logo antes das 5 Soluções) — só trocado o texto
-    (Eyebrow "AS SOLUÇÕES" + headline + subhead a 18px/65% ink pra
-    hierarquia). Resultado teve o parágrafo fictício antigo (números
+  - **✅ Impacto/Resultado (bloco 12, `section#resultado` `2030:441`)
+    construído (2026-09-14).** Parágrafo fictício antigo (números
     inventados do variant.com) trocado pelos 3 stats reais do §12
     (40%→0%, 85,1%, 5/5), reaproveitando o padrão de `Stat` já usado em
     Testes. **Bug corrigido:** números dos stats vieram clonados com
     `textAutoResize: HEIGHT` (largura presa no valor antigo, tipo "5"),
     quebrando o texto novo letra por letra — corrigido pra
-    `WIDTH_AND_HEIGHT`. Falta ainda: bloco 13 "Próximos passos" e o
-    Footer final.
+    `WIDTH_AND_HEIGHT`.
+  - **✅ Bloco 06 "Intro das Soluções" corrigido de novo (2026-09-14).**
+    Primeira tentativa reaproveitou o card genérico do template como um
+    "bloco de destaque" (eyebrow + headline 36px + subhead) — Matheus
+    apontou que não precisava desse peso visual pra uma intro, e que o
+    card original (`Aprofundamento` / "Processo de pesquisa completo")
+    parecia ter sido pensado como link pro arquivo. **Reconstruído como
+    card de link compacto:** eyebrow "AS SOLUÇÕES" (13px) + 1 linha de
+    link real (18px, Instrument Sans Medium, sublinhado, ink 100%) —
+    "→ Ver o arquivo completo no Figma — testes, fotos, wireframes e
+    mais", `hyperlink` apontando pro arquivo de design real
+    (`UOGBjtsvGNFNs8O8qUSxjk`, node `12084:23891` — arquivo de design
+    completo, não só o protótipo já linkado em Metodologia/Footer).
+    Instância detachada (`2157:198`) pra poder remover o subhead sem
+    restrição de override de componente.
+  - **⚠️ Lacuna reconhecida, deixada implícita (2026-09-14):** das 7
+    dores em Field Notes, só 6 têm solução correspondente — "Pix
+    invisível" (07) ficou de fora das 5 Soluções construídas. Matheus
+    confirmou: tem wireframes soltos (`review-pay.png`,
+    `payment-method.png`) mas nada que resolva isso diretamente ainda;
+    decisão consciente de não forçar uma solução ou criar um callout
+    pra isso agora.
+  - **✅ Bloco fictício `2030:398` ("Evolução do Sistema", conteúdo
+    desconectado do case Square, sobra de outro template) removido
+    (2026-09-14)** a pedido do Matheus — não correspondia a nenhum dos
+    13 blocos do spec.
+  - Falta ainda: bloco 13 "Próximos passos" e o Footer final.
 - **Composição de wireframes nos blocos de solução (2026-09-13):** regras
   concretas fechadas em visual-language-specification.md §13.1 — Totem
   696×392px sem borda/sombra; Mobile 320×694px ("ampliado mas honesto",
