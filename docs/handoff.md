@@ -302,6 +302,20 @@ ver a lista de itens "verificar antes de usar" em
     novo inventado. **Reordenação de página feita de novo:** a
     Metodologia tinha voltado a aparecer antes da Pesquisa (mesma
     instabilidade de ordem já documentada) — corrigida junto.
+  - **✅ Imagens reais do Design e Prototipação coladas por Matheus,
+    ajustadas em 2026-09-14:** removida a nota "colar aqui" que tinha
+    sobrado por cima da primeira imagem (Sketch — na real é uma tela de
+    onboarding do app, não um sketch em papel físico); as 3 imagens
+    estavam pequenas demais pra ler (230×320/305) — aumentadas pra
+    **230×480** (`scaleMode: FIT`, sem distorção, só mostra mais da
+    imagem).
+  - **✅ Bloco "Achado principal" preenchido (2026-09-14):** Matheus
+    criou o esqueleto (`2103:183`, dentro/perto de Testes) com label
+    "Key Finding" + `[Key finding aqui]`; traduzi o label pro pt-BR
+    ("Achado principal") e escrevi a conclusão — só síntese
+    metodológica, nenhum número novo inventado: "Cada rodada validava a
+    anterior antes de avançar de fidelidade — as 5 soluções finais
+    vieram de decisões já testadas, não de suposições."
   - **⚠️ Regressão encontrada (2026-09-14), não mexida a pedido do
     Matheus:** o bloco **Pesquisa** (`2067:261`) voltou a ter o conteúdo
     fictício antigo do variant.com na coluna de conteúdo (parágrafo
