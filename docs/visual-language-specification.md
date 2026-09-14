@@ -691,17 +691,33 @@ Matheus pediu explicitamente pra evitar essas duas métricas, mesmo estando
 confirmadas em outras partes da pesquisa (não aparecem no case page
 real de qualquer forma).
 
-### 02 · Contexto
+### 02 · Contexto (v4 — storytelling label, 2026-09-13)
 
-- Eyebrow: `O CONTEXTO`
-- Headline: "Transformando um terminal de pagamento num sistema completo
-  de autoatendimento"
-- Tag: Projeto solo · sem afiliação com a Square
+**Padrão de label narrativo (novo, aplicar em todos os blocos com
+label+conteúdo de agora em diante):** a coluna esquerda (fast-scan) deixa
+de ser um label-caps solto e vira 2 linhas — uma frase de abertura leve
+(Instrument Sans 13px, ink 65%) + o nome da seção em itálico (Fraunces
+Light Italic 15px, mesmo tratamento do subtítulo "Designer de Produto" da
+home). Isso libera o headline da direita pra ser o hook narrativo, já que
+o label sozinho não precisa mais carregar o nome literal da seção.
+
+- Label: "Antes de começar" / "O contexto." (2 linhas, ver padrão acima)
+- Headline: **"Pagar nunca foi o problema."**
 - Corpo: "O briefing: transformar o Register em autoatendimento de
   verdade, lançar um app complementar que apoie a jornada inteira (não só
   o pagamento), manter o fluxo utilizável por qualquer idade ou perfil
   sem exigir assistência, e manter todo item rastreável. Este case
-  acompanha a fase entre pegar o primeiro item e sair pela porta."
+  acompanha a fase entre pegar o primeiro item e sair pela porta. Projeto
+  solo, sem afiliação oficial com a Square."
+
+**Nota de simplificação:** uma versão intermediária tinha um 3º elemento
+(tag "Projeto solo · sem afiliação com a Square" em caps sage, separado)
+entre o headline e o corpo — comparado com a seção de referência mais
+simples (fatos confirmados em `2:579`, só label + 1 parágrafo), 3 vozes
+tipográficas diferentes espremidas em pouco espaço vertical criava ruído
+visual. O fato foi preservado como frase dentro do próprio corpo, e o
+elemento de tag separado foi removido — 2 elementos na coluna direita
+(headline + corpo), não 3.
 
 ### 03 · Research (comprimido)
 
