@@ -276,6 +276,20 @@ ver a lista de itens "verificar antes de usar" em
     vez que esse nó específico reseta o conteúdo) — corrigido de novo,
     mas a causa raiz continua desconhecida; se persistir, vale investigar
     se há algo no Figma reaplicando um estado antigo nesse nó específico.
+    **Correção (2026-09-14):** Matheus esclareceu que a caixa alta do
+    label foi ele mesmo que colocou de propósito — não era bug, era eu
+    revertendo uma escolha dele sem querer. Restaurado pra
+    "DESIGN & PROTOTIPAÇÃO" (caixa alta) e **não mexer mais nisso**.
+  - **📋 Imagens reais pendentes (2026-09-14):** os 3 placeholders de
+    imagem (`2030:221/223/225`, Sketch/Wireframe/Prototype) receberam
+    notas indicando o que colar em cada um, já que a API do plugin não
+    suporta upload de imagem: **Sketch** — não temos foto de sketch em
+    papel ainda; **Wireframe** — `scan-v1.png`
+    (`docs/assets/square-wireframes-raw/mobile/`, já mapeado pro bloco de
+    Evolução do wireframe no §14); **Prototype** —
+    `scan-fab-bottomsheet.png` (mesma pasta). Matheus precisa colar os
+    arquivos reais manualmente (230×320px cada, ou a proporção real da
+    imagem).
   - **⚠️ Regressão encontrada (2026-09-14), não mexida a pedido do
     Matheus:** o bloco **Pesquisa** (`2067:261`) voltou a ter o conteúdo
     fictício antigo do variant.com na coluna de conteúdo (parágrafo
