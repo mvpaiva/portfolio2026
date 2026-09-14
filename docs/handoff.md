@@ -230,7 +230,14 @@ ver a lista de itens "verificar antes de usar" em
     (`\n`) que tinham sobrado do tamanho antigo e quebravam o texto de
     forma estranha no tamanho novo, e um nó de texto duplicado
     (`Eyebrow — Metodologia`, sobra de uma cópia anterior) que estava
-    empilhado por cima do label real.
+    empilhado por cima do label real. **Revertido de novo (2026-09-14):**
+    Matheus confirmou que a leitura de 24px estava errada — esse bloco é
+    mesmo diferente dos outros (image-forward, mesma lógica do Blueprint
+    Crop), então a legenda voltou pro estilo de nota de apoio (16px, ink
+    65%). **Nota:** entre uma correção e outra, a subárvore de
+    label+legenda foi resetada sozinha pro conteúdo antigo do variant.com
+    (IDs novos, `\n` de volta) — mesmo padrão de instabilidade já visto
+    no bloco Pesquisa; causa ainda desconhecida.
   - **⚠️ Regressão encontrada (2026-09-14), não mexida a pedido do
     Matheus:** o bloco **Pesquisa** (`2067:261`) voltou a ter o conteúdo
     fictício antigo do variant.com na coluna de conteúdo (parágrafo
