@@ -532,6 +532,18 @@ ver a lista de itens "verificar antes de usar" em
     Figma com conteúdo real.** Pendências que restam: colar as imagens
     reais nos placeholders (API não suporta upload) e revisão visual
     geral.
+  - **✅ Resultado (`2030:441`) — analisado e mantido (2026-09-14).**
+    Matheus perguntou se o bloco valia a pena manter. Conteúdo não é
+    redundante o bastante pra cortar (é o único recap fechado dos 3
+    números-chave do case, mesmo o primeiro ecoando o stat já citado no
+    corpo da Solução 2 — normal em wrap-up de case). **Mantido, mas
+    corrigido:** ainda estava com `layoutMode: GRID` (o modo redundante
+    já eliminado em todo o resto do case) e no grid antigo de 1280px —
+    convertido pra `HORIZONTAL` real, realinhado pro padrão 1290/x:315,
+    label column corrigida de 304px (resto de matemática de grid antiga)
+    pra 440px padrão, padding órfão de 320px removido da label column, e
+    adicionada a divisória de topo (ink 10%) que faltava — Soluções →
+    Resultado é mudança real de assunto.
 - **Composição de wireframes nos blocos de solução (2026-09-13):** regras
   concretas fechadas em visual-language-specification.md §13.1 — Totem
   696×392px sem borda/sombra; Mobile 320×694px ("ampliado mas honesto",
