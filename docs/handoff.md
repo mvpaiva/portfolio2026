@@ -58,6 +58,12 @@ A case page ainda não foi implementada em código.
 
 ## Ordem de leitura dos documentos
 
+0. **[benji-taylor-reference.md](benji-taylor-reference.md)** — extração
+   completa da direção visual/comportamental do benji.org (trazida por
+   Matheus em 2026-09-14) + nossa análise de quais padrões reforçam vs.
+   conflitam com decisões já tomadas, e o log do que já foi aplicado no
+   refinamento "minimal chrome" do case (frame duplicado `2173:172`). Ler
+   isso primeiro se for continuar esse refinamento especificamente.
 1. **[diretrizes-portfolio.md](diretrizes-portfolio.md)** — o "porquê".
    Filosofia, contexto de julgamento, checklist de audit antes de publicar.
    Leia primeiro para entender a lógica por trás das regras.
@@ -610,6 +616,25 @@ ver a lista de itens "verificar antes de usar" em
       resolvidos depois"), agora também presente no frame duplicado.
       Respeitei o lock e não toquei nem no texto nem no estilo dessa
       parte específica.
+    - **✅ RESOLVIDO logo em seguida (2026-09-14): colchetes tinham
+      conteúdo fictício, mas o formato em si era intencional.** Matheus
+      esclareceu: colchetes `[Insight: ...]` são um padrão visual
+      deliberado pra destacar achados, não placeholder — só o texto
+      dentro era de exemplo do variant.com. Substituído por conteúdo real
+      já confirmado (pain points 01/04/07 pros 3 insights, pain point 03
+      pra citação grande), sem duplicar quotes já usadas nos blocos de
+      Solução. Formato de colchetes/separador sage mantido. Bug corrigido
+      junto: a citação grande tinha `textAutoResize: WIDTH_AND_HEIGHT`
+      (hug numa linha só, estourando a largura) — trocado pra `HEIGHT`
+      com largura fixa, mesmo bug recorrente de outros blocos. Ver
+      `benji-taylor-reference.md` pro detalhe completo.
+    - **📋 Botão "Voltar" (`2173:534`) analisado e reposicionado
+      (2026-09-14):** ver `benji-taylor-reference.md` pro racional
+      completo. Decisão: não entra na lista do TOC (ações de natureza
+      diferente — sair da página vs. navegar dentro dela). Realinhado
+      pra x:60 (mesma coluna do TOC), y:60 (fixo no topo, não acompanha
+      scroll como o TOC acompanha) — agrupa visualmente sem misturar
+      função. Só feito no frame duplicado ainda.
   - **✅ Auditoria geral do case (2026-09-14):** revisão completa de todos
     os blocos (ordem, espaçamento, tipografia, divisórias). Achados:
     divisória de topo tinha sido perdida em Resultado e nunca existiu em
