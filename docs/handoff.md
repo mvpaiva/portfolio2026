@@ -219,10 +219,18 @@ ver a lista de itens "verificar antes de usar" em
     corrigida (2026-09-14)** pro padrão do projeto, que tinha ficado nos
     valores soltos do variant.com: label virou label-caps de verdade
     (Instrument Sans Medium 10px, caps, tracking 0.12em — igual ao
-    eyebrow da Metodologia) em vez de Regular 13px sentence-case; legenda
-    virou corpo padrão (16px, ink 65%) em vez de Regular 14px ink 100%;
-    gap entre label e legenda ajustado de 32px (solto) pra 12px (mesmo
-    valor usado no par eyebrow+question em todo o resto do case).
+    eyebrow da Metodologia) em vez de Regular 13px sentence-case; gap
+    entre label e legenda ajustado de 32px (solto) pra 12px (mesmo valor
+    usado no par eyebrow+question em todo o resto do case). **Correção
+    (2026-09-14):** a legenda tinha ficado no tamanho errado (16px, ink
+    65% — estilo de nota de apoio, não de leitura); Matheus pediu a
+    tipografia de leitura padrão, igual à referência do Contexto —
+    corrigida pra **24px, ink 100%**, batendo exatamente com o `Body` do
+    Contexto (`2030:154`). Também removidas quebras de linha manuais
+    (`\n`) que tinham sobrado do tamanho antigo e quebravam o texto de
+    forma estranha no tamanho novo, e um nó de texto duplicado
+    (`Eyebrow — Metodologia`, sobra de uma cópia anterior) que estava
+    empilhado por cima do label real.
   - **⚠️ Regressão encontrada (2026-09-14), não mexida a pedido do
     Matheus:** o bloco **Pesquisa** (`2067:261`) voltou a ter o conteúdo
     fictício antigo do variant.com na coluna de conteúdo (parágrafo
