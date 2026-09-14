@@ -591,6 +591,25 @@ ver a lista de itens "verificar antes de usar" em
     - **Metodologia reordenada por Matheus** pra antes de Pesquisa +
       Field Exploration (no frame duplicado) — ordem cronológica: método
       antes do achado. Divisórias conferidas, continuam corretas.
+    - **✅ Metodologia — achado real e corrigido (2026-09-14):** os 20
+      itens de técnica (Estudo de campo, Survey, Personas, Crazy 8s
+      etc.) estavam TODOS em ink 100%, junto com os 4 headers de fase —
+      zero hierarquia num bloco com bastante densidade de texto.
+      Corrigido: headers de fase (DESCOBRIR/DEFINIR/DESENVOLVER/
+      ENTREGAR) e numerais ficam ink 100%, os 20 itens de técnica caem
+      pra ink 65% — mesmo padrão "estrutura forte, detalhe recuado" já
+      usado em JTBD/Testes/Resultado. Mesma correção aplicada nas 3
+      descrições de 12px do Blueprint Crop (Field Exploration) — só
+      faltava aplicar o ink 65% que a linha "Dor real:" ao lado já tinha.
+    - **⚠️ Conteúdo fictício confirmado, NÃO TOCADO (2026-09-14):** dentro
+      do composite "Pesquisa + Field Exploration", a sub-seção "A
+      Pesquisa" ainda tem 3 insights entre colchetes
+      ("[Insight: usuários sentem pressão social...]") e uma citação
+      fictícia entre colchetes — é a mesma regressão de conteúdo
+      documentada antes (bloco Pesquisa trancado, "os textos serão
+      resolvidos depois"), agora também presente no frame duplicado.
+      Respeitei o lock e não toquei nem no texto nem no estilo dessa
+      parte específica.
   - **✅ Auditoria geral do case (2026-09-14):** revisão completa de todos
     os blocos (ordem, espaçamento, tipografia, divisórias). Achados:
     divisória de topo tinha sido perdida em Resultado e nunca existiu em
