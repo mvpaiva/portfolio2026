@@ -316,6 +316,24 @@ ver a lista de itens "verificar antes de usar" em
     metodológica, nenhum número novo inventado: "Cada rodada validava a
     anterior antes de avançar de fidelidade — as 5 soluções finais
     vieram de decisões já testadas, não de suposições."
+  - **✅ Soluções — bloco gigante já existia como placeholder
+    (`2030:227`, 5 pares texto+imagem no formato `col-span-5`+
+    `col-span-7`, exatamente o padrão sticky documentado em §13.2) —
+    começei a popular em 2026-09-14, bloco por bloco.
+    - **Solução 1 — Escaneamento contínuo (`2030:228`) pronta:** tag,
+      headline, citação e corpo trocados pelo conteúdo real do §14
+      (removido o parágrafo extra "O problema:" que não existe na
+      estrutura real de 4 partes). Corrigido: label de dispositivo
+      dizia "TOTEM — 1920×1080" (errado — Solução 1 é app/mobile, não
+      totem) → "APP — 320×694" (padrão Mobile do §13.1); citação estava
+      cortada (largura hug de 1 linha só, 748px, estourando a coluna de
+      488px) → corrigida pra `textAutoResize: HEIGHT` com largura fixa.
+      Criado placeholder de imagem 320×694 com nota de qual arquivo
+      colar (`scan-v1.png` + `scan-fab-bottomsheet.png`).
+    - **Soluções 2–5 ainda não populadas** — mesmo padrão, conteúdo real
+      já pronto no §14 (Solução 2 Identificação de produto, 3
+      Verificação de idade, 4 Recuperação no portão, 5 Lista de
+      compras).
   - **⚠️ Regressão encontrada (2026-09-14), não mexida a pedido do
     Matheus:** o bloco **Pesquisa** (`2067:261`) voltou a ter o conteúdo
     fictício antigo do variant.com na coluna de conteúdo (parágrafo
