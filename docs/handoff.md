@@ -334,6 +334,19 @@ ver a lista de itens "verificar antes de usar" em
       já pronto no §14 (Solução 2 Identificação de produto, 3
       Verificação de idade, 4 Recuperação no portão, 5 Lista de
       compras).
+    - **✅ Auto-layout do container das 5 soluções corrigido
+      (2026-09-14):** `2030:227` (a seção que envolve as 5) e `2030:228`
+      (o grid da Solução 1) estavam em `layoutMode: GRID` (o modo
+      redundante) e presos num `maxWidth: 1280` (mesmo bug de antes) —
+      convertidos pra `HORIZONTAL` real, seção ajustada pro padrão
+      1290/315, coluna de texto fixa em 488px e coluna de imagem em
+      `FILL` (absorve os 10px extras, mesma lógica de sempre).
+    - **✅ Link de volta pro problema original (2026-09-14):** cada
+      Solução agora linka pro chip correspondente em Field Notes —
+      hyperlink de nó no Figma (pula direto no modo apresentação),
+      documentado como anchor link real pro código em
+      visual-language-specification.md §13.5. Aplicado na Solução 1
+      (→ chip "Fricção no escaneamento"); replicar nas 2–5.
   - **⚠️ Regressão encontrada (2026-09-14), não mexida a pedido do
     Matheus:** o bloco **Pesquisa** (`2067:261`) voltou a ter o conteúdo
     fictício antigo do variant.com na coluna de conteúdo (parágrafo

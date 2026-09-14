@@ -791,6 +791,29 @@ shift manual via `.y` só funciona dentro de blocos que ainda são
 `layoutMode: NONE` internamente — no nível da página, usar `insertChild`
 pra reordenar.
 
+### 13.5 Link de volta pro problema original (bloco de Solução, 2026-09-14)
+
+Cada bloco de Solução referencia um pain point real mapeado na pesquisa
+(já visível na Tag, ex.: "APP · 01 · Fricção no escaneamento,
+interrupção do carrinho"). Além da Tag, adicionar um **link de
+cross-reference** de volta pro chip correspondente no bloco Field Notes
+(dentro do composto "Pesquisa + Field Exploration") — fecha o loop
+"aqui está o problema" → "aqui está a solução" pro leitor.
+
+**Padrão:** texto pequeno (13px, Instrument Sans Medium, cor **sage**,
+único uso de cor nesse ponto do bloco) com a seta `↑` + "Ver o problema
+na pesquisa", inserido logo depois da Tag e antes do Headline, dentro da
+coluna de texto (`col-span-5`). No Figma, usar um **hyperlink de nó**
+(`node.hyperlink = { type: 'NODE', value: chipNodeId }`) apontando pro
+chip exato em Field Notes — no modo de apresentação do Figma isso já
+pula direto pro problema. **No código, vira um anchor link real**
+(`<a href="#pain-point-fricção-no-escaneamento">`), então cada chip em
+Field Notes precisa de um `id` correspondente no HTML final.
+
+**Já aplicado:** Solução 1 → chip "Fricção no escaneamento". **Replicar
+nas Soluções 2–5**, linkando pro(s) chip(s) certo(s) de cada Tag (ver
+mapeamento completo de pain points → soluções em §14).
+
 ## 14. Case study real — Square (copy final, v3 — 2026-09-13)
 
 > **Substitui integralmente a v1/v2 desta seção.** O copy abaixo veio
