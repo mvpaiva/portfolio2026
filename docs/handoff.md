@@ -237,7 +237,17 @@ ver a lista de itens "verificar antes de usar" em
     65%). **Nota:** entre uma correção e outra, a subárvore de
     label+legenda foi resetada sozinha pro conteúdo antigo do variant.com
     (IDs novos, `\n` de volta) — mesmo padrão de instabilidade já visto
-    no bloco Pesquisa; causa ainda desconhecida.
+    no bloco Pesquisa; causa ainda desconhecida. **✅ Decisão final
+    (2026-09-14):** Matheus pediu pra manter o mesmo padrão do
+    case-page de referência (`2:546`/`2:549`), só adaptando o essencial —
+    conferi os valores originais lá (`2:658` label, `2:660` legenda) e
+    restaurei exatamente: label **13px Regular sentence-case** (não
+    label-caps, não uppercase) + legenda **14px Regular**, os dois em
+    ink 100%, gap de 32px entre eles. Isso resolve a ida-e-volta entre
+    label-caps/16px/24px — o padrão certo pra esse bloco específico
+    sempre foi o que já estava na referência original, só faltava
+    adaptar pro grid 1290/440 (o que já tinha sido feito) em vez de trocar
+    a tipografia.
   - **⚠️ Regressão encontrada (2026-09-14), não mexida a pedido do
     Matheus:** o bloco **Pesquisa** (`2067:261`) voltou a ter o conteúdo
     fictício antigo do variant.com na coluna de conteúdo (parágrafo
