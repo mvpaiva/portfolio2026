@@ -508,7 +508,30 @@ ver a lista de itens "verificar antes de usar" em
     sublinhado, ink 100%, `hyperlink` pro arquivo de design real
     `UOGBjtsvGNFNs8O8qUSxjk` node `12084:23891`); o nível de 14px virou
     o descritor de apoio — "Testes, fotos, wireframes e mais" (ink 65%).
-  - Falta ainda: bloco 13 "Próximos passos" e o Footer final.
+  - **✅ Bloco 13 "Próximos Passos" (`2165:172`) construído (2026-09-14).**
+    Clonado do bloco JTBD (mesmo padrão Label Column + lista de entries
+    título+apoio) em vez de reconstruído do zero — reordenado pra ficar
+    depois do Resultado (a inserção inicial errou a ordem, corrigida via
+    `insertChild`). Divisória de topo herdada do clone (subject change
+    real: resultados → escopo futuro); padding inferior ajustado pra 128
+    (fecha a seção antes do footer). Conteúdo: os 4 itens reais do §13,
+    sem numeração.
+  - **✅ Metadados + links reais do case (`2167:174`) construídos
+    (2026-09-14),** inseridos entre Próximos Passos e o footer de
+    "Próximo Projeto" existente. Linha de metadados (13px, ink 65%):
+    Papel/Data/Ferramentas/Setor do §Footer. Linha de links reais (14px,
+    Medium, sublinhado, ink 100%, mesmo padrão WCAG de
+    `page.module.css`): protótipo completo no Figma + board de pesquisa
+    no Miro. **Não mexido:** o footer de navegação "Próximo Projeto →
+    Essavie Ecommerce" que já existia (`2030:391`) — o par bidirecional
+    "← Fireflies.ai · Essavie →" do spec não foi implementado porque
+    esses cases são fictícios e não têm página real na home atual;
+    decisão de produto (mexer nisso ou não) fica pro Matheus, não
+    assumida aqui.
+  - **Case page: todos os 13 blocos do spec + footer agora existem no
+    Figma com conteúdo real.** Pendências que restam: colar as imagens
+    reais nos placeholders (API não suporta upload) e revisão visual
+    geral.
 - **Composição de wireframes nos blocos de solução (2026-09-13):** regras
   concretas fechadas em visual-language-specification.md §13.1 — Totem
   696×392px sem borda/sombra; Mobile 320×694px ("ampliado mas honesto",
