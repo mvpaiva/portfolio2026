@@ -262,6 +262,20 @@ ver a lista de itens "verificar antes de usar" em
     em si — o label ainda estava com os caracteres literalmente em caixa
     alta de uma correção anterior; corrigido separadamente pra
     "Design & Prototipação" (sentence-case real, não só `textCase`).
+  - **✅ Consistência interna corrigida (2026-09-14):** mesmo sendo um
+    bloco deliberadamente diferente dos outros, Matheus notou
+    inconsistência real — label (13px) e legenda (14px) quase do mesmo
+    tamanho (1px de diferença, sem hierarquia perceptível), e o gap entre
+    eles usava os mesmos 32px do gutter entre a coluna de label e a de
+    imagens (confundindo "par label+legenda" com "duas colunas
+    inteiras"). Corrigido: legenda subiu pra **`Portfolio/Body/18
+    Regular`** (18px, cria contraste de verdade com o label de 13px) e o
+    gap interno caiu pra **12px** (reserva o 32px só pro gutter real
+    entre colunas). **⚠️ Instabilidade recorrente:** o label voltou a
+    ficar em caixa alta sozinho outra vez durante essa correção (terceira
+    vez que esse nó específico reseta o conteúdo) — corrigido de novo,
+    mas a causa raiz continua desconhecida; se persistir, vale investigar
+    se há algo no Figma reaplicando um estado antigo nesse nó específico.
   - **⚠️ Regressão encontrada (2026-09-14), não mexida a pedido do
     Matheus:** o bloco **Pesquisa** (`2067:261`) voltou a ter o conteúdo
     fictício antigo do variant.com na coluna de conteúdo (parágrafo
