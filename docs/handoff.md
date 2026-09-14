@@ -163,17 +163,21 @@ ver a lista de itens "verificar antes de usar" em
     acima deles estavam em terracota/salmão (herdados do template antigo
     do variant.com, cor reservada só pra erro/destrutivo) — trocados pra
     ink 65% (texto) e ink 10% (hairline).
-  - **Arquétipos (`2067:578`):** padding lateral corrigido pro padrão
-    32px (estava 0). **Discrepância encontrada, aguardando resposta do
-    Matheus:** essa versão está sem a linha de JTBD (Nome → Perfil →
-    Blockquote → Tags — falta o "Quando estou..." antes da citação),
-    diferente do que eu tinha desenhado antes; pode ser edição proposital
-    do Matheus ou sobra de uma cópia mais antiga que ele duplicou.
-    **Avaliação de necessidade do bloco (pedida pelo Matheus,
-    2026-09-14):** mantido — cobre "quem" é afetado de formas diferentes
-    (medo de errar vs. velocidade vs. clareza), informação que nem os
-    pain points nem a jornada cobrem, e vira a justificativa de público
-    pros blocos de Solução mais à frente.
+  - **Jobs To Be Done / Arquétipos (`2067:578`) — redesenhado em
+    2026-09-14, JTBD em destaque.** Avaliação de necessidade do bloco
+    (pedida pelo Matheus): mantido — cobre "quem" é afetado de formas
+    diferentes (medo de errar vs. velocidade vs. clareza), informação que
+    nem os pain points nem a jornada cobrem, e vira a justificativa de
+    público pros blocos de Solução mais à frente. **Mas a hierarquia foi
+    invertida:** feedback do Matheus é que JTBD é o que recrutadores/PMs
+    realmente procuram (é prática de PRD, não só de design), enquanto
+    "poucas pessoas se importam com persona". Trocado o grid de 3 cards
+    (Nome → Perfil → Blockquote → Tags) por uma **lista única unificada**:
+    eyebrow virou `JOBS TO BE DONE` (keyword literal pro ATS), cada
+    entrada é a frase JTBD em destaque (20px) seguida de 1 linha pequena
+    de atribuição + citação ("Xênia, 54–62 · baixa familiaridade —
+    'Quero fazer compras rápido...'"). Persona deixou de ser o
+    protagonista visual; JTBD é.
   - **Metodologia (Double Diamond) não vira mais bloco-parede próprio** —
     decisão explícita de distribuir as keywords de método como tags
     discretas dentro de cada bloco de fase correspondente, preservando a
