@@ -201,6 +201,26 @@ ver a lista de itens "verificar antes de usar" em
     sessão; causa desconhecida (possível cópia/reversão acidental no
     Figma). **Instrução do Matheus: não mexer agora, os textos serão
     resolvidos depois.**
+  - **✅ Regra de divisória refinada (2026-09-14):** divisória (borda
+    superior 1px, ink 10%) só entre blocos que mudam de **assunto** —
+    não em toda fronteira. Blocos que continuam a mesma linha de
+    pensamento não levam divisória e têm o padding que os conecta
+    reduzido de 128px pra 64px de cada lado. Aplicado: Pesquisa → banner
+    → Blueprint Crop → Field Notes (agrupados no frame "Pesquisa + Field
+    Exploration (composite)", `2103:156`, sem divisórias internas) e
+    JTBD → Metodologia (mesma lógica). Ver
+    visual-language-specification.md §13.4.
+  - **⚠️ Descoberta importante (2026-09-14):** o frame de topo
+    `div#case-page` (`2030:122`) virou **auto-layout vertical**
+    (`layoutMode: VERTICAL`) em algum momento — antes era posicionamento
+    absoluto. Isso quebrou o cascade-shift manual via `.y` que eu vinha
+    usando (escrever `.y` num filho direto desse frame agora é ignorado
+    silenciosamente) e bagunçou a ordem visual da página (Metodologia
+    aparecia antes da Pesquisa, o footer no meio). Corrigido reordenando
+    com `insertChild`. **Daqui pra frente, no nível da página, reordenar
+    com `insertChild`, não com `.y`** — cascade-shift via `.y` só
+    funciona dentro de blocos que ainda são `layoutMode: NONE`
+    internamente.
   - Próximo: Design e Prototipação (papel→high-fi) e Testes, os dois
     ainda não construídos — há um espaço reservado vazio na página pra
     eles (entre `2030:361` e `2030:213`).

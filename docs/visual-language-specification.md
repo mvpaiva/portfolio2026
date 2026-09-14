@@ -728,19 +728,39 @@ essa cor**; usar o hairline padrão do projeto: **ink a 10% de opacidade,
 1px, só no topo** (`strokeTopWeight: 1`, demais lados 0,
 `strokeAlign: INSIDE`).
 
-**Onde aplicar:** todo bloco de conteúdo com texto (Contexto, Pesquisa,
-Field Notes, Blueprint Crop, JTBD, Metodologia, e todo bloco futuro do
-mesmo tipo). **Onde não aplicar** (confirmado pela própria referência,
-que deixa esses sem cor de stroke real): Hero (primeiro bloco da
-página) e banners full-bleed de imagem pura (ex.: banner do Field
-Exploration) — esses não têm bloco anterior imediato pra "fechar", ou
-já têm sua própria separação visual (full-bleed já contrasta com o
-que vem antes/depois).
+**Onde aplicar:** só na fronteira entre dois **assuntos diferentes** —
+não em toda fronteira de bloco. Hero (primeiro bloco) e banners
+full-bleed de imagem pura nunca levam (confirmado pela própria
+referência, que deixa esses sem cor de stroke real).
 
-**Já aplicado (2026-09-14):** Contexto, Pesquisa, Blueprint Crop, Field
-Notes, JTBD (Arquétipos), Metodologia. **Lembrar de aplicar em todo
-bloco novo daqui pra frente** (Design e Prototipação, Testes, Soluções,
-Resultados) assim que forem construídos.
+**Correção importante (2026-09-14):** blocos que continuam a **mesma
+linha de pensamento** não levam divisória entre si, e devem ter o
+padding vertical que os conecta **reduzido de 128px pra 64px** de cada
+lado (mesma lógica de "grupo visual" já usada no composto Field
+Exploration). Exemplos já aplicados:
+- **Pesquisa → banner → Blueprint Crop → Field Notes** (todos dentro do
+  frame "Pesquisa + Field Exploration (composite)"): mesmo assunto —
+  sem divisórias entre eles, padding interno em 64px.
+- **JTBD → Metodologia**: mesmo assunto (o "como" do processo) — sem
+  divisória entre os dois, `paddingBottom` do JTBD e `paddingTop` da
+  Metodologia em 64px.
+
+Divisória (com padding 128px normal de cada lado) fica reservada pra
+transições reais de assunto: Hero→Contexto, Contexto→Pesquisa, e
+(quando construídos) Metodologia→Design e Prototipação, etc. **Antes de
+adicionar uma divisória num bloco novo, perguntar: esse bloco muda de
+assunto em relação ao anterior, ou continua a mesma ideia?** Só no
+primeiro caso ela entra.
+
+**⚠️ Cuidado com o frame da página:** em algum momento o frame de topo
+`div#case-page` (`2030:122`) passou de posicionamento absoluto
+(`layoutMode: NONE`) para **auto-layout vertical**. Isso muda a lógica
+de posicionamento inteira — a ordem visual passa a vir da **ordem das
+layers** (`insertChild`), não mais de `x`/`y` manuais (escrever `.y`
+num filho direto desse frame agora é ignorado silenciosamente). Cascade-
+shift manual via `.y` só funciona dentro de blocos que ainda são
+`layoutMode: NONE` internamente — no nível da página, usar `insertChild`
+pra reordenar.
 
 ## 14. Case study real — Square (copy final, v3 — 2026-09-13)
 
