@@ -717,6 +717,31 @@ diferentes pro mesmo tipo de elemento. Ambas já corrigidas pra usar
 colunas de 280px (não 320px) com 32px de gutter real, batendo com a
 tabela acima.
 
+### 13.4 Divisória de topo entre blocos (confirmado 2026-09-14)
+
+Conferido no case-page de referência (`2:549`): quase toda seção de
+conteúdo (`section.max-w-7xl`) tem uma **borda superior de 1px**
+marcando onde a linha de pensamento anterior termina antes da próxima
+começar. A referência usa uma variável de cor cinza avulsa
+(`color/grey/91`, fora da nossa paleta documentada) — **não reaproveitar
+essa cor**; usar o hairline padrão do projeto: **ink a 10% de opacidade,
+1px, só no topo** (`strokeTopWeight: 1`, demais lados 0,
+`strokeAlign: INSIDE`).
+
+**Onde aplicar:** todo bloco de conteúdo com texto (Contexto, Pesquisa,
+Field Notes, Blueprint Crop, JTBD, Metodologia, e todo bloco futuro do
+mesmo tipo). **Onde não aplicar** (confirmado pela própria referência,
+que deixa esses sem cor de stroke real): Hero (primeiro bloco da
+página) e banners full-bleed de imagem pura (ex.: banner do Field
+Exploration) — esses não têm bloco anterior imediato pra "fechar", ou
+já têm sua própria separação visual (full-bleed já contrasta com o
+que vem antes/depois).
+
+**Já aplicado (2026-09-14):** Contexto, Pesquisa, Blueprint Crop, Field
+Notes, JTBD (Arquétipos), Metodologia. **Lembrar de aplicar em todo
+bloco novo daqui pra frente** (Design e Prototipação, Testes, Soluções,
+Resultados) assim que forem construídos.
+
 ## 14. Case study real — Square (copy final, v3 — 2026-09-13)
 
 > **Substitui integralmente a v1/v2 desta seção.** O copy abaixo veio
