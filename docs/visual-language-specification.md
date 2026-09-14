@@ -664,25 +664,35 @@ de 72px + 11 gutters de 32px = 864 + 352 = 1216px):
 | 10 | 1072 | 1144 |
 | 11 | 1176 | 1248 |
 
-**Correção final de Matheus (2026-09-13) — supera a derivação abaixo:**
-label = `x:32, width:282`; gap label→conteúdo = **190px** (não os 136px
-derivados da matemática de coluna abaixo); conteúdo começa em `x:504`
-(32 + 282 + 190). Preservar **282 e 190** exatos em qualquer bloco novo
-ou já construído com esse offset assimétrico — a tabela de colunas logo
-acima é só o raciocínio original (12 colunas de 72px), mantida por
-registro histórico; o gap real de produção é maior que o "pular 1
-coluna" (136px) que essa tabela sugeria.
+**Correção final (2026-09-13) — supera toda derivação acima:** label =
+`x:32, width:440`; gap label→conteúdo = **32px** (`--gutter-desktop`
+padrão); conteúdo começa em `x:504` (32 + 440 + 32). Chegamos aqui em
+duas etapas na mesma sessão — vale registrar o raciocínio:
+
+1. Primeiro round: label 282px + gap custom de 190px (também dava
+   conteúdo em x:504) — funcionava visualmente, mas o 190px era um valor
+   inventado, sem uso em nenhum outro lugar do design system.
+2. Correção: **mesmo x:504 de conteúdo é alcançável com label 440px +
+   gap de 32px** (32+440+32=504 — idêntico a 32+282+190=504, zero
+   diferença visual). Escolhido por reusar o token real
+   `--gutter-desktop` em vez de um gap mágico de uso único — a label
+   passa a ser um "col-span" real como o resto da página, e o gap volta
+   a ser gap de verdade.
+
+**Preservar 440 (label) e 32 (gap) daqui pra frente** — não os 282/190
+nem os 280/136 de tentativas anteriores. A tabela de colunas de 12×72px
+acima é só o raciocínio histórico original, mantida por registro.
 
 **Frame da seção é 1290px, não 1280px (correção de Matheus,
 2026-09-13):** decisão explícita — o frame de cada seção
 (`section.max-w-7xl`) mede `width:1290, x:315` no Figma, não os 1280/320
 usados no restante da página antiga (`2:546`). Isso faz o início de
 outros elementos da página baterem no mesmo pixel do grid. Como o offset
-esquerdo (32 de padding + 282 do label + 190 de gap = 504 pro início do
+esquerdo (32 de padding + 440 do label + 32 de gap = 504 pro início do
 conteúdo) fica fixo, os 10px extras do frame são absorvidos inteiramente
 pela **largura da coluna de conteúdo** (que vira `FILL` num auto-layout
 horizontal, não um valor fixo) — nunca redistribuídos pra esquerda.
-Resultado: label sempre 282px fixo; conteúdo sempre começa em x:504 e
+Resultado: label sempre 440px fixo; conteúdo sempre começa em x:504 e
 cresce pra preencher o que sobra do frame (754px numa seção de 1290px).
 Hero, Contexto e Research (bloco 03, intro) já convertidos pra esse
 padrão via auto-layout (`layoutMode: HORIZONTAL` ou `VERTICAL` conforme o
