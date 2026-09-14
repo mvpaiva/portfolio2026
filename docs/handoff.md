@@ -410,6 +410,44 @@ ver a lista de itens "verificar antes de usar" em
     internamente.
   - **Design e Prototipação e Testes prontos.** Próximo: Soluções (5
     blocos) e Resultados — ainda não construídos.
+  - **📍 Handoff para outro PC (2026-09-14):** Solução 1 pronta e
+    **componentizada** (`figma.createComponentFromNode`) como MAIN
+    COMPONENT `2137:150` "Solution Block", já que ela será propagada pra
+    Soluções 2–5. Estrutura confirmada do componente: `col-span-5` tem
+    `[0]` chip/link (ink 100%, Instrument Sans Medium 13px, sublinhado —
+    replica exata do padrão real `.panelText a` de
+    `src/app/page.module.css`, com hyperlink de nó pro pain point de
+    origem em Field Notes), `[1]` headline (`h3.fraunces`, na prática
+    Instrument Sans Regular 36px), `[2]` citação (`blockquote.fraunces-
+    italic`, 20px, borda sage à esquerda), `[3]` corpo (`p.instrument`,
+    18px/28px). `col-span-7` tem a imagem 393×852 (`scaleMode: FIT`).
+    Container das 5 soluções: `2030:227`, filho `[0]` já é o componente
+    `2137:150`; `[1..4]` (`2030:247/266/286/304`) ainda são os
+    placeholders fictícios originais (Assistência Remota, etc.) —
+    **nenhuma instância de Solução 2 foi criada ainda** (uma tentativa
+    de script falhou por assumir a estrutura interna errada do `col5` e
+    o Figma reverteu a mutação sozinho, sem deixar estado parcial —
+    confirmado por inspeção depois do erro). Pain points confirmados em
+    Field Notes pra linkar: "Seleção de item errado" = texto `2094:160`,
+    "Busca de produto solto" = texto `2094:162` (IDs dos frames-pai dos
+    chips ainda não confirmados, só assumidos por padrão).
+    **Próximo passo real:** `component.createInstance()` a partir de
+    `2137:150`, inserir em `2030:227` no índice 1, e só então (com a
+    instância já inserida) inspecionar `instance.findAll` /
+    `col5.children` pra confirmar tipo/ordem real dos nós antes de
+    escrever `characters`/`hyperlink` — não repetir a suposição de que
+    a ordem é igual à do frame original pré-componentização. Conteúdo
+    real da Solução 2 (§14): tag/link → pain points 02+03, headline
+    "Categoria primeiro, código nunca", stat "40% → 0%", citação de
+    Xênia (54) sobre a tabela de busca de produto, corpo sobre a tela de
+    categoria + balança. Wireframe: `weigh-item.png`. Soluções 3
+    (Verificação de idade/Totem), 4 (Recuperação no portão, com DOIS
+    wireframes antes/depois) e 5 (Lista de compras) seguem depois, todo
+    o conteúdo já em §14.
+  - **Instrução permanente do Matheus (2026-09-14): não documentar cada
+    micro-decisão — só registrar aqui quando algo estiver realmente
+    confirmado/estável.** Entradas futuras devem ser mais enxutas que as
+    acima.
 - **Composição de wireframes nos blocos de solução (2026-09-13):** regras
   concretas fechadas em visual-language-specification.md §13.1 — Totem
   696×392px sem borda/sombra; Mobile 320×694px ("ampliado mas honesto",
