@@ -448,6 +448,19 @@ ver a lista de itens "verificar antes de usar" em
     micro-decisão — só registrar aqui quando algo estiver realmente
     confirmado/estável.** Entradas futuras devem ser mais enxutas que as
     acima.
+  - **✅ Soluções 2–5 construídas (2026-09-14) — as 5 estão prontas.**
+    Instâncias do componente `2137:150`, conteúdo real do §14, chip com
+    hyperlink pro pain point de origem em cada uma. Solução 3
+    (Totem, `2147:174`) e Solução 4 (dois wireframes antes/depois,
+    `2147:198`) precisaram de `detachInstance()` — resize direto de
+    filhos dentro da instância não colava (revertia sozinho mesmo sem
+    erro); detachar resolveu. Solução 4 ganhou um segundo placeholder de
+    imagem lado a lado (341×739 cada) com labels "Antes"/"Depois", só
+    nessa. Placeholders de imagem (nomes indicam o arquivo real):
+    Solução 2 = `weigh-item`, Solução 3 = `age-verification` (696×392,
+    Totem), Solução 4 = `exit-fix-exit` + `exit-help`, Solução 5 =
+    `scan-with-list`. **Pendente:** Matheus colar as imagens reais
+    (API não suporta upload) e revisar visualmente as 5 no Figma.
 - **Composição de wireframes nos blocos de solução (2026-09-13):** regras
   concretas fechadas em visual-language-specification.md §13.1 — Totem
   696×392px sem borda/sombra; Mobile 320×694px ("ampliado mas honesto",
