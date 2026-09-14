@@ -532,26 +532,26 @@ ver a lista de itens "verificar antes de usar" em
     Figma com conteúdo real.** Pendências que restam: colar as imagens
     reais nos placeholders (API não suporta upload) e revisão visual
     geral.
-  - **📋 Proposta de TOC (sumário navegável) criada como referência solta
-    no Figma (2026-09-14), `2174:177` "TOC — Proposta"** — fora do fluxo
-    do documento (canvas livre, x:-260 y:13800, ao lado do case), não
-    integrada na página ainda. Contexto: o link do variant.com que
-    Matheus mandou revisar como referência de TOC redireciona pra raiz
-    do site hoje (não carrega mais) — não deu pra revisar ao vivo.
-    Baseado numa referência do portfólio do Benji Taylor (estrutura, não
-    o visual — sem cor/hover, já descartado nesta sessão por não bater
-    com nossa linguagem), a proposta reaproveita as **4 fases do Double
-    Diamond já documentadas no bloco Metodologia** como categorias do
-    sumário, em vez de inventar rótulos novos: Contexto → Descobrir →
-    Definir → Desenvolver → Entregar → Soluções → Resultado (7 itens,
-    curto). Item ativo em peso Medium + ink 100%, resto em ink 50% — só
-    peso, sem cor, mesmo padrão de toda a Design e Prototipação/Solução.
-    Testei uma versão com "card" de fundo e uma sem — a sem fundo bate
-    melhor com o minimal chrome do resto do case (nenhuma outra seção
-    usa card/borda pra agrupar texto). **Ainda não implementado:** é só
-    a estrutura/conteúdo pra aprovação; a versão funcional (sticky,
-    scroll-spy, ancoragem real) é trabalho de código, quando a case page
-    for implementada em Next.js.
+  - **✅ TOC (sumário navegável) integrado na página (2026-09-14),
+    `2174:177` "TOC — Sumário".** Proposta aprovada por Matheus (sem
+    "card" de fundo). Baseado numa referência do portfólio do Benji
+    Taylor (só a estrutura — progressive disclosure, item ativo em
+    destaque — não o visual dele, que já foi descartado nesta sessão por
+    não bater com nossa linguagem de cor/hover). Reaproveita as **4 fases
+    do Double Diamond já documentadas em Metodologia** como categorias,
+    em vez de rótulos novos: Contexto → Descobrir → Definir →
+    Desenvolver → Entregar → Soluções → Resultado (7 itens). Item ativo
+    só em peso Medium + ink 100%, resto ink 50% — sem cor, mesmo padrão
+    de link/ênfase do resto do case. **Posicionamento:** filho de
+    `2030:122` com `layoutPositioning: ABSOLUTE` (não participa do
+    auto-layout vertical da página), na margem esquerda (x:60, fora da
+    coluna de conteúdo que começa em x:315), y centralizado ao lado do
+    bloco Testes por enquanto (fase "Entregar" ativa no mock). **Ainda é
+    só a estrutura/posição de referência** — o comportamento real
+    (`position: sticky`, scroll-spy pra trocar qual item fica ativo) é
+    trabalho de código, quando a case page for implementada em Next.js;
+    mesmo tratamento dado ao "sticky" da coluna de texto dos blocos de
+    Solução (§13.2).
   - **✅ Auditoria geral do case (2026-09-14):** revisão completa de todos
     os blocos (ordem, espaçamento, tipografia, divisórias). Achados:
     divisória de topo tinha sido perdida em Resultado e nunca existiu em
