@@ -108,9 +108,23 @@ ver a lista de itens "verificar antes de usar" em
   panel-toggle, conteúdo real, motion e acessibilidade já auditados nesta
   sessão. Isso substitui o antigo "artefato + 3 pontos" (v1), que já tinha
   sido revertido antes de qualquer código existir.
-- **Sistema de blocos da case page:** fechado em 9 blocos (ver
-  visual-language-specification.md §13) — **ainda não implementado em
+- **Sistema de blocos da case page:** fechado em 13 blocos reais (ver
+  visual-language-specification.md §13/§14) — **ainda não implementado em
   código**, só especificado.
+- **Rebuild da case page real no Figma (em andamento, 2026-09-14):**
+  construção bloco por bloco na cópia de produção
+  (`srfFKPHCUBOrQ1rHCGXsum`, node `2030:121` "square-case para
+  producao"), nunca no original `2:546`. **Blocos 01 (Hero), 02
+  (Contexto) e 03 (Research/Descoberta — intro, 7 pain points, 3
+  personas, metodologia Double Diamond) prontos**, com conteúdo real do
+  §14, auto-layout responsivo de verdade (fill/hug, não valores fixos
+  manuais) e layers renomeadas. Decisões estruturais fechadas nessa
+  leva, todas em visual-language-specification.md §13.3: frame de seção
+  é 1290px (não 1280px); coluna de label é 440px + gap padrão de 32px
+  (`--gutter-desktop`); e **dentro do case inteiro, Fraunces só existe
+  nos 3 ghost-markers** — todo o resto (headlines, labels, stats) é
+  Instrument Sans, hierarquia só por tamanho. Próximo: bloco 04
+  (Panorama competitivo).
 - **Composição de wireframes nos blocos de solução (2026-09-13):** regras
   concretas fechadas em visual-language-specification.md §13.1 — Totem
   696×392px sem borda/sombra; Mobile 320×694px ("ampliado mas honesto",
