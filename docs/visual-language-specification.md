@@ -817,6 +817,14 @@ solto E um link separado em texto, duplicando a mesma informação):**
 pain point, detalhe extra") como texto solto — ela duplicava o mesmo
 dado que o chip já mostra.
 
+**Tipografia do link (2026-09-14):** os comportamentos de interação da
+home são a direção de experiência pro portfólio inteiro — links seguem
+o mesmo padrão já implementado lá (`page.module.css`, `.panelText a`):
+diferenciados por **sublinhado + peso**, nunca só por cor/opacidade
+(WCAG 1.4.1). Ink 100%, Instrument Sans Medium, sublinhado — 30% ink em
+repouso, 100% ink no hover (Figma mostra o estado estático em ink
+100%). Não usar cor isolada (sage) como único sinalizador de link.
+
 **Já aplicado:** Solução 1 → chips "APP" + "01 · Fricção no
 escaneamento". **Replicar nas Soluções 2–5**, linkando pro(s) chip(s)
 certo(s) de cada uma (ver mapeamento completo de pain points → soluções
