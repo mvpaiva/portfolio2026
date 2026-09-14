@@ -494,6 +494,20 @@ ver a lista de itens "verificar antes de usar" em
     desconectado do case Square, sobra de outro template) removido
     (2026-09-14)** a pedido do Matheus — não correspondia a nenhum dos
     13 blocos do spec.
+  - **✅ Confirmado com Matheus (2026-09-14): balanço de device nas 5
+    Soluções (1 Totem, 4 App) é fiel à fonte real** (README de
+    `docs/assets/square-wireframes-raw/`, fechado em 2026-09-13) — não
+    fabricar equilíbrio artificial entre os dois devices.
+  - **✅ Card "Intro das Soluções" reconstruído de novo (2026-09-14),
+    versão final.** Matheus trouxe de volta manualmente o card genérico
+    original do template (`2160:166`, mesmo componente `Aprofundamento`
+    de antes) — preferiu a estrutura de 3 níveis (label 13px + "headline"
+    36px + subhead 14px) à minha versão comprimida anterior. Ajustado:
+    label "AS SOLUÇÕES"; o nível de 36px virou o link real —
+    "→ Ver o arquivo completo no Figma" (Instrument Sans Medium,
+    sublinhado, ink 100%, `hyperlink` pro arquivo de design real
+    `UOGBjtsvGNFNs8O8qUSxjk` node `12084:23891`); o nível de 14px virou
+    o descritor de apoio — "Testes, fotos, wireframes e mais" (ink 65%).
   - Falta ainda: bloco 13 "Próximos passos" e o Footer final.
 - **Composição de wireframes nos blocos de solução (2026-09-13):** regras
   concretas fechadas em visual-language-specification.md §13.1 — Totem
