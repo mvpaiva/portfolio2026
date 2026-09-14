@@ -621,6 +621,20 @@ pra sempre — o escopo é por bloco.
 - Isso vale pra cada um dos 5 blocos de Solução do Square individualmente
   — nunca um sticky global que atravessa blocos diferentes.
 
+**Extensão confirmada pro bloco Design e Prototipação (2026-09-14):**
+mesmo comportamento, mesma implementação — a `Label Column` (label +
+legenda, `2030:215`) do bloco Design e Prototipação (`2030:213`) fica
+`position: sticky; top: 96px` enquanto acompanha a `Content Column` de
+imagens (Sketch → Wireframe → Prototype) ao lado. Faz sentido
+especialmente aqui porque as imagens desse bloco tendem a ser mais
+altas que o texto (sequência de telas, não uma imagem só) — sem sticky,
+o texto "sobra" no topo enquanto a imagem ainda rola. Mesmo escopo por
+bloco da regra acima, não sticky global. **No Figma isso não é
+visualmente simulável** (Figma não roda scroll) — a `Label Column` foi
+alinhada ao bottom da row (`counterAxisAlignItems: MAX`) como
+aproximação estática; o sticky de verdade só existe na implementação em
+código.
+
 ### 13.3 Grid: guia visual vs. motor de posicionamento (2026-09-13)
 
 Existem dois mecanismos de grid diferentes no Figma, e a confusão entre
