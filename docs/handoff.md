@@ -290,6 +290,18 @@ ver a lista de itens "verificar antes de usar" em
     `scan-fab-bottomsheet.png` (mesma pasta). Matheus precisa colar os
     arquivos reais manualmente (230×320px cada, ou a proporção real da
     imagem).
+  - **✅ Testes (`2121:150`) — novo, construído em 2026-09-14, logo após
+    Design e Prototipação.** Faixa curta como planejado (não um bloco
+    cheio — resultado dos testes já embasa as soluções): label 2 linhas
+    ("OS TESTES" + "Como validamos antes de decidir?"), 1 parágrafo
+    (5 rodadas — 1 papel + 2 mid-fi + 2 hi-fi — Maze + testes
+    presenciais), 3 stats compactos (5 rodadas · 57 telas hi-fi · 16
+    flows, os dois últimos já confirmados em sessão anterior como
+    candidatos "pra usar em outro lugar") e nota de rodapé (benchmarking
+    WCAG AA). Todos os números já confirmados em §01/§14, nenhum dado
+    novo inventado. **Reordenação de página feita de novo:** a
+    Metodologia tinha voltado a aparecer antes da Pesquisa (mesma
+    instabilidade de ordem já documentada) — corrigida junto.
   - **⚠️ Regressão encontrada (2026-09-14), não mexida a pedido do
     Matheus:** o bloco **Pesquisa** (`2067:261`) voltou a ter o conteúdo
     fictício antigo do variant.com na coluna de conteúdo (parágrafo
@@ -318,9 +330,8 @@ ver a lista de itens "verificar antes de usar" em
     com `insertChild`, não com `.y`** — cascade-shift via `.y` só
     funciona dentro de blocos que ainda são `layoutMode: NONE`
     internamente.
-  - Próximo: Design e Prototipação (papel→high-fi) e Testes, os dois
-    ainda não construídos — há um espaço reservado vazio na página pra
-    eles (entre `2030:361` e `2030:213`).
+  - **Design e Prototipação e Testes prontos.** Próximo: Soluções (5
+    blocos) e Resultados — ainda não construídos.
 - **Composição de wireframes nos blocos de solução (2026-09-13):** regras
   concretas fechadas em visual-language-specification.md §13.1 — Totem
   696×392px sem borda/sombra; Mobile 320×694px ("ampliado mas honesto",
