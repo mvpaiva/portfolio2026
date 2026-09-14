@@ -655,10 +655,25 @@ de 72px + 11 gutters de 32px = 864 + 352 = 1216px):
 
 Valores corretos, já aplicados em Hero e Contexto: label
 `col-start-1 col-span-3` = `x:32, width:280` (fim da coluna 2, x:312);
-conteúdo `col-start-5 col-span-7` = `x:448, width:696` (início da coluna
-4, fim da coluna 10, x:1144). Preservar esses números exatos (não os
-antigos 304/437.33/709.33) em qualquer bloco novo ou já construído que
-usar esse offset assimétrico.
+conteúdo `col-start-5 col-span-7` começa em `x:448` (início da coluna 4).
+Preservar esses dois números exatos (32 e 448) em qualquer bloco novo ou
+já construído que usar esse offset assimétrico — não os antigos
+304/437.33/709.33.
+
+**Frame da seção é 1290px, não 1280px (correção de Matheus,
+2026-09-13):** decisão explícita — o frame de cada seção
+(`section.max-w-7xl`) mede `width:1290, x:315` no Figma, não os 1280/320
+usados no restante da página antiga (`2:546`). Isso faz o início de
+outros elementos da página baterem no mesmo pixel do grid. Como o offset
+esquerdo (32 de padding + 32 do label + 136 de gap = 448 pro início do
+conteúdo) fica fixo, os 10px extras do frame são absorvidos inteiramente
+pela **largura da coluna de conteúdo** (que vira `FILL` num auto-layout
+horizontal, não um valor fixo) — nunca redistribuídos pra esquerda.
+Resultado: label sempre 280px fixo; conteúdo sempre começa em x:448 e
+cresce pra preencher o que sobra do frame (696px numa seção de 1280px;
+810px numa seção de 1290px). Hero e Contexto já convertidos pra esse
+padrão via auto-layout (`layoutMode: HORIZONTAL` ou `VERTICAL` conforme o
+bloco, padding real em vez de `x`/`y` manuais).
 
 **Gap entre colunas de linhas de dados (stats, metadados):** sempre
 `--gutter-desktop` (32px), nunca um valor arbitrário — a linha de
