@@ -587,6 +587,17 @@ de 65% pra texto que precisa ser lido.
 Fraunces, 120px+, 5–20% opacidade, não-interativos, puramente atmosféricos,
 orientação de scroll sem interferir.
 
+**Regra de fonte pro case inteiro (confirmado 2026-09-13, varredura
+completa de `2:546`):** dentro do case Square, **Fraunces só existe nos 3
+ghost-markers acima** — nenhum headline, label, subhead, stat number ou
+quote do case usa Fraunces ou itálico. Tudo o mais (117 ocorrências
+conferidas) é **Instrument Sans Regular** (peso Medium só em 6 casos,
+todos nomes de persona tipo "O Pragmático"). Isso contraria a tabela de
+escala tipográfica geral do §5 (que descreve o sistema aspiracional da
+home) — dentro do case, hierarquia é feita **só por tamanho**, nunca por
+família ou itálico. Qualquer bloco novo do case que usar Fraunces fora
+dos ghost-markers está errado; conferir contra `2:546` antes de assumir.
+
 ### 13.2 Comportamento sticky da coluna de texto (bloco de solução)
 
 Confirmado em 2026-09-13: a coluna de texto (`col-span-5` — label, headline,
@@ -767,11 +778,17 @@ editorial em vez de repetir o mesmo tratamento em todo bloco.
 
 - Label 1 (categoria): `O CONTEXTO` (label-caps padrão, Instrument Sans
   Medium 10px caps tracking 0.12em)
-- Label 2 (pergunta): *"O que o projeto precisa resolver?"* (Fraunces
-  Light Italic **32px**, line-height 120%, 12px abaixo do label 1) — precisa
-  ser maior que o corpo (24px), não menor, senão vira legenda subordinada
-  em vez de âncora de fast-scan. Escala final do bloco: 10px (label-caps)
-  → 32px (pergunta/fast-scan) → 24px (corpo/leitura aprofundada).
+- Label 2 (pergunta): *"O que o projeto precisa resolver?"* (**Instrument
+  Sans Regular, 32px**, line-height 120%, 12px abaixo do label 1) —
+  corrigido de Fraunces Light Italic pra Instrument Sans (2026-09-13):
+  conferido contra o case-page de referência (`2:546`) inteiro — Fraunces
+  não aparece em headline nenhum lá, só nos 3 ghost-markers decorativos
+  ("Descoberta", "Síntese", "Design"); todo o resto (117 ocorrências) é
+  Instrument Sans, hierarquia feita só por tamanho, nunca família/itálico.
+  Precisa ser maior que o corpo (24px), não menor, senão vira legenda
+  subordinada em vez de âncora de fast-scan. Escala final do bloco: 10px
+  (label-caps) → 32px (pergunta/fast-scan) → 24px (corpo/leitura
+  aprofundada) — todas em Instrument Sans.
 - Corpo (sem headline separado): "O briefing: transformar o Register em
   autoatendimento de verdade, lançar um app complementar que apoie a
   jornada inteira (não só o pagamento), manter o fluxo utilizável por
@@ -829,23 +846,29 @@ headers em Fraunces itálico + parágrafo descritivo por fase + nomes de
 método como link azul + marcador quadrado preenchido/vazado — melhor
 tipograficamente, mas ainda usa cor fora da paleta (azul) e adiciona 4
 frases de descrição que vão contra o objetivo de ser **mais breve** que a
-página ao vivo, não mais longo. A ideia de usar Fraunces itálico pro nome
-da fase foi aproveitada; o resto (azul, quadrados, parágrafo) foi
-descartado.
+página ao vivo, não mais longo. A ideia de destacar o nome da fase com
+tamanho maior foi aproveitada; o resto (azul, quadrados, parágrafo,
+itálico) foi descartado.
 
-**Padrão canônico: nome da fase em Fraunces + lista em 2 linhas** (empilha
-em coluna única no mobile, sem descrição por fase):
+**Correção de fonte (2026-09-13):** a versão inicial deste documento
+recomendava Fraunces Light Italic pro nome da fase. Errado — conferido
+contra o case-page de referência inteiro (`2:546`, 117 ocorrências de
+texto), Fraunces não aparece em nenhum headline/label do case, só nos 3
+ghost-markers decorativos. **Padrão canônico corrigido: nome da fase em
+Instrument Sans Regular + lista em 2 linhas** (empilha em coluna única no
+mobile, sem descrição por fase):
 - Header de cada fase = uma linha só: numeral (`01 —`, `Portfolio/Body/Label`
   10px caps tracking 0.12em, cor **sage** — único uso de cor no bloco
-  inteiro) + nome da fase em **Fraunces Light Italic, ~24px** (mesma
-  família de display usada em todo o resto do case, não uma família nova)
+  inteiro) + nome da fase em **Instrument Sans Regular, ~24px** (mesma
+  família usada em todo o resto do case — hierarquia por tamanho, não por
+  família ou itálico)
 - Métodos de cada fase = lista sem bullet, uma técnica por linha, `Body`
   padrão (13px), ink 100% — é a parte keyword-densa, tem que ficar em
   contraste total, nunca em opacidade reduzida
 - Divisor entre header e lista = hairline horizontal 1px a 10%; divisor
   entre as 4 colunas = hairline vertical 1px a 10% — nunca seta, nunca
   losango, nunca quadrado, nunca ícone de convergência/divergência literal
-- **Sem parágrafo descritivo por fase** — o nome em Fraunces já é a pista
+- **Sem parágrafo descritivo por fase** — o nome em destaque já é a pista
   visual suficiente; qualquer explicação extra vai contra o objetivo de
   brevidade
 - Progressão comunicada por sequência esquerda→direita + hairline, não
