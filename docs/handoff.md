@@ -461,6 +461,19 @@ ver a lista de itens "verificar antes de usar" em
     Totem), Solução 4 = `exit-fix-exit` + `exit-help`, Solução 5 =
     `scan-with-list`. **Pendente:** Matheus colar as imagens reais
     (API não suporta upload) e revisar visualmente as 5 no Figma.
+  - **✅ Intro das Soluções (bloco 06, `2030:440`) e Impacto/Resultado
+    (bloco 12, `section#resultado` `2030:441`) construídos (2026-09-14).**
+    Intro reaproveitou uma instância genérica do template que já estava
+    na posição certa (logo antes das 5 Soluções) — só trocado o texto
+    (Eyebrow "AS SOLUÇÕES" + headline + subhead a 18px/65% ink pra
+    hierarquia). Resultado teve o parágrafo fictício antigo (números
+    inventados do variant.com) trocado pelos 3 stats reais do §12
+    (40%→0%, 85,1%, 5/5), reaproveitando o padrão de `Stat` já usado em
+    Testes. **Bug corrigido:** números dos stats vieram clonados com
+    `textAutoResize: HEIGHT` (largura presa no valor antigo, tipo "5"),
+    quebrando o texto novo letra por letra — corrigido pra
+    `WIDTH_AND_HEIGHT`. Falta ainda: bloco 13 "Próximos passos" e o
+    Footer final.
 - **Composição de wireframes nos blocos de solução (2026-09-13):** regras
   concretas fechadas em visual-language-specification.md §13.1 — Totem
   696×392px sem borda/sombra; Mobile 320×694px ("ampliado mas honesto",
