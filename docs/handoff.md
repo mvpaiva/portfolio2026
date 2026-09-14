@@ -532,6 +532,17 @@ ver a lista de itens "verificar antes de usar" em
     Figma com conteúdo real.** Pendências que restam: colar as imagens
     reais nos placeholders (API não suporta upload) e revisão visual
     geral.
+  - **✅ Footer — Metadados (`2167:174`) reorganizado (2026-09-14).**
+    Descoberta: os links pro Figma e pro Miro já existiam em outros dois
+    lugares do case (Metodologia tem o link real do Miro desde antes
+    desta sessão; Intro das Soluções tem o link real do Figma) — os do
+    footer eram puramente redundantes, removidos. Linha de metadados
+    (Papel/Data/Ferramentas/Setor), que antes era uma frase densa só com
+    "·" separando tudo, virou um **grid de 4 colunas escaneável**: label
+    pequeno (11px, tracking 12%, ink 50%) + valor (14px, ink 100%) por
+    campo, mesma lógica de "label acima do valor" usada nos Stats.
+    Ferramentas (a lista mais longa) tem largura fixa de 320px e quebra
+    em 2 linhas em vez de estourar a largura da seção.
   - **✅ Resultado (`2030:441`) — analisado e mantido (2026-09-14).**
     Matheus perguntou se o bloco valia a pena manter. Conteúdo não é
     redundante o bastante pra cortar (é o único recap fechado dos 3
