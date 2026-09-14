@@ -178,13 +178,29 @@ ver a lista de itens "verificar antes de usar" em
     de atribuição + citação ("Xênia, 54–62 · baixa familiaridade —
     'Quero fazer compras rápido...'"). Persona deixou de ser o
     protagonista visual; JTBD é.
-  - **Metodologia (Double Diamond) não vira mais bloco-parede próprio** —
-    decisão explícita de distribuir as keywords de método como tags
-    discretas dentro de cada bloco de fase correspondente, preservando a
-    densidade de keyword pro ATS sem concentrar tudo num grid isolado.
-    **Ainda não aplicado** — o conteúdo de fases/métodos que eu já tinha
-    montado ficou preservado fora da página (`2030:415`, frame solto,
-    fora do fluxo) só como fonte de texto até essa distribuição acontecer.
+  - **✅ Decisão revertida (2026-09-14): Metodologia (Double Diamond)
+    volta a ser bloco próprio (`2102:151`, logo após JTBD).** A decisão
+    anterior (distribuir como tags dentro de cada fase) foi trocada —
+    Matheus: é esse bloco que mostra pro recrutador/designer que ele
+    conhece e aplicou as técnicas de UX de verdade, então merece
+    destaque próprio, não fragmentado. Extraído do frame solto `2030:415`
+    (que guardava o conteúdo desde a decisão anterior) e reconstruído
+    como seção padrão: label 2 linhas ("METODOLOGIA" + "Como o processo
+    foi conduzido?") + grid de 4 fases (Descobrir/Definir/Desenvolver/
+    Entregar, hairlines, numeral sage) já reaproveitado tal qual — já era
+    escaneável, não precisou de redesign. **Adicionado:** link "→ Ver a
+    pesquisa completa no Miro (6 meses de projeto)" no fim do bloco,
+    apontando pro board real
+    (`miro.com/app/board/uXjVHJ5Co14=`) — hyperlink real aplicado no
+    texto via API do Figma (`node.hyperlink`).
+  - **⚠️ Regressão encontrada (2026-09-14), não mexida a pedido do
+    Matheus:** o bloco **Pesquisa** (`2067:261`) voltou a ter o conteúdo
+    fictício antigo do variant.com na coluna de conteúdo (parágrafo
+    genérico + insights entre colchetes + citação falsa) — só o label
+    (Eyebrow + Question) sobreviveu correto. Não foi uma ação desta
+    sessão; causa desconhecida (possível cópia/reversão acidental no
+    Figma). **Instrução do Matheus: não mexer agora, os textos serão
+    resolvidos depois.**
   - Próximo: Design e Prototipação (papel→high-fi) e Testes, os dois
     ainda não construídos — há um espaço reservado vazio na página pra
     eles (entre `2030:361` e `2030:213`).
