@@ -626,18 +626,46 @@ eles gerou uma redundância real que já foi corrigida:
 
 **Regra daqui pra frente:** seções de conteúdo usam `layoutMode: "NONE"`
 com posição absoluta (`x`/`y` fixos), não um motor de grid estrutural
-próprio — mesmo padrão do resto da página. Os valores de posição
-continuam batendo com a matemática do grid assimétrico de 12 colunas
-(§4): label em `col-start-1 col-span-3` = `x:32, width:304` (dentro do
-container de 1216px útil); conteúdo em `col-start-5 col-span-7` =
-`x:437.33, width:709.33`. Preservar esses números exatos ao converter uma
-seção de `GRID` pra `NONE` — a matemática já estava certa, só o mecanismo
-por trás era redundante.
+próprio — mesmo padrão do resto da página.
+
+**Correção de matemática (2026-09-13, mesma sessão):** os números de
+`x`/`width` usados inicialmente pro offset assimétrico (`x:32, width:304`
+pro label; `x:437.33, width:709.33` pro conteúdo) estavam **errados** —
+vinham de dividir os 1216px úteis em 12 fatias iguais (1216÷12=101.33),
+ignorando o gutter real de 32px definido no style
+`Portfolio/Grid/Desktop 12-col` (`gutterSize: 32`, `offset: 32`,
+`count: 12`). Isso fazia texto invadir o que deveria ser o gap entre
+colunas. Matemática real do grid (frame de 1280px, offset 32, 12 colunas
+de 72px + 11 gutters de 32px = 864 + 352 = 1216px):
+
+| Coluna (0-indexed) | x inicial | x final |
+|---|---|---|
+| 0 | 32 | 104 |
+| 1 | 136 | 208 |
+| 2 | 240 | 312 |
+| 3 | 344 | 416 |
+| 4 | 448 | 520 |
+| 5 | 552 | 624 |
+| 6 | 656 | 728 |
+| 7 | 760 | 832 |
+| 8 | 864 | 936 |
+| 9 | 968 | 1040 |
+| 10 | 1072 | 1144 |
+| 11 | 1176 | 1248 |
+
+Valores corretos, já aplicados em Hero e Contexto: label
+`col-start-1 col-span-3` = `x:32, width:280` (fim da coluna 2, x:312);
+conteúdo `col-start-5 col-span-7` = `x:448, width:696` (início da coluna
+4, fim da coluna 10, x:1144). Preservar esses números exatos (não os
+antigos 304/437.33/709.33) em qualquer bloco novo ou já construído que
+usar esse offset assimétrico.
 
 **Gap entre colunas de linhas de dados (stats, metadados):** sempre
 `--gutter-desktop` (32px), nunca um valor arbitrário — a linha de
 metadados do Hero e a stats row devem usar o mesmo gap, não dois valores
-diferentes pro mesmo tipo de elemento.
+diferentes pro mesmo tipo de elemento. Ambas já corrigidas pra usar
+colunas de 280px (não 320px) com 32px de gutter real, batendo com a
+tabela acima.
 
 ## 14. Case study real — Square (copy final, v3 — 2026-09-13)
 
