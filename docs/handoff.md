@@ -134,39 +134,46 @@ ver a lista de itens "verificar antes de usar" em
   - **Pesquisa (`2067:261`) — travado, não mexer.** Label de 2 linhas
     (eyebrow "A PESQUISA" + headline como "question"), subhead, notas,
     link. Decisão do Matheus: fica assim por enquanto.
-  - **Field Exploration + Problemas + Jornada (`2030:177`) — pronto,
-    fundido num só composto full-bleed:** banner de fotos de campo
-    (placeholder) → **recorte do service blueprint** (3 estágios reais —
-    Escaneamento/Verificação/Saída — reaproveitando a tira de 3 colunas
-    que já existia pro bloco antigo "Jornada do Usuário", só repopulada
-    com dores reais em vez das fictícias do variant.com; a seção
-    "Jornada" separada foi removida, absorvida aqui) → **Field Notes**
-    (`2030:181` — reconstruído em 2026-09-14: era uma pilha de texto flush-
-    left cansativa — label + parágrafo + subhead + lista numerada de 7
-    itens. Agora segue o padrão `Label Column > Label Stack + Content
-    Column` como o resto da página: label 2 linhas ("OBSERVAÇÃO DE CAMPO"
-    + "O que a exploração revelou?"), 1 parágrafo curto fundindo a
-    observação de campo com o achado-chave, e os 7 pontos de fricção
-    viraram **chips** (bordas hairline, `layoutWrap: WRAP`, sem numeral/
-    citação) em vez de lista numerada — muito mais rápido de escanear).
-    **Correções feitas:** os
-    labels "Pain:" estavam em terracota (texto) e a linha divisória
-    acima deles em salmão — ambos herdados do template antigo do
-    variant.com, cor reservada só pra erro/destrutivo no design system —
-    trocados pra ink 65% (texto) e ink 10% (hairline).
-  - **⚠️ Pendente do Matheus:** print real do service blueprint (elogiado
-    pelo mentor dele) — criei um placeholder de imagem
-    (`2092:150`, "Image Placeholder — Service Blueprint Crop", 1290px de
-    largura × 520px, cor stone) logo acima dos 3 cards de estágio, dentro
-    de `2089:150` "Blueprint Crop". Os 3 cards continuam como legenda de
-    apoio abaixo da imagem (decisão do Matheus: cards viram suporte da
-    imagem, não são substituídos). **Não consigo colar a imagem
-    programaticamente** — a API do plugin não suporta `createImageAsync`
-    — Matheus precisa colar o recorte real ali manualmente (arrastar/
-    colar no Figma), largura 1290px, altura livre.
-  - **Arquétipos (`2067:578`) — travado por enquanto, não mexer.** 3
-    personas, JTBD dobrado como 1 frase antes da citação de cada
-    persona, sem seção própria.
+  - **Field Exploration + Problemas + Jornada — pronto, agora 3 seções
+    top-level separadas** (Matheus puxou pra fora do wrapper full-bleed
+    único que eu tinha feito; `2030:177` não existe mais):
+    1. **Banner (`2067:652`)** — foto de campo, placeholder. Sem padding
+       próprio (0/0) — banner full-bleed puro segue o mesmo padrão do
+       banner do Hero (`2030:323`): o espaço vem das seções vizinhas, não
+       de padding interno.
+    2. **Blueprint Crop (`2089:150`)** — label "RECORTE DO SERVICE
+       BLUEPRINT" → **placeholder de imagem** (`2092:150`, 1290×520,
+       cor stone — Matheus vai colar o print real do blueprint dele, que
+       o mentor elogiou; **não consigo colar imagem programaticamente**,
+       API do plugin não suporta `createImageAsync`) → 3 cards de estágio
+       (Escaneamento/Verificação/Saída, reaproveitando a tira que já
+       existia pro bloco antigo "Jornada do Usuário", repopulada com
+       dores reais — a seção "Jornada" separada foi removida, absorvida
+       aqui). Padding normalizado pro padrão 32/32/128/128.
+    3. **Field Notes (`2030:181`)** — reconstruído em 2026-09-14: era uma
+       pilha de texto flush-left cansativa (label + parágrafo + subhead +
+       lista numerada de 7 itens). Agora segue `Label Column > Label
+       Stack + Content Column`: label 2 linhas ("OBSERVAÇÃO DE CAMPO" +
+       "O que a exploração revelou?"), 1 parágrafo curto fundindo a
+       observação de campo com o achado-chave, e os 7 pontos de fricção
+       viraram **chips** (`layoutWrap: WRAP`, borda hairline, sem
+       numeral/citação) em vez de lista numerada. Padding normalizado pro
+       padrão 32/32/128/128.
+    **Correções de cor feitas nessa leva:** labels "Pain:"/divisória
+    acima deles estavam em terracota/salmão (herdados do template antigo
+    do variant.com, cor reservada só pra erro/destrutivo) — trocados pra
+    ink 65% (texto) e ink 10% (hairline).
+  - **Arquétipos (`2067:578`):** padding lateral corrigido pro padrão
+    32px (estava 0). **Discrepância encontrada, aguardando resposta do
+    Matheus:** essa versão está sem a linha de JTBD (Nome → Perfil →
+    Blockquote → Tags — falta o "Quando estou..." antes da citação),
+    diferente do que eu tinha desenhado antes; pode ser edição proposital
+    do Matheus ou sobra de uma cópia mais antiga que ele duplicou.
+    **Avaliação de necessidade do bloco (pedida pelo Matheus,
+    2026-09-14):** mantido — cobre "quem" é afetado de formas diferentes
+    (medo de errar vs. velocidade vs. clareza), informação que nem os
+    pain points nem a jornada cobrem, e vira a justificativa de público
+    pros blocos de Solução mais à frente.
   - **Metodologia (Double Diamond) não vira mais bloco-parede próprio** —
     decisão explícita de distribuir as keywords de método como tags
     discretas dentro de cada bloco de fase correspondente, preservando a
