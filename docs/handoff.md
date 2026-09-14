@@ -179,7 +179,12 @@ ver a lista de itens "verificar antes de usar" em
     'Quero fazer compras rápido...'"). Persona deixou de ser o
     protagonista visual; JTBD é.
   - **✅ Decisão revertida (2026-09-14): Metodologia (Double Diamond)
-    volta a ser bloco próprio (`2102:151`, logo após JTBD).** A decisão
+    volta a ser bloco próprio, agora posicionado logo após a Pesquisa/
+    Field Exploration (`2102:151`) — não mais depois do JTBD.** Matheus:
+    seguir a ordem natural do processo de UX (mostrar o "como" antes de
+    entrar nos detalhes de cada fase). Ordem final: Pesquisa + Field
+    Exploration → **Metodologia** → JTBD/Arquétipos → Design e
+    Prototipação → (Testes, Soluções, Resultados). A decisão
     anterior (distribuir como tags dentro de cada fase) foi trocada —
     Matheus: é esse bloco que mostra pro recrutador/designer que ele
     conhece e aplicou as técnicas de UX de verdade, então merece
@@ -193,6 +198,22 @@ ver a lista de itens "verificar antes de usar" em
     apontando pro board real
     (`miro.com/app/board/uXjVHJ5Co14=`) — hyperlink real aplicado no
     texto via API do Figma (`node.hyperlink`).
+  - **✅ Design e Prototipação (`2030:213`) — já existia com conteúdo
+    (fictício) do variant.com, corrigido em 2026-09-14.** Label + legenda
+    curta (col-span-4) + 3 placeholders de imagem lado a lado (Sketch →
+    Wireframe → Prototype, col-span-8). **Decisão de manter o padrão
+    "quebrado":** esse bloco é image-forward (as imagens são o conteúdo
+    principal, o texto é só apoio) — mesma lógica já usada no Blueprint
+    Crop. Forçar o label de 2 linhas (eyebrow+question) competiria com as
+    imagens sem necessidade; mantido label simples de 1 linha,
+    deliberadamente diferente do padrão dos blocos de texto. **Corrigido:**
+    `layoutMode: GRID` (o modo redundante que já eliminamos em outros
+    blocos) → `HORIZONTAL` real; frame preso em `maxWidth: 1280` (por
+    isso o resize pro padrão 1290 não aplicava) → removido; label column
+    440px, content column FILL com 32px de gutter real entre as 3
+    imagens; divisória de topo adicionada (é um assunto novo depois do
+    JTBD). Conteúdo (texto e imagens) ainda é placeholder — cabe revisão
+    de copy depois.
   - **⚠️ Regressão encontrada (2026-09-14), não mexida a pedido do
     Matheus:** o bloco **Pesquisa** (`2067:261`) voltou a ter o conteúdo
     fictício antigo do variant.com na coluna de conteúdo (parágrafo
