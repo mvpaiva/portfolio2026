@@ -143,9 +143,21 @@ ver a lista de itens "verificar antes de usar" em
     "Jornada" separada foi removida, absorvida aqui) → div de texto
     (observação de campo real + achados condensados de 1 linha cada,
     numeral sage + título, sem citação — bem mais visual/escaneável que
-    a versão anterior com quote em cada item). **Correção feita:** os
-    labels "Pain:" estavam em terracota — cor reservada só pra erro/
-    destrutivo no design system — trocados pra ink 65%.
+    a versão anterior com quote em cada item). **Correções feitas:** os
+    labels "Pain:" estavam em terracota (texto) e a linha divisória
+    acima deles em salmão — ambos herdados do template antigo do
+    variant.com, cor reservada só pra erro/destrutivo no design system —
+    trocados pra ink 65% (texto) e ink 10% (hairline).
+  - **⚠️ Pendente do Matheus:** print real do service blueprint (elogiado
+    pelo mentor dele) — criei um placeholder de imagem
+    (`2092:150`, "Image Placeholder — Service Blueprint Crop", 1290px de
+    largura × 520px, cor stone) logo acima dos 3 cards de estágio, dentro
+    de `2089:150` "Blueprint Crop". Os 3 cards continuam como legenda de
+    apoio abaixo da imagem (decisão do Matheus: cards viram suporte da
+    imagem, não são substituídos). **Não consigo colar a imagem
+    programaticamente** — a API do plugin não suporta `createImageAsync`
+    — Matheus precisa colar o recorte real ali manualmente (arrastar/
+    colar no Figma), largura 1290px, altura livre.
   - **Arquétipos (`2067:578`) — travado por enquanto, não mexer.** 3
     personas, JTBD dobrado como 1 frase antes da citação de cada
     persona, sem seção própria.
