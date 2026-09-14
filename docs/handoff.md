@@ -114,17 +114,38 @@ ver a lista de itens "verificar antes de usar" em
 - **Rebuild da case page real no Figma (em andamento, 2026-09-14):**
   construção bloco por bloco na cópia de produção
   (`srfFKPHCUBOrQ1rHCGXsum`, node `2030:121` "square-case para
-  producao"), nunca no original `2:546`. **Blocos 01 (Hero), 02
-  (Contexto) e 03 (Research/Descoberta — intro, 7 pain points, 3
-  personas, metodologia Double Diamond) prontos**, com conteúdo real do
-  §14, auto-layout responsivo de verdade (fill/hug, não valores fixos
-  manuais) e layers renomeadas. Decisões estruturais fechadas nessa
-  leva, todas em visual-language-specification.md §13.3: frame de seção
-  é 1290px (não 1280px); coluna de label é 440px + gap padrão de 32px
-  (`--gutter-desktop`); e **dentro do case inteiro, Fraunces só existe
-  nos 3 ghost-markers** — todo o resto (headlines, labels, stats) é
-  Instrument Sans, hierarquia só por tamanho. Próximo: bloco 04
-  (Panorama competitivo).
+  producao"), nunca no original `2:546`. Decisões estruturais fechadas
+  nessa leva, todas em visual-language-specification.md §13.3: frame de
+  seção é 1290px (não 1280px); coluna de label é 440px + gap padrão de
+  32px (`--gutter-desktop`); e **dentro do case inteiro, Fraunces só
+  existe nos 3 ghost-markers** — todo o resto (headlines, labels, stats)
+  é Instrument Sans, hierarquia só por tamanho. Padrão de bloco: `Label
+  Column > Label Stack (Eyebrow + Question) + Content Column`.
+  - **Blocos 01 (Hero) e 02 (Contexto) prontos.**
+  - **✅ Decisão de arquitetura de conteúdo (2026-09-14):** o antigo
+    bloco 03 único (Research: intro + 7 pain points + 3 personas +
+    metodologia Double Diamond, tudo junto) foi **decomposto** — feedback
+    do Matheus foi que ler personas+problemas+pesquisa+metodologia
+    empilhados é "coisa demais pra ler". Nova ordem, cada um como bloco
+    próprio: **Pesquisa** (pronto — label 2 linhas eyebrow+headline,
+    subhead, notas, link) → **Field Exploration + Jornada** (pronto —
+    absorve os 7 pain points como achados condensados de 1 linha cada,
+    numeral sage + título, sem citação — bem mais visual/escaneável que a
+    versão anterior com quote em cada item) → **Arquétipos** (pronto —
+    3 personas, JTBD dobrado como 1 frase antes da citação de cada
+    persona, sem seção própria) → Design e Prototipação (papel→high-fi,
+    ainda não construído) → Testes (faixa curta antes de Soluções, ainda
+    não construído) → Soluções → Resultados.
+  - **Metodologia (Double Diamond) não vira mais bloco-parede próprio** —
+    decisão explícita de distribuir as keywords de método como tags
+    discretas dentro de cada bloco de fase correspondente (ex.: "Estudo
+    de campo · Survey · Entrevistas" sob Field Exploration), preservando
+    a densidade de keyword pro ATS sem concentrar tudo num grid isolado.
+    **Ainda não aplicado** — o conteúdo de fases/métodos que eu já tinha
+    montado ficou preservado fora da página (`2030:415`, frame solto,
+    fora do fluxo) só como fonte de texto até essa distribuição acontecer.
+  - Próximo: distribuir as tags de método, depois seguir pra Design e
+    Prototipação.
 - **Composição de wireframes nos blocos de solução (2026-09-13):** regras
   concretas fechadas em visual-language-specification.md §13.1 — Totem
   696×392px sem borda/sombra; Mobile 320×694px ("ampliado mas honesto",
