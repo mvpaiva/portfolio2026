@@ -282,6 +282,21 @@ pleno a diacríticos (ã á à â é ê í ó ô õ ú ç). Texto em pt-BR é no
 mais longo que o equivalente em inglês — nunca desenhar um layout no
 comprimento do texto em inglês.
 
+**Text styles nomeados (confirmado 2026-09-14):** o arquivo Figma tem
+dois conjuntos de estilos de texto na biblioteca local. **Nunca usar**
+`variant.com/*` (dezenas de variações soltas, herdadas do import
+genérico, sem lógica de sistema). **Sempre usar, quando o valor bater**,
+o conjunto `Portfolio/*` — é o nosso sistema de verdade:
+`Portfolio/Label/10 Medium` · `Portfolio/Body/12/13/14/18/20/24 Regular`
+· `Portfolio/Body/13/14 Medium` · `Portfolio/Subtitle/15 Italic` ·
+`Portfolio/Display/36/48/72 Regular` · `Portfolio/Display/Ghost Marker`.
+Aplicar via `node.setTextStyleIdAsync(styleId)` (pegar a lista completa
+com `figma.getLocalTextStylesAsync()`), não só copiar os valores brutos
+de fonte/tamanho manualmente — o style nomeado é o que mantém o texto
+sincronizado se a escala mudar depois. Aplicar o estilo não altera o
+conteúdo do texto (case, idioma) — isso continua sendo responsabilidade
+de quem edita o `characters`.
+
 **Legibilidade:** linha máxima ~65 caracteres; corpo mínimo 13px (10px só
 labels); contraste Ink 100% sobre `--bg` ~15:1; Ink 60% sobre `--bg` ~4.5:1
 (aceitável para descrições acima de 13px; abaixo disso, usar opacidade

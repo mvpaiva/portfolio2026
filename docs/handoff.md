@@ -247,7 +247,21 @@ ver a lista de itens "verificar antes de usar" em
     label-caps/16px/24px — o padrão certo pra esse bloco específico
     sempre foi o que já estava na referência original, só faltava
     adaptar pro grid 1290/440 (o que já tinha sido feito) em vez de trocar
-    a tipografia.
+    a tipografia. **Text styles nomeados aplicados (2026-09-14):**
+    descoberta a biblioteca real de estilos do arquivo — existem dois
+    conjuntos, `variant.com/*` (soltos, herdados do import, não usar) e
+    **`Portfolio/*`** (nosso sistema de verdade: `Portfolio/Label/10
+    Medium`, `Portfolio/Body/13/14/18/20/24 Regular`, `Portfolio/Body/13/
+    14 Medium`, `Portfolio/Subtitle/15 Italic`, `Portfolio/Display/36/48/
+    72 Regular`, `Portfolio/Display/Ghost Marker`). Aplicado
+    `Portfolio/Body/13 Regular` no label e `Portfolio/Body/14 Regular` na
+    legenda deste bloco (batem exatamente com os valores restaurados da
+    referência) — usar `node.setTextStyleIdAsync(id)`, não só copiar os
+    valores brutos, daqui pra frente sempre que um estilo `Portfolio/*`
+    bater com o texto. Nota: aplicar o style não muda o conteúdo do texto
+    em si — o label ainda estava com os caracteres literalmente em caixa
+    alta de uma correção anterior; corrigido separadamente pra
+    "Design & Prototipação" (sentence-case real, não só `textCase`).
   - **⚠️ Regressão encontrada (2026-09-14), não mexida a pedido do
     Matheus:** o bloco **Pesquisa** (`2067:261`) voltou a ter o conteúdo
     fictício antigo do variant.com na coluna de conteúdo (parágrafo
