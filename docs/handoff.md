@@ -552,6 +552,34 @@ ver a lista de itens "verificar antes de usar" em
     trabalho de código, quando a case page for implementada em Next.js;
     mesmo tratamento dado ao "sticky" da coluna de texto dos blocos de
     Solução (§13.2).
+  - **✅ Refinamento "minimal chrome" iniciado (2026-09-14), frame
+    duplicado `2173:172` "square - refinamento".** Matheus pediu pra
+    propagar os comportamentos e a linguagem ultra minimal chrome da
+    home (opacidade em 2 níveis, zero chrome desnecessário,
+    microinterações discretas) pro case inteiro, usando uma extração do
+    benji.org como referência de padrões — **filtrada contra nosso
+    próprio sistema**, não copiada: mantido nosso link sublinhado+peso
+    (não cor, WCAG 1.4.1), nossa escala tipográfica maior (não H1
+    minúsculo dele), e as imagens reais (não dá pra ir 100% texto como
+    ele). Adotado dele: hierarquia de 2 opacidades já usada na home, e a
+    ideia de "spotlight hover" em listas (ainda não aplicado, fica pra
+    quando mexermos em JTBD/Próximos Passos).
+    - **Piloto aprovado: "Solution Block".** Corpo de texto (`p.instrument`)
+      passou de ink 100% pra **ink 65%** (mesmo piso WCAG da home) —
+      headline+citação ficam no ink 100%, corpo recua como leitura
+      secundária. Imagem reduzida de 393×852 nativo pra **341×739**
+      (mesma proporção) e alinhada à esquerda (`counterAxisAlignItems:
+      MIN`) em vez de centralizada — elimina a margem morta que sobrava
+      dos dois lados. Aplicado nas 5 (todas no frame duplicado; a
+      original em `2030:227` ainda não foi tocada — propagar depois que
+      o resto do refinamento avançar).
+    - **🐛 Bug encontrado e corrigido (2026-09-14): Solução 3 (Totem)
+      tinha perdido a coluna de imagem inteira** — tanto na página
+      original (`2147:174`) quanto na cópia. Sem explicação clara
+      (mesmo padrão de instabilidade "conteúdo resetando sozinho" já
+      documentado outras vezes nesta sessão). Reconstruída do zero em
+      ambos os lugares: placeholder 696×392 (Totem), mesmo texto
+      "age-verification" de antes.
   - **✅ Auditoria geral do case (2026-09-14):** revisão completa de todos
     os blocos (ordem, espaçamento, tipografia, divisórias). Achados:
     divisória de topo tinha sido perdida em Resultado e nunca existiu em
