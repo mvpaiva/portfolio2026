@@ -140,10 +140,16 @@ ver a lista de itens "verificar antes de usar" em
     Escaneamento/Verificação/Saída — reaproveitando a tira de 3 colunas
     que já existia pro bloco antigo "Jornada do Usuário", só repopulada
     com dores reais em vez das fictícias do variant.com; a seção
-    "Jornada" separada foi removida, absorvida aqui) → div de texto
-    (observação de campo real + achados condensados de 1 linha cada,
-    numeral sage + título, sem citação — bem mais visual/escaneável que
-    a versão anterior com quote em cada item). **Correções feitas:** os
+    "Jornada" separada foi removida, absorvida aqui) → **Field Notes**
+    (`2030:181` — reconstruído em 2026-09-14: era uma pilha de texto flush-
+    left cansativa — label + parágrafo + subhead + lista numerada de 7
+    itens. Agora segue o padrão `Label Column > Label Stack + Content
+    Column` como o resto da página: label 2 linhas ("OBSERVAÇÃO DE CAMPO"
+    + "O que a exploração revelou?"), 1 parágrafo curto fundindo a
+    observação de campo com o achado-chave, e os 7 pontos de fricção
+    viraram **chips** (bordas hairline, `layoutWrap: WRAP`, sem numeral/
+    citação) em vez de lista numerada — muito mais rápido de escanear).
+    **Correções feitas:** os
     labels "Pain:" estavam em terracota (texto) e a linha divisória
     acima deles em salmão — ambos herdados do template antigo do
     variant.com, cor reservada só pra erro/destrutivo no design system —
