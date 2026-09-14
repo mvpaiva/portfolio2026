@@ -653,27 +653,41 @@ de 72px + 11 gutters de 32px = 864 + 352 = 1216px):
 | 10 | 1072 | 1144 |
 | 11 | 1176 | 1248 |
 
-Valores corretos, já aplicados em Hero e Contexto: label
-`col-start-1 col-span-3` = `x:32, width:280` (fim da coluna 2, x:312);
-conteúdo `col-start-5 col-span-7` começa em `x:448` (início da coluna 4).
-Preservar esses dois números exatos (32 e 448) em qualquer bloco novo ou
-já construído que usar esse offset assimétrico — não os antigos
-304/437.33/709.33.
+**Correção final de Matheus (2026-09-13) — supera a derivação abaixo:**
+label = `x:32, width:282`; gap label→conteúdo = **190px** (não os 136px
+derivados da matemática de coluna abaixo); conteúdo começa em `x:504`
+(32 + 282 + 190). Preservar **282 e 190** exatos em qualquer bloco novo
+ou já construído com esse offset assimétrico — a tabela de colunas logo
+acima é só o raciocínio original (12 colunas de 72px), mantida por
+registro histórico; o gap real de produção é maior que o "pular 1
+coluna" (136px) que essa tabela sugeria.
 
 **Frame da seção é 1290px, não 1280px (correção de Matheus,
 2026-09-13):** decisão explícita — o frame de cada seção
 (`section.max-w-7xl`) mede `width:1290, x:315` no Figma, não os 1280/320
 usados no restante da página antiga (`2:546`). Isso faz o início de
 outros elementos da página baterem no mesmo pixel do grid. Como o offset
-esquerdo (32 de padding + 32 do label + 136 de gap = 448 pro início do
+esquerdo (32 de padding + 282 do label + 190 de gap = 504 pro início do
 conteúdo) fica fixo, os 10px extras do frame são absorvidos inteiramente
 pela **largura da coluna de conteúdo** (que vira `FILL` num auto-layout
 horizontal, não um valor fixo) — nunca redistribuídos pra esquerda.
-Resultado: label sempre 280px fixo; conteúdo sempre começa em x:448 e
-cresce pra preencher o que sobra do frame (696px numa seção de 1280px;
-810px numa seção de 1290px). Hero e Contexto já convertidos pra esse
+Resultado: label sempre 282px fixo; conteúdo sempre começa em x:504 e
+cresce pra preencher o que sobra do frame (754px numa seção de 1290px).
+Hero, Contexto e Research (bloco 03, intro) já convertidos pra esse
 padrão via auto-layout (`layoutMode: HORIZONTAL` ou `VERTICAL` conforme o
 bloco, padding real em vez de `x`/`y` manuais).
+
+**Responsividade (fill/fixed/hug) — regra de sanidade:** toda coluna de
+label com `layoutMode: NONE` ou `layoutSizingVertical: FIXED` é sinal de
+bug latente — o motivo dos dois bugs de `paddingBottom` órfão (Contexto e
+Research, ambos herdados do import genérico do variant.com) foi
+exatamente isso: altura fixa nunca recalculada. Toda label-column deve
+ser `layoutMode: VERTICAL` com `layoutSizingVertical: HUG` (nunca FIXED
+com resize manual); toda coluna de conteúdo deve ser
+`layoutSizingHorizontal: FILL` + `layoutSizingVertical: HUG`. `FIXED` só
+é aceitável quando é uma restrição de design deliberada (ex.: subhead do
+Hero em `width:1000` fixo, por limite de comprimento de linha) — nunca
+como atalho pra evitar configurar auto-layout corretamente.
 
 **Gap entre colunas de linhas de dados (stats, metadados):** sempre
 `--gutter-desktop` (32px), nunca um valor arbitrário — a linha de
