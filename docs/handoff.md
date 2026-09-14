@@ -532,6 +532,24 @@ ver a lista de itens "verificar antes de usar" em
     Figma com conteúdo real.** Pendências que restam: colar as imagens
     reais nos placeholders (API não suporta upload) e revisão visual
     geral.
+  - **✅ Auditoria geral do case (2026-09-14):** revisão completa de todos
+    os blocos (ordem, espaçamento, tipografia, divisórias). Achados:
+    divisória de topo tinha sido perdida em Resultado e nunca existiu em
+    Intro das Soluções (mesmo com `strokeTopWeight` setado, o array
+    `strokes` estava vazio) — corrigido nos dois. **Inconsistência real
+    de eyebrow encontrada:** Contexto e Metodologia usavam o estilo
+    canônico antigo (`Portfolio/Label/10 Medium`, 10px, tracking 12%,
+    `textCase: UPPER`), enquanto os 5 blocos mais recentes (JTBD, Testes,
+    Resultado, Próximos Passos, Intro) usam 13px Regular com caracteres
+    já digitados em maiúsculas. **Matheus decidiu: 13px Regular é o
+    padrão novo** (maioria dos blocos já usa) — Contexto e Metodologia
+    atualizados pra bater. Ordem das técnicas (Pesquisa → Metodologia →
+    JTBD → Design e Prototipação → Testes → Soluções → Resultado →
+    Próximos Passos) conferida contra o spec: **correta**, sem desvios.
+    **Bug achado e não meu:** o link "Essavie Ecommerce →" no footer de
+    navegação (`2030:391`) apontava pra uma URL do variant.com que hoje
+    redireciona pro site raiz (Essavie nunca foi publicado como case
+    real) — Matheus já ocultou o bloco.
   - **✅ Footer — Metadados (`2167:174`) reorganizado (2026-09-14).**
     Descoberta: os links pro Figma e pro Miro já existiam em outros dois
     lugares do case (Metodologia tem o link real do Miro desde antes
