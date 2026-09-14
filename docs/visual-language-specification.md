@@ -691,28 +691,33 @@ Matheus pediu explicitamente pra evitar essas duas métricas, mesmo estando
 confirmadas em outras partes da pesquisa (não aparecem no case page
 real de qualquer forma).
 
-### 02 · Contexto (v5 — final, 2026-09-13)
+### 02 · Contexto (v6 — final, 2026-09-13)
 
-**Decisão final sobre o label narrativo:** cheguei a tentar um label de 2
-linhas (frase de abertura + nome da seção em itálico) pra trazer
-storytelling também pro fast-scan da esquerda. Testado e revertido —
-comparado com a seção de referência (`2:579`: 1 label + 1 parágrafo, só
-isso), qualquer elemento a mais (label de 2 linhas, ou uma 3ª voz
-tipográfica tipo tag separada) cria ruído visual num espaço vertical
-pequeno. **Regra final: 2 elementos só, mesma tipografia da
-referência** — label-caps padrão único à esquerda (Instrument Sans
-Medium 10px caps tracking 0.12em), headline + corpo à direita. O
-storytelling entra só no headline (que pode ser um hook, não precisa
-restatar o nome da seção), não no label.
+**Histórico da decisão sobre o label narrativo:** primeiro round testou um
+label de 2 linhas (frase de abertura + nome da seção em itálico) pra trazer
+storytelling pro fast-scan da esquerda — revertido por criar ruído visual
+frente à referência (`2:579`: 1 label + 1 parágrafo). Segundo round
+simplificou pra 1 label único + headline-hook ("Pagar nunca foi o
+problema.") + corpo. **Decisão final (round 3):** headline-hook removido —
+o padrão de 2 labels (categoria + pergunta) faz o trabalho do fast-scan
+melhor que um headline poético, porque nomeia literalmente o que a seção
+resolve em vez de exigir inferência. Esse padrão foi validado contra outra
+seção real do case ao vivo que já usa exatamente essa estrutura
+("Contexto de negócio e objetivos" / "O que o projeto precisa
+resolver?"). Reservamos o headline-hook só pros blocos de Solução, onde o
+gancho narrativo pontual faz mais sentido — mantém variação de ritmo
+editorial em vez de repetir o mesmo tratamento em todo bloco.
 
-- Label: `O CONTEXTO` (label-caps padrão, uma linha só)
-- Headline: **"Pagar nunca foi o problema."**
-- Corpo: "O briefing: transformar o Register em autoatendimento de
-  verdade, lançar um app complementar que apoie a jornada inteira (não só
-  o pagamento), manter o fluxo utilizável por qualquer idade ou perfil
-  sem exigir assistência, e manter todo item rastreável. Este case
-  acompanha a fase entre pegar o primeiro item e sair pela porta. Projeto
-  solo, sem afiliação oficial com a Square."
+- Label 1 (categoria): `O CONTEXTO` (label-caps padrão, Instrument Sans
+  Medium 10px caps tracking 0.12em)
+- Label 2 (pergunta): *"O que o projeto precisa resolver?"* (Fraunces
+  Light Italic 15px, 8px abaixo do label 1)
+- Corpo (sem headline separado): "O briefing: transformar o Register em
+  autoatendimento de verdade, lançar um app complementar que apoie a
+  jornada inteira (não só o pagamento), manter o fluxo utilizável por
+  qualquer idade ou perfil sem exigir assistência, e manter todo item
+  rastreável. Este case acompanha a fase entre pegar o primeiro item e
+  sair pela porta. Projeto solo, sem afiliação oficial com a Square."
 
 ### 03 · Research (comprimido)
 
