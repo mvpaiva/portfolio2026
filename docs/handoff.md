@@ -580,6 +580,17 @@ ver a lista de itens "verificar antes de usar" em
       documentado outras vezes nesta sessão). Reconstruída do zero em
       ambos os lugares: placeholder 696×392 (Totem), mesmo texto
       "age-verification" de antes.
+    - **Avaliado JTBD e Próximos Passos, sem mudanças (2026-09-14):**
+      Matheus pediu refinamento "só se houver necessidade" — os dois já
+      tinham a hierarquia de opacidade correta (20px ink 100% / 13px ink
+      65%) desde que foram construídos, já são listas curtas (3-4 itens)
+      sem chrome. "Spotlight hover" (dimming dos outros itens no hover)
+      não foi aplicado — helps pra listas longas guiarem atenção, mas
+      numa lista de 3-4 itens curtos seria decoração sem reduzir esforço
+      cognitivo real.
+    - **Metodologia reordenada por Matheus** pra antes de Pesquisa +
+      Field Exploration (no frame duplicado) — ordem cronológica: método
+      antes do achado. Divisórias conferidas, continuam corretas.
   - **✅ Auditoria geral do case (2026-09-14):** revisão completa de todos
     os blocos (ordem, espaçamento, tipografia, divisórias). Achados:
     divisória de topo tinha sido perdida em Resultado e nunca existiu em
