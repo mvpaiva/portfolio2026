@@ -213,7 +213,16 @@ ver a lista de itens "verificar antes de usar" em
     440px, content column FILL com 32px de gutter real entre as 3
     imagens; divisória de topo adicionada (é um assunto novo depois do
     JTBD). Conteúdo (texto e imagens) ainda é placeholder — cabe revisão
-    de copy depois.
+    de copy depois. **Label alinhado ao bottom** da row (mesma altura da
+    base das imagens) e documentado como candidato a `position: sticky`
+    no código (ver visual-language-specification.md §13.2). **Tipografia
+    corrigida (2026-09-14)** pro padrão do projeto, que tinha ficado nos
+    valores soltos do variant.com: label virou label-caps de verdade
+    (Instrument Sans Medium 10px, caps, tracking 0.12em — igual ao
+    eyebrow da Metodologia) em vez de Regular 13px sentence-case; legenda
+    virou corpo padrão (16px, ink 65%) em vez de Regular 14px ink 100%;
+    gap entre label e legenda ajustado de 32px (solto) pra 12px (mesmo
+    valor usado no par eyebrow+question em todo o resto do case).
   - **⚠️ Regressão encontrada (2026-09-14), não mexida a pedido do
     Matheus:** o bloco **Pesquisa** (`2067:261`) voltou a ter o conteúdo
     fictício antigo do variant.com na coluna de conteúdo (parágrafo
