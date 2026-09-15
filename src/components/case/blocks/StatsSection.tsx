@@ -10,7 +10,7 @@ import spotlightStyles from "../BlockSpotlight.module.css";
 export function StatsSection() {
   return (
     <div className={styles.section}>
-      <div className={`${styles.grid} ${spotlightStyles.item} spotlight-item`}>
+      <div className={`${styles.grid} ${spotlightStyles.item} spotlight-trigger`}>
         <Stat number="18" label="Entrevistas Profundas" />
         <Stat number="247" label="Respostas de Survey" />
         <Stat number="05" label="Rodadas de Teste" />

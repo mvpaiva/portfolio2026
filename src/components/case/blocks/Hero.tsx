@@ -8,7 +8,7 @@ import liftStyles from "../BlockLift.module.css";
 export function Hero() {
   return (
     <header className={styles.section}>
-      <div className={`${styles.content} ${liftStyles.item} spotlight-item`}>
+      <div className={`${styles.content} ${liftStyles.item} lift-trigger`}>
         <p className={styles.eyebrow}>Estudo de caso</p>
         <h1 className={styles.headline}>Pulando a fila do caixa.</h1>
         <p className={styles.subhead}>

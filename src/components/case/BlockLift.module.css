@@ -9,48 +9,78 @@
    used for isolated list-item spotlight). `main` carries the plain
    global class `spotlightGroup`.
 
-   Two bugs fixed 2026-09-16 (both caught by Matheus):
+   2026-09-16, three bugs fixed (all caught by Matheus):
    1. The trigger originally watched `.item:hover` using this file's own
       hashed class, so BlockSpotlight items (Stats Section) never dimmed
-      these, and vice versa. Every participating element also carries the
-      plain global class `spotlight-item`; both files' triggers now watch
-      that shared marker.
+      these, and vice versa. Fixed with a shared marker class (superseded
+      by fix 3 below).
    2. For Hero/HeroBanner, `.item` IS the tightly-fit hoverable element
-      (content div / the <img> itself), so `spotlight-item` sits directly
-      on it and plain `:hover` works. For Contexto/Pesquisa (BlockGrid),
-      `.item` is the OUTER grid — putting `spotlight-item` there directly
+      (content div / the <img> itself). For Contexto/Pesquisa (BlockGrid),
+      `.item` is the OUTER grid — putting the marker there directly
       re-created the exact "phantom hover zone" bug already fixed once
       for the page-level trigger (a CSS Grid row sizes to its tallest
       column, so the shorter column's empty leftover cell space still
-      counted as "hovering the block"). `spotlight-item` now lives on
+      counted as "hovering the block"). The marker now lives on
       BlockGrid's two INNER columns instead (see BlockGrid.tsx), each
-      tightly sized to its own content, so both rules below check for
-      either direct self-hover (Hero pattern) OR an hovered descendant
-      carrying the marker (BlockGrid pattern). */
+      tightly sized to its own content, so the rules below check for
+      either direct self-hover (Hero pattern) OR a hovered descendant
+      carrying the marker (BlockGrid pattern).
+   3. The single shared `spotlight-item` marker made every block dim
+      *every other* block with THAT OTHER block's own treatment type,
+      regardless of what was actually hovered — so hovering Contexto
+      (a lift-type block) made Stats blur heavily, because Stats'
+      dim-reaction CSS only knew "something else is hovered", not
+      "hovering *me* specifically". Matheus caught this: Stats sits
+      right next to Contexto/Pesquisa in the viewport, so its heavy
+      blur reacting to a *neighbor's* hover read as way too strong,
+      while the same reaction to Hero/Banner (far away, usually off-
+      screen) went unnoticed. The correct model is trigger-type-aware:
+      the treatment applied to every other block should depend on
+      *which block is hovered*, not on each block's own type. Split the
+      marker in two: `lift-trigger` (Hero, HeroBanner, Contexto,
+      Pesquisa — this file) and `spotlight-trigger` (Stats — see
+      BlockSpotlight.module.css). Hovering a lift-trigger now dims every
+      OTHER block lightly (opacity 0.6, no blur) including Stats;
+      hovering a spotlight-trigger dims every other block heavily
+      (opacity 0.15 + blur), including these lift-type blocks. */
 .item {
   transition:
     opacity 0.35s ease,
-    transform 0.35s ease;
+    transform 0.35s ease,
+    filter 0.35s ease;
 }
 
 .item:hover,
-.item:has(:global(.spotlight-item):hover) {
+.item:has(:global(.lift-trigger):hover) {
   transform: translateY(-2px);
 }
 
-:global(.spotlightGroup):has(:global(.spotlight-item):hover)
-  .item:not(:hover):not(:has(:global(.spotlight-item):hover)) {
+/* Light dim: another lift-trigger block is hovered. */
+:global(.spotlightGroup):has(:global(.lift-trigger):hover)
+  .item:not(:hover):not(:has(:global(.lift-trigger):hover)) {
   opacity: 0.6;
+}
+
+/* Heavy blur: the spotlight-trigger block (Stats) is hovered — lift
+   blocks get the same treatment Stats gives everyone else. */
+:global(.spotlightGroup):has(:global(.spotlight-trigger):hover) .item {
+  opacity: 0.15;
+  filter: blur(4px);
 }
 
 @media (prefers-reduced-motion: reduce) {
   .item:hover,
-  .item:has(:global(.spotlight-item):hover) {
+  .item:has(:global(.lift-trigger):hover) {
     transform: none;
   }
 
-  :global(.spotlightGroup):has(:global(.spotlight-item):hover)
-    .item:not(:hover):not(:has(:global(.spotlight-item):hover)) {
+  :global(.spotlightGroup):has(:global(.lift-trigger):hover)
+    .item:not(:hover):not(:has(:global(.lift-trigger):hover)) {
     opacity: 1;
+  }
+
+  :global(.spotlightGroup):has(:global(.spotlight-trigger):hover) .item {
+    opacity: 1;
+    filter: none;
   }
 }
