@@ -12,7 +12,7 @@ export function Contexto() {
   return (
     <CaseSection id="contexto">
       <BlockGrid
-        className={`${liftStyles.item} spotlight-item`}
+        className={liftStyles.item}
         label={
           <LabelStack
             eyebrow="O CONTEXTO"

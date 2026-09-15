@@ -21,20 +21,30 @@
    never noticed each other. Every spotlight-participating element also
    carries the plain global class `spotlight-item`; both files' triggers
    now watch that shared marker so hovering either kind dims every other
-   block regardless of which effect it uses. */
+   block regardless of which effect it uses.
+
+   Self-exclusion also checks `:has(.spotlight-item:hover)`, not just
+   `:hover` directly — needed for BlockGrid-based blocks, where `.item`
+   is an outer wrapper and the actual tightly-fit hover marker lives on
+   inner children (see BlockLift.module.css for why). Stats Section
+   doesn't need this today (spotlight-item sits directly on its own
+   .item), but this keeps both files consistent for whenever a
+   BlockGrid-shaped block needs the heavier spotlight treatment. */
 .item {
   transition:
     opacity 0.6s cubic-bezier(0.2, 0, 0.2, 1),
     filter 0.6s cubic-bezier(0.2, 0, 0.2, 1);
 }
 
-:global(.spotlightGroup):has(:global(.spotlight-item):hover) .item:not(:hover) {
+:global(.spotlightGroup):has(:global(.spotlight-item):hover)
+  .item:not(:hover):not(:has(:global(.spotlight-item):hover)) {
   opacity: 0.15;
   filter: blur(4px);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  :global(.spotlightGroup):has(:global(.spotlight-item):hover) .item:not(:hover) {
+  :global(.spotlightGroup):has(:global(.spotlight-item):hover)
+    .item:not(:hover):not(:has(:global(.spotlight-item):hover)) {
     opacity: 1;
     filter: none;
   }

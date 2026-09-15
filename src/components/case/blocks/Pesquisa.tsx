@@ -18,7 +18,7 @@ export function Pesquisa() {
   return (
     <CaseSection id="pesquisa">
       <BlockGrid
-        className={`${liftStyles.item} spotlight-item`}
+        className={liftStyles.item}
         label={
           <LabelStack
             eyebrow="A PESQUISA"

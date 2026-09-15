@@ -1,3 +1,27 @@
+## ⚠️ Logos de loja calibrados — Totens no dia a dia (2026-09-16)
+
+Os logos das 11 marcas na "Tira de logos" (`2313:181`) e das 4 colunas em
+destaque (`2313:170`) tinham peso visual bem inconsistente mesmo com
+containers do mesmo tamanho (40×40 nas colunas, 64×64 na tira) — os
+arquivos de origem têm resoluções e padding internos bem diferentes
+(ex: C&A nativo 3279×2759 não-quadrado, Riachuelo 554×554, Zara
+399×399). Calibrado por comparação visual (não há como medir a caixa
+real do conteúdo não-transparente via API do plugin), trocando
+`scaleMode` pra `CROP` com `imageTransform` de zoom manual nos 3 piores
+casos:
+- **C&A** (destaque `2306:170` + tira `2308:179`, mesmo hash): zoom 1.7x
+  — estava com muito respiro interno, ficava minúsculo perto dos outros.
+- **Pão de Açúcar** (`2309:1207`): zoom 0.82x (reduz) — estava maior que
+  o resto.
+- **Shopping Center Norte, tira** (`2309:1226`): zoom 1.15x — estava
+  pequeno. (A versão em destaque, `2306:178`, usa uma imagem diferente,
+  já ok.)
+
+**Não é uma solução definitiva** — calibrado a olho contra os outros
+logos como referência, não uma medição precisa. Se novos logos forem
+adicionados no futuro, comparar visualmente contra esse conjunto antes
+de aceitar o resultado do `scaleMode: FIT` padrão.
+
 ## ⚠️ Navegação persistente vs. conteúdo full-bleed — Voltar + TOC (2026-09-16)
 
 "Voltar" (fixo, topo-esquerda) e o TOC (fixo, agora à direita) ficam
