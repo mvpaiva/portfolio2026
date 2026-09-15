@@ -69,11 +69,11 @@ export function HomeStage() {
               }`}
               aria-hidden={active !== "sobre"}
             >
-              <p>
+              <p className={styles.faded}>
                 Sou Product Designer Júnior em transição de carreira, com
                 formação em Arquitetura e{" "}Urbanismo.
               </p>
-              <p>
+              <p className={styles.faded}>
                 Passei os últimos 18 meses gerindo um e-commerce em
                 produção, tomando decisões com dados e usuários reais. Hoje
                 aplico essa disciplina em pesquisa, traduzindo entrevistas e
@@ -87,7 +87,7 @@ export function HomeStage() {
               }`}
               aria-hidden={active !== "contato"}
             >
-              Você pode me encontrar no{" "}
+              <span className={styles.faded}>Você pode me encontrar no{" "}</span>
               <a
                 href="https://www.linkedin.com/in/mvpaiva/"
                 target="_blank"
@@ -95,8 +95,8 @@ export function HomeStage() {
                 tabIndex={active === "contato" ? 0 : -1}
               >
                 LinkedIn
-              </a>{" "}
-              ou{" "}
+              </a>
+              <span className={styles.faded}>{" "}ou{" "}</span>
               <a
                 href="https://x.com/heymvpaiva"
                 target="_blank"
@@ -105,7 +105,7 @@ export function HomeStage() {
               >
                 X
               </a>
-              , ver meu{" "}
+              <span className={styles.faded}>, ver meu{" "}</span>
               <a
                 href="https://drive.google.com/file/d/1uvIujKmLz8Pi8DUtY6Csqd97fqrKSyDz/view?usp=sharing"
                 target="_blank"
@@ -114,14 +114,14 @@ export function HomeStage() {
               >
                 CV
               </a>
-              , ou mandar um e-mail pra{" "}
+              <span className={styles.faded}>, ou mandar um e-mail pra{" "}</span>
               <a
                 href="mailto:mv@mvpaiva.com"
                 tabIndex={active === "contato" ? 0 : -1}
               >
                 mv@mvpaiva.com
               </a>
-              .
+              <span className={styles.faded}>.</span>
             </p>
           </div>
         </div>

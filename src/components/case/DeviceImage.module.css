@@ -1,0 +1,18 @@
+.wrap {
+  display: block;
+}
+
+.mobile {
+  width: 100%;
+  max-width: 341px;
+}
+
+.totem {
+  width: 100%;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+}

@@ -1,0 +1,33 @@
+import type { Metadata } from "next";
+import { Hero } from "@/components/case/blocks/Hero";
+import { Contexto } from "@/components/case/blocks/Contexto";
+import { Pesquisa } from "@/components/case/blocks/Pesquisa";
+
+export const metadata: Metadata = {
+  title: "Square Self-Checkout — Matheus Paiva",
+  description:
+    "Redesign de 6 meses do autoatendimento do Square Register e de um app complementar, do estacionamento até o portão de saída.",
+};
+
+// Deliberately not rendered — hidden in the source Figma (live read,
+// refinamento frame 2173:172, 2026-09-15):
+// - Metodologia (Double Diamond)               node visible:false
+// - Intro das Soluções                         node visible:false, empty instance
+// - Sequência do Sistema (Escaneamento ao Pagamento)  node visible:false
+// - footer.py-40                               node visible:false
+//
+// Still pending, built as this session's budget allows (see
+// C:\Users\Ma\.claude\plans\functional-yawning-pie.md for the full
+// sequencing): Panorama Competitivo/Totens no dia a dia, Blueprint Crop,
+// Field Notes, JTBD, Design e Prototipação, Prototipação & Testes (Figma),
+// Onboarding Filmstrip, Testes, Solução 1–5, Resultado, Próximos Passos,
+// Footer, TableOfContents.
+export default function SquareSelfCheckoutPage() {
+  return (
+    <main>
+      <Hero />
+      <Contexto />
+      <Pesquisa />
+    </main>
+  );
+}

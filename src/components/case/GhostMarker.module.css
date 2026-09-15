@@ -1,0 +1,25 @@
+.marker {
+  max-width: 1290px;
+  margin: 0 auto;
+  padding: var(--space-16) var(--gutter-desktop);
+}
+
+.text {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 120px;
+  line-height: 1;
+  opacity: 0.08;
+  color: var(--color-ink);
+}
+
+@media (max-width: 768px) {
+  .marker {
+    padding: var(--space-8) var(--gutter-mobile);
+  }
+
+  .text {
+    font-size: 64px;
+  }
+}

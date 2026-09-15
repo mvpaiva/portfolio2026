@@ -1,0 +1,13 @@
+.grid {
+  display: grid;
+  grid-template-columns: 440px 1fr;
+  gap: var(--gutter-desktop);
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+}
