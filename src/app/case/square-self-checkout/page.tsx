@@ -7,6 +7,7 @@ import { Pesquisa } from "@/components/case/blocks/Pesquisa";
 import { GhostMarker } from "@/components/case/GhostMarker";
 import { Reveal } from "@/components/case/Reveal";
 import { BackLink } from "@/components/case/BackLink";
+import { BlockSpotlight } from "@/components/case/BlockSpotlight";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -30,24 +31,36 @@ export const metadata: Metadata = {
 // Footer, TableOfContents.
 export default function SquareSelfCheckoutPage() {
   return (
-    <main className={styles.main}>
+    <main className={`${styles.main} spotlightGroup`}>
       <BackLink />
-      <Reveal>
-        <Hero />
-      </Reveal>
-      <Reveal>
-        <HeroBanner />
-      </Reveal>
-      <Reveal>
-        <Contexto />
-      </Reveal>
-      <Reveal>
-        <StatsSection />
-      </Reveal>
-      <GhostMarker>Descoberta</GhostMarker>
-      <Reveal>
-        <Pesquisa />
-      </Reveal>
+      <BlockSpotlight>
+        <Reveal>
+          <Hero />
+        </Reveal>
+      </BlockSpotlight>
+      <BlockSpotlight>
+        <Reveal>
+          <HeroBanner />
+        </Reveal>
+      </BlockSpotlight>
+      <BlockSpotlight>
+        <Reveal>
+          <Contexto />
+        </Reveal>
+      </BlockSpotlight>
+      <BlockSpotlight>
+        <Reveal>
+          <StatsSection />
+        </Reveal>
+      </BlockSpotlight>
+      <BlockSpotlight>
+        <GhostMarker>Descoberta</GhostMarker>
+      </BlockSpotlight>
+      <BlockSpotlight>
+        <Reveal>
+          <Pesquisa />
+        </Reveal>
+      </BlockSpotlight>
     </main>
   );
 }

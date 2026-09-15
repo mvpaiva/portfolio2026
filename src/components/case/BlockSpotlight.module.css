@@ -1,0 +1,26 @@
+/* Page-wide block-level spotlight (confirmed 2026-09-16, additive to the
+   item-level spotlight already spec'd in benji-taylor-reference.md for
+   JTBD/Próximos Passos/Stats/Field Notes/Footer): hovering ANY top-level
+   content block on the case page dims + blurs every OTHER block, giving
+   the hovered one visual focus. Same token values as the item-level
+   spec — 600ms, deliberately slow/contemplative, opacity 0.15 + blur(4px)
+   — reused for consistency rather than inventing a second timing. `main`
+   carries the plain global class `spotlightGroup` (not CSS-module-scoped)
+   so this file can target it across the module boundary. */
+.item {
+  transition:
+    opacity 0.6s cubic-bezier(0.2, 0, 0.2, 1),
+    filter 0.6s cubic-bezier(0.2, 0, 0.2, 1);
+}
+
+:global(.spotlightGroup):hover .item:not(:hover) {
+  opacity: 0.15;
+  filter: blur(4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :global(.spotlightGroup):hover .item:not(:hover) {
+    opacity: 1;
+    filter: none;
+  }
+}

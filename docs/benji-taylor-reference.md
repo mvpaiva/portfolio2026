@@ -1,3 +1,25 @@
+## ⚠️ Spotlight de bloco (nível de página) — decisão fechada (2026-09-16)
+
+Além do spotlight de item-de-lista já documentado abaixo (JTBD/Próximos
+Passos/Stats Section/Field Notes/Footer Metadados — dimming de **itens
+dentro de um mesmo bloco**), existe um segundo efeito, mais amplo, que
+tinha ficado combinado em conversa mas nunca escrito aqui: **spotlight em
+nível de bloco/seção da página inteira**. Hover em QUALQUER bloco de
+conteúdo do case (Hero, banner, Contexto, Stats, Pesquisa, etc.) borra +
+escurece todos os OUTROS blocos, dando foco visual ao bloco embaixo do
+mouse. Confirmado com Matheus 2026-09-16 — os dois efeitos coexistem,
+aditivos, escopos diferentes (item-dentro-do-bloco vs. bloco-dentro-da-
+página).
+
+**Implementação (código, já aplicada no Hero/banner/Contexto/Stats/
+Pesquisa):** mesmos valores do spotlight de item — `opacity: 0.15`,
+`filter: blur(4px)`, `0.6s cubic-bezier(0.2, 0, 0.2, 1)` — reaproveitados
+por consistência, não um token novo. `src/components/case/BlockSpotlight.tsx`
+envolve cada bloco top-level em `page.tsx`; `<main>` carrega uma classe
+global literal `spotlightGroup` (fora do CSS Module) pra
+`BlockSpotlight.module.css` conseguir referenciar o hover do grupo através
+da fronteira de módulo. Desativado sob `prefers-reduced-motion`.
+
 ## ⚠️ Aviso de fonte de conteúdo (2026-09-15)
 
 `visual-language-specification.md` §14 ("Case study real — Square, copy
