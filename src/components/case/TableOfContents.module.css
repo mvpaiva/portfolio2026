@@ -1,27 +1,27 @@
 /* Copy source: Figma node 2173:525 "TOC — Sumário (sticky, left margin)"
    — a plain sticky text list (no circle trigger/collapse — an older doc
    describing that pattern turned out to be stale, confirmed against the
-   live node 2026-09-16), 13px Regular, ink 50%, left margin.
+   live node 2026-09-16), 13px Regular, ink 50%.
 
-   Legibility fix (same request as BackLink): fixed overlay elements can
-   scroll over photos/busy content, so this gets the same translucent +
-   backdrop-blur treatment (visual-language-spec §8's overlay pattern)
-   instead of sitting directly on whatever's behind it with no
-   protection. */
+   Moved from left to RIGHT margin 2026-09-16 (variant.com second
+   opinion, point 3): a persistent TOC and the persistent "Voltar"
+   button shouldn't compete for the same corner/column — Voltar stays
+   top-left, TOC moves to its own column on the right so neither reads
+   as fighting the other for the same visual lane.
+
+   Reverted the bordered/blurred chip box (2026-09-16) — wasn't actually
+   part of the variant.com guidance, that was me improvising. Plain
+   text, matching Figma; relies on the dead-zone/scrim approach on any
+   image content instead of a background box on the control itself. */
 .toc {
   position: fixed;
-  left: 60px;
+  right: 60px;
   top: 50%;
   transform: translateY(-50%);
   z-index: 50;
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
-  padding: var(--space-3);
-  border: 1px solid var(--color-border);
-  background: rgba(245, 242, 240, 0.8);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
 }
 
 .link {
@@ -40,7 +40,7 @@
 }
 
 /* Hidden below the desktop breakpoint where it can't sit comfortably in
-   the left margin without overlapping content — same reasoning as the
+   the right margin without overlapping content — same reasoning as the
    spec's "no horizontal scroll at any width" rule. */
 @media (max-width: 1024px) {
   .toc {

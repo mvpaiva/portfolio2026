@@ -4,26 +4,17 @@
    uppercase, Medium 500, 10px, tracking 0.12em, underline only on
    hover/focus via ::after + scaleX.
 
-   Fixed 2026-09-16: was a solid opaque background tight to the text
-   (no padding), which reads badly and can still lose legibility over
-   busy/dark image content it scrolls over. Matches the established
-   overlay/floating-control pattern instead (visual-language-spec §8/§10):
-   translucent bg + backdrop-blur so it stays legible over anything
-   beneath it, hairline border to read as a floating chip, z-index 110
-   ("Controles" layer — above the 50-60 "Elevada" layer TOC's trigger
-   uses, since Voltar is the persistent top-level control). */
+   Reverted 2026-09-16: had added a bordered/blurred chip box around
+   this, which wasn't actually one of the variant.com recommendations
+   (that was me improvising) — the real guidance is a protected "dead
+   zone" + a top scrim on any image that scrolls underneath (see
+   HeroBanner.module.css), not a background box on the control itself.
+   Plain text, matching the Figma component. */
 .link {
   position: fixed;
   top: 60px;
   left: 60px;
   z-index: 110;
-  display: inline-flex;
-  align-items: center;
-  padding: 6px 10px;
-  border: 1px solid var(--color-border);
-  background: rgba(245, 242, 240, 0.8);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
   font-family: var(--font-body);
   font-weight: 500;
   font-size: 10px;
@@ -41,11 +32,6 @@
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.3s ease-in-out;
-}
-
-.link:hover,
-.link:focus-visible {
-  border-color: var(--color-border-hover);
 }
 
 .link:hover::after,

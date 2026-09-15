@@ -3,6 +3,7 @@
    other block, tightened to 64px top/bottom padding (space-16) around
    the image. */
 .wrap {
+  position: relative;
   max-width: 1290px;
   margin: 0 auto;
   padding: var(--space-16) var(--gutter-mobile);
@@ -15,6 +16,29 @@
   width: 100%;
   max-width: 1226px;
   height: auto;
+}
+
+/* Top scrim (variant.com second opinion, 2026-09-16, point 1/2): the
+   fixed "Voltar" button stays on screen while this image scrolls
+   underneath it, so the first ~120px (the button's "dead zone") get a
+   light gradient — bg color fading to transparent — reinforcing the
+   button's own translucent-chip legibility instead of relying on the
+   chip alone. Light direction (not the usual dark-scrim-for-white-text
+   pattern) because our nav is dark ink text, not white. */
+.wrap::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(
+    to bottom,
+    rgba(245, 242, 240, 0.85),
+    rgba(245, 242, 240, 0)
+  );
+  pointer-events: none;
+  z-index: 1;
 }
 
 @media (min-width: 768px) {

@@ -1,3 +1,71 @@
+## ⚠️ Navegação persistente vs. conteúdo full-bleed — Voltar + TOC (2026-09-16)
+
+"Voltar" (fixo, topo-esquerda) e o TOC (fixo, agora à direita) ficam
+sempre visíveis, sobrepondo qualquer conteúdo que role por baixo —
+banners, fotos. Segunda opinião pedida ao variant.com pra calibrar isso
+(texto completo arquivado abaixo, consultar de novo em blocos futuros
+com imagem full-bleed de verdade — Design e Prototipação, Onboarding
+Filmstrip, banners de solução).
+
+**Decisões aplicadas:**
+- **TOC movido pra direita** — Voltar e TOC não competem mais pela mesma
+  coluna/canto (ponto 3 do texto arquivado).
+- **Scrim no topo do banner do Hero** (`HeroBanner.module.css`,
+  `.wrap::before`): gradiente de 120px, `rgba(245,242,240,0.85)` →
+  transparente — protege a "dead zone" onde Voltar fica (ponto 1/2).
+  Direção clara (não escura) porque nosso texto de navegação é ink
+  escuro, não branco — o scrim tradicional (escurecer pra texto branco)
+  não se aplica aqui.
+- **Revertida a "caixa" com borda+blur** que eu tinha aplicado em Voltar
+  e TOC antes dessa segunda opinião — não era uma das recomendações
+  reais do variant.com (invenção minha). Os dois voltaram a ser texto
+  puro, confiando no scrim + no reposicionamento pra legibilidade, não
+  numa caixa de fundo.
+- **Não aplicado ainda:** `mix-blend-mode: difference` (ponto 4, técnica
+  alternativa universal mas com ressalva de ficar "psicodélica" em cores
+  médias — considerar caso o scrim não seja suficiente em blocos
+  futuros mais escuros/contrastados), TOC como drawer/bottom-sheet no
+  mobile (ponto 5 — hoje o TOC simplesmente some abaixo de 1024px), área
+  de toque 48×48px no Voltar mobile (ainda não conferida/ajustada).
+
+<details>
+<summary>Texto completo da segunda opinião (variant.com, 2026-09-16)</summary>
+
+> O conflito entre navegação persistente e conteúdo full-bleed é
+> clássico. O procedimento correto depende da hierarquia de leitura que
+> você quer estabelecer, mas segue uma lógica de camadas e momentos de
+> atenção:
+>
+> 1. **Defina uma "zona segura" no topo.** Nunca posicione conteúdo
+>    crítico (títulos, rostos em fotos, CTAs) na área onde o botão
+>    "voltar" e o TOC ficam — geralmente os primeiros 80–120px no topo
+>    esquerdo, tratados como dead zone pra conteúdo.
+> 2. **Use um gradiente ou scrim sutil**, não um fundo sólido opaco: um
+>    gradiente vertical de 15–20% de opacidade (do topo pra transparente)
+>    cria contraste suficiente sem cortar a fotografia.
+> 3. **TOC sempre visível ≠ TOC sempre no mesmo lugar.** Um TOC fixo no
+>    topo esquerdo compete com o "voltar". Soluções: mover pra direita/
+>    sidebar vertical (fora do F-pattern), virar indicador de scroll
+>    minimalista com ticks (expande no hover), ou agrupar os dois num
+>    único dropdown de índice.
+> 4. **Alterne o modo de exibição por seção**: sobre banners escuros,
+>    ícone/texto branco com sombra sutil; sobre texto claro, preto/cinza
+>    escuro. `mix-blend-mode: difference` como solução universal (funciona
+>    claro e escuro), mas testar bem — pode ficar psicodélico em cores
+>    médias.
+> 5. **TOC em páginas com margens curtas (mobile):** nunca lista
+>    horizontal/sidebar aberta — vira drawer/bottom sheet acionado por
+>    ícone, ou floating pill que expande. Botão voltar fixo é aceitável,
+>    mas hit area mínima 48×48px, afastado das bordas reais
+>    (`safe-area-inset`).
+> 6. **Regra de ouro — não lute com o conteúdo.** Se TOC sempre visível +
+>    botão voltar + banners full-bleed + margens curtas coexistem, algo
+>    na arquitetura está errado — sacrificar um dos três: TOC vira botão
+>    de ativação (não sempre visível), banner perde o full-bleed e ganha
+>    margem de respiro no topo, ou botão voltar vira gesto/é removido.
+
+</details>
+
 ## ⚠️ Spotlight de bloco (nível de página) — decisão fechada e recalibrada (2026-09-16)
 
 Além do spotlight de item-de-lista já documentado abaixo (JTBD/Próximos
