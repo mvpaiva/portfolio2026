@@ -1,24 +1,89 @@
-## ⚠️ Spotlight de bloco (nível de página) — decisão fechada (2026-09-16)
+## ⚠️ Spotlight de bloco (nível de página) — decisão fechada e recalibrada (2026-09-16)
 
 Além do spotlight de item-de-lista já documentado abaixo (JTBD/Próximos
 Passos/Stats Section/Field Notes/Footer Metadados — dimming de **itens
 dentro de um mesmo bloco**), existe um segundo efeito, mais amplo, que
 tinha ficado combinado em conversa mas nunca escrito aqui: **spotlight em
-nível de bloco/seção da página inteira**. Hover em QUALQUER bloco de
-conteúdo do case (Hero, banner, Contexto, Stats, Pesquisa, etc.) borra +
-escurece todos os OUTROS blocos, dando foco visual ao bloco embaixo do
-mouse. Confirmado com Matheus 2026-09-16 — os dois efeitos coexistem,
-aditivos, escopos diferentes (item-dentro-do-bloco vs. bloco-dentro-da-
-página).
+nível de bloco/seção da página inteira**. Hover num bloco de conteúdo dá
+foco visual a ele, apagando os outros. Confirmado com Matheus 2026-09-16
+— os dois efeitos coexistem, escopos diferentes (item-dentro-do-bloco vs.
+bloco-dentro-da-página).
 
-**Implementação (código, já aplicada no Hero/banner/Contexto/Stats/
-Pesquisa):** mesmos valores do spotlight de item — `opacity: 0.15`,
-`filter: blur(4px)`, `0.6s cubic-bezier(0.2, 0, 0.2, 1)` — reaproveitados
-por consistência, não um token novo. `src/components/case/BlockSpotlight.tsx`
-envolve cada bloco top-level em `page.tsx`; `<main>` carrega uma classe
-global literal `spotlightGroup` (fora do CSS Module) pra
-`BlockSpotlight.module.css` conseguir referenciar o hover do grupo através
-da fronteira de módulo. Desativado sob `prefers-reduced-motion`.
+**Primeira versão (revertida horas depois):** dim+blur igual ao spotlight
+de item (`opacity:0.15`, `blur(4px)`, `0.6s`) aplicado em TODOS os blocos,
+incluindo texto corrido (Hero, Contexto, Pesquisa). Dois bugs/problemas
+apareceram:
+1. O gatilho era `.spotlightGroup:hover`, que dispara em qualquer lugar
+   dentro de `<main>` — inclusive nas margens/gaps entre blocos e no
+   padding de 32px dentro de cada bloco. Sem nenhum `.item` de fato em
+   hover, todos escureciam ao mesmo tempo (sensação de "pisca" constante
+   rolando a página).
+2. Mesmo corrigindo o gatilho (`:has(.item:hover)`), o efeito em si
+   estava errado pra texto corrido — Matheus trouxe uma segunda opinião do
+   variant.com (texto completo arquivado abaixo) confirmando isso.
+
+**Versão atual (corrigida):**
+- **Blocos narrativos/texto corrido** (Hero, banner do Hero, Contexto,
+  Pesquisa) usam `BlockLift` (`src/components/case/BlockLift.module.css`):
+  `opacity:0.6` nos vizinhos, `translateY(-2px)` no hover, **sem blur**,
+  `0.35s ease` — mais rápido e leve que o spotlight de item.
+- **Stats Section** (meta-informação, 4 números) mantém o `BlockSpotlight`
+  original (`opacity:0.15`, `blur(4px)`, `0.6s`) — bate com a categoria
+  que a segunda opinião do variant.com recomenda pra esse tratamento mais
+  forte (grupos pequenos e isolados, não texto corrido).
+- **Área de gatilho corrigida pros 1226px exatos**: a classe (lift ou
+  spotlight) vai no elemento INTERNO de cada bloco que já é exatamente o
+  content box (1226px), nunca no frame externo com padding de 32px —
+  então passar o mouse no padding lateral de um bloco não ativa mais o
+  efeito nele. Verificado com `getBoundingClientRect` no browser.
+- `<main>` carrega a classe global literal `spotlightGroup` (fora do CSS
+  Module) pra `BlockLift.module.css`/`BlockSpotlight.module.css`
+  conseguirem referenciar o hover do grupo através da fronteira de
+  módulo. Ambos desativados sob `prefers-reduced-motion`.
+
+### Segunda opinião arquivada (variant.com, 2026-09-16) — guardar pra usos futuros/especiais
+
+Pedida por Matheus especificamente pra recalibrar o efeito numa case page
+longa (o spotlight original foi validado só em contextos minimalistas
+tipo benji.org). Vale reconsultar sempre que for aplicar spotlight em
+blocos novos (galerias, grids de card, Design e Prototipação, Onboarding
+Filmstrip etc.) — a lógica de "grupo pequeno e isolado = ok, texto
+corrido/narrativa principal = não" continua valendo pra decisões futuras:
+
+> O spotlight funcionou na variação minimalista porque havia poucos
+> elementos, espaçamento enorme e zero imagens. Quando você joga isso numa
+> case page longa — cheia de fotos, blocos de texto, módulos variados — o
+> efeito vira ruído.
+>
+> 1. **Nunca aplique na página inteira.** Use em grupos pequenos e
+>    isolados (galeria de 3–4 imagens, lista de 5 resultados, índice
+>    lateral) — grupo pequeno = dimming parece intencional; grupo longo =
+>    parece bug visual.
+> 2. **Tire o blur em conteúdo denso.** Blur cansa rápido em texto —
+>    mantenha só opacidade reduzida (`0.4`–`0.5`, nunca `0.15`). Blur
+>    reservado pra galerias de imagem, nunca texto corrido.
+> 3. **Trigger por área, não por pixel** em listas longas — hover
+>    instável; prefira focus zone generosa ou cards bem separados.
+> 4. **Separe "escaneável" de "narrativo".** Grids de imagem/cards de
+>    projeto: spotlight funciona. Corpo de texto, parágrafos, legendas:
+>    não usar — foco vem de hierarquia tipográfica, não interação. Usar
+>    em meta-informação (índice, navegação, galeria), nunca no
+>    storytelling principal.
+> 5. **Delay/transição mais suave em página longa:** `0.3s–0.4s ease` em
+>    vez de `0.6s` (evita "piscar" rolando a página). Ou desligar durante
+>    scroll, reativar só no `scrollend` (não implementado ainda).
+> 6. **Alternativa mais quieta pra cases longos — "lift sutil"** (é o que
+>    adotamos pros blocos narrativos):
+>    ```css
+>    .case-card { transition: transform 0.3s ease, opacity 0.3s ease; }
+>    .case-card:hover { transform: translateY(-2px); opacity: 1; }
+>    .case-group:hover .case-card:not(:hover) { opacity: 0.6; }
+>    ```
+>    Destaca por elevação, não por apagamento.
+> 7. **Princípio geral:** numa página já 100% carregada de informação,
+>    apagar tudo ao redor cria uma luta pela atenção. O papel do efeito é
+>    "spotlight editorial": iluminar o que o usuário quer inspecionar, sem
+>    apagar o contexto.
 
 ## ⚠️ Aviso de fonte de conteúdo (2026-09-15)
 
