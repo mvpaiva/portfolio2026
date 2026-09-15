@@ -7,7 +7,20 @@
    /paddingLeft+Right:32 on the frame itself, 16px gap between every
    top-level child, an extra 32px under the headline (its own trailing
    padding in Figma), 23px inside Meta Grid above its items. No border/
-   divider above Meta Grid — checked directly, there's no stroke there. */
+   divider above Meta Grid — confirmed deliberate removal
+   (benji-taylor-reference.md: "hairline removida... chrome desnecessário").
+
+   Typography corrected 2026-09-15 (fine-tooth-comb pass against
+   2173:175/176 etc — the first build guessed a "label-caps" pattern that
+   doesn't actually apply here):
+   - Eyebrow: 13px Regular, SAGE (not ink), no caps/tracking.
+   - Headline: 72px Regular, line-height 1.0 (72px), ink 100%.
+   - Subhead: ink 100% (not dimmed — Figma has no opacity here).
+   - Meta Label: 13px Regular, no caps/tracking. Figma has this at 40%
+     frame opacity, which fails the tested WCAG AA floor (~2.46:1 vs the
+     established 65% minimum) — bumped to 65% per Matheus, a deliberate,
+     documented deviation from the pixel value.
+   - Meta Value: 14px Regular, ink 100%. */
 
 .section {
   width: 100%;
@@ -21,27 +34,25 @@
 
 .eyebrow {
   font-family: var(--font-body);
-  font-weight: 500;
-  font-size: 10px;
+  font-weight: 400;
+  font-size: 13px;
   line-height: 1.5;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  color: var(--color-sage);
 }
 
 .headline {
   font-family: var(--font-body);
   font-weight: 400;
   font-size: 36px;
-  line-height: 1.05;
+  line-height: 1;
 }
 
 .subhead {
   font-family: var(--font-body);
   font-weight: 400;
   font-size: 18px;
-  line-height: 1.6;
+  line-height: 1.56;
   margin-top: var(--space-8);
-  opacity: 0.65;
   max-width: 1000px;
 }
 
@@ -54,19 +65,17 @@
 
 .metaLabel {
   font-family: var(--font-body);
-  font-weight: 500;
-  font-size: 10px;
+  font-weight: 400;
+  font-size: 13px;
   line-height: 1.5;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
   opacity: 0.65;
 }
 
 .metaValue {
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: 13px;
-  line-height: 1.5;
+  font-size: 14px;
+  line-height: 1.43;
   margin-top: var(--space-2);
 }
 
@@ -124,6 +133,6 @@
 
 @media (min-width: 1290px) {
   .headline {
-    font-size: 64px;
+    font-size: 72px;
   }
 }

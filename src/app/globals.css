@@ -53,6 +53,22 @@ body {
   cursor: crosshair;
 }
 
+/* No widow words, anywhere — browser-native, no manual &nbsp; wrangling.
+   Was already applied ad hoc on the home page (.tagline/.panelText in
+   page.module.css); promoted here so every case-page text block gets it
+   automatically instead of needing to remember it per component. */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,
+blockquote {
+  text-wrap: pretty;
+}
+
 a {
   color: inherit;
   text-decoration: none;

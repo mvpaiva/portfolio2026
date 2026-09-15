@@ -25,9 +25,7 @@ export function Hero() {
         </div>
         <div>
           <p className={styles.metaLabel}>Ferramentas</p>
-          <p className={styles.metaValue}>
-            Figma · Miro · Google Forms · Optimal Workshop · Treejack · Maze
-          </p>
+          <p className={styles.metaValue}>Figma · Miro · Optimal · Maze</p>
         </div>
         <div>
           <p className={styles.metaLabel}>Setor</p>
