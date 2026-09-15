@@ -1,3 +1,17 @@
+## ⚠️ Aviso de fonte de conteúdo (2026-09-15)
+
+`visual-language-specification.md` §14 ("Case study real — Square, copy
+final v3") **NÃO é a fonte de verdade pro código da case page.** O próprio
+§14 diz vir do node `13440-2`, que é diferente do frame de refinamento
+(`2173:172`/`2173:173`) onde o trabalho real desta sessão inteira
+aconteceu. Testei isso na prática: construí Hero/Contexto/Pesquisa em
+código a partir do §14 e o conteúdo não batia com o frame `2173:172` real
+(headline batia por coincidência, mas eyebrow, subhead, stats, e toda a
+estrutura de Pesquisa eram diferentes — §14 tinha 7 pain points numerados
+que não existem no frame real; o frame real tem parágrafo + 3 observações
++ citação + CTA). **Pra qualquer implementação de código, sempre ler o
+texto direto dos nós do Figma (`2173:172`), nunca do §14.**
+
 # Referência: benji.org — extração e análise (2026-09-14)
 
 Este arquivo existe pra retomar o "pente-fino" de refinamento visual do case
