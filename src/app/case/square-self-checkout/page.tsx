@@ -7,7 +7,6 @@ import { Pesquisa } from "@/components/case/blocks/Pesquisa";
 import { GhostMarker } from "@/components/case/GhostMarker";
 import { Reveal } from "@/components/case/Reveal";
 import { BackLink } from "@/components/case/BackLink";
-import { BlockSpotlight } from "@/components/case/BlockSpotlight";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -29,38 +28,33 @@ export const metadata: Metadata = {
 // Field Notes, JTBD, Design e Prototipação, Prototipação & Testes (Figma),
 // Onboarding Filmstrip, Testes, Solução 1–5, Resultado, Próximos Passos,
 // Footer, TableOfContents.
+//
+// Spotlight/lift hover cues (see BlockSpotlight.module.css and
+// BlockLift.module.css) are applied INSIDE each block, on the element
+// that exactly matches its 1226px content box — not wrapped here from
+// outside — so the hover zone never includes a block's own side
+// padding. `spotlightGroup` (plain global class) is the ancestor both
+// CSS files key off of.
 export default function SquareSelfCheckoutPage() {
   return (
     <main className={`${styles.main} spotlightGroup`}>
       <BackLink />
-      <BlockSpotlight>
-        <Reveal>
-          <Hero />
-        </Reveal>
-      </BlockSpotlight>
-      <BlockSpotlight>
-        <Reveal>
-          <HeroBanner />
-        </Reveal>
-      </BlockSpotlight>
-      <BlockSpotlight>
-        <Reveal>
-          <Contexto />
-        </Reveal>
-      </BlockSpotlight>
-      <BlockSpotlight>
-        <Reveal>
-          <StatsSection />
-        </Reveal>
-      </BlockSpotlight>
-      <BlockSpotlight>
-        <GhostMarker>Descoberta</GhostMarker>
-      </BlockSpotlight>
-      <BlockSpotlight>
-        <Reveal>
-          <Pesquisa />
-        </Reveal>
-      </BlockSpotlight>
+      <Reveal>
+        <Hero />
+      </Reveal>
+      <Reveal>
+        <HeroBanner />
+      </Reveal>
+      <Reveal>
+        <Contexto />
+      </Reveal>
+      <Reveal>
+        <StatsSection />
+      </Reveal>
+      <GhostMarker>Descoberta</GhostMarker>
+      <Reveal>
+        <Pesquisa />
+      </Reveal>
     </main>
   );
 }

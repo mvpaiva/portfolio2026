@@ -1,0 +1,33 @@
+/* Subtle "lift" focus cue for narrative/body-text blocks (Hero, banner,
+   Contexto, Pesquisa) — added 2026-09-16 per a variant.com second
+   opinion Matheus brought in: dim+blur block-spotlight is wrong for
+   dense running text (it competes with reading instead of guiding it,
+   and the blur specifically "tires" text fast). Reserved for genuinely
+   isolated groups (meta-info, image galleries — see BlockSpotlight).
+   No blur, higher opacity floor (0.6 not 0.15), faster/lighter timing
+   (0.3-0.4s per the same feedback, not the 0.6s "contemplative" value
+   used for isolated list-item spotlight). `main` carries the plain
+   global class `spotlightGroup`. */
+.item {
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
+}
+
+.item:hover {
+  transform: translateY(-2px);
+}
+
+:global(.spotlightGroup):has(.item:hover) .item:not(:hover) {
+  opacity: 0.6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .item:hover {
+    transform: none;
+  }
+
+  :global(.spotlightGroup):has(.item:hover) .item:not(:hover) {
+    opacity: 1;
+  }
+}

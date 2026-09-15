@@ -2,6 +2,7 @@ import { CaseSection } from "../CaseSection";
 import { BlockGrid } from "../BlockGrid";
 import { LabelStack } from "../LabelStack";
 import styles from "./Pesquisa.module.css";
+import liftStyles from "../BlockLift.module.css";
 
 // Copy source: Figma refinamento frame, node 2173:237 "Pesquisa" — read
 // verbatim via the Figma API, including the confirmed-real quote (kept
@@ -17,6 +18,7 @@ export function Pesquisa() {
   return (
     <CaseSection id="pesquisa">
       <BlockGrid
+        className={liftStyles.item}
         label={
           <LabelStack
             eyebrow="A PESQUISA"

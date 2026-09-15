@@ -27,6 +27,13 @@
   max-width: 1290px;
   margin: 0 auto;
   padding: 0 var(--gutter-mobile) var(--space-16);
+}
+
+/* Separate from .section so the spotlight/lift hover zone (applied to
+   this element from Hero.tsx) matches the true 1226px content width,
+   not the padded 1290px frame — hovering the side padding shouldn't
+   trigger the effect. */
+.content {
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
