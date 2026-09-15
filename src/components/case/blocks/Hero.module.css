@@ -50,6 +50,7 @@
   line-height: 1.6;
   margin-top: var(--space-8);
   opacity: 0.65;
+  max-width: 788px;
 }
 
 .metaGrid {
