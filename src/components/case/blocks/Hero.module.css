@@ -3,27 +3,22 @@
    - Desktop (>=1440px): content box fixed at 966px.
    - Tablet (810-1439px): content box fixed at 770px.
    - Mobile (<810px, 320px min): content box fills the viewport.
-   966px/770px ARE the content box itself — the 12-column/32px-gutter
-   grid runs directly inside them, no extra side padding on top. Meta
-   Grid items are a literal 3-column span of that system at both tiers:
-   desktop 3*51.1667+2*32=217.5px (4*217.5+3*32=966 ✓), tablet
-   3*34.8333+2*32=168.5px (4*168.5+3*32=770 ✓). */
+   966px/770px ARE the content box itself, no extra side padding on top.
+   Note (corrected 2026-09-15): the 12-col/32px-margin/32px-gutter grid
+   is a guide on the outer 1920px Figma frame, not something the 966/770
+   content box subdivides into — Meta Grid is just 4 equal columns with a
+   32px gap, not a literal "span 3 of 12" (they produce the same 217.5px/
+   168.5px either way, since 4 even columns of a fixed box and a 12-col
+   span-3 of that same box are mathematically identical — but there's no
+   real 12-column system living inside this block). */
 
 .section {
   width: 100%;
   margin: 0 auto;
   padding: var(--space-24) var(--gutter-mobile) var(--space-16);
-  display: grid;
-  grid-template-columns: 1fr;
-  row-gap: var(--space-4);
-}
-
-.eyebrow,
-.headline,
-.subhead,
-.metaGrid,
-.links {
-  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
 }
 
 .eyebrow {
@@ -60,10 +55,6 @@
   margin-top: var(--space-24);
   padding-top: var(--space-8);
   border-top: 1px solid var(--color-border);
-}
-
-.metaItem {
-  grid-column: span 1;
 }
 
 .metaLabel {
@@ -109,14 +100,11 @@
   display: none;
 }
 
-/* Tablet: 810-1439px, fixed 770px content box, real 12-col/32-gutter grid. */
+/* Tablet: 810-1439px, fixed 770px content box. */
 @media (min-width: 810px) {
   .section {
     width: 770px;
     padding: var(--space-32) 0 var(--space-16);
-    grid-template-columns: repeat(12, 1fr);
-    column-gap: 32px;
-    row-gap: 0;
   }
 
   .headline {
@@ -124,12 +112,8 @@
   }
 
   .metaGrid {
-    grid-template-columns: repeat(12, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     column-gap: 32px;
-  }
-
-  .metaItem {
-    grid-column: span 3;
   }
 
   .links {
@@ -143,7 +127,7 @@
   }
 }
 
-/* Desktop: >=1440px, fixed 966px content box, same 12-col/32-gutter grid. */
+/* Desktop: >=1440px, fixed 966px content box, same 4-column Meta Grid. */
 @media (min-width: 1440px) {
   .section {
     width: 966px;
