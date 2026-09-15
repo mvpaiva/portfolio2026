@@ -7,6 +7,7 @@ import { Pesquisa } from "@/components/case/blocks/Pesquisa";
 import { GhostMarker } from "@/components/case/GhostMarker";
 import { Reveal } from "@/components/case/Reveal";
 import { BackLink } from "@/components/case/BackLink";
+import { TableOfContents } from "@/components/case/TableOfContents";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -27,7 +28,8 @@ export const metadata: Metadata = {
 // sequencing): Panorama Competitivo/Totens no dia a dia, Blueprint Crop,
 // Field Notes, JTBD, Design e Prototipação, Prototipação & Testes (Figma),
 // Onboarding Filmstrip, Testes, Solução 1–5, Resultado, Próximos Passos,
-// Footer, TableOfContents.
+// Footer. TableOfContents links to #solucoes/#resultado ahead of those
+// sections existing — harmless no-ops until they're built.
 //
 // Spotlight/lift hover cues (see BlockSpotlight.module.css and
 // BlockLift.module.css) are applied INSIDE each block, on the element
@@ -39,6 +41,7 @@ export default function SquareSelfCheckoutPage() {
   return (
     <main className={`${styles.main} spotlightGroup`}>
       <BackLink />
+      <TableOfContents />
       <Reveal>
         <Hero />
       </Reveal>
@@ -51,7 +54,7 @@ export default function SquareSelfCheckoutPage() {
       <Reveal>
         <StatsSection />
       </Reveal>
-      <GhostMarker>Descoberta</GhostMarker>
+      <GhostMarker id="descoberta">Descoberta</GhostMarker>
       <Reveal>
         <Pesquisa />
       </Reveal>
