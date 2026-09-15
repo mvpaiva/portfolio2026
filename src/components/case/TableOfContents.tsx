@@ -89,7 +89,8 @@ export function TableOfContents() {
       >
         {SECTIONS.map((section) => (
           <a key={section.href} className={styles.link} href={section.href}>
-            {section.label}
+            <span className={styles.linkFull}>{section.label}</span>
+            <span className={styles.linkTick} aria-hidden="true" />
           </a>
         ))}
       </nav>

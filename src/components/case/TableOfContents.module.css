@@ -31,13 +31,11 @@
 }
 
 .link {
-  font-family: var(--font-body);
-  font-weight: 400;
-  font-size: 13px;
-  line-height: 1.5;
+  display: grid;
+  align-items: center;
+  justify-items: end;
   color: var(--color-ink);
   opacity: 0.5;
-  white-space: nowrap;
   transition: opacity 0.3s ease-in-out;
 }
 
@@ -46,23 +44,49 @@
   opacity: 1;
 }
 
-/* Collapsed state: each link shrinks to a short tick — width animates
-   via max-width (a plain `width` transition on an inline/auto-sized
-   element doesn't interpolate), text clipped, at the calm 0.5s pace
-   used for the block-spotlight/lift cues rather than a snappy UI
-   toggle. The whole nav re-expands on hover/focus-within so the labels
-   are still reachable even while "in conflict". */
-.toc.collapsed .link {
-  max-width: 16px;
-  overflow: hidden;
-  transition:
-    max-width 0.5s cubic-bezier(0.2, 0, 0.2, 1),
-    opacity 0.3s ease-in-out;
+/* Full label and collapsed tick occupy the same grid cell and crossfade
+   via opacity only — same "surfaces from the background" pattern as the
+   home page's panel-toggle (page.module.css .textStage), rather than
+   animating max-width/overflow, which was clipping letters mid-word and
+   reading as a harsh cut instead of a calm transition. */
+.linkFull,
+.linkTick {
+  grid-area: 1 / 1;
+  transition: opacity 0.4s ease-in-out;
 }
 
-.toc.collapsed:hover .link,
-.toc.collapsed:focus-within .link {
-  max-width: 140px;
+.linkFull {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.5;
+  white-space: nowrap;
+  opacity: 1;
+}
+
+.linkTick {
+  width: 16px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0;
+}
+
+.toc.collapsed .linkFull {
+  opacity: 0;
+}
+
+.toc.collapsed .linkTick {
+  opacity: 1;
+}
+
+.toc.collapsed:hover .linkFull,
+.toc.collapsed:focus-within .linkFull {
+  opacity: 1;
+}
+
+.toc.collapsed:hover .linkTick,
+.toc.collapsed:focus-within .linkTick {
+  opacity: 0;
 }
 
 .mobilePill,
