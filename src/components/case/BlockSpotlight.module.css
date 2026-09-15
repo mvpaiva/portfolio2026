@@ -12,20 +12,29 @@
    dimmed everything with no block staying focused (felt heavy, and kept
    firing while just moving the mouse down the page). Switched to
    `:has(.item:hover)` so the effect only activates while the cursor is
-   truly over a block. */
+   truly over a block.
+
+   Second bug fixed 2026-09-16 (Matheus caught it): hovering a
+   BlockSpotlight item (e.g. Stats Section) wasn't dimming BlockLift
+   items (Hero/Contexto/Pesquisa) at all — each file's `:has()` only
+   watched its own CSS-Modules-hashed `.item` class, so the two effects
+   never noticed each other. Every spotlight-participating element also
+   carries the plain global class `spotlight-item`; both files' triggers
+   now watch that shared marker so hovering either kind dims every other
+   block regardless of which effect it uses. */
 .item {
   transition:
     opacity 0.6s cubic-bezier(0.2, 0, 0.2, 1),
     filter 0.6s cubic-bezier(0.2, 0, 0.2, 1);
 }
 
-:global(.spotlightGroup):has(.item:hover) .item:not(:hover) {
+:global(.spotlightGroup):has(:global(.spotlight-item):hover) .item:not(:hover) {
   opacity: 0.15;
   filter: blur(4px);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  :global(.spotlightGroup):has(.item:hover) .item:not(:hover) {
+  :global(.spotlightGroup):has(:global(.spotlight-item):hover) .item:not(:hover) {
     opacity: 1;
     filter: none;
   }

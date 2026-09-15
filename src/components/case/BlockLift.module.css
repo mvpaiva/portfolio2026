@@ -7,7 +7,18 @@
    No blur, higher opacity floor (0.6 not 0.15), faster/lighter timing
    (0.3-0.4s per the same feedback, not the 0.6s "contemplative" value
    used for isolated list-item spotlight). `main` carries the plain
-   global class `spotlightGroup`. */
+   global class `spotlightGroup`.
+
+   Bug fixed 2026-09-16 (Matheus caught it): the trigger below originally
+   watched `.item:hover` using THIS file's own (CSS-Modules-hashed) class,
+   so hovering a BlockSpotlight item (Stats Section) never dimmed these
+   lift items, and vice versa — each effect only ever noticed its own
+   kind. Every element wearing either `.item` (this file) or
+   BlockSpotlight's `.item` also gets the plain global class
+   `spotlight-item` (see each component's className list), and both
+   files' triggers watch that shared marker instead — so hovering either
+   kind of block now dims every other block on the page, regardless of
+   which effect it uses. */
 .item {
   transition:
     opacity 0.35s ease,
@@ -18,7 +29,7 @@
   transform: translateY(-2px);
 }
 
-:global(.spotlightGroup):has(.item:hover) .item:not(:hover) {
+:global(.spotlightGroup):has(:global(.spotlight-item):hover) .item:not(:hover) {
   opacity: 0.6;
 }
 
@@ -27,7 +38,7 @@
     transform: none;
   }
 
-  :global(.spotlightGroup):has(.item:hover) .item:not(:hover) {
+  :global(.spotlightGroup):has(:global(.spotlight-item):hover) .item:not(:hover) {
     opacity: 1;
   }
 }

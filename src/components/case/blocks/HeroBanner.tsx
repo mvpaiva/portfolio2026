@@ -14,7 +14,7 @@ export function HeroBanner() {
         width={1489}
         height={746}
         priority
-        className={`${styles.image} ${liftStyles.item}`}
+        className={`${styles.image} ${liftStyles.item} spotlight-item`}
         sizes="(max-width: 1489px) 100vw, 1489px"
       />
     </div>
