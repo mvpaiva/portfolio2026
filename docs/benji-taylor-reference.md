@@ -455,9 +455,59 @@ nas Soluções):
    Pesquisa e Foto de Campo (dentro do fluxo do `div#case-page`, que é
    auto-layout vertical — inserir com `insertChild` no índice certo, nunca
    mexer manualmente em y). 3 colunas: Carrefour / Extra / Walmart.
+**Panorama Competitivo → "Totens no dia a dia" (2026-09-14, sessão 2, reescopo):**
+o placeholder inicial (Carrefour/Extra/Walmart) foi um chute meu baseado só
+no texto da Pesquisa ("18 conversas, 3 redes de varejo") + a citação real
+"No Extra, um funcionário confere..." (Solução 03). Matheus esclareceu que
+as fotos reais de campo que ele tem são de **totens fora do segmento de
+varejo alimentar**: Cinemark, McDonald's, Cacau Show, Estacionamento, Honest
+Market, Renner, Riachuelo, Zara — cross-segmento (cinema, fast-food,
+doceria, estacionamento, moda), não 3 concorrentes diretos. Bloco
+reconstruído: de 3 colunas pra **grid 4×2** (8 lugares), eyebrow trocado pra
+"Totens no dia a dia — observação de campo" (não mais "Panorama Competitivo
+— 3 redes visitadas", que não corresponde ao conteúdo real). **A citação "No
+Extra..." na Solução 03 e o "3 redes de varejo" na Pesquisa continuam
+válidos** — são de uma pesquisa diferente (a que gerou os pain points
+citados no texto), não têm relação com essas fotos de totem.
+
+**Reduzido pra layout final (mesma sessão, minutos depois):** Matheus só
+quer 4 fotos aparecendo em destaque (não as 8), mas confirmou que visitou
+todos os 10 locais da lista de logos (Honest Market, Walmart, Extra,
+Carrefour, C&A, Riachuelo, Zara, Renner, Amazon Go, McDonald's). Estrutura
+final, em duas partes:
+1. **4 fotos em destaque** — grid de 4 colunas, cada uma com badge de logo
+   (40×40, `ink 4%` + noise) + label ao lado, foto retrato abaixo (proporção
+   ~0.562:1, batendo com as fotos reais de campo dele, 253×450). Labels
+   ficaram genéricos ("Local 1-4") de propósito — Matheus vai posicionar
+   fotos e logos reais depois, não tentei adivinhar qual foto é de qual
+   marca (tinha 6 fotos reais mas só identifiquei McDonald's com certeza).
+2. **Tira "10 locais visitados"** — abaixo das 4 fotos, os 10 logos reais em
+   swatches pequenos (64×64, mesmo tratamento visual), cada um já com o nome
+   certo da marca. Mostra o alcance completo da pesquisa sem precisar de 10
+   fotos — só as 4 mais fortes viram destaque.
+
 3. **Onboarding — Filmstrip** (`2252:183`) — 5 telas em sequência (Bem-vindo →
    Primeiro uso → Escaneamento → Pesagem+Pagamento → QR final), inserido logo
    após Design e Prototipação.
+
+   **Atualização (2026-09-15):** cresceu pra 6 telas (Matheus adicionou "6.
+   Saindo da loja", `2318:1843`). O container (`2318:1852`, frame manual sem
+   auto-layout) sofreu o bug de corrupção de auto-layout ao tentar arrumar —
+   reconstruído do zero como `2333:170` via `createAutoLayout` +
+   `appendChild` (ver técnica documentada abaixo em "bug recorrente de
+   auto-layout"). Resultado: 6 colunas de 195px, gap 24px, x = 0/219/438/657/
+   876/1095, sem overlap.
+
+   No mesmo pedido, tentei trocar `scaleMode` das 6 image placeholders de
+   `FIT` pra `FILL` achando que resolvia o desalinhamento label↔imagem —
+   **Matheus corrigiu: tem que ser `FIT`, pra não cortar as bordas dos
+   wireframes**. Revertido pra `FIT` em todas as 6. Trade-off aceito: como o
+   container (184px largura) é mais largo que a proporção de tela de celular,
+   sobra pillarbox nas laterais da imagem em FIT, e a legenda fica alinhada
+   à borda esquerda do container (não à borda visível da imagem) — não é bug,
+   é o preço de não cortar conteúdo. Se algum dia quiser as duas coisas
+   (sem corte E legenda alinhada à imagem), a solução é colunas de largura
+   variável por proporção de cada imagem, não grid uniforme.
 4. **Crazy 8's** — Matheus trocou a grade de 6 sketches que eu fiz por 1
    único placeholder (vai fazer bloco de fotos da técnica separadamente).
    Layers renomeadas pra bater: "01 · Crazy 8's" / "02 · Mid-fi" / "03 ·
@@ -467,6 +517,78 @@ nas Soluções):
    393px pra 288.5px cada (mesmo gap 24px) pra caber tudo nos 1226px de
    largura sem estourar. Esse 4º placeholder é onde entra o UI Design final
    (Square v2), separado das 3 primeiras etapas do processo real.
+4a-i. **Regra confirmada (2026-09-15):** noise effect (ink4%+MONOTONE) é só
+   pra placeholders vazios, sem imagem. Fotos reais já coladas **não** levam
+   o noise por cima.
+
+4a-ii. **Bug do círculo de censura, arquivo privado** (`2WJo488vVIQUVjSsgspVcb`
+   não — esse foi no `srfFKPHCUBOrQ1rHCGXsum`, área solta em x≈-11381,
+   y≈6840, fora do fluxo do case): ao rebuildar o clip-frame de recorte
+   (técnica de "Foto — recortada (censura)"), o `insertChild` no parent
+   errado acabou juntando o frame novo dentro de um GROUP vizinho não
+   relacionado ("Group 1" com "image 75", outra foto da mesma área solta).
+   Sintoma: círculo de censura sumiu (ficou cortado fora da área visível) e
+   o frame encolheu de 787×1052 pra 613×966. Corrigido: extraído o clip
+   frame de volta pro nível da page, redimensionado pra bater exatamente
+   com o tamanho atual da foto (755×1009), reposicionado em -11381,6840.
+   **Lição:** depois de mover um node com `insertChild` numa área com muitos
+   grupos soltos de mesmo nome genérico ("Group 1", "image N"), sempre
+   conferir com `get_screenshot` no node isolado antes de considerar
+   resolvido — os IDs continuam válidos mas a árvore pode ter mudado de
+   forma inesperada.
+
+4a-iii. **Bg color padronizado na galeria Design e Prototipação** (`2326:170`):
+   o estágio "02 · Papel" (`2318:1886`) tinha uma cor sólida vermelha legada
+   (variant.com, rgb ~0.81/0.19/0.19) atrás do fill de imagem — os outros 3
+   estágios (Crazy 8's, High-fi, UI Design) só têm o fill de imagem, sem cor
+   de fundo. Removida a cor sólida solta pra ficar consistente.
+
+4a. **Crazy 8's — foto escolhida** (2026-09-15): Matheus colocou 3 opções de
+   composição lado a lado (`2318:1918` "Section 1", frames `2318:1915/1916/
+   1917`, cada uma empilhando 2 fotos: mão desenhando em papel em branco +
+   mão desenhando o sketch real). Comparei as 3 — a única diferença real é o
+   crop. Escolhida a **Frame 4** (`2318:1917`, imageHash
+   `d6ac2eda8fbd1c8139c53553056e53f7b5cbfb60`): mão+lápis+papel bem
+   enquadrados no topo, e é a única onde o sketch (grids, anotações) fica
+   totalmente legível embaixo — as outras duas cortam a mão ou o conteúdo do
+   rascunho. Aplicada no placeholder do estágio Crazy 8's (`2272:172`),
+   mantendo FIT + filtro preto-e-branco (`saturation: -1`) já usado ali.
+   Frame renomeado de "Image Placeholder — UI Design (v2)" (nome antigo,
+   desatualizado) pra "Image Placeholder — Crazy 8's".
+
+5a-i. **Banner de wireframes v1 — REFEITO (2026-09-15):** a colagem de 7
+   cards (App/Totem por estágio, ver 5a abaixo) foi excluída — Matheus notou
+   que banners full-bleed de referência (ex: "image 74" no moodboard,
+   billysweeney-style) mostram **um protótipo conectado só**, com as setas
+   de fluxo do Figma visíveis, não uma grade de telas cortadas. Print manual
+   feito por Matheus direto do arquivo privado (`2WJo488vVIQUVjSsgspVcb`,
+   páginas "Protótipo App" `12036:13289` e "Protótipo Totem" `12036:11345`,
+   excluindo o cluster de biblioteca de componentes) e colados como
+   `proto-app`/`proto-totem` (1920×799 cada). Reconstruído como **2 banners
+   full-bleed separados** (`2362:884` App, `2362:885` Totem), inseridos logo
+   depois de "Design e Prototipação" e antes de "Onboarding — Filmstrip" —
+   mostra a arquitetura completa do protótipo testável antes de entrar no
+   detalhe (filmstrip) e nos testes. Lição: pra prints "um protótipo só" tipo
+   referência, **sempre pedir export/print manual do Figma nativo** (as
+   setas de conexão de prototype são um overlay do editor, não aparecem em
+   export via API/MCP) em vez de tentar montar a partir de fills isolados.
+
+5a. **Banner de wireframes v1 (OBSOLETO — ver 5a-i)** (`2345:190`, era `2173:263` "div.w-full") —
+   estava vazio (rect sem fill), sobrando entre "Totens no dia a dia" e
+   "Blueprint Crop". Decisão (2026-09-15): Matheus tem os processos nativos
+   Figma do case privado (`2WJo488vVIQUVjSsgspVcb`) — low/mid/hi-fi +
+   protótipo, separados por dispositivo (App e Totem). Como esse conteúdo é
+   material de síntese/processo (não pesquisa de campo), **movido pra depois
+   de "Jobs To Be Done"**, virando a ponte de transição pra "Design e
+   Prototipação". Reconstruído como colagem em 2 trilhos paralelos (App:
+   Low-fi Teste 01 → Hi-fi Teste 02 → Protótipo; Totem: Mid-fi Teste 01 →
+   Mid-fi Teste 02 → Hi-fi Teste 03 → Protótipo), full-bleed 1920px, cada
+   card com label (Instrument Sans 12px, ink 65%) + placeholder ink4%+noise
+   no padrão do site. DS Square v2 e wireframes v2 (polidos) **não** entram
+   aqui — ficam reservados pro estágio "UI Design" da galeria Design e
+   Prototipação (`2272:170`), que já existe como template. Falta: Matheus
+   colar os prints reais dos 7 slots.
+
 5. **Sequência do Sistema** (`2253:174`, renomeado de "Mais Telas do
    Sistema") — reconstruído duas vezes: primeiro como grid uniforme 6×3 (18
    slots), depois **reconstruído de novo** como sequência de 3 estágios de
