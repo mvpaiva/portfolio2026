@@ -1,0 +1,14 @@
+.wrap {
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 16px 0 var(--space-2);
+  display: flex;
+  justify-content: center;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  max-width: 1489px;
+  height: auto;
+}

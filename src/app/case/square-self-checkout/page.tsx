@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { Hero } from "@/components/case/blocks/Hero";
+import { HeroBanner } from "@/components/case/blocks/HeroBanner";
 import { Contexto } from "@/components/case/blocks/Contexto";
+import { StatsSection } from "@/components/case/blocks/StatsSection";
 import { Pesquisa } from "@/components/case/blocks/Pesquisa";
+import { GhostMarker } from "@/components/case/GhostMarker";
 
 export const metadata: Metadata = {
   title: "Square Self-Checkout — Matheus Paiva",
@@ -26,7 +29,10 @@ export default function SquareSelfCheckoutPage() {
   return (
     <main>
       <Hero />
+      <HeroBanner />
       <Contexto />
+      <StatsSection />
+      <GhostMarker>Descoberta</GhostMarker>
       <Pesquisa />
     </main>
   );

@@ -1,0 +1,22 @@
+.section {
+  max-width: 1290px;
+  margin: 0 auto;
+  padding: var(--space-16) var(--gutter-desktop);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-8);
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: var(--space-8) var(--gutter-mobile);
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-8) var(--space-4);
+  }
+}
