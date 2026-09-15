@@ -21,12 +21,36 @@ Filmstrip, banners de solução).
   reais do variant.com (invenção minha). Os dois voltaram a ser texto
   puro, confiando no scrim + no reposicionamento pra legibilidade, não
   numa caixa de fundo.
+- **TOC adaptativo (2026-09-16, ponto 3 — "indicador minimalista...
+  expandido apenas no hover"):** como o conteúdo é fluido (não tem
+  margem fixa), a lista completa do TOC sobrepõe texto corrido em
+  qualquer largura de viewport abaixo de ~1600px — confirmado por
+  medição, não é caso isolado (a distância entre a borda direita do TOC
+  e a borda do conteúdo é praticamente constante nesse regime). Em vez
+  de esconder o TOC abaixo de um breakpoint fixo (perderia a lista em
+  faixa grande de larguras) ou colapsar sempre (perde legibilidade em
+  telas largas), `TableOfContents.tsx` faz **detecção de colisão real**:
+  a cada scroll/resize, verifica se algum elemento de conteúdo real
+  (parágrafo, imagem, link — nunca wrappers de layout tipo `Reveal`/
+  `BlockLift`, que têm largura total mesmo com conteúdo visível mais
+  estreito, mesmo bug já corrigido uma vez no hover do spotlight) invade
+  a "danger zone" à esquerda do TOC, na faixa vertical onde ele está.
+  Se sim, colapsa pra ticks estreitos (`max-width:16px`, texto cortado);
+  expande de volta no hover/focus (permite "espiar" mesmo em conflito,
+  como o variant.com sugeriu). Transição calma (`0.5s
+  cubic-bezier(0.2,0,0.2,1)`, mesmo ritmo do spotlight/lift). Volta ao
+  estado normal (lista completa) assim que o conflito termina — testado
+  em 1920px (sem colisão, expandido) e 1150px (colide com o subhead do
+  Hero, colapsa corretamente).
 - **Não aplicado ainda:** `mix-blend-mode: difference` (ponto 4, técnica
   alternativa universal mas com ressalva de ficar "psicodélica" em cores
   médias — considerar caso o scrim não seja suficiente em blocos
   futuros mais escuros/contrastados), TOC como drawer/bottom-sheet no
-  mobile (ponto 5 — hoje o TOC simplesmente some abaixo de 1024px), área
-  de toque 48×48px no Voltar mobile (ainda não conferida/ajustada).
+  mobile (ponto 5 — hoje o TOC simplesmente some abaixo de 640px), área
+  de toque 48×48px no Voltar mobile (ainda não conferida/ajustada),
+  mesma detecção de colisão adaptativa aplicada ao Voltar (hoje só tem
+  o scrim do banner do Hero — outros blocos futuros com imagem podem
+  precisar do mesmo tratamento).
 
 <details>
 <summary>Texto completo da segunda opinião (variant.com, 2026-09-16)</summary>

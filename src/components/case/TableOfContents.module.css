@@ -4,15 +4,20 @@
    live node 2026-09-16), 13px Regular, ink 50%.
 
    Moved from left to RIGHT margin 2026-09-16 (variant.com second
-   opinion, point 3): a persistent TOC and the persistent "Voltar"
-   button shouldn't compete for the same corner/column — Voltar stays
-   top-left, TOC moves to its own column on the right so neither reads
-   as fighting the other for the same visual lane.
+   opinion, point 3) so it doesn't compete with "Voltar" for the same
+   corner. Plain text, no background box (also point-3-adjacent —
+   reverted an improvised bordered/blurred chip).
 
-   Reverted the bordered/blurred chip box (2026-09-16) — wasn't actually
-   part of the variant.com guidance, that was me improvising. Plain
-   text, matching Figma; relies on the dead-zone/scrim approach on any
-   image content instead of a background box on the control itself. */
+   Adaptive collapse (2026-09-16, variant.com point 3, "indicador
+   minimalista... expandido apenas no hover"): because our content width
+   is fluid (not a fixed-margin layout), the full text list would
+   permanently overlap running text below ~1600px viewport — confirmed
+   by measurement, not a one-off glitch. Rather than always collapsing
+   (loses the readable list on wide screens) or always expanding (breaks
+   on narrower ones), TableOfContents.tsx detects real collision against
+   whatever's actually under the TOC's column at its current scroll
+   position and toggles between the two — this file only defines the
+   two visual states + a calm crossfade between them. */
 .toc {
   position: fixed;
   right: 60px;
@@ -21,6 +26,7 @@
   z-index: 50;
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
   gap: var(--space-3);
 }
 
@@ -31,6 +37,7 @@
   line-height: 1.5;
   color: var(--color-ink);
   opacity: 0.5;
+  white-space: nowrap;
   transition: opacity 0.3s ease-in-out;
 }
 
@@ -39,10 +46,29 @@
   opacity: 1;
 }
 
-/* Hidden below the desktop breakpoint where it can't sit comfortably in
-   the right margin without overlapping content — same reasoning as the
-   spec's "no horizontal scroll at any width" rule. */
-@media (max-width: 1024px) {
+/* Collapsed state: each link shrinks to a short tick — width animates
+   via max-width (a plain `width` transition on an inline/auto-sized
+   element doesn't interpolate), text clipped, at the calm 0.5s pace
+   used for the block-spotlight/lift cues rather than a snappy UI
+   toggle. The whole nav re-expands on hover/focus-within so the labels
+   are still reachable even while "in conflict". */
+.toc.collapsed .link {
+  max-width: 16px;
+  overflow: hidden;
+  transition:
+    max-width 0.5s cubic-bezier(0.2, 0, 0.2, 1),
+    opacity 0.3s ease-in-out;
+}
+
+.toc.collapsed:hover .link,
+.toc.collapsed:focus-within .link {
+  max-width: 140px;
+}
+
+/* Hidden below the point content stops sharing this row with the nav at
+   all (mobile: TOC would need a drawer pattern instead, not built yet —
+   see benji-taylor-reference.md). */
+@media (max-width: 640px) {
   .toc {
     display: none;
   }
