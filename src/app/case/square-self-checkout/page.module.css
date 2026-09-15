@@ -1,0 +1,13 @@
+/* Page-level top margin before Hero — Hero's own frame has paddingTop:0
+   in Figma (the visual gap comes from the page, not the block), and this
+   also clears the fixed "Voltar" BackLink (top:60px) from overlapping
+   the Eyebrow text. */
+.main {
+  padding-top: var(--space-32);
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding-top: var(--space-24);
+  }
+}

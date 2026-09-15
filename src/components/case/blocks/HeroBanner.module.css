@@ -1,7 +1,11 @@
+/* Copy source: Figma node 2239:179 "div.w-full" — now aligned to the
+   same 1290px frame (32px padding each side, 1226px content) as every
+   other block, tightened to 64px top/bottom padding (space-16) around
+   the image. */
 .wrap {
-  max-width: 1920px;
+  max-width: 1290px;
   margin: 0 auto;
-  padding: 16px 0 var(--space-2);
+  padding: var(--space-16) var(--gutter-mobile);
   display: flex;
   justify-content: center;
 }
@@ -9,6 +13,12 @@
 .image {
   display: block;
   width: 100%;
-  max-width: 1489px;
+  max-width: 1226px;
   height: auto;
+}
+
+@media (min-width: 768px) {
+  .wrap {
+    padding: var(--space-16) 32px;
+  }
 }

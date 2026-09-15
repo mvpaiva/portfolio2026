@@ -1,22 +1,19 @@
-/* Content width (corrected 2026-09-15): desktop is a fixed 1290px frame
-   (confirmed pixel-perfect against Figma node 2173:174 — originally
-   1280px/max-w-7xl per the variant.com breakdown, adjusted to 1290px to
-   align with the Figma grid). 966px/770px were from a DIFFERENT site
-   (mvpaiva.com/square), brought only as a value reference — not
-   confirmed for this project, don't reuse them.
-   No fixed tablet width is confirmed anywhere (the variant.com report
-   describes the original reference as fluid with 32px gutters until it
-   hits max-w-7xl, no separate tablet fixed box) — so this is a standard
-   fluid max-width container: shrinks with the viewport keeping 32px
-   gutters, locks at 1290px once there's room. The 768px breakpoint below
-   only changes stacking (font size, Meta Grid columns), not the width
-   model itself. */
+/* Content width: fluid max-width:1290px (confirmed pixel-perfect against
+   Figma node 2173:174 — originally 1280px/max-w-7xl per the variant.com
+   breakdown, adjusted to 1290px to align with the Figma grid). No fixed
+   tablet width is confirmed anywhere, so this shrinks with the viewport
+   keeping 32px gutters and locks at 1290px once there's room.
+   Internal spacing matches Figma exactly: paddingTop:0/paddingBottom:64
+   /paddingLeft+Right:32 on the frame itself, 16px gap between every
+   top-level child, an extra 32px under the headline (its own trailing
+   padding in Figma), 23px inside Meta Grid above its items. No border/
+   divider above Meta Grid — checked directly, there's no stroke there. */
 
 .section {
   width: 100%;
   max-width: 1290px;
   margin: 0 auto;
-  padding: var(--space-24) var(--gutter-mobile) var(--space-16);
+  padding: 0 var(--gutter-mobile) var(--space-16);
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
@@ -36,7 +33,6 @@
   font-weight: 400;
   font-size: 36px;
   line-height: 1.05;
-  margin-top: var(--space-4);
 }
 
 .subhead {
@@ -53,9 +49,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: var(--space-8);
-  margin-top: var(--space-24);
-  padding-top: var(--space-8);
-  border-top: 1px solid var(--color-border);
+  padding-top: 23px;
 }
 
 .metaLabel {
@@ -77,7 +71,6 @@
 }
 
 .links {
-  margin-top: var(--space-16);
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
@@ -101,12 +94,12 @@
   display: none;
 }
 
-/* Stacking changes at the classic md breakpoint (768px, per the
-   variant.com reference) — width stays fluid/max-width throughout, only
-   type scale and Meta Grid columns change here. */
+/* Stacking changes at the classic md breakpoint (768px) — width stays
+   fluid/max-width throughout, only type scale and Meta Grid columns
+   change here. */
 @media (min-width: 768px) {
   .section {
-    padding: var(--space-32) 32px var(--space-16);
+    padding: 0 32px var(--space-16);
   }
 
   .headline {

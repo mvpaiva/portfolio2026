@@ -1,8 +1,9 @@
 import Image from "next/image";
 import styles from "./HeroBanner.module.css";
 
-// Copy source: Figma node 2239:179 "div.w-full" — a centered full-bleed
-// banner directly below Hero, separate from it.
+// Copy source: Figma node 2239:179 "div.w-full" — a centered banner
+// directly below Hero, separate from it, now displayed at the same
+// 1226px content width as every other block (was 1489px).
 export function HeroBanner() {
   return (
     <div className={styles.wrap}>

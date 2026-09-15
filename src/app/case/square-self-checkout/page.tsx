@@ -7,6 +7,7 @@ import { Pesquisa } from "@/components/case/blocks/Pesquisa";
 import { GhostMarker } from "@/components/case/GhostMarker";
 import { Reveal } from "@/components/case/Reveal";
 import { BackLink } from "@/components/case/BackLink";
+import styles from "./page.module.css";
 
 export const metadata: Metadata = {
   title: "Square Self-Checkout — Matheus Paiva",
@@ -29,7 +30,7 @@ export const metadata: Metadata = {
 // Footer, TableOfContents.
 export default function SquareSelfCheckoutPage() {
   return (
-    <main>
+    <main className={styles.main}>
       <BackLink />
       <Reveal>
         <Hero />
