@@ -1,25 +1,31 @@
 /* Page-wide block-level spotlight (confirmed 2026-09-16, additive to the
    item-level spotlight already spec'd in benji-taylor-reference.md for
-   JTBD/Próximos Passos/Stats/Field Notes/Footer): hovering ANY top-level
-   content block on the case page dims + blurs every OTHER block, giving
-   the hovered one visual focus. Same token values as the item-level
-   spec — 600ms, deliberately slow/contemplative, opacity 0.15 + blur(4px)
-   — reused for consistency rather than inventing a second timing. `main`
-   carries the plain global class `spotlightGroup` (not CSS-module-scoped)
-   so this file can target it across the module boundary. */
+   JTBD/Próximos Passos/Stats/Field Notes/Footer): hovering a top-level
+   content block dims + blurs every OTHER block, giving the hovered one
+   visual focus. `main` carries the plain global class `spotlightGroup`
+   (not CSS-module-scoped) so this file can target it across the module
+   boundary.
+
+   Fixed 2026-09-16: was triggering on `.spotlightGroup:hover`, which
+   fires as soon as the cursor is ANYWHERE inside <main> — including the
+   gaps/margins between blocks, where no .item is actually hovered. That
+   dimmed everything with no block staying focused (felt heavy, and kept
+   firing while just moving the mouse down the page). Switched to
+   `:has(.item:hover)` so the effect only activates while the cursor is
+   truly over a block. */
 .item {
   transition:
     opacity 0.6s cubic-bezier(0.2, 0, 0.2, 1),
     filter 0.6s cubic-bezier(0.2, 0, 0.2, 1);
 }
 
-:global(.spotlightGroup):hover .item:not(:hover) {
+:global(.spotlightGroup):has(.item:hover) .item:not(:hover) {
   opacity: 0.15;
   filter: blur(4px);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  :global(.spotlightGroup):hover .item:not(:hover) {
+  :global(.spotlightGroup):has(.item:hover) .item:not(:hover) {
     opacity: 1;
     filter: none;
   }
