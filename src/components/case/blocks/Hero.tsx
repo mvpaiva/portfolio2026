@@ -15,21 +15,21 @@ export function Hero() {
       </p>
 
       <div className={styles.metaGrid}>
-        <div>
+        <div className={styles.metaItem}>
           <p className={styles.metaLabel}>Papel</p>
           <p className={styles.metaValue}>Product Designer (solo)</p>
         </div>
-        <div>
+        <div className={styles.metaItem}>
           <p className={styles.metaLabel}>Duração</p>
           <p className={styles.metaValue}>Fev–Jul 2026</p>
         </div>
-        <div>
+        <div className={styles.metaItem}>
           <p className={styles.metaLabel}>Ferramentas</p>
           <p className={styles.metaValue}>
             Figma · Miro · Google Forms · Optimal Workshop · Treejack · Maze
           </p>
         </div>
-        <div>
+        <div className={styles.metaItem}>
           <p className={styles.metaLabel}>Setor</p>
           <p className={styles.metaValue}>Autoatendimento</p>
         </div>
