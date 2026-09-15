@@ -5,6 +5,8 @@ import { Contexto } from "@/components/case/blocks/Contexto";
 import { StatsSection } from "@/components/case/blocks/StatsSection";
 import { Pesquisa } from "@/components/case/blocks/Pesquisa";
 import { GhostMarker } from "@/components/case/GhostMarker";
+import { Reveal } from "@/components/case/Reveal";
+import { BackLink } from "@/components/case/BackLink";
 
 export const metadata: Metadata = {
   title: "Square Self-Checkout — Matheus Paiva",
@@ -28,12 +30,23 @@ export const metadata: Metadata = {
 export default function SquareSelfCheckoutPage() {
   return (
     <main>
-      <Hero />
-      <HeroBanner />
-      <Contexto />
-      <StatsSection />
+      <BackLink />
+      <Reveal>
+        <Hero />
+      </Reveal>
+      <Reveal>
+        <HeroBanner />
+      </Reveal>
+      <Reveal>
+        <Contexto />
+      </Reveal>
+      <Reveal>
+        <StatsSection />
+      </Reveal>
       <GhostMarker>Descoberta</GhostMarker>
-      <Pesquisa />
+      <Reveal>
+        <Pesquisa />
+      </Reveal>
     </main>
   );
 }
