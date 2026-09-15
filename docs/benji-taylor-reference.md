@@ -206,6 +206,100 @@ calma, autoritária e profundamente legível. "Anti-design editorial."
   escaneáveis sem o efeito — adicionar seria decoração sem reduzir esforço
   cognitivo real. Reavaliar se algum bloco futuro tiver uma lista genuinamente
   longa.
+  - **Versão evoluída (2026-09-14, sessão 2), pronta mas sem aplicação
+    ainda:** Matheus trouxe uma referência externa ("Radical Restraint
+    Wireframe", mobile) com blur de verdade (não só opacidade) nos itens não
+    focados. Padrão fechado, adaptado pra funcionar em touch (hover não
+    existe antes do tap em mobile):
+    - **Desktop:** hover no item → blur breve e calmo nos demais.
+    - **Mobile:** tap no item ativa o mesmo estado de foco (substitui hover,
+      que não existe em touch); tap em outro item troca o foco; tap fora ou
+      no mesmo item de novo desfaz o blur.
+    - Trabalho de código (real hover/tap state + `filter: blur()`), Figma só
+      representa o estado de repouso.
+    - **Decisão revertida (mesma sessão, minutos depois):** Matheus trouxe
+      screenshot do site de origem (variant.com/shared/...) mostrando o
+      efeito em blocos tão curtos quanto os nossos (01 Global Navigation, 02
+      Data Stream, 03 System Preferences — 1-2 linhas de descrição cada) e
+      funcionando bem mesmo assim. O valor não é "lista longa demais pra
+      escanear" (esse motivo de rejeição original estava errado) — é a
+      qualidade calma/deliberada da própria transição (blur com um delay
+      perceptível até o estado final, não instantâneo). Bate com o pedido
+      recorrente do Matheus por "mais vida sem virar decoração" (ver
+      discussões sobre tipografia grande e placeholders de imagem).
+
+    - **Escopo final fechado:** não é 1 grupo global de spotlight pra página
+      inteira (hover num item da Solução 01 blurrando o Footer não faz
+      sentido) — é **cada bloco de lista virando seu próprio grupo
+      independente**, replicando `.totem-group` por bloco: JTBD (3
+      entradas), Próximos Passos (4), Stats Section (4 números), Field Notes
+      (6 links + 1 mudo), Footer — Metadados (5 campos). Cada um isolado —
+      hover num item de um grupo nunca afeta outro grupo.
+    - **100% aditivo, não substitui nada:** o sticky da coluna de texto nos
+      blocos de Solução (§13.2) continua exatamente como está. A animação de
+      "aparecer e subir" ao rolar a página (fade + translateY na entrada de
+      cada bloco, como em mvpaiva.com/square) também continua — spotlight é
+      só mais uma camada, não troca gatilho nem remove nenhuma interação
+      existente.
+    - **Spec técnica exata (preservar valores ao implementar em código):**
+      ```css
+      .spotlight-group:hover .spotlight-item:not(:hover) {
+        opacity: 0.15;
+        filter: blur(4px);
+      }
+      /* token global de transição — 600ms, deliberadamente lento/contemplativo,
+         nunca "snappy" — mesmo valor usado em qualquer mudança de estado
+         desses itens */
+      --transition: 0.6s cubic-bezier(0.2, 0, 0.2, 1);
+      ```
+      Link hover (`translateX(4px)`) é aditivo ao sublinhado que já usamos —
+      não conflita com WCAG 1.4.1, só acrescenta um "empurrão" de 4px.
+
+      **Regra fechada pra ONDE aplicar o deslocamento** ("nunca descolar o
+      link da vizinhança de texto" — produz 2 resultados diferentes
+      dependendo do contexto, não é inconsistência):
+      - **Link solto** (Field Notes — "Fricção no escaneamento" etc.;
+        captions "0X · Problema original" acima de cada Solução; Miro — "Ver
+        a pesquisa completa no Miro") → desloca o **texto inteiro** 4px.
+        Seguro porque não tem vizinho de frase corrida pra descolar — são
+        itens numa lista com gap ou uma linha própria, não palavras dentro
+        de uma sentença.
+      - **Link dentro de frase corrida** (bio da Home — "Square",
+        "LinkedIn", "X", "CV" no meio de uma sentença) → só o sublinhado
+        escurece no hover, **sem deslocamento nenhum**. Deslocar a palavra
+        aqui descolaria ela visualmente da frase ao redor (efeito de glitch,
+        não de polish).
+      - **Removida a seta líder** ("→ Ver a pesquisa completa no Miro" →
+        "Ver a pesquisa completa no Miro") — Matheus identificou que era
+        geração de IA, não uma decisão real. Isso também elimina a
+        necessidade da categoria "seta desloca sozinha" (padrão do Benji) —
+        sem seta, não tem o que isolar; o link inteiro desloca.
+    - Ainda não implementado — depende de código (hover real), mas escopo,
+      grupos-alvo e não-substituição estão fechados.
+  - **Linhas diagonais CSS como placeholder** — variação do `ink4%+noise` já
+    usado nos placeholders de imagem, trazida na mesma referência. Vale como
+    alternativa pra spots sem nenhuma referência de conteúdo ainda definida,
+    não como substituição do padrão atual.
+  - **Scroll indicator fixo de 1px — aprovado por Matheus, adicionar.**
+    Candidato forte pro case (16.000+px de altura, TOC mostra seção mas não
+    "quanto falta"). Mesma lógica da hairline de 1px do Benji (chrome mínimo
+    genuíno). Spec técnica da referência (preservar ao implementar):
+    ```js
+    const scrolled = (winScroll / height) * 80; // 80 = altura da trilha em px
+    thumb.style.top = scrolled + 'px';
+    ```
+    ```css
+    .scroller-thumb { transition: top 0.1s linear; } /* rápido, não os 600ms do spotlight */
+    ```
+    Linha de 1px flutuando verticalmente à direita da tela, sem barra de
+    scroll nativa visível — "leitor de progresso quase subliminar". Ainda não
+    implementado — é trabalho de código (scroll tracking real).
+
+  - **Cursor crosshair — já confirmado, não é novidade.** A referência usa
+    `cursor: crosshair` global, que já é decisão nossa desde a spec original
+    da Home (§11: "cursor: crosshair como cursor padrão em toda a página...
+    pointer em todo elemento interativo"). Bate certinho, sem mudança
+    necessária.
 - **Pequeno deslocamento da seta (`→`) no hover dos links** — complementa o
   sublinhado que já usamos. Ainda não aplicado (depende de implementação em
   código, já que Figma não anima).
@@ -260,13 +354,225 @@ Tudo no frame duplicado `2173:172`, página original ainda intocada:
   (x:60, margem esquerda) mas fixo no topo da página (não acompanha
   scroll), agrupando visualmente sem misturar função.
 
+## Verificação empírica no benji.org real (2026-09-14, sessão 2)
+
+Matheus pediu pra decidir a questão do TOC/Voltar a partir do site real, não só
+da extração acima. Naveguei até `benji.org/drawesome` (sub-página de writing,
+estrutura de coluna esquerda + conteúdo — mais parecida com uma case page que a
+home). Achado: "← Index" e a lista de seções ficam na mesma coluna, empilhados
+com gap, mas são dois elementos DOM separados (nunca um item dentro da lista) —
+confirma a recomendação da seção anterior. A coluna inteira é sticky desde o
+início do scroll, sempre visível, sem círculo flutuante/blur/hover-reveal. Isso
+**invalida qualquer suposição de trigger flutuante circular** — não existe no
+site real. Item ativo da lista fica ink 100%/bold (scrollspy); "Index" nunca
+muda de peso. "Index" usa texto simples, não itálico serifado.
+
+**Importante, corrigido depois:** o padrão de trigger flutuante circular com
+blur não é invenção nossa — **vem do case-page original do variant.com**
+(`srfFKPHCUBOrQ1rHCGXsum`, node `2:546`) e Matheus estava testando se o TOC
+estático seria mais interessante agora que estamos refinando. Ou seja: **essa
+decisão (TOC estático vs. trigger flutuante) continua em aberto**, não
+resolvida — não editar `visual-language-specification.md` sobre isso sem
+confirmar com Matheus primeiro (já errei isso uma vez nesta sessão e revertri).
+
+O botão "Voltar" (`2173:534`) já estava posicionado corretamente (x:60, fixo no
+topo, label-caps) — não precisou de mudança no Figma.
+
+## Limpeza sistemática de cores (2026-09-14, sessão 2)
+
+Padrão recorrente encontrado: vários blocos ainda usavam tokens de cor
+herdados do `variant.com` (`color/orange/89`, `color/red/60`, `color/red/20`,
+`color/grey/91`) que não fazem parte do sistema atual (monocromático: ink +
+sage como único acento + terracota só pra erro/exclusão, nunca decorativo).
+Corrigidos, todos para `ink 10%` (hairlines/dividers) ou `ink 65%`/`ink 100%`
+(texto), nunca cor:
+
+- Hero (`2173:180` Meta Grid) — hairline removida (separava conteúdo do mesmo
+  tema, chrome desnecessário — decisão diferente da limpeza de cor, foi remoção).
+- Stats Section (`2173:212`) — stroke `grey/91` → `ink 10%`.
+- Metodologia (`2173:378`) — link "Ver a pesquisa completa no Miro" sem
+  underline (quebrava WCAG 1.4.1) → underline adicionado.
+- Testes (`2173:432`, "Achado principal") — fundo `orange/89 30%` + borda
+  `grey/91` → neutro `ink 4%`/`ink 10%`. Bloco depois ficou hidden (redundante
+  com o parágrafo acima, decisão de Matheus).
+- Intro das Soluções (`2173:439`) — fundo sólido `orange/89` cobrindo o bloco
+  inteiro → removido; bloco depois ficou hidden (CTA grande virou discreto,
+  ver seção seguinte).
+- Jornada do Usuário (`2227:640`, bloco duplicado com conteúdo
+  Escaneamento/Verificação/Saída) — labels "Dor:" em `color/red/60` → `ink
+  65%`; hairline acima delas em `color/red/20` → `ink 10%`. Bg dos 3 cards
+  (`bg-page-bg`) mantido intocado a pedido de Matheus (mesma cor do fundo,
+  proposital).
+
+## Autolayout e timeline do Blueprint Stages (2026-09-14, sessão 2)
+
+`2173:271` "Blueprint Stages" (dentro do Blueprint Crop) tinha `FILL` +
+padding assimétrico nas 3 colunas (resquício de "Divider — Vertical" que
+Matheus já tinha apagado) — corrigido pra `FIXED` 260px iguais + gap 32px
+(mesmo valor do grid de 4 colunas da Metodologia). **Nunca recriar as
+divisórias verticais** — foram removidas de propósito.
+
+O "Divider — Horizontal" (linha no topo, y:22 dentro do bloco) é uma
+**timeline que passa por trás dos números** "01/02/03" (z-order: divider é o
+primeiro filho, fica atrás) — não é bug, é o design pretendido. Já tentei
+"corrigir" isso uma vez (adicionando padding-top pra separar) e estava errado
+— revertido. Se precisar mexer no espaçamento do divider de novo, **só ajustar
+a posição Y dele**, nunca adicionar padding que empurre o conteúdo pra longe —
+ele deve continuar cruzando visualmente por trás dos numerais.
+
+## Convenção de placeholder de imagem (2026-09-14, sessão 2)
+
+Matheus decidiu **não seguir o "zero chrome" do Benji ao pé da letra** pros
+placeholders de imagem — quer algo com mais "vida" sem virar decoração
+colorida. Convenção fechada:
+
+```
+fill: ink 4% (rgb 0.961/0.949/0.941, mesma família de cor do resto do sistema)
+effect: NOISE (Plugin API), noiseType MONOTONE, noiseSize 1, density 0.5,
+        color ink a=0.06 (0.08 pra fotos de contexto, ligeiramente mais forte)
+```
+
+Sem cor nova, sem borda, sem sombra — só textura monocromática. Aplicado em
+todos os placeholders novos criados nesta sessão (ver lista abaixo). Receita
+de código funcional (Plugin API `figma.createFrame()` + `effects`), útil pra
+não redescobrir o formato exato do objeto `NoiseEffect` (é sensível — testado
+por tentativa e erro, ver histórico se precisar).
+
+## Novos blocos criados (2026-09-14, sessão 2)
+
+A estrutura original já tinha todos os 9 placeholders planejados preenchidos
+com material real — as lacunas reais eram duas seções que nunca tiveram
+espaço reservado, mais três blocos de enriquecimento (material genuíno que
+já existia mas não estava sendo usado — 24 wireframes exportados, só 7 usados
+nas Soluções):
+
+1. **Testes** (`2173:413`) — 100% texto antes, zero prova visual numa seção
+   que existe pra provar rigor. Adicionadas 2 fotos lado a lado (não
+   empilhadas — testado empilhado primeiro, ficava com a Label Column vazia
+   por ~800px): "Foto — Rodada 1 (protótipo em papel)" e "Resultado real —
+   Tree Testing (Treejack)".
+2. **Panorama Competitivo** (`2248:178`) — bloco novo, inserido entre
+   Pesquisa e Foto de Campo (dentro do fluxo do `div#case-page`, que é
+   auto-layout vertical — inserir com `insertChild` no índice certo, nunca
+   mexer manualmente em y). 3 colunas: Carrefour / Extra / Walmart.
+3. **Onboarding — Filmstrip** (`2252:183`) — 5 telas em sequência (Bem-vindo →
+   Primeiro uso → Escaneamento → Pesagem+Pagamento → QR final), inserido logo
+   após Design e Prototipação.
+4. **Crazy 8's** — Matheus trocou a grade de 6 sketches que eu fiz por 1
+   único placeholder (vai fazer bloco de fotos da técnica separadamente).
+   Layers renomeadas pra bater: "01 · Crazy 8's" / "02 · Mid-fi" / "03 ·
+   High-fi" (o texto visível já tinha sido trocado por Matheus, só as layers
+   estavam desatualizadas). Depois disso, **adicionada uma 4ª etapa "04 · UI
+   Design"** no fim da galeria (`2173:403`) — as 4 colunas foram encolhidas de
+   393px pra 288.5px cada (mesmo gap 24px) pra caber tudo nos 1226px de
+   largura sem estourar. Esse 4º placeholder é onde entra o UI Design final
+   (Square v2), separado das 3 primeiras etapas do processo real.
+5. **Sequência do Sistema** (`2253:174`, renomeado de "Mais Telas do
+   Sistema") — reconstruído duas vezes: primeiro como grid uniforme 6×3 (18
+   slots), depois **reconstruído de novo** como sequência de 3 estágios de
+   fluxo (Chegada e Escaneamento / Pesagem e Verificação / Pagamento e Saída),
+   cada um com 1 foto de contexto de uso maior (totem na loja, scan com
+   celular, fila de saída) + 5 wireframes menores — inspirado nas colagens do
+   moodboard (billysweeney.com, image 9/12/32, Group 1), não mais grid solto.
+
+**`div#case-page` é auto-layout vertical com itemSpacing 0** — sempre que um
+bloco cresce/encolhe, tudo abaixo recalcula sozinho automaticamente. Nunca
+fazer shift manual de y em blocos irmãos (já tentei uma vez sem necessidade).
+
+## Moodboard organizado (`2247:679`, página separada "moodboard - temas")
+
+Cópia duplicada do moodboard original (`2243:409`), organizada em 8 Sections
+nomeadas por seção do case: Hero, Blueprint Crop, Testes, Benchmark, Galeria
+de Wireframes, Blocos de Solução, Fotografia/Retrato, UI Diversos (não
+alinhado). As ~73 imagens restantes foram TODAS distribuídas (por pedido
+explícito de Matheus: "independente se está alinhado ou não") usando
+heurística de posição X — não é curadoria perfeita, é ponto de partida. Só 2
+clusters foram verificados visualmente como genuinamente alinhados ao nosso
+sistema (P1 — scooter elétrico; Momentous — suplemento): fundo off-white,
+fotografia de produto sem filtro de cor, tipografia preta sem serifa.
+
+## Achado importante: v2 UI vs. wireframes reais do processo (2026-09-14, sessão 2)
+
+Matheus esclareceu que o redesign visual "Square v2" (as telas fotografadas —
+garrafa de vinho, "Welcome to Square", "$142.80" etc., já usadas em todos os
+Blocos de Solução, Design e Prototipação e Filmstrip) **veio DEPOIS do projeto
+concluído** — é um refinamento visual posterior, não as telas reais testadas
+com usuário. As telas reais do processo (paper → mid-fi → high-fi) estão no
+arquivo `2WJo488vVIQUVjSsgspVcb` (Case---Square-Privado), nodes `12036:13289`
+(mid-fi) e `12036:11345` (high-fi) — essas SIM geraram os dados citados no
+texto do case ("40% escolheram errado... com ela: zero", "participante P5
+recusou o CPF...").
+
+**Isso explica o inglês nas telas** que eu tinha flagado várias vezes sem
+saber a causa — são do v2, não do processo original.
+
+**Decisão de Matheus (não seguida a recomendação inicial de separar/mover
+v2 pro fim):** manter v2 em destaque (vai usar até no Hero banner), mas
+emparelhar com as telas reais do processo em formato **Antes/Depois**,
+inspirado em `leahkim.design/case/table-redesign` (toggle — rejeitado, exige
+JS/interatividade que o resto do case não tem) e `emnuel.xyz/ivella-*`
+(carrossel — rejeitado, só faz sentido com múltiplos pares, temos 1 por
+Solução). Padrão fechado: **estático, lado a lado**, sem chrome de card
+(mesmo `ink 4%` + noise dos outros placeholders), com uma seta "→" (ink 40%,
+Instrument Sans 20px) centralizada entre os dois, sem radius (mantém quina
+reta do sistema — diferente do card `rounded-xl` do Emanuel).
+
+Aplicado nas 5 Soluções:
+- Soluções 01, 02, 05: tinham só 1 imagem (v2) → viraram Antes(wireframe
+  real, placeholder)/Seta/Depois(v2, imagem existente).
+- Solução 04: já tinha 2 imagens (Antes/Depois do fluxo de recuperação, ambas
+  v2) — só ganhou a seta entre elas, sem wireframe real adicional (evita
+  virar comparação de 3 vias).
+- **Soluções 02 e 03 (Totem) são diferentes das outras — corrigido em rodada
+  posterior.** Solução 02 ("Categoria primeiro, código nunca" / produce ID)
+  também é fluxo de Totem, não app — convertida pro mesmo padrão vertical
+  depois que Matheus apontou que o device estava errado (estava como
+  app/retrato) e colou as wireframes reais.
+
+**Mix final de device nas 5 Soluções: 2 Totem (02, 03) / 3 App (01, 04, 05).**
+Isso resolveu, de graça, o problema que motivou a criação do bloco "Sequência
+do Sistema"/"Mais Telas do Sistema" (§ mais abaixo) — o diagnóstico real
+nunca foi "falta volume de imagem", era "totem quase não aparece". Com a
+alternância já corrigida nas próprias Soluções, **o bloco de colagem
+(`2253:174`) foi escondido (`visible: false`, não deletado)** — mantê-lo
+custaria ~1300px de decoração pra resolver um problema que já não existe.
+Reavaliar 04 e 05 pra confirmar se são mesmo App (não verificado ainda). App/mobile é retrato, cabe bem em 2 colunas lado a lado. Totem
+  é paisagem (696×392) — colocar lado a lado espreme a imagem numa caixa
+  quase quadrada de 321px de largura, distorcendo a proporção real. Corrigido
+  pra **pilha vertical**: Antes em cima (largura cheia, 706px, altura
+  proporcional 696:392 ≈ 398px), seta "↓" (não "→") centralizada, Depois
+  embaixo (mesma largura cheia). **Regra geral: conteúdo retrato → lado a
+  lado; conteúdo paisagem/Totem → empilhado com seta pra baixo.** Se aparecer
+  mais algum bloco de Totem nas Soluções, aplicar o mesmo padrão vertical de
+  cara, não o lado a lado.
+
+**Os textos das telas v2 ficam em inglês por enquanto** (instrução explícita
+de Matheus — não traduzir).
+
+## Onde ficam os links secundários (Figma/Miro) — decisão fechada (2026-09-14, sessão 2)
+
+Matheus tinha colado o link do Miro duplicado (2x, texto idêntico) dentro do
+Contexto (`2173:210`), além dele já existir na Metodologia e no Footer —
+Metadados (campo "ARQUIVOS"). Removidos os 2 do Contexto. **Regra fechada:**
+- **Metodologia** — mantém o link do Miro sozinho, contextual (aparece logo
+  depois de explicar o processo, é ganho ali).
+- **Footer — Metadados** (campo "ARQUIVOS: Figma · Miro") — é o lugar certo
+  pra links "vistos com calma", mesma lógica do footer do Benji (contexto
+  ambiente pra quem já está investido, não navegação).
+- **Contexto** (topo da página) — nunca leva link de referência. Nesse ponto
+  da leitura ninguém sabe o que tem no Miro/Figma ainda pra querer ver — é
+  cedo demais, quebra a narrativa de abertura.
+
 ## Pendente
 
-- Aplicar o reposicionamento do "Voltar" (proposto, ver acima).
-- Avaliar os blocos restantes (Design e Prototipação já revisado e correto;
-  faltam Contexto — já correto — e uma passada final na Intro das Soluções
-  e Resultado, ambos já auditados e corretos na rodada anterior).
-- Depois de aprovado tudo no frame duplicado, propagar as mudanças pra
-  página original (`2030:122`).
-- Microinterações reais (seta no hover, transições) são trabalho de código
-  — Figma só representa o estado de repouso.
+- Matheus está colando as fotos reais agora — vai avisar quando terminar.
+- Decisão TOC estático vs. trigger flutuante circular continua em aberto (ver
+  seção "Verificação empírica" acima) — não resolver sozinho.
+- Telas reais do processo (`12036:11345`) ainda não foram coladas nos
+  placeholders "Antes — Wireframe mid-fi" das 5 Soluções — Matheus precisa
+  identificar qual tela de `12036:11345` bate com qual Solução antes de colar.
+- Depois de aprovado tudo no frame duplicado (`2173:172`), propagar as
+  mudanças pra página original (`2030:122`) — ainda não fizemos essa
+  propagação nesta sessão inteira, só trabalhamos no duplicado.
+- Microinterações reais (seta no hover, transições) são trabalho de código —
+  Figma só representa o estado de repouso.
