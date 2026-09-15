@@ -1,20 +1,28 @@
 /* Copy source: Figma node 2173:534 "Component 8" (variant=1) — fixed
    top-left, links back to the home frame (2:500). Same label-caps
-   treatment as the home page's nav items (page.module.css .navItem):
-   uppercase, Medium 500, 10px, tracking 0.12em, underline only on
-   hover/focus via ::after + scaleX.
+   treatment as the home page's nav items: uppercase, Medium 500, 10px,
+   tracking 0.12em, underline only on hover/focus via ::after + scaleX.
 
-   Reverted 2026-09-16: had added a bordered/blurred chip box around
-   this, which wasn't actually one of the variant.com recommendations
-   (that was me improvising) — the real guidance is a protected "dead
-   zone" + a top scrim on any image that scrolls underneath (see
-   HeroBanner.module.css), not a background box on the control itself.
-   Plain text, matching the Figma component. */
+   2026-09-16, third opinion from variant.com on this exact button: NOT
+   collision detection (too reactive/costly for a small text control) —
+   instead a lightweight always-on "ghost" backdrop (blur(4px) + bg at
+   80%) as a cheap umbrella that keeps it legible if rare content passes
+   behind it, on top of the Hero banner's scrim covering the obvious
+   case. Also: real hit area >=48x48px (invisible ::before, text stays
+   visually small) and safe-area-inset so it doesn't sit under a notch/
+   rounded corner on mobile. */
 .link {
   position: fixed;
-  top: 60px;
-  left: 60px;
+  top: calc(60px + env(safe-area-inset-top, 0px));
+  left: calc(60px + env(safe-area-inset-left, 0px));
   z-index: 110;
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 6px;
+  margin: -3px -6px;
+  background: rgba(245, 242, 240, 0.8);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   font-family: var(--font-body);
   font-weight: 500;
   font-size: 10px;
@@ -22,6 +30,19 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--color-ink);
+}
+
+/* Invisible hit-area expansion to the 48x48px minimum touch target —
+   the visible chip above stays small/quiet, this just widens what's
+   clickable/tappable. */
+.link::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 48px;
+  height: 48px;
+  transform: translate(-50%, -50%);
 }
 
 .link::after {
@@ -41,7 +62,7 @@
 
 @media (max-width: 768px) {
   .link {
-    top: 24px;
-    left: var(--gutter-mobile);
+    top: calc(24px + env(safe-area-inset-top, 0px));
+    left: calc(var(--gutter-mobile) + env(safe-area-inset-left, 0px));
   }
 }

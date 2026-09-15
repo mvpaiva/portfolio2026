@@ -25,12 +25,23 @@ const DANGER_ZONE = 224;
 // fixed once for the block-spotlight hover zone.
 const CONTENT_SELECTOR = "main :is(p, h1, h2, h3, h4, li, img, a, span):not(nav *)";
 
+// Debounced to scroll-settle rather than re-checked every frame
+// (2026-09-16, Matheus caught this): re-evaluating live during scroll
+// meant a brief gap between two blocks — or just fast scrolling — could
+// flip collapsed/expanded several times in a row, reading as jittery.
+// State now holds steady while actively scrolling and only re-evaluates
+// once motion has paused, matching the calm pacing used everywhere else
+// (and the "reative só no scrollend" idea from the original variant.com
+// note on this same conflict).
+const SETTLE_DELAY = 150;
+
 export function TableOfContents() {
   const ref = useRef<HTMLElement>(null);
   const [collapsed, setCollapsed] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    let raf = 0;
+    let timeout: ReturnType<typeof setTimeout> | undefined;
 
     function checkCollision() {
       const el = ref.current;
@@ -55,31 +66,57 @@ export function TableOfContents() {
     }
 
     function onScrollOrResize() {
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(checkCollision);
+      clearTimeout(timeout);
+      timeout = setTimeout(checkCollision, SETTLE_DELAY);
     }
 
     checkCollision();
     window.addEventListener("scroll", onScrollOrResize, { passive: true });
     window.addEventListener("resize", onScrollOrResize);
     return () => {
-      cancelAnimationFrame(raf);
+      clearTimeout(timeout);
       window.removeEventListener("scroll", onScrollOrResize);
       window.removeEventListener("resize", onScrollOrResize);
     };
   }, []);
 
   return (
-    <nav
-      ref={ref}
-      className={`${styles.toc} ${collapsed ? styles.collapsed : ""}`}
-      aria-label="Sumário do case"
-    >
-      {SECTIONS.map((section) => (
-        <a key={section.href} className={styles.link} href={section.href}>
-          {section.label}
-        </a>
-      ))}
-    </nav>
+    <>
+      <nav
+        ref={ref}
+        className={`${styles.toc} ${collapsed ? styles.collapsed : ""}`}
+        aria-label="Sumário do case"
+      >
+        {SECTIONS.map((section) => (
+          <a key={section.href} className={styles.link} href={section.href}>
+            {section.label}
+          </a>
+        ))}
+      </nav>
+
+      <button
+        type="button"
+        className={styles.mobilePill}
+        aria-expanded={mobileOpen}
+        onClick={() => setMobileOpen((open) => !open)}
+      >
+        Índice
+      </button>
+      <nav
+        className={`${styles.mobileList} ${mobileOpen ? styles.open : ""}`}
+        aria-label="Sumário do case (mobile)"
+      >
+        {SECTIONS.map((section) => (
+          <a
+            key={section.href}
+            className={styles.link}
+            href={section.href}
+            onClick={() => setMobileOpen(false)}
+          >
+            {section.label}
+          </a>
+        ))}
+      </nav>
+    </>
   );
 }

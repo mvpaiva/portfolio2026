@@ -42,15 +42,39 @@ Filmstrip, banners de solução).
   estado normal (lista completa) assim que o conflito termina — testado
   em 1920px (sem colisão, expandido) e 1150px (colide com o subhead do
   Hero, colapsa corretamente).
-- **Não aplicado ainda:** `mix-blend-mode: difference` (ponto 4, técnica
-  alternativa universal mas com ressalva de ficar "psicodélica" em cores
-  médias — considerar caso o scrim não seja suficiente em blocos
-  futuros mais escuros/contrastados), TOC como drawer/bottom-sheet no
-  mobile (ponto 5 — hoje o TOC simplesmente some abaixo de 640px), área
-  de toque 48×48px no Voltar mobile (ainda não conferida/ajustada),
-  mesma detecção de colisão adaptativa aplicada ao Voltar (hoje só tem
-  o scrim do banner do Hero — outros blocos futuros com imagem podem
-  precisar do mesmo tratamento).
+**Terceira opinião (2026-09-16) — 3 pontos fechados:**
+1. **Voltar NÃO ganhou detecção de colisão** (variant.com foi explícito:
+   "não faz sentido colapsar um botão pequeno e textual" — proteção
+   correta é arquitetural, não reativa). Em vez disso, `BackLink.module.css`
+   ganhou um fundo "fantasma" sempre ativo: `background:
+   rgba(245,242,240,0.8)` + `backdrop-filter: blur(4px)` — barato,
+   nunca pisca, cobre o caso raro de algo passar atrás fora do banner do
+   Hero (que já tem o scrim dedicado).
+2. **TOC mobile**: não virou drawer/bottom-sheet (pesado demais pro
+   ritmo da página) — virou um **pill fixo "ÍNDICE"** no canto inferior
+   direito (48px de altura, texto 11px uppercase), que expande uma
+   lista vertical simples acima dele ao tocar (fade + translateY, sem
+   animação de slide/backdrop-scrim). Abaixo de 640px.
+3. **Área de toque + safe-area no Voltar**: `::before` invisível de
+   48×48px centralizado sobre o texto (hit area real, sem mudar o
+   visual pequeno) + `env(safe-area-inset-top)`/`env(safe-area-inset-left)`
+   somados à posição fixa, pra não ficar atrás do notch/cantos
+   arredondados.
+4. **`mix-blend-mode: difference` continua não aplicado** — over-
+   engineering sem seção escura de verdade ainda. Quando existir uma
+   (o sistema já prevê `CaseSection background="ink"`), a recomendação
+   é uma classe `.nav-light` disparada por `IntersectionObserver` ao
+   entrar na seção escura, não blend-mode.
+
+**Bug pego por Matheus depois de implementado:** a detecção de colisão
+do TOC reavaliava a cada frame de scroll (`requestAnimationFrame`), então
+um vão pequeno entre dois blocos — ou só scroll rápido — podia fazer o
+TOC colapsar/expandir várias vezes em sequência, brusco. Corrigido:
+`TableOfContents.tsx` agora faz **debounce de 150ms** — limpa o timeout
+a cada evento de scroll/resize e só reavalia a colisão depois que o
+movimento "assenta". Estado fica parado durante o scroll ativo, só
+atualiza quando ele para (mesma ideia do "reative só no `scrollend`" do
+texto original arquivado abaixo).
 
 <details>
 <summary>Texto completo da segunda opinião (variant.com, 2026-09-16)</summary>
