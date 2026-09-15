@@ -497,10 +497,26 @@ calma, autoritária e profundamente legível. "Anti-design editorial."
     usado nos placeholders de imagem, trazida na mesma referência. Vale como
     alternativa pra spots sem nenhuma referência de conteúdo ainda definida,
     não como substituição do padrão atual.
-  - **Scroll indicator fixo de 1px — aprovado por Matheus, adicionar.**
+  - **Scroll indicator fixo de 1px — REVERTIDO (2026-09-16), não
+    construir.** Tinha sido aprovado originalmente (spec técnica abaixo,
+    preservada como referência histórica caso o contexto mude), mas ao
+    tentar implementar de verdade, com TOC + Voltar já ocupando a borda
+    direita/topo-esquerda, virou um **terceiro elemento flutuante**
+    competindo pelo mesmo espaço — contra o próprio princípio de "reduzir
+    chrome" que guiou o resto do trabalho de navegação nessa sessão
+    (ver seção de Voltar/TOC acima). Decisão: em vez de um elemento
+    separado, o **TOC passa a destacar a seção ativa** (opacidade cheia
+    no item cuja seção cruza o centro vertical do viewport, via
+    `IntersectionObserver` com `rootMargin: "-50% 0px -50% 0px"`) — cobre
+    boa parte do "onde estou"/"quanto falta" sem adicionar mais chrome.
+    Implementado em `TableOfContents.tsx`.
+
+    <details>
+    <summary>Spec técnica original (histórico, não implementada)</summary>
+
     Candidato forte pro case (16.000+px de altura, TOC mostra seção mas não
     "quanto falta"). Mesma lógica da hairline de 1px do Benji (chrome mínimo
-    genuíno). Spec técnica da referência (preservar ao implementar):
+    genuíno).
     ```js
     const scrolled = (winScroll / height) * 80; // 80 = altura da trilha em px
     thumb.style.top = scrolled + 'px';
@@ -509,8 +525,8 @@ calma, autoritária e profundamente legível. "Anti-design editorial."
     .scroller-thumb { transition: top 0.1s linear; } /* rápido, não os 600ms do spotlight */
     ```
     Linha de 1px flutuando verticalmente à direita da tela, sem barra de
-    scroll nativa visível — "leitor de progresso quase subliminar". Ainda não
-    implementado — é trabalho de código (scroll tracking real).
+    scroll nativa visível — "leitor de progresso quase subliminar".
+    </details>
 
   - **Cursor crosshair — já confirmado, não é novidade.** A referência usa
     `cursor: crosshair` global, que já é decisão nossa desde a spec original

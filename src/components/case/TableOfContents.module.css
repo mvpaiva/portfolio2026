@@ -39,6 +39,14 @@
   transition: opacity 0.3s ease-in-out;
 }
 
+/* Active-section highlight — the section currently crossing the
+   viewport's vertical center reads at full ink, everything else stays
+   dimmed. Same mechanism doubles as "how far along the case you are"
+   without a separate scroll-progress element. */
+.link.active {
+  opacity: 1;
+}
+
 .link:hover,
 .link:focus-visible {
   opacity: 1;

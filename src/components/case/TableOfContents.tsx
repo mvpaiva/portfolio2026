@@ -39,6 +39,35 @@ export function TableOfContents() {
   const ref = useRef<HTMLElement>(null);
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeHref, setActiveHref] = useState<string | null>(null);
+
+  // Active-section highlight (2026-09-16, replaces a separate scroll-
+  // progress thumb — decided it'd be a third floating element competing
+  // with Voltar/TOC for the same screen edge, against the "reduce
+  // chrome" principle we'd just applied to those two). A section counts
+  // as active when it crosses the vertical center of the viewport —
+  // rootMargin shrinks the observer's effective area to a thin band
+  // there instead of the whole viewport.
+  useEffect(() => {
+    const targets = SECTIONS.map((s) => document.getElementById(s.href.slice(1))).filter(
+      (el): el is HTMLElement => el !== null,
+    );
+    if (targets.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setActiveHref(`#${entry.target.id}`);
+          }
+        }
+      },
+      { rootMargin: "-50% 0px -50% 0px" },
+    );
+
+    targets.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     let timeout: ReturnType<typeof setTimeout> | undefined;
@@ -88,7 +117,11 @@ export function TableOfContents() {
         aria-label="Sumário do case"
       >
         {SECTIONS.map((section) => (
-          <a key={section.href} className={styles.link} href={section.href}>
+          <a
+            key={section.href}
+            className={`${styles.link} ${section.href === activeHref ? styles.active : ""}`}
+            href={section.href}
+          >
             <span className={styles.linkFull}>{section.label}</span>
             <span className={styles.linkTick} aria-hidden="true" />
           </a>
