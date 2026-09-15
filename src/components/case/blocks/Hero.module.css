@@ -1,19 +1,20 @@
-/* Breakpoints + fixed content widths per device (confirmed against
-   mvpaiva.com/square, 2026-09-15):
-   - Desktop (>=1440px): content box fixed at 966px.
-   - Tablet (810-1439px): content box fixed at 770px.
-   - Mobile (<810px, 320px min): content box fills the viewport.
-   966px/770px ARE the content box itself, no extra side padding on top.
-   Note (corrected 2026-09-15): the 12-col/32px-margin/32px-gutter grid
-   is a guide on the outer 1920px Figma frame, not something the 966/770
-   content box subdivides into — Meta Grid is just 4 equal columns with a
-   32px gap, not a literal "span 3 of 12" (they produce the same 217.5px/
-   168.5px either way, since 4 even columns of a fixed box and a 12-col
-   span-3 of that same box are mathematically identical — but there's no
-   real 12-column system living inside this block). */
+/* Content width (corrected 2026-09-15): desktop is a fixed 1290px frame
+   (confirmed pixel-perfect against Figma node 2173:174 — originally
+   1280px/max-w-7xl per the variant.com breakdown, adjusted to 1290px to
+   align with the Figma grid). 966px/770px were from a DIFFERENT site
+   (mvpaiva.com/square), brought only as a value reference — not
+   confirmed for this project, don't reuse them.
+   No fixed tablet width is confirmed anywhere (the variant.com report
+   describes the original reference as fluid with 32px gutters until it
+   hits max-w-7xl, no separate tablet fixed box) — so this is a standard
+   fluid max-width container: shrinks with the viewport keeping 32px
+   gutters, locks at 1290px once there's room. The 768px breakpoint below
+   only changes stacking (font size, Meta Grid columns), not the width
+   model itself. */
 
 .section {
   width: 100%;
+  max-width: 1290px;
   margin: 0 auto;
   padding: var(--space-24) var(--gutter-mobile) var(--space-16);
   display: flex;
@@ -45,7 +46,7 @@
   line-height: 1.6;
   margin-top: var(--space-8);
   opacity: 0.65;
-  max-width: 788px;
+  max-width: 1000px;
 }
 
 .metaGrid {
@@ -100,11 +101,12 @@
   display: none;
 }
 
-/* Tablet: 810-1439px, fixed 770px content box. */
-@media (min-width: 810px) {
+/* Stacking changes at the classic md breakpoint (768px, per the
+   variant.com reference) — width stays fluid/max-width throughout, only
+   type scale and Meta Grid columns change here. */
+@media (min-width: 768px) {
   .section {
-    width: 770px;
-    padding: var(--space-32) 0 var(--space-16);
+    padding: var(--space-32) 32px var(--space-16);
   }
 
   .headline {
@@ -127,12 +129,7 @@
   }
 }
 
-/* Desktop: >=1440px, fixed 966px content box, same 4-column Meta Grid. */
-@media (min-width: 1440px) {
-  .section {
-    width: 966px;
-  }
-
+@media (min-width: 1290px) {
   .headline {
     font-size: 64px;
   }
