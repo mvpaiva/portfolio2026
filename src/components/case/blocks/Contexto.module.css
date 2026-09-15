@@ -1,7 +1,10 @@
+/* Fine-tooth-comb corrected 2026-09-16 against Figma node 2173:211 — was
+   18px, real value is 24px/33px line-height (1.375), ink 100% (not
+   dimmed). */
 .body {
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: 18px;
-  line-height: 1.6;
+  font-size: 24px;
+  line-height: 1.375;
   max-width: 65ch;
 }

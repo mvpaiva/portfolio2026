@@ -1,17 +1,22 @@
+/* Fine-tooth-comb corrected 2026-09-16 against Figma node 2173:234/235 —
+   several wrong assumptions in the first build: not italic (Fraunces
+   Light, non-italic), 72px not 120px, and centered (both axes) across
+   the full 1920px canvas, not left-aligned inside a 1290px content box. */
 .marker {
-  max-width: 1290px;
-  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: var(--space-16) var(--gutter-desktop);
 }
 
 .text {
   font-family: var(--font-display);
-  font-style: italic;
   font-weight: 300;
-  font-size: 120px;
+  font-size: 72px;
   line-height: 1;
   opacity: 0.08;
   color: var(--color-ink);
+  text-align: center;
 }
 
 @media (max-width: 768px) {
@@ -20,6 +25,6 @@
   }
 
   .text {
-    font-size: 64px;
+    font-size: 48px;
   }
 }

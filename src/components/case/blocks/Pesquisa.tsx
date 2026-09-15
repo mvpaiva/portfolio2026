@@ -15,7 +15,7 @@ const OBSERVATIONS = [
 
 export function Pesquisa() {
   return (
-    <CaseSection divider id="pesquisa">
+    <CaseSection id="pesquisa">
       <BlockGrid
         label={
           <LabelStack

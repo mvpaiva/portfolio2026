@@ -1,3 +1,7 @@
+/* Fine-tooth-comb corrected 2026-09-16 against Figma nodes 2173:216/218
+   — same wrong "label-caps" assumption as Hero/LabelStack. Real label is
+   13px Regular, ink 100%, no caps/tracking/dimming (text already reads
+   "Entrevistas Profundas" — the capitalization is content, not CSS). */
 .stat {
   display: flex;
   flex-direction: column;
@@ -13,12 +17,9 @@
 
 .label {
   font-family: var(--font-body);
-  font-weight: 500;
-  font-size: 10px;
+  font-weight: 400;
+  font-size: 13px;
   line-height: 1.5;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  opacity: 0.65;
 }
 
 @media (max-width: 768px) {

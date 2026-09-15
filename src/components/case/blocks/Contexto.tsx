@@ -3,11 +3,13 @@ import { BlockGrid } from "../BlockGrid";
 import { LabelStack } from "../LabelStack";
 import styles from "./Contexto.module.css";
 
-// Copy source: docs/visual-language-specification.md §14, block 02 ·
-// Contexto (v6, final, 2026-09-13).
+// Copy source: Figma refinamento frame, node 2173:205 "Contexto" — read
+// verbatim via the Figma API (not visual-language-specification.md §14,
+// which is a stale/different source — see benji-taylor-reference.md).
+// No divider/stroke on this block — checked directly, none exists.
 export function Contexto() {
   return (
-    <CaseSection divider id="contexto">
+    <CaseSection id="contexto">
       <BlockGrid
         label={
           <LabelStack

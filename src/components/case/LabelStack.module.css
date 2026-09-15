@@ -1,10 +1,14 @@
+/* Fine-tooth-comb corrected 2026-09-16 against Figma nodes 2173:208/209
+   (Contexto) and 2173:240/241 (Pesquisa) — both match exactly. First
+   build guessed the "label-caps" pattern (10px Medium uppercase,
+   tracking) again, same mistake as Hero's eyebrow; real values are
+   plain 13px Regular ink, no transform (the caps in "O CONTEXTO" /
+   "A PESQUISA" are literal characters, not CSS text-transform). */
 .eyebrow {
   font-family: var(--font-body);
-  font-weight: 500;
-  font-size: 10px;
+  font-weight: 400;
+  font-size: 13px;
   line-height: 1.5;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
   color: var(--color-ink);
 }
 
