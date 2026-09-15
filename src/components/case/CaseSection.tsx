@@ -1,22 +1,26 @@
 import type { ReactNode } from "react";
 import styles from "./CaseSection.module.css";
 
-// Grid note (verified 2026-09-15): the case frame (2173:172/173) carries a
-// 12-column layout grid — count 12, gutter 32px, margin 32px, on the
-// 1920px canvas — visible as the sage guide overlay in Figma. Measured
-// directly: the 1290px content frame (x:315) does NOT snap to that grid's
-// column boundaries (315px and 1605px both land mid-column, not on a
-// gutter line) — it's an independently centered container, not a
-// column-span selection. So CaseSection intentionally stays a simple
-// centered 1290px block rather than a 12-col CSS grid; the 12-column
-// system is the page's outer alignment reference, not how this frame's
-// own width is derived.
+// Grid note (2026-09-15, superseded in part): the 1290px frame width used
+// here is the OLD system — confirmed obsolete for the real desktop/tablet
+// breakpoints (966px / 770px content box, validated against Figma node
+// 2408:13375 "Hero" in the "square - novo grid" frame). Not yet rolled
+// out to CaseSection/BlockGrid pending validation on the remaining
+// blocks — see C:\Users\Ma\.claude\plans\functional-yawning-pie.md.
+// BlockGrid's 440px label column is confirmed correct as-is (Matheus:
+// widened deliberately for storytelling headlines) — do not "fix" it to
+// a literal 12-col span.
+//
+// Vertical spacing variants (confirmed 2026-09-15 against the original
+// reference's Tailwind tokens): xl=160px (footer/XL sections),
+// normal=128px (standard section padding), compact=96px (ghost
+// markers/small dividers), tight=64px (stats-row-style bands).
 
 type CaseSectionProps = {
   children: ReactNode;
   id?: string;
   divider?: boolean;
-  spacing?: "normal" | "tight";
+  spacing?: "xl" | "normal" | "compact" | "tight";
   background?: "bg" | "ink";
 };
 
@@ -27,9 +31,16 @@ export function CaseSection({
   spacing = "normal",
   background = "bg",
 }: CaseSectionProps) {
+  const spacingClass = {
+    xl: styles.xl,
+    normal: styles.normal,
+    compact: styles.compact,
+    tight: styles.tight,
+  }[spacing];
+
   const classNames = [
     styles.section,
-    spacing === "tight" ? styles.tight : "",
+    spacingClass,
     divider ? styles.divider : "",
     background === "ink" ? styles.ink : "",
   ]
