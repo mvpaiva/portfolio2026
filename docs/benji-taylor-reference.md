@@ -181,6 +181,49 @@ apareceram:
   conseguirem referenciar o hover do grupo através da fronteira de
   módulo. Ambos desativados sob `prefers-reduced-motion`.
 
+**Três correções feitas depois, mesma sessão, todas reportadas por
+Matheus testando ao vivo:**
+
+1. **Cross-type blindness (commit `439b5bc`):** hover num bloco
+   `BlockSpotlight` (Stats) não escurecia blocos `BlockLift` (Hero/
+   Contexto/Pesquisa), e vice-versa — cada CSS Module só observava sua
+   própria classe local via `:has()`, então os dois efeitos nunca se
+   notavam. Corrigido com um marcador global compartilhado (depois
+   substituído pelo esquema de dois marcadores da correção 3, abaixo).
+2. **Phantom hover zone em BlockGrid (commit `d47cafc`):** Contexto e
+   Pesquisa (os únicos blocos que usam `BlockGrid`) tinham o marcador de
+   hover no `.grid` externo — mas como CSS Grid dimensiona a linha pela
+   coluna mais alta, o espaço vazio sobrando na coluna mais curta (o
+   label) contava como "dentro do elemento hoverável" mesmo sem
+   conteúdo visível ali, disparando o efeito ao passar o mouse em área
+   morta. Corrigido movendo o marcador pras duas colunas internas do
+   `BlockGrid` (cada uma já do tamanho exato do seu conteúdo) em vez do
+   grid externo — ver `BlockGrid.tsx`.
+3. **Tratamento amarrado ao tipo de quem reage, não ao que foi hoverado
+   (commit `ae47879`):** Matheus percebeu que passar o mouse no
+   Contexto/Pesquisa deixava o Stats com blur pesado — "forte demais"
+   — enquanto o mesmo hover no Hero/Banner parecia certo. Numericamente
+   os dois casos já batiam com o valor documentado (`blur(4px)`,
+   `opacity:0.15`); a causa real é que Stats fica logo ao lado de
+   Contexto/Pesquisa (visível na tela junto) mas longe do Hero/Banner
+   (normalmente fora da viewport quando eles são hoverados) — o mesmo
+   número lia como "mais forte" só por estar visível de perto. **Modelo
+   corrigido:** o tratamento aplicado aos outros blocos depende de
+   **qual bloco está em hover**, não do tipo de quem está reagindo.
+   Marcador único `spotlight-item` virou dois: `lift-trigger` (Hero,
+   HeroBanner, Contexto, Pesquisa) e `spotlight-trigger` (Stats).
+   Hover num `lift-trigger` agora escurece TUDO levemente (`opacity:
+   0.6`, sem blur), Stats incluído; hover num `spotlight-trigger`
+   (Stats) borra TUDO pesado (`opacity: 0.15` + `blur(4px)`), os blocos
+   de texto corrido incluídos — simétrico nas duas direções.
+   **Descoberta (GhostMarker) fica de fora dos dois lados de propósito**
+   (confirmado com Matheus): não tem `lift-trigger` nem
+   `spotlight-trigger`, então não reage a hover de outros blocos nem
+   dispara o próprio. Racional: o texto já é `opacity: 0.08` (marca
+   d'água decorativa, não conteúdo de leitura) — blur/dim nele seria
+   imperceptível, e é um divisor de seção passivo, não um bloco
+   competindo por atenção.
+
 ### Segunda opinião arquivada (variant.com, 2026-09-16) — guardar pra usos futuros/especiais
 
 Pedida por Matheus especificamente pra recalibrar o efeito numa case page
@@ -942,16 +985,26 @@ Metadados (campo "ARQUIVOS"). Removidos os 2 do Contexto. **Regra fechada:**
   da leitura ninguém sabe o que tem no Miro/Figma ainda pra querer ver — é
   cedo demais, quebra a narrativa de abertura.
 
-## Pendente
+## Pendente (Figma, herdado de sessões anteriores — não confundir com o
+pendente do BUILD EM CÓDIGO, que vive em handoff.md)
 
-- Matheus está colando as fotos reais agora — vai avisar quando terminar.
 - Decisão TOC estático vs. trigger flutuante circular continua em aberto (ver
-  seção "Verificação empírica" acima) — não resolver sozinho.
+  seção "Verificação empírica" acima) — não resolver sozinho. **Nota:** o
+  TOC real (scroll-spy, colapsar/expandir) já foi implementado em código
+  (`src/components/case/TableOfContents.tsx`) com uma versão própria,
+  independente dessa pendência específica do Figma estático.
 - Telas reais do processo (`12036:11345`) ainda não foram coladas nos
   placeholders "Antes — Wireframe mid-fi" das 5 Soluções — Matheus precisa
   identificar qual tela de `12036:11345` bate com qual Solução antes de colar.
 - Depois de aprovado tudo no frame duplicado (`2173:172`), propagar as
-  mudanças pra página original (`2030:122`) — ainda não fizemos essa
-  propagação nesta sessão inteira, só trabalhamos no duplicado.
-- Microinterações reais (seta no hover, transições) são trabalho de código —
-  Figma só representa o estado de repouso.
+  mudanças pra página original (`2030:122`) — ainda não foi feito.
+- **Em dash não revisado:** label "Totens no dia a dia — observação de
+  campo" (node `2248:179`) tem um travessão — flagado pra Matheus em
+  2026-09-16 (regra padrão do projeto é evitar travessão em copy autoral),
+  ainda sem resposta. Perguntar de novo antes de escrever esse bloco em
+  código.
+
+**Para o estado atual do build em código (Next.js) — o que já está pronto,
+o que falta, qual bloco vem a seguir — ver `handoff.md`, seção "Case page:
+build em código", não este arquivo.** Este arquivo continua sendo o log de
+decisões de design/Figma; o handoff é a fonte de estado de implementação.

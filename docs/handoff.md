@@ -54,7 +54,98 @@ real da WCAG 1.4.1, não só preferência). Guarde esse número (65%) — é fá
 alguém tentar "deixar mais clarinho" de novo sem saber que já foi testado e
 é o limite.
 
-A case page ainda não foi implementada em código.
+**Atualização (2026-09-16): a case page começou a ser implementada em
+código.** Ver seção "Case page: build em código (Next.js)" logo abaixo —
+leia essa seção primeiro se for continuar esse trabalho especificamente,
+antes do resto deste arquivo (que documenta principalmente a fase de
+design no Figma).
+
+## Case page: build em código (Next.js) — estado atual (2026-09-16)
+
+Rota ao vivo: `src/app/case/square-self-checkout/page.tsx`. Componentes em
+`src/components/case/` (primitivos compartilhados) e
+`src/components/case/blocks/` (um arquivo por bloco de conteúdo, CSS
+Modules co-localizados). Plano de implementação completo (sequenciamento,
+decisões de arquitetura, todos os blocos previstos) em
+`C:\Users\Ma\.claude\plans\functional-yawning-pie.md` — **esse plano
+sobrevive entre sessões, ler antes de continuar.**
+
+**Regra de processo (instrução permanente do Matheus):** sempre que ele
+disser que pode seguir pro próximo bloco, passar um pente fino no(s)
+bloco(s) recém-construído(s) contra o Figma **ao vivo** (via
+`use_figma`/`get_screenshot`, nunca confiar cegamente nos `.md` — vários já
+ficaram desatualizados) e contra `benji-taylor-reference.md`, **incluindo
+microinterações** (spotlight/lift hover). Também: nunca palavra-viúva (já
+resolvido globalmente via `text-wrap: pretty` no CSS), evitar travessão/
+hífen como pontuação "AI slop" em copy autoral (não se aplica a citações de
+pesquisa transcritas verbatim), e evitar outros padrões de "AI slop" (ex.:
+uma seta "→" already removida numa correção anterior).
+
+**Blocos prontos e revisados (pente fino já passado):** Hero, HeroBanner
+(o banner logo abaixo do Hero), Contexto, Stats Section, GhostMarker
+"Descoberta", Pesquisa. Todos com o sistema de hover spotlight/lift
+correto (ver abaixo).
+
+**Primitivos compartilhados prontos:** `CaseSection`, `BlockGrid`,
+`LabelStack`, `Stat`, `GhostMarker`, `DeviceImage`, `Placeholder`,
+`Reveal` (scroll-reveal com IntersectionObserver), `BackLink`,
+`TableOfContents` (scroll-spy + colapsar/expandir, ver
+`benji-taylor-reference.md` pro racional de design).
+
+**Sistema de hover spotlight/lift (versão final, 2026-09-16 — ver
+`benji-taylor-reference.md`, seção "Spotlight de bloco", pro histórico
+completo de 3 bugs encontrados e corrigidos):** o tratamento aplicado aos
+outros blocos depende de **qual bloco está em hover**, não do tipo de
+quem está reagindo.
+- `lift-trigger` (classe global, em `Hero`, `HeroBanner`, e nas 2 colunas
+  internas de `BlockGrid` — usado por `Contexto`/`Pesquisa`): hover
+  levanta o próprio bloco (`translateY(-2px)`) e escurece todos os outros
+  levemente (`opacity: 0.6`, sem blur) — inclusive o Stats Section.
+- `spotlight-trigger` (classe global, no Stats Section): hover borra
+  pesado todos os outros (`opacity: 0.15` + `blur(4px)`) — inclusive os
+  blocos de texto corrido.
+- `GhostMarker` (Descoberta, e os próximos que existirem) fica de fora
+  dos dois lados de propósito — não é `lift-trigger` nem
+  `spotlight-trigger`, confirmado com Matheus: o texto já é `opacity:
+  0.08` (decorativo, não leitura), então reagir ao hover de outros
+  blocos não teria efeito visual perceptível.
+- Lógica em `BlockLift.module.css`/`BlockSpotlight.module.css`, ambas
+  arquivos comentados com o histórico completo dos 3 bugs. `<main>`
+  carrega a classe global `spotlightGroup` que ambos os arquivos
+  referenciam através da fronteira de CSS Module.
+
+**Pendência aberta, não resolvida:** o label "Totens no dia a dia —
+observação de campo" (Figma node `2248:179`) tem um travessão — flagado
+pra Matheus em 2026-09-16, ainda sem resposta. Perguntar de novo antes de
+escrever esse bloco.
+
+**Próximo bloco a construir: "Totens no dia a dia" / Panorama Competitivo
+(Figma node `2248:178`).** Investigação de estrutura no Figma já feita:
+label `2248:179` (o travessão pendente acima); `2313:170` "Fotos em
+destaque" (4 colunas 289×565, header = logo 40×40 + nome, placeholder de
+imagem 289×513 — os 4 `Image Placeholder — Totem N` ainda precisam ter o
+tipo de fill reconfirmado, real vs. ainda genérico); `2313:193` "Seção —
+Locais visitados" com `2308:170` "11 locais visitados" + `2313:181` "Tira
+de logos" (11 itens, 76×80 cada, logo 64×64 + nome). Calibração manual de
+zoom feita em 3 logos de loja que ficavam desproporcionais mesmo com
+container idêntico (resolução nativa da imagem-fonte muito diferente
+entre lojas) — C&A 1.7x, Pão de Açúcar 0.82x, Shopping Center Norte 1.15x
+— ver `benji-taylor-reference.md` pro detalhe, **não é solução definitiva,
+calibrado a olho, só nos 3 piores outliers**, as outras 12 logos não foram
+tocadas. **Nenhum código escrito ainda pra esse bloco.**
+
+**Ordem dos blocos restantes depois de Totens no dia a dia** (mesma ordem
+do plano): Blueprint Crop, Field Notes, Jobs To Be Done, Design e
+Prototipação, Prototipação & Testes (Figma), Onboarding Filmstrip, Testes,
+Solução 1–5, Resultado, Próximos Passos, Footer — Metadados. Blocos
+deliberadamente NÃO renderizados (ocultos no Figma fonte, ver comentário
+no topo de `page.tsx`): Metodologia, Intro das Soluções, Sequência do
+Sistema, `footer.py-40`.
+
+**Git:** todo o trabalho de código até agora está commitado e no
+`main` do GitHub (`mvpaiva/portfolio`) — sem branch separada, sem PR
+pendente. Últimos commits relevantes: `ae47879` (fix do modelo
+trigger-type-aware) e `d47cafc` (fix da phantom hover zone).
 
 ## Ordem de leitura dos documentos
 
