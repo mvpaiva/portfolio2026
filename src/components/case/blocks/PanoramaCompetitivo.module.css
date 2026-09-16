@@ -1,0 +1,118 @@
+.label {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-ink);
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.photoGrid {
+  display: flex;
+  gap: var(--space-6);
+  width: 100%;
+}
+
+.photoColumn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  flex: 1;
+  min-width: 0;
+}
+
+.photoHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logoSmall {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+.caption {
+  font-family: var(--font-body);
+  font-size: 8px;
+  color: var(--color-ink);
+  opacity: 0.65;
+}
+
+.locations {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  width: 100%;
+}
+
+/* Grid com contagem de colunas FIXA por breakpoint, não flex-wrap fluido.
+   Com 11 logos, flex-wrap contínuo passa por toda contagem de colunas
+   conforme a viewport encolhe — incluindo as "ruins" (2, 5, 9, 10), onde
+   sobra exatamente 1 logo sozinha na última linha (ex.: 5+5+1). Os
+   valores de N abaixo (11/6/4/3) foram escolhidos por não deixarem
+   resto 1 ao dividir 11 (11, 6+5, 4+4+3, 3+3+3+2 — nenhuma linha final
+   com 1 item). Ver conversa 2026-09-15 para a tabela de larguras onde o
+   flex-wrap antigo isolava uma logo. */
+.logoStrip {
+  display: grid;
+  grid-template-columns: repeat(11, minmax(0, 1fr));
+  gap: var(--space-6) var(--space-4);
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .logoStrip {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .logoStrip {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 420px) {
+  .logoStrip {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.logoItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.logoLarge {
+  width: 64px;
+  height: 64px;
+}
+
+.logoCaption {
+  font-family: var(--font-body);
+  font-size: 8px;
+  color: var(--color-ink);
+  opacity: 0.65;
+  text-align: center;
+  width: 76px;
+}
+
+@media (max-width: 768px) {
+  .photoGrid {
+    flex-wrap: wrap;
+  }
+
+  .photoColumn {
+    flex: 1 1 calc(50% - var(--space-3));
+  }
+}

@@ -1,0 +1,251 @@
+.block {
+  display: flex;
+  gap: var(--space-8);
+  align-items: flex-start;
+  width: 100%;
+}
+
+.labelColumn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  flex: 0 0 488px;
+  position: sticky;
+  top: var(--space-24);
+  align-self: flex-start;
+}
+
+.painLinkRow {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 1.2;
+}
+
+.painLink {
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--color-border-hover);
+  text-underline-offset: 2px;
+  transition: text-decoration-color 0.3s ease-in-out;
+}
+
+.painLink:hover,
+.painLink:focus-visible {
+  text-decoration-color: var(--color-ink);
+}
+
+/* Real Figma value (verified via the API, node 2179:223): the " / "
+   separator between Solução 2's two pain links is underlined too, same
+   weight/color as the links either side — not a link itself (its
+   hyperlink in the source is a Figma text-continuation artifact, not a
+   deliberate destination). */
+.painSeparator {
+  text-decoration: underline;
+  text-decoration-color: var(--color-border-hover);
+  text-underline-offset: 2px;
+}
+
+.headline {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 1.1;
+  color: var(--color-ink);
+}
+
+.quote {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.4;
+  color: var(--color-ink);
+  border-left: 1px solid var(--color-sage);
+  padding-left: var(--space-6);
+}
+
+.body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.56;
+  color: var(--color-ink);
+  opacity: 0.65;
+}
+
+.contentColumn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  flex: 1;
+  min-width: 0;
+}
+
+/* justify-content:flex-start + gap:16px — matches the real Figma node
+   (2179:218, primaryAxisAlignItems: MIN, itemSpacing: 16), confirmed via
+   the API 2026-09-16. Not centered: the antes/depois pair anchors to
+   the content column's left edge, same side as the label above it. */
+.stages {
+  display: flex;
+  justify-content: flex-start;
+  gap: var(--space-4);
+  width: 100%;
+  min-width: 0;
+  /* Safety net: min-width on .stageImage below can, in principle, ask
+     for more room than a narrow tablet width has to give (two 280px
+     images + arrow + gaps ≈ 608px). Rather than let that overflow the
+     page edge, let it scroll — should rarely if ever trigger, but
+     costs nothing when it doesn't. */
+  overflow-x: auto;
+}
+
+.stagesStacked {
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Stacked solutions (2/3) use full-width landscape screenshots
+   (~706x398, aspect ~1.77), not the side-by-side portrait phone
+   mockups the clamp()/280px-floor system above was built for — at full
+   column width a landscape image's height stays modest on its own, so
+   none of that legibility-floor machinery is needed here. Reset back
+   to a plain full-width box. */
+.stagesStacked .stage {
+  width: 100%;
+  min-width: 0;
+}
+
+/* width: clamp(280px, <viewport-height-derived-width>, 345px) — the
+   real sizing driver (see SolutionBlock.tsx's stageWrapperStyle). A
+   definite (non-%) clamp() here, not on .stageImage, matters: .stage
+   doesn't grow (flex-grow:0 — the antes/depois pair stays content-
+   sized, not stretched to fill the row), and a non-growing flex item's
+   "auto" basis comes from its content's max-content size; a % upper
+   bound in a child's own clamp() doesn't count toward that, so the
+   basis silently collapsed to the clamp's px floor regardless of
+   viewport height (confirmed in-browser, 2026-09-16). 345px matches
+   the `sizes` hint on the <img> below. 280px is the legibility floor:
+   below that, small UI text in the screenshots (prices, button labels)
+   gets hard to read — and min-width repeats it so flex-shrink can't
+   quietly go lower. .stages' own overflow-x:auto is the release valve
+   when two 280px stages don't both fit — a contained scroll, not a
+   squeeze. .stageLabel matches width exactly because it's a sibling of
+   an <img> at width:100% — align-items:stretch (the column default)
+   makes both share .stage's resolved width. */
+.stage {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  flex: 0 1 auto;
+  width: clamp(280px, var(--stage-max-h-width, 60vh), 345px);
+  min-width: 280px;
+  max-width: 100%;
+}
+
+.stageLabel {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-ink);
+}
+
+/* A plain <img> (via next/image's width/height mode, not fill) sized
+   with width/height:auto + max-width/max-height — NOT a wrapper <div>
+   with the `aspect-ratio` CSS property. A generic box's aspect-ratio
+   only resolves ONE auto dimension from the other; once a min/max
+   constraint clamps that resolved dimension, the explicit one doesn't
+   shrink to match, so the box stops being aspect-correct and
+   object-fit:contain letterboxes the real image inside it — visible as
+   a dead gap between the label and the image once .stage was allowed
+   to shrink narrower than the height cap implied (Matheus, 2026-09-16).
+   A real <img> doesn't have this problem: browsers balance max-width
+   and max-height together against its own intrinsic aspect ratio.
+
+   align-self:flex-start opts OUT of .stage's default align-items:
+   stretch — without it, .stage's flex-column cross-axis (width)
+   stretches the img to match the STAGE's resolved width (e.g. the
+   mobile min-width:240px floor below), overriding the aspect-correct
+   width the rules above computed and visibly squishing the bitmap
+   itself (no object-fit involved for a bare non-fill <img>, so a
+   width/height mismatch just distorts it). .stageLabel still stretches
+   normally and keeps matching the stage's width in the common case
+   (desktop, and mobile stages wider than 240px); it can go slightly
+   wider than the image only when the mobile min-width floor forces
+   extra room — an acceptable trade next to visibly distorting a
+   screenshot. */
+/* Just fills .stage (which does the actual clamp() sizing above) —
+   aspect-ratio (set inline per image, see SolutionBlock.tsx) derives
+   height from that width, so this never distorts regardless of what
+   width .stage resolves to. */
+.stageImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  align-self: flex-start;
+}
+
+/* color opacity 0.85 confirmed via the API against the real node
+   (2265:170) — the raw Tailwind export said 0.4, but that read was
+   stale, same class of discrepancy already caught elsewhere in this
+   case (verify the live node, not the first export). */
+.arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 32px;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 20px;
+  color: rgba(26, 26, 26, 0.85);
+}
+
+.arrowStacked {
+  flex: 0 0 auto;
+  padding: var(--space-2) 0;
+}
+
+@media (max-width: 900px) {
+  .block {
+    flex-direction: column;
+  }
+
+  .labelColumn {
+    position: static;
+    flex-basis: auto;
+    width: 100%;
+  }
+}
+
+/* Below 640px, "Antes" and the arrow drop out entirely for the
+   side-by-side layout only — only "Depois: UI Design" shows, full
+   width (Matheus, 2026-09-16). Side-by-side with a horizontal
+   scroll-snap strip (tried first) kept causing real layout bugs on
+   this specific block (squished images, overflow leaking past the page
+   edge) chasing a fairly marginal payoff — a phone-width comparison
+   strip is cramped no matter how it's built. One clear "after" image is
+   simpler and safer than fixing the strip further. Scoped to
+   :not(.stagesStacked): the stacked layout (Soluções 2/3) already
+   shows both frames full-width, one above the other — no width squeeze
+   to simplify away there, so hiding "Antes" would just delete real
+   content for no reason (caught building Solução 2, 2026-09-16). */
+@media (max-width: 640px) {
+  .stages:not(.stagesStacked) .stageAntes,
+  .stages:not(.stagesStacked) > .arrow {
+    display: none;
+  }
+
+  .stages:not(.stagesStacked) {
+    justify-content: center;
+  }
+
+  .stages:not(.stagesStacked) .stage {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .stageImage {
+    width: 100%;
+  }
+}

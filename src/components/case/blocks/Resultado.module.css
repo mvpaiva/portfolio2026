@@ -1,0 +1,46 @@
+.headline {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 1.25;
+  color: var(--color-ink);
+}
+
+.statsRow {
+  display: flex;
+  gap: var(--space-8);
+  margin-top: var(--space-12);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+}
+
+.statNumber {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 1;
+  color: var(--color-ink);
+  white-space: nowrap;
+}
+
+.statLabel {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.3;
+  color: var(--color-ink);
+  opacity: 0.65;
+}
+
+@media (max-width: 768px) {
+  .statsRow {
+    flex-wrap: wrap;
+    gap: var(--space-4) var(--space-8);
+  }
+}

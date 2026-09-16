@@ -1,0 +1,29 @@
+/* Item-level list spotlight — spec closed in benji-taylor-reference.md
+   (2026-09-14, "Spotlight hover em listas"): hovering one item in a
+   short list gives it a calm, deliberate blur-dim on its siblings.
+   Scoped PER BLOCK, not page-wide — each block using this is its own
+   independent group (JTBD's 3 entries never affect Próximos Passos'
+   4, etc.), unlike the page-level BlockLift/BlockSpotlight system.
+   600ms, deliberately slow/contemplative — never snappy, same value
+   for any state change on these items. */
+.group {
+  /* marker only — hover is scoped from here */
+}
+
+.item {
+  transition:
+    opacity 0.6s cubic-bezier(0.2, 0, 0.2, 1),
+    filter 0.6s cubic-bezier(0.2, 0, 0.2, 1);
+}
+
+.group:hover .item:not(:hover) {
+  opacity: 0.15;
+  filter: blur(4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .group:hover .item:not(:hover) {
+    opacity: 1;
+    filter: none;
+  }
+}

@@ -31,6 +31,29 @@
   padding-bottom: var(--space-16);
 }
 
+/* Bottom-only overrides, for a block that closes out a same-topic
+   composite (tight top, matching the block above it) but still needs a
+   full section break before the NEXT block's subject change (e.g.
+   Field Notes: top:64/bottom:128 on the real Figma node, confirmed via
+   the API 2026-09-16 — closes the Pesquisa/Field-Exploration
+   composite). Applied in addition to `spacing`, which still controls
+   the top. */
+.section.bottomXl {
+  padding-bottom: var(--space-40);
+}
+
+.section.bottomNormal {
+  padding-bottom: var(--space-32);
+}
+
+.section.bottomCompact {
+  padding-bottom: var(--space-24);
+}
+
+.section.bottomTight {
+  padding-bottom: var(--space-16);
+}
+
 .section.divider {
   border-top: 1px solid var(--color-border);
 }

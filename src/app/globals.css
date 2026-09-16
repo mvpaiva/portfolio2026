@@ -42,6 +42,13 @@ body {
   height: 100%;
 }
 
+/* Smooth in-page jumps (TOC links, GhostMarker anchors) instead of an
+   instant cut — reduced-motion override below forces this back to
+   "auto". */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--color-bg);
   color: var(--color-ink);

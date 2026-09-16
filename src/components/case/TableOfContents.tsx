@@ -3,11 +3,30 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./TableOfContents.module.css";
 
+// Matches the 4 ghost-marker anchors sprinkled through the page plus
+// Contexto and Resultado as bookends. Replaced "Pesquisa" and
+// "Soluções" as of 2026-09-16 (Matheus): those blocks sat immediately
+// after two of the markers with nothing else between, so the old label
+// set had entries that scrolled to functionally the same spot.
+//
+// Labels rewritten again the same day: the ids (descoberta/design/
+// sintese) are legacy Double Diamond phase names (Discover/Develop/
+// Define), but the visible labels now name what's actually on screen
+// at each anchor instead — "Pesquisa" (Pesquisa → JTBD), "Testes"
+// (moved to sit before DesignPrototipacao, which is genuinely about
+// design/prototyping — it used to sit right before Resultado with no
+// content of its own between them, causing the same
+// scrolls-to-the-same-spot problem this file's first fix addressed),
+// "Soluções" (the Solucoes block). Each label matches the real section
+// heading a reader sees at that point in the page. Shortened to single
+// words the same day (Matheus): "A Pesquisa"/"Protótipos e
+// Testes"/"As Soluções" read fine as prose but were needlessly long
+// for a nav list sitting next to "Contexto"/"Resultado".
 const SECTIONS = [
   { href: "#contexto", label: "Contexto" },
-  { href: "#descoberta", label: "Descoberta" },
-  { href: "#pesquisa", label: "Pesquisa" },
-  { href: "#solucoes", label: "Soluções" },
+  { href: "#descoberta", label: "Pesquisa" },
+  { href: "#design", label: "Testes" },
+  { href: "#sintese", label: "Soluções" },
   { href: "#resultado", label: "Resultado" },
 ];
 

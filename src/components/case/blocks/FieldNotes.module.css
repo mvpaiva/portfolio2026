@@ -1,0 +1,45 @@
+.body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.4;
+  max-width: 65ch;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  row-gap: var(--space-3);
+  column-gap: var(--space-6);
+  margin-top: var(--space-8);
+}
+
+.chip {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 1.2;
+  text-decoration: underline;
+  text-decoration-color: var(--color-border-hover);
+  text-underline-offset: 2px;
+  transition: text-decoration-color 0.3s ease-in-out;
+}
+
+.chip:hover,
+.chip:focus-visible {
+  text-decoration-color: var(--color-ink);
+}
+
+/* No corresponding Solution block exists for this pain point (Pix
+   invisível) — plain text, not a link, and dimmed to the project's
+   65% floor to read as "acknowledged, not addressed" rather than a
+   dead/broken link. See docs/handoff.md. */
+.chipInactive {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.2;
+  color: var(--color-ink);
+  opacity: 0.65;
+}

@@ -1,0 +1,112 @@
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  width: 100%;
+}
+
+.label {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-ink);
+}
+
+.stages {
+  display: flex;
+  gap: clamp(32px, 8vw, 96px);
+  width: 100%;
+  padding-top: var(--space-4);
+}
+
+.stage {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  flex: 1;
+  min-width: 0;
+}
+
+/* Inward breathing room facing the gap side(s) — confirmed against the
+   live Figma node (2227:642/651/660): first card pads right only,
+   middle pads both sides, last pads left only. Keyed off a
+   data-position attribute set in the component rather than
+   :first-child/:last-child, so it isn't tied to DOM order. Fluid
+   (clamp, not a fixed 48px) so it scales with .stages' own fluid gap
+   above instead of eating a fixed chunk of a gap that grows with the
+   viewport. */
+.stage[data-position="first"] {
+  padding-right: clamp(16px, 4vw, 48px);
+}
+
+.stage[data-position="last"] {
+  padding-left: clamp(16px, 4vw, 48px);
+}
+
+.stage[data-position="middle"] {
+  padding-left: clamp(16px, 4vw, 48px);
+  padding-right: clamp(16px, 4vw, 48px);
+}
+
+.number {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 1.1;
+  color: var(--color-ink);
+}
+
+.title {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--color-ink);
+}
+
+/* opacity 0.65, not the Figma source's 0.6 — 60% ink on --color-bg
+   fails WCAG AA (~4.4:1); 65% is this project's established floor
+   (~5.1:1, see docs/handoff.md). Accessibility overrides fidelity here. */
+.description {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.33;
+  color: var(--color-ink);
+  opacity: 0.65;
+  max-width: 200px;
+  white-space: pre-line;
+}
+
+/* max-width matches .description exactly (both confirmed 200px on the
+   live Figma node — 2227:647 and 2227:649 render at the same width
+   there) — without it, the border-top stretches to the stage's full
+   flex-filled width instead of stopping at the text's own edge. */
+.pain {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--color-ink);
+  opacity: 0.65;
+  max-width: 200px;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+}
+
+@media (max-width: 768px) {
+  .stages {
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .stage[data-position="first"],
+  .stage[data-position="middle"],
+  .stage[data-position="last"] {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}

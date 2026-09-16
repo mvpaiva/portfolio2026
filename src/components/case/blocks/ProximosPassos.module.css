@@ -1,0 +1,28 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.entry {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.headline {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.4;
+  color: var(--color-ink);
+}
+
+.attribution {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--color-ink);
+  opacity: 0.65;
+}

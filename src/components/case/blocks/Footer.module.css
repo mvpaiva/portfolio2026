@@ -1,0 +1,55 @@
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-16);
+}
+
+.column {
+  flex-shrink: 0;
+}
+
+.ferramentas {
+  width: 320px;
+  flex-shrink: 1;
+}
+
+.label {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 1.32px;
+  color: rgba(26, 26, 26, 0.5);
+  margin-bottom: 6px;
+}
+
+.value {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--color-ink);
+}
+
+.fileLink {
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--color-border-hover);
+  text-underline-offset: 2px;
+  transition: text-decoration-color 0.3s ease-in-out;
+}
+
+.fileLink:hover,
+.fileLink:focus-visible {
+  text-decoration-color: var(--color-ink);
+}
+
+@media (max-width: 640px) {
+  .grid {
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .ferramentas {
+    width: auto;
+  }
+}

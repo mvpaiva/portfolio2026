@@ -16,11 +16,17 @@ import styles from "./CaseSection.module.css";
 // normal=128px (standard section padding), compact=96px (ghost
 // markers/small dividers), tight=64px (stats-row-style bands).
 
+type SpacingVariant = "xl" | "normal" | "compact" | "tight";
+
 type CaseSectionProps = {
   children: ReactNode;
   id?: string;
   divider?: boolean;
-  spacing?: "xl" | "normal" | "compact" | "tight";
+  spacing?: SpacingVariant;
+  /** Overrides padding-bottom only, e.g. a composite's last block: tight
+   * top to match the block above it, full bottom before the next
+   * subject change. Leave unset for the normal symmetric case. */
+  spacingBottom?: SpacingVariant;
   background?: "bg" | "ink";
 };
 
@@ -29,6 +35,7 @@ export function CaseSection({
   id,
   divider = false,
   spacing = "normal",
+  spacingBottom,
   background = "bg",
 }: CaseSectionProps) {
   const spacingClass = {
@@ -38,9 +45,19 @@ export function CaseSection({
     tight: styles.tight,
   }[spacing];
 
+  const spacingBottomClass = spacingBottom
+    ? {
+        xl: styles.bottomXl,
+        normal: styles.bottomNormal,
+        compact: styles.bottomCompact,
+        tight: styles.bottomTight,
+      }[spacingBottom]
+    : "";
+
   const classNames = [
     styles.section,
     spacingClass,
+    spacingBottomClass,
     divider ? styles.divider : "",
     background === "ink" ? styles.ink : "",
   ]

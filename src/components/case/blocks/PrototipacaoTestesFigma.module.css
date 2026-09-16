@@ -1,0 +1,113 @@
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  width: 100%;
+}
+
+.labelStack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.label {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--color-ink);
+}
+
+.caption {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.56;
+  color: var(--color-ink);
+  max-width: 65ch;
+}
+
+.carousel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  width: 100%;
+}
+
+.slideCaption {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 13px;
+  color: var(--color-ink);
+  align-self: flex-start;
+}
+
+.viewport {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1226 / 510;
+  overflow: hidden;
+  cursor: grab;
+  touch-action: pan-y;
+}
+
+.viewport:active {
+  cursor: grabbing;
+}
+
+.viewport:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 2px;
+}
+
+.track {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s var(--ease-primary);
+}
+
+/* No transition while the pointer is down — the track has to follow
+   the cursor 1:1 during a drag, not ease toward it. */
+.dragging {
+  transition: none;
+}
+
+.slide {
+  position: relative;
+  flex: 0 0 100%;
+  height: 100%;
+}
+
+.slide img {
+  object-fit: contain;
+}
+
+.dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  padding: 0;
+  border: none;
+  background: var(--color-border-hover);
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.dotActive {
+  background: var(--color-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    transition: none;
+  }
+}

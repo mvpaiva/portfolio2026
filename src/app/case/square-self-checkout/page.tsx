@@ -4,6 +4,18 @@ import { HeroBanner } from "@/components/case/blocks/HeroBanner";
 import { Contexto } from "@/components/case/blocks/Contexto";
 import { StatsSection } from "@/components/case/blocks/StatsSection";
 import { Pesquisa } from "@/components/case/blocks/Pesquisa";
+import { PanoramaCompetitivo } from "@/components/case/blocks/PanoramaCompetitivo";
+import { BlueprintCrop } from "@/components/case/blocks/BlueprintCrop";
+import { FieldNotes } from "@/components/case/blocks/FieldNotes";
+import { Jtbd } from "@/components/case/blocks/Jtbd";
+import { DesignPrototipacao } from "@/components/case/blocks/DesignPrototipacao";
+import { PrototipacaoTestesFigma } from "@/components/case/blocks/PrototipacaoTestesFigma";
+import { OnboardingFilmstrip } from "@/components/case/blocks/OnboardingFilmstrip";
+import { Testes } from "@/components/case/blocks/Testes";
+import { Solucoes } from "@/components/case/blocks/Solucoes";
+import { Resultado } from "@/components/case/blocks/Resultado";
+import { ProximosPassos } from "@/components/case/blocks/ProximosPassos";
+import { Footer } from "@/components/case/blocks/Footer";
 import { GhostMarker } from "@/components/case/GhostMarker";
 import { Reveal } from "@/components/case/Reveal";
 import { BackLink } from "@/components/case/BackLink";
@@ -23,13 +35,25 @@ export const metadata: Metadata = {
 // - Sequência do Sistema (Escaneamento ao Pagamento)  node visible:false
 // - footer.py-40                               node visible:false
 //
-// Still pending, built as this session's budget allows (see
+// All planned blocks are now built (see
 // C:\Users\Ma\.claude\plans\functional-yawning-pie.md for the full
-// sequencing): Panorama Competitivo/Totens no dia a dia, Blueprint Crop,
-// Field Notes, JTBD, Design e Prototipação, Prototipação & Testes (Figma),
-// Onboarding Filmstrip, Testes, Solução 1–5, Resultado, Próximos Passos,
-// Footer. TableOfContents links to #solucoes/#resultado ahead of those
-// sections existing — harmless no-ops until they're built.
+// sequencing — not present on every machine, see docs/handoff.md).
+//
+// Two ghost-markers ("Síntese" before Soluções, "Design" before
+// Resultado) were missing until 2026-09-16 — found via the API while
+// building Resultado: both sit visible:true in the real tree even
+// though their immediate Figma neighbors (Intro das Soluções, Sequência
+// do Sistema) are hidden, so it's easy to assume the whole neighborhood
+// is skippable. Only "Descoberta" had been added before this fix.
+//
+// 2026-09-16 (Matheus): the "Design" marker originally sat right before
+// Resultado, with no block of its own between them — so its TOC entry
+// and "Resultado" scrolled to nearly the same spot. Moved it to sit
+// before DesignPrototipacao instead (the block that's actually about
+// design/prototyping), and renamed all three mid-page markers to name
+// the content a reader is literally looking at (matching their real
+// section headings) rather than map Discover/Define/Develop — see
+// TableOfContents.tsx for the matching label change.
 //
 // Spotlight/lift hover cues (see BlockSpotlight.module.css and
 // BlockLift.module.css) are applied INSIDE each block, on the element
@@ -54,9 +78,47 @@ export default function SquareSelfCheckoutPage() {
       <Reveal>
         <StatsSection />
       </Reveal>
-      <GhostMarker id="descoberta">Descoberta</GhostMarker>
+      <GhostMarker id="descoberta">Pesquisa</GhostMarker>
       <Reveal>
         <Pesquisa />
+      </Reveal>
+      <Reveal>
+        <PanoramaCompetitivo />
+      </Reveal>
+      <Reveal>
+        <BlueprintCrop />
+      </Reveal>
+      <Reveal>
+        <FieldNotes />
+      </Reveal>
+      <Reveal>
+        <Jtbd />
+      </Reveal>
+      <GhostMarker id="design">Testes</GhostMarker>
+      <Reveal>
+        <DesignPrototipacao />
+      </Reveal>
+      <Reveal>
+        <PrototipacaoTestesFigma />
+      </Reveal>
+      <Reveal>
+        <OnboardingFilmstrip />
+      </Reveal>
+      <Reveal>
+        <Testes />
+      </Reveal>
+      <GhostMarker id="sintese">Soluções</GhostMarker>
+      <Reveal>
+        <Solucoes />
+      </Reveal>
+      <Reveal>
+        <Resultado />
+      </Reveal>
+      <Reveal>
+        <ProximosPassos />
+      </Reveal>
+      <Reveal>
+        <Footer />
       </Reveal>
     </main>
   );

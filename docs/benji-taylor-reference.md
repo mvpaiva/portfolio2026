@@ -517,8 +517,12 @@ calma, autoritária e profundamente legível. "Anti-design editorial."
       sentido) — é **cada bloco de lista virando seu próprio grupo
       independente**, replicando `.totem-group` por bloco: JTBD (3
       entradas), Próximos Passos (4), Stats Section (4 números), Field Notes
-      (6 links + 1 mudo), Footer — Metadados (5 campos). Cada um isolado —
+      (6 links + 1 mudo), ~~Footer — Metadados (5 campos)~~. Cada um isolado —
       hover num item de um grupo nunca afeta outro grupo.
+      **Correção (2026-09-16):** aplicado no Footer e depois revertido —
+      Matheus revisou ao vivo e achou o blur+dim desnecessário entre 5
+      pares label/valor simples. Footer mantém só o lift de página
+      (`lift-trigger` no grid externo), sem tratamento item-a-item.
     - **100% aditivo, não substitui nada:** o sticky da coluna de texto nos
       blocos de Solução (§13.2) continua exatamente como está. A animação de
       "aparecer e subir" ao rolar a página (fade + translateY na entrada de
