@@ -4,55 +4,21 @@ import styles from "./OnboardingFilmstrip.module.css";
 import liftStyles from "../BlockLift.module.css";
 
 // Copy source: Figma node 2252:183 "Onboarding — Filmstrip", read
-// verbatim via the Figma API (2026-09-16). All 6 images real, downloaded
-// from Figma's live asset URLs. Em dash in the label swapped for a
-// colon (authorial copy, not a verbatim quote — same rule applied
-// elsewhere in this case).
+// verbatim via the Figma API (2026-09-16).
 //
-// The onboarding screens themselves are in English ("Welcome to
-// Square", "First time?"), unlike the Portuguese checkout flow shown
-// elsewhere in the case. Not fixed here (it's pixels in real
-// screenshots) — consistent with the handoff note that onboarding was
-// deliberately left outside the case's core scope, so it wasn't taken
-// through the same localization pass as the checkout flow.
+// 2026-09-16 (Matheus): the 6-frame horizontal filmstrip (native
+// scroll-snap, one <Image> per frame) was replaced with a single
+// flattened banner he exported from Figma — the 6 captions ("1. Bem-
+// vindo ao Square" etc.) are baked into the image itself now. This was
+// one of several autolayout galleries causing real layout bugs
+// (breakage/horizontal scroll at odd viewport widths); flattening to
+// one image removes that failure mode. Only the block label above
+// stays as real text.
 //
-// 6 frames at 184px + 5 gaps of 24px ≈ 1226px — fits exactly in one row
-// at the standard desktop content width, but overflows on anything
-// narrower, so this scrolls horizontally (native scroll-snap, no JS)
-// rather than wrapping — a filmstrip, not a grid.
-const FRAMES = [
-  {
-    caption: "1. Bem-vindo ao Square",
-    alt: "Tela de boas-vindas do app com opções de login",
-    src: "/case/square-self-checkout/onboarding/01-bem-vindo.png",
-  },
-  {
-    caption: "2. Como funciona",
-    alt: "Bottom sheet explicando escanear, pesar e pagar pelo app, sobre uma foto real de uso",
-    src: "/case/square-self-checkout/onboarding/02-como-funciona.png",
-  },
-  {
-    caption: "3. Escaneado",
-    alt: "Foto real de um produto sendo escaneado com o app",
-    src: "/case/square-self-checkout/onboarding/03-escaneado.png",
-  },
-  {
-    caption: "4. Pesando um item",
-    alt: "Tela de pesagem de item no app",
-    src: "/case/square-self-checkout/onboarding/04-pesando.png",
-  },
-  {
-    caption: "5. Revisando e pagando",
-    alt: "Tela de checkout com opções de pagamento, Pix em destaque",
-    src: "/case/square-self-checkout/onboarding/05-revisando.png",
-  },
-  {
-    caption: "6. Saindo da loja",
-    alt: "Tela final com QR code de saída e confirmação de compra",
-    src: "/case/square-self-checkout/onboarding/06-saindo.png",
-  },
-];
-
+// Banner replaced again same day with a corrected export: the original
+// had several onboarding screens still in English ("Continue with
+// Apple", "Weigh item" etc.) — now fully localized to pt-BR, matching
+// the rest of the checkout flow shown elsewhere in the case.
 export function OnboardingFilmstrip() {
   return (
     <CaseSection id="onboarding-filmstrip" divider>
@@ -60,14 +26,12 @@ export function OnboardingFilmstrip() {
         <p className={styles.label}>Sequência de onboarding: primeiro uso completo</p>
 
         <div className={styles.filmstrip}>
-          {FRAMES.map((frame) => (
-            <div key={frame.caption} className={styles.frame}>
-              <p className={styles.caption}>{frame.caption}</p>
-              <div className={styles.imageWrap}>
-                <Image src={frame.src} alt={frame.alt} fill sizes="184px" />
-              </div>
-            </div>
-          ))}
+          <Image
+            src="/case/square-self-checkout/onboarding/onboarding-sequence-v2.png"
+            alt="Sequência de onboarding em 6 telas: bem-vindo ao Square, como funciona, escaneado, pesando um item, revisando e pagando, saindo da loja"
+            fill
+            sizes="1226px"
+          />
         </div>
       </div>
     </CaseSection>

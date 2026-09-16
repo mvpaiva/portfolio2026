@@ -60,15 +60,21 @@ leia essa seção primeiro se for continuar esse trabalho especificamente,
 antes do resto deste arquivo (que documenta principalmente a fase de
 design no Figma).
 
-## Case page: build em código (Next.js) — estado atual (2026-09-16)
+## Case page: build em código (Next.js) — estado atual (2026-09-16, fim de sessão)
 
 Rota ao vivo: `src/app/case/square-self-checkout/page.tsx`. Componentes em
 `src/components/case/` (primitivos compartilhados) e
 `src/components/case/blocks/` (um arquivo por bloco de conteúdo, CSS
-Modules co-localizados). Plano de implementação completo (sequenciamento,
-decisões de arquitetura, todos os blocos previstos) em
-`C:\Users\Ma\.claude\plans\functional-yawning-pie.md` — **esse plano
-sobrevive entre sessões, ler antes de continuar.**
+Modules co-localizados).
+
+**✅ TODOS os blocos da case page estão construídos e no ar.** Ordem real
+em `page.tsx`: Hero → HeroBanner → Contexto → Stats Section → GhostMarker
+"Pesquisa" → Pesquisa → Panorama Competitivo (Totens) → Blueprint Crop →
+Field Notes → JTBD → GhostMarker "Testes" → Design e Prototipação →
+Prototipação & Testes (Figma) → Onboarding Filmstrip → Testes →
+GhostMarker "Soluções" → Soluções (5) → Resultado → Próximos Passos →
+Footer. Não há mais "próximo bloco a construir" — a partir daqui o
+trabalho é refinamento de conteúdo/imagem, não estrutura nova.
 
 **Regra de processo (instrução permanente do Matheus):** sempre que ele
 disser que pode seguir pro próximo bloco, passar um pente fino no(s)
@@ -79,73 +85,142 @@ microinterações** (spotlight/lift hover). Também: nunca palavra-viúva (já
 resolvido globalmente via `text-wrap: pretty` no CSS), evitar travessão/
 hífen como pontuação "AI slop" em copy autoral (não se aplica a citações de
 pesquisa transcritas verbatim), e evitar outros padrões de "AI slop" (ex.:
-uma seta "→" already removida numa correção anterior).
+uma seta "→" já removida numa correção anterior).
 
-**Blocos prontos e revisados (pente fino já passado):** Hero, HeroBanner
-(o banner logo abaixo do Hero), Contexto, Stats Section, GhostMarker
-"Descoberta", Pesquisa. Todos com o sistema de hover spotlight/lift
-correto (ver abaixo).
+**Primitivos compartilhados prontos:** `CaseSection` (props `spacing` e
+`spacingBottom`, ver módulo pro vocabulário xl/normal/compact/tight),
+`BlockGrid`, `LabelStack`, `Stat`, `GhostMarker`, `Placeholder` (só usado
+hoje pelos logos ainda pendentes de Panorama Competitivo — ver abaixo),
+`Reveal` (scroll-reveal via IntersectionObserver), `BackLink`,
+`TableOfContents` (scroll-spy + colapsar/expandir), `SolutionBlock`
+(compartilhado pelas 5 Soluções), `ListSpotlight.module.css` (spotlight
+item-a-item, usado por JTBD e Próximos Passos).
 
-**Primitivos compartilhados prontos:** `CaseSection`, `BlockGrid`,
-`LabelStack`, `Stat`, `GhostMarker`, `DeviceImage`, `Placeholder`,
-`Reveal` (scroll-reveal com IntersectionObserver), `BackLink`,
-`TableOfContents` (scroll-spy + colapsar/expandir, ver
-`benji-taylor-reference.md` pro racional de design).
+**Sistema de hover spotlight/lift** (ver `benji-taylor-reference.md`,
+seção "Spotlight de bloco", pro histórico completo): o tratamento
+depende de **qual bloco está em hover**, não do tipo de quem reage.
+`lift-trigger` (a maioria dos blocos): hover levanta o próprio bloco e
+escurece os outros levemente, sem blur. `spotlight-trigger` (Stats
+Section): hover borra pesado todos os outros. `GhostMarker` fica de fora
+dos dois lados de propósito. Lógica em `BlockLift.module.css`/
+`BlockSpotlight.module.css`; `<main>` carrega a classe global
+`spotlightGroup`.
 
-**Sistema de hover spotlight/lift (versão final, 2026-09-16 — ver
-`benji-taylor-reference.md`, seção "Spotlight de bloco", pro histórico
-completo de 3 bugs encontrados e corrigidos):** o tratamento aplicado aos
-outros blocos depende de **qual bloco está em hover**, não do tipo de
-quem está reagindo.
-- `lift-trigger` (classe global, em `Hero`, `HeroBanner`, e nas 2 colunas
-  internas de `BlockGrid` — usado por `Contexto`/`Pesquisa`): hover
-  levanta o próprio bloco (`translateY(-2px)`) e escurece todos os outros
-  levemente (`opacity: 0.6`, sem blur) — inclusive o Stats Section.
-- `spotlight-trigger` (classe global, no Stats Section): hover borra
-  pesado todos os outros (`opacity: 0.15` + `blur(4px)`) — inclusive os
-  blocos de texto corrido.
-- `GhostMarker` (Descoberta, e os próximos que existirem) fica de fora
-  dos dois lados de propósito — não é `lift-trigger` nem
-  `spotlight-trigger`, confirmado com Matheus: o texto já é `opacity:
-  0.08` (decorativo, não leitura), então reagir ao hover de outros
-  blocos não teria efeito visual perceptível.
-- Lógica em `BlockLift.module.css`/`BlockSpotlight.module.css`, ambas
-  arquivos comentados com o histórico completo dos 3 bugs. `<main>`
-  carrega a classe global `spotlightGroup` que ambos os arquivos
-  referenciam através da fronteira de CSS Module.
+**TOC — estado final (2026-09-16, várias iterações nesta sessão):**
+5 entradas: Contexto, Pesquisa, Testes, Soluções, Resultado. Os
+ghost-markers foram renomeados e **reposicionados** (não mais nomeados
+por fase do Double Diamond) especificamente pra eliminar uma redundância
+onde duas entradas do TOC rolavam pro mesmo lugar — o marker "Design"
+(antes logo antes de Resultado, sem conteúdo próprio entre eles) foi
+movido pra antes de `DesignPrototipacao` e renomeado "Testes". Scroll
+suave (`scroll-behavior: smooth` em `globals.css`) foi adicionado pra
+essa navegação não ser um corte brusco.
+- **Legibilidade sobre imagens escuras — decisão final, depois de 3
+  tentativas rejeitadas** (gradiente de 120px → halo radial → blur de
+  vidro fosco, todas descartadas por Matheus como chamando atenção
+  demais ou indo contra a filosofia minimal-chrome): **voltou a ser texto
+  puro, sem fundo nenhum** — mesmo estado que tinha antes de qualquer uma
+  dessas tentativas. Se precisar resolver a legibilidade de novo no
+  futuro, **não repetir gradiente/blur** — já foi tentado e rejeitado
+  duas vezes nesta sessão.
 
-**Pendência aberta, não resolvida:** o label "Totens no dia a dia —
-observação de campo" (Figma node `2248:179`) tem um travessão — flagado
-pra Matheus em 2026-09-16, ainda sem resposta. Perguntar de novo antes de
-escrever esse bloco.
+**Refatoração grande desta sessão: blocos de imagem em autolayout viraram
+banners flatten (Matheus exportou do Figma com os labels já desenhados
+dentro da imagem):**
+- `DesignPrototipacao`, `OnboardingFilmstrip`, `Testes` (seção de provas):
+  a galeria de N imagens virou UM `<Image fill>` com aspect-ratio fixo
+  (a proporção real do PNG exportado). Muito mais simples que o sistema
+  de grid/scroll-snap anterior, que causava bugs reais de layout.
+- `SolutionBlock` (usado pelas 5 Soluções): o par antes/arrow/depois
+  (que tinha um sistema inteiro de `clamp()`/altura-em-vh pra evitar
+  distorção — ver histórico no git se precisar entender esse sistema)
+  foi **substituído por uma prop `banner` única** (src/alt/width/height).
+  O prop `layout` (side-by-side vs. stacked) foi removido — a proporção
+  do banner já dita o layout sozinha.
+  - **Bug real encontrado e corrigido:** `.block` vira `flex-direction:
+    column` em ≤900px mas manteve `align-items: flex-start` (pensado pro
+    modo row do desktop) — em modo coluna isso colapsa `.contentColumn`
+    pra largura 0. Corrigido com `align-items: stretch` só dentro da
+    media query. Se motor: qualquer novo componente que troca
+    `flex-direction` num breakpoint precisa reconferir se
+    `align-items`/`justify-content` ainda fazem sentido no novo eixo.
 
-**Próximo bloco a construir: "Totens no dia a dia" / Panorama Competitivo
-(Figma node `2248:178`).** Investigação de estrutura no Figma já feita:
-label `2248:179` (o travessão pendente acima); `2313:170` "Fotos em
-destaque" (4 colunas 289×565, header = logo 40×40 + nome, placeholder de
-imagem 289×513 — os 4 `Image Placeholder — Totem N` ainda precisam ter o
-tipo de fill reconfirmado, real vs. ainda genérico); `2313:193` "Seção —
-Locais visitados" com `2308:170` "11 locais visitados" + `2313:181` "Tira
-de logos" (11 itens, 76×80 cada, logo 64×64 + nome). Calibração manual de
-zoom feita em 3 logos de loja que ficavam desproporcionais mesmo com
-container idêntico (resolução nativa da imagem-fonte muito diferente
-entre lojas) — C&A 1.7x, Pão de Açúcar 0.82x, Shopping Center Norte 1.15x
-— ver `benji-taylor-reference.md` pro detalhe, **não é solução definitiva,
-calibrado a olho, só nos 3 piores outliers**, as outras 12 logos não foram
-tocadas. **Nenhum código escrito ainda pra esse bloco.**
+**Imagens reais trocadas nesta sessão** (várias vieram em pt-BR do
+Matheus, substituindo versões antigas em inglês ou com bugs de
+numeração): Hero banner, Panorama Competitivo (Totens: Renner/C&A/Zara/
+Shopping Center Norte — ver nota abaixo sobre Riachuelo), Blueprint Crop,
+Design e Prototipação, Onboarding Filmstrip, Testes (provas), Soluções 1
+e 3.
 
-**Ordem dos blocos restantes depois de Totens no dia a dia** (mesma ordem
-do plano): Blueprint Crop, Field Notes, Jobs To Be Done, Design e
-Prototipação, Prototipação & Testes (Figma), Onboarding Filmstrip, Testes,
-Solução 1–5, Resultado, Próximos Passos, Footer — Metadados. Blocos
-deliberadamente NÃO renderizados (ocultos no Figma fonte, ver comentário
-no topo de `page.tsx`): Metodologia, Intro das Soluções, Sequência do
-Sistema, `footer.py-40`.
+**⚠️ Bug real do Next.js encontrado nesta sessão, vai se repetir se
+esquecido:** o otimizador de imagem do Next (`/_next/image`) pode **servir
+bytes antigos indefinidamente** quando um arquivo em `public/` é
+sobrescrito no mesmo nome — mesmo depois de `rm -rf .next/cache/images` +
+restart do dev server. A única correção confiável encontrada foi
+**renomear o arquivo** (ex.: `hero.png` → `hero-ptbr.png`) e atualizar a
+referência no código. Sempre que trocar uma imagem já existente por uma
+nova versão com o mesmo propósito, mude o nome do arquivo.
 
-**Git:** todo o trabalho de código até agora está commitado e no
-`main` do GitHub (`mvpaiva/portfolio`) — sem branch separada, sem PR
-pendente. Últimos commits relevantes: `ae47879` (fix do modelo
-trigger-type-aware) e `d47cafc` (fix da phantom hover zone).
+**⚠️ Bug real, ainda não corrigido, fora do escopo desta sessão:**
+`-webkit-backdrop-filter` declarado ANTES da propriedade padrão
+`backdrop-filter` faz o build do Next (lightningcss) **descartar a
+propriedade padrão silenciosamente**, mantendo só a prefixada — que
+alguns motores modernos não reconhecem, então o blur nunca renderiza.
+Confirmado em `BackLink.module.css` e no `.mobilePill`/`.mobileList` de
+`TableOfContents.module.css` (ambos têm esse bug hoje — nunca testado se
+o blur realmente aparece). Corrigido só no lugar onde foi descoberto
+(TOC, depois revertido junto com o resto da tentativa de legibilidade).
+**Se for mexer nesses dois arquivos, inverter a ordem** (padrão por
+último) e conferir visualmente.
+
+**Pendências reais que restam (lista do próprio Matheus, 2026-09-16):**
+1. Wireframes pra pt-BR — parcialmente entregue (`docs/assets/
+   square-wireframes-raw/mobile/pt-br/` e `.../totem/pt-br/` já existem
+   no repo), ainda não confirmado se foram todos incorporados no código.
+2. Substituir e refinar todos os textos.
+3. **Padronizar logos das marcas visitadas** (Panorama Competitivo) — os
+   logos ainda são `Placeholder` cinza (tanto os 4 da galeria em destaque
+   quanto os 11 da tira). Recomendação já dada ao Matheus: caixa
+   consistente por contexto (64×64 na tira, 40×40 no destaque), logo
+   preenchendo ~70-80% da caixa por peso visual (não px literal), porque
+   os arquivos de origem têm resolução/padding internos muito diferentes
+   entre si (mesmo problema já calibrado manualmente uma vez, ver
+   `benji-taylor-reference.md`).
+4. Adicionar fotos/imagens aos placeholders restantes.
+5. Testar altura de wireframes/imagens em mais resoluções.
+6. Criar vídeo do teste em papel.
+7. **✅ Item 7 original (converter sequências de fotos/wireframes em
+   autolayout pra imagem, Design e Prototipação/Onboarding/Soluções) —
+   feito nesta sessão**, ver refatoração grande acima. Testes também
+   convertido (não estava na lista original, adicionado no meio da
+   sessão).
+8. **Novo, levantado nesta sessão:** pra manter o tamanho de fonte dos
+   labels (agora pixels dentro da imagem, não mais CSS) proporcional ao
+   resto da página em qualquer resolução, cada um dos banners flatten
+   (Design e Prototipação, Onboarding, Testes-provas, Soluções 1/2/3/4/5)
+   precisa de **uma segunda composição no Figma pro mobile** — não só
+   mais resolução do mesmo arquivo, uma composição própria desenhada pro
+   tamanho de exibição real no celular (~340px CSS, exportar a 3x =
+   ~1020px). Ver a última troca de mensagens desta sessão pro racional
+   completo e a tabela de tamanho de fonte por bloco (13px Design e
+   Prototipação, 11px Onboarding, 10px uppercase Testes/Soluções — todos
+   os valores reais de antes da flatten). **Soluções 1, 4 e 5** (hoje
+   side-by-side no desktop) precisam virar **empilhadas** na versão
+   mobile (mesmo arranjo que 2 e 3 já usam) — não é só reduzir a mesma
+   arte. Matheus ainda não exportou essas versões mobile — quando
+   exportar, trocar cada `<Image>` por uma versão condicional por
+   media query (desktop ≥768/900px, mobile abaixo disso).
+   - **Nota:** "Provas — Rodada 1 + Tree Testing.png" foi reportado como
+     desatualizado nesta sessão mas o arquivo que o Matheus trouxe era
+     **byte-idêntico** ao já publicado — provavelmente o mesmo bug de
+     cache do Next descrito acima, visto do lado do Matheus, não um
+     arquivo de fato novo. Se ele insistir que está desatualizado,
+     conferir primeiro se o arquivo realmente mudou antes de gastar
+     tempo trocando algo que já está certo.
+
+**Git:** todo o trabalho desta sessão foi commitado e enviado pro `main`
+do GitHub (`mvpaiva/portfolio`) antes desta sessão terminar — sem branch
+separada, sem PR pendente.
 
 ## Ordem de leitura dos documentos
 

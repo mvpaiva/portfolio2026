@@ -47,70 +47,20 @@
   margin-top: var(--space-8);
 }
 
+/* Matches the real banner's native ratio (1508x648, confirmed via
+   `file` on the source export) — was 2 side-by-side proof panels
+   before Matheus flattened them into one image (both proof labels
+   baked in). */
 .proofs {
-  display: flex;
-  gap: var(--space-6);
-  width: 100%;
-  margin-top: var(--space-8);
-}
-
-.proof {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-  flex: 1;
-  min-width: 0;
-}
-
-.proofLabel {
-  font-family: var(--font-body);
-  font-weight: 500;
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--color-ink);
-}
-
-/* Real values from Figma differ per image, not just a shared variant:
-   Tree Testing gets an 8px inner padding + top-anchored crop; Card
-   Sorting gets no padding, a near-white backing (not --color-bg, so its
-   own pure-white background doesn't pick up the page's warm cream
-   tint), and a full contain fit instead of a crop. */
-.proofImage {
-  width: 100%;
-  height: 300px;
-}
-
-.proofImagePadded {
-  padding: 8px;
-}
-
-.proofImageContain {
-  background: #fefefe;
-}
-
-.proofImageInner {
   position: relative;
   width: 100%;
-  height: 100%;
-}
-
-.proofImageInner img {
-  object-fit: cover;
-  object-position: top;
-}
-
-.proofImageContain .proofImageInner img {
-  object-fit: contain;
+  aspect-ratio: 1508 / 648;
+  margin-top: var(--space-8);
 }
 
 @media (max-width: 768px) {
   .statsRow {
     flex-wrap: wrap;
     gap: var(--space-4) var(--space-8);
-  }
-
-  .proofs {
-    flex-direction: column;
   }
 }

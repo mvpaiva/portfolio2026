@@ -14,6 +14,15 @@
   color: var(--color-ink);
 }
 
+/* Matches the real image's native ratio (2452x1040, confirmed via
+   `file` on the source export) — was a Placeholder with the same
+   aspect-ratio before the real crop existed. */
+.blueprintImage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1226 / 520;
+}
+
 .stages {
   display: flex;
   gap: clamp(32px, 8vw, 96px);

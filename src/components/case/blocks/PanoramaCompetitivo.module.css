@@ -27,6 +27,15 @@
   min-width: 0;
 }
 
+/* Matches the real photos' native ratio (587x1042, confirmed via `file`
+   on the source exports) — was a Placeholder with the same aspect-ratio
+   before the real crops existed. */
+.totemPhoto {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 289 / 513;
+}
+
 .photoHeader {
   display: flex;
   align-items: center;

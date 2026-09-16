@@ -14,50 +14,12 @@
   color: var(--color-ink);
 }
 
-/* Scrollbar hidden cross-browser — the OS default (chunky gray bar with
-   arrow buttons on Windows/Chromium) clashed hard with everything else
-   here. The 6th frame sitting partially cut off at the edge already
-   signals "more to scroll", and scroll-snap handles the gesture, so no
-   visible scrollbar is needed — same minimal-chrome call already made
-   elsewhere in this case (dropped carousel arrows, decorative "→"). */
+/* Matches the real banner's native ratio (2452x852, confirmed via
+   `file` on the source export) — was a 6-frame horizontal scroll-snap
+   filmstrip before Matheus flattened it into one image (frame captions
+   baked in). */
 .filmstrip {
-  display: flex;
-  gap: var(--space-6);
-  width: 100%;
-  overflow-x: auto;
-  scroll-snap-type: x proximity;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  padding-bottom: var(--space-2);
-}
-
-.filmstrip::-webkit-scrollbar {
-  display: none;
-}
-
-.frame {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-  flex: 0 0 184px;
-  scroll-snap-align: start;
-}
-
-.caption {
-  font-family: var(--font-body);
-  font-weight: 400;
-  font-size: 11px;
-  color: var(--color-ink);
-  opacity: 0.65;
-  white-space: nowrap;
-}
-
-.imageWrap {
   position: relative;
   width: 100%;
-  aspect-ratio: 184.33 / 400;
-}
-
-.imageWrap img {
-  object-fit: contain;
+  aspect-ratio: 2452 / 852;
 }

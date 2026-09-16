@@ -11,6 +11,11 @@ import liftStyles from "../BlockLift.module.css";
 // applied to both proof-image labels ("Resultado real — X" → "Resultado
 // real: X"). Both proof images are real Maze exports (tree testing +
 // card sorting), downloaded from Figma's live asset URLs.
+//
+// 2026-09-16 (Matheus): the 2 side-by-side proof panels were replaced
+// with a single flattened banner he exported from Figma — both labels
+// ("Resultado real: Tree Testing"/"Card Sorting") are baked into the
+// image now, not separate <p> tags.
 const STATS = [
   { number: "5", label: "Rodadas de teste" },
   { number: "57", label: "Telas hi-fi testadas" },
@@ -45,33 +50,12 @@ export function Testes() {
         </p>
 
         <div className={styles.proofs}>
-          <div className={styles.proof}>
-            <p className={styles.proofLabel}>Resultado real: Tree Testing</p>
-            <div className={`${styles.proofImage} ${styles.proofImagePadded}`}>
-              <div className={styles.proofImageInner}>
-                <Image
-                  src="/case/square-self-checkout/testes/tree-testing.png"
-                  alt="Resultado do tree test no Maze: 14 tarefas, a maioria com 100% de sucesso direto"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 589px"
-                />
-              </div>
-            </div>
-          </div>
-
-          <div className={styles.proof}>
-            <p className={styles.proofLabel}>Resultado real: Card Sorting</p>
-            <div className={`${styles.proofImage} ${styles.proofImageContain}`}>
-              <div className={styles.proofImageInner}>
-                <Image
-                  src="/case/square-self-checkout/testes/card-sorting.png"
-                  alt="Matriz de similaridade do card sorting no Maze, mostrando os agrupamentos de categorias que os usuários fizeram"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 589px"
-                />
-              </div>
-            </div>
-          </div>
+          <Image
+            src="/case/square-self-checkout/testes/provas-rodada1-tree-testing.png"
+            alt="Provas reais dos testes: resultado do tree test no Maze (14 tarefas, maioria com 100% de sucesso direto) e matriz de similaridade do card sorting"
+            fill
+            sizes="(max-width: 768px) 100vw, 754px"
+          />
         </div>
       </BlockGrid>
     </CaseSection>

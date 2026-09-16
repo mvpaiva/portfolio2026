@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { CaseSection } from "../CaseSection";
 import { Placeholder } from "../Placeholder";
 import styles from "./PanoramaCompetitivo.module.css";
@@ -11,11 +12,21 @@ import liftStyles from "../BlockLift.module.css";
 // Label swapped from the Figma's em dash ("Totens no dia a dia —
 // observação de campo") to a colon — flagged to Matheus 2026-09-16 as
 // pending, resolved here per his answer to drop the travessão.
+//
+// Real field photos added 2026-09-16: of the 4 raw exports Matheus
+// provided (banners/field-exploration1-4.png), only 3 matched the
+// original highlighted set by visible signage (C&A on the counter,
+// Zara from the bag, "Grande Center Norte" on the parking kiosk) — the
+// 4th (field-exploration1.png) turned out to be Renner, not Riachuelo;
+// there's no Riachuelo photo in this batch. Per Matheus: swap Riachuelo
+// for Renner in the highlighted 4 rather than leave a placeholder.
+// Renner stays in the 11-location list below too (kept — it's a real
+// location from the actual research, not a duplicate to prune).
 const TOTEMS = [
-  { name: "Riachuelo" },
-  { name: "C&A" },
-  { name: "Zara" },
-  { name: "Shopping Center Norte" },
+  { name: "Renner", photo: "renner.png" },
+  { name: "C&A", photo: "ca.png" },
+  { name: "Zara", photo: "zara.png" },
+  { name: "Shopping Center Norte", photo: "shopping-center-norte.png" },
 ];
 
 // Order and manual zoom calibration on 3 outlier logos (C&A, Pão de
@@ -51,7 +62,14 @@ export function PanoramaCompetitivo() {
                 </div>
                 <span className={styles.caption}>{totem.name}</span>
               </div>
-              <Placeholder ratio="289/513" label={`Totem — ${totem.name}`} />
+              <div className={styles.totemPhoto}>
+                <Image
+                  src={`/case/square-self-checkout/panorama-competitivo/${totem.photo}`}
+                  alt={`Totem de autoatendimento observado na loja ${totem.name}`}
+                  fill
+                  sizes="(max-width: 768px) 50vw, 289px"
+                />
+              </div>
             </div>
           ))}
         </div>

@@ -31,53 +31,11 @@
   max-width: 65ch;
 }
 
+/* Matches the real banner's native ratio (2452x1302, confirmed via
+   `file` on the source export) — was a 4-column autolayout gallery
+   before Matheus flattened it into one image (stage labels baked in). */
 .gallery {
-  display: flex;
-  gap: var(--space-6);
-  width: 100%;
-}
-
-.stage {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-  flex: 1;
-  min-width: 0;
-}
-
-.stageLabel {
-  font-family: var(--font-body);
-  font-weight: 400;
-  font-size: 13px;
-  color: var(--color-ink);
-}
-
-.imageWrap {
   position: relative;
   width: 100%;
-  aspect-ratio: 289 / 623;
-  overflow: hidden;
-}
-
-.imageWrap img {
-  width: 100%;
-  height: 100%;
-}
-
-.cover img {
-  object-fit: cover;
-}
-
-.contain img {
-  object-fit: contain;
-}
-
-@media (max-width: 768px) {
-  .gallery {
-    flex-wrap: wrap;
-  }
-
-  .stage {
-    flex: 1 1 calc(50% - var(--space-3));
-  }
+  aspect-ratio: 2452 / 1302;
 }

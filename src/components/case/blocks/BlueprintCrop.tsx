@@ -1,5 +1,5 @@
+import Image from "next/image";
 import { CaseSection } from "../CaseSection";
-import { Placeholder } from "../Placeholder";
 import styles from "./BlueprintCrop.module.css";
 import liftStyles from "../BlockLift.module.css";
 
@@ -51,10 +51,14 @@ export function BlueprintCrop() {
       <div className={`${styles.block} ${liftStyles.item} lift-trigger`}>
         <p className={styles.label}>Recorte do service blueprint</p>
 
-        <Placeholder
-          ratio="1226/520"
-          label="Recorte do service blueprint do fluxo de autoatendimento"
-        />
+        <div className={styles.blueprintImage}>
+          <Image
+            src="/case/square-self-checkout/blueprint-crop/recorte-service-blueprint.png"
+            alt="Recorte do service blueprint do fluxo de autoatendimento"
+            fill
+            sizes="(max-width: 768px) 100vw, 1226px"
+          />
+        </div>
 
         <div className={styles.stages}>
           {STAGES.map((stage, index) => (
