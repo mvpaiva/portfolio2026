@@ -42,10 +42,20 @@
   gap: 10px;
 }
 
+/* Fixed height, auto width — each header logo keeps its own real aspect
+   ratio (Renner is a narrow tall icon, Zara a wide wordmark) instead of
+   being squashed into a shared square box. See PanoramaCompetitivo.tsx
+   for why a square box would undo Matheus's per-logo calibration. */
 .logoSmall {
-  width: 40px;
+  display: flex;
+  align-items: center;
   height: 40px;
   flex-shrink: 0;
+}
+
+.logoSmall img {
+  height: 100%;
+  width: auto;
 }
 
 .caption {
@@ -97,23 +107,36 @@
 
 .logoItem {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
 }
 
 .logoLarge {
+  position: relative;
   width: 64px;
   height: 64px;
 }
 
-.logoCaption {
-  font-family: var(--font-body);
-  font-size: 8px;
-  color: var(--color-ink);
-  opacity: 0.65;
-  text-align: center;
-  width: 76px;
+/* Grayscale by default (reduces color noise from 11 unrelated brand
+   marks sitting side by side), full color on hover — the logos stay
+   individually recognizable by shape even desaturated, and color
+   becomes a small reward for engaging rather than competing for
+   attention at rest. No caption under each logo (Matheus, 2026-09-16) —
+   `alt` on the <Image> carries the name for accessibility. */
+.logoLarge img {
+  object-fit: contain;
+  filter: grayscale(1);
+  transition: filter 0.3s ease;
+}
+
+.logoItem:hover .logoLarge img {
+  filter: grayscale(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logoLarge img {
+    transition: none;
+  }
 }
 
 @media (max-width: 768px) {
