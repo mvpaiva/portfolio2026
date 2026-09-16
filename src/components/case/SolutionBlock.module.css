@@ -1,8 +1,17 @@
+/* scroll-margin-top matches CaseSection's own "normal" padding-top
+   (Matheus, 2026-09-16): the pain-point links in Field Notes/Pesquisa
+   jump straight to a #solucao-N id on THIS inner block, not on the
+   shared <CaseSection id="solucoes"> that wraps all 5 — that section's
+   padding only exists once, above the first block, so an anchor jump to
+   any individual block skipped it entirely and landed flush against the
+   viewport top with no breathing room. scroll-margin-top puts the same
+   gap back for every anchor, regardless of which solution it targets. */
 .block {
   display: flex;
   gap: var(--space-8);
   align-items: flex-start;
   width: 100%;
+  scroll-margin-top: var(--space-32);
 }
 
 .labelColumn {
@@ -110,6 +119,7 @@
   .block {
     flex-direction: column;
     align-items: stretch;
+    scroll-margin-top: var(--space-16);
   }
 
   .labelColumn {

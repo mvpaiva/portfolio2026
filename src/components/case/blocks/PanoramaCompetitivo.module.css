@@ -72,49 +72,20 @@
   width: 100%;
 }
 
-/* Grid com contagem de colunas FIXA por breakpoint, não flex-wrap fluido.
-   Com 11 logos, flex-wrap contínuo passa por toda contagem de colunas
-   conforme a viewport encolhe — incluindo as "ruins" (2, 5, 9, 10), onde
-   sobra exatamente 1 logo sozinha na última linha (ex.: 5+5+1). Os
-   valores de N abaixo (11/6/4/3) foram escolhidos por não deixarem
-   resto 1 ao dividir 11 (11, 6+5, 4+4+3, 3+3+3+2 — nenhuma linha final
-   com 1 item). Ver conversa 2026-09-15 para a tabela de larguras onde o
-   flex-wrap antigo isolava uma logo. */
+/* Flex row, not a fixed-column grid: each logo now renders at its own
+   natural width (see PanoramaCompetitivo.tsx for why — a shared box was
+   squashing wide wordmarks). A rigid N-column grid can't work anymore
+   since column count no longer maps to equal-width cells; flex-wrap
+   reflows naturally at any width without the "1 orphan item on the last
+   row" math the old fixed-column system needed. */
 .logoStrip {
-  display: grid;
-  grid-template-columns: repeat(11, minmax(0, 1fr));
-  gap: var(--space-6) var(--space-4);
-  width: 100%;
-}
-
-@media (max-width: 900px) {
-  .logoStrip {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 600px) {
-  .logoStrip {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 420px) {
-  .logoStrip {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-.logoItem {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
-}
-
-.logoLarge {
-  position: relative;
-  width: 64px;
-  height: 64px;
+  justify-content: flex-start;
+  column-gap: var(--space-8);
+  row-gap: var(--space-6);
+  width: 100%;
 }
 
 /* Grayscale by default (reduces color noise from 11 unrelated brand
@@ -122,19 +93,21 @@
    individually recognizable by shape even desaturated, and color
    becomes a small reward for engaging rather than competing for
    attention at rest. No caption under each logo (Matheus, 2026-09-16) —
-   `alt` on the <Image> carries the name for accessibility. */
-.logoLarge img {
-  object-fit: contain;
+   `alt` on the <Image> carries the name for accessibility. Fixed height
+   (matches Figma's 24px target), width auto per logo's real aspect. */
+.logoLarge {
+  height: 24px;
+  width: auto;
   filter: grayscale(1);
   transition: filter 0.3s ease;
 }
 
-.logoItem:hover .logoLarge img {
+.logoLarge:hover {
   filter: grayscale(0);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .logoLarge img {
+  .logoLarge {
     transition: none;
   }
 }

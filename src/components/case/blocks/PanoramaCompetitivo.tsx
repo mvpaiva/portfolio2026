@@ -25,52 +25,53 @@ import liftStyles from "../BlockLift.module.css";
 // shared canvas like the 11-strip below), so they're rendered at their
 // real pixel size scaled to a fixed 40px display height (CSS `width:
 // auto`) instead of forced into a fixed square — a square box would
-// have squashed the wide ones (Zara 74x40) down to fit, undoing exactly
-// the balance Matheus calibrated in Figma (node 2313:170, 2026-09-16).
+// squash a wide one down to fit, undoing Matheus's calibration in Figma
+// (node 2313:170). "-sm-v2" files are his second re-export round
+// (2026-09-16) — Zara went from a 74x40 wide crop back to a 38x57
+// portrait one; same cache-busting rename reason as the 11-strip below.
 const TOTEMS = [
-  { name: "Renner", photo: "renner.png", logo: "renner-sm.png", w: 29, h: 40 },
-  { name: "C&A", photo: "ca.png", logo: "cea-sm.png", w: 40, h: 40 },
-  { name: "Zara", photo: "zara.png", logo: "zara-sm.png", w: 74, h: 40 },
+  { name: "Renner", photo: "renner.png", logo: "renner-sm-v2.png", w: 29, h: 40 },
+  { name: "C&A", photo: "ca.png", logo: "cea-sm-v2.png", w: 40, h: 40 },
+  { name: "Zara", photo: "zara.png", logo: "zara-sm-v2.png", w: 38, h: 57 },
   {
     name: "Shopping Center Norte",
     photo: "shopping-center-norte.png",
-    logo: "centernorte-sm.png",
+    logo: "centernorte-sm-v2.png",
     w: 40,
     h: 40,
   },
 ];
 
-// Real logo crops exported by Matheus 2026-09-16 (Figma node 2544:663,
-// already zoom-calibrated per benji-taylor-reference.md) — replaces the
-// Placeholder stand-ins. Order groups by category (moda → mercado → fast
-// food → o shopping em si), matching the final Figma arrangement; no
+// Real logo crops exported by Matheus 2026-09-16 (Figma node 2544:663).
+// His original calibration fit each logo into a shared 77x64 canvas
+// capped at 24px target height / 64px max width — but wide wordmarks
+// (Renner, Carrefour, Walmart, Pão de Açúcar) hit the width cap long
+// before reaching 24px tall, so they rendered at as little as 10px while
+// compact marks (C&A, McDonald's) sat at the full 24px — exactly the
+// "tamanhos tão destoantes" Matheus flagged. Fixed the same way in
+// Figma and here: `sharp().trim()` each source down to its real content
+// bounding box (dropping the baked-in cap padding), then render every
+// logo at the SAME height with natural width (no cap) — the 11 real
+// aspect ratios sum to well under 1226px at a comfortable height, so
+// nothing needs to be squeezed. `w`/`h` below are each file's trimmed
+// pixel size (see `-trim.png` in public/) driving next/image's intrinsic
+// size; CSS scales down to the shared display height, width auto. No
 // caption under each logo per Matheus's call — the logo alone reads fine
-// at this density, `alt` carries the name for accessibility. Unlike the
-// header logos above, these 11 all share the same 77x64 export canvas
-// with each mark already scaled/positioned inside it per Matheus's
-// calibration ("altura-alvo de 24px, teto de largura de 64px") — so a
-// single shared box + `object-fit: contain` reproduces that balance
-// exactly, since every logo is scaled down by the identical factor.
-// Filenames below use a "-v2" suffix on every logo Matheus re-exported
-// with different pixel content this round (zara, riachuelo, cea, renner,
-// walmart, extra, carrefour, paodeacucar, centernorte) — Next's
-// `/_next/image` optimizer can keep serving old bytes indefinitely when a
-// same-named file in `public/` is overwritten, confirmed in this exact
-// file already (see handoff.md); renaming is the only reliable fix.
-// honest.png/mc.png didn't need it — they're new filenames this round
-// (were honestmarket.png/mcdonalds.png before).
+// at this density, `alt` carries the name for accessibility. Order
+// groups by category (moda → mercado → fast food → o shopping em si),
+// matching the final Figma arrangement.
 const LOCATIONS = [
-  { name: "Zara", logo: "zara-v2.png" },
-  { name: "Riachuelo", logo: "riachuelo-v2.png" },
-  { name: "C&A", logo: "cea-v2.png" },
-  { name: "Renner", logo: "renner-v2.png" },
-  { name: "Honest Market", logo: "honest.png" },
-  { name: "Walmart", logo: "walmart-v2.png" },
-  { name: "Extra", logo: "extra-v2.png" },
-  { name: "Carrefour", logo: "carrefour-v2.png" },
-  { name: "Pão de Açúcar", logo: "paodeacucar-v2.png" },
-  { name: "McDonald's", logo: "mc.png" },
-  { name: "Shopping Center Norte", logo: "centernorte-v2.png" },
+  { name: "Zara", logo: "zara-trim.png", w: 57, h: 24 },
+  { name: "Riachuelo", logo: "riachuelo-trim.png", w: 64, h: 22 },
+  { name: "C&A", logo: "cea-trim.png", w: 47, h: 23 },
+  { name: "Renner", logo: "renner-trim.png", w: 64, h: 12 },
+  { name: "Honest Market", logo: "honest-trim.png", w: 60, h: 24 },
+  { name: "Walmart", logo: "walmart-trim.png", w: 63, h: 14 },
+  { name: "Extra", logo: "extra-trim.png", w: 50, h: 24 },
+  { name: "Carrefour", logo: "carrefour-trim.png", w: 64, h: 10 },
+  { name: "Pão de Açúcar", logo: "paodeacucar-trim.png", w: 64, h: 15 },
+  { name: "McDonald's", logo: "mc-trim.png", w: 36, h: 24 },
+  { name: "Shopping Center Norte", logo: "centernorte-trim.png", w: 38, h: 24 },
 ];
 
 export function PanoramaCompetitivo() {
@@ -109,16 +110,14 @@ export function PanoramaCompetitivo() {
           <p className={styles.label}>11 locais visitados</p>
           <div className={styles.logoStrip}>
             {LOCATIONS.map((location) => (
-              <div key={location.name} className={styles.logoItem}>
-                <div className={styles.logoLarge}>
-                  <Image
-                    src={`/case/square-self-checkout/panorama-competitivo/logos/${location.logo}`}
-                    alt={`Logo ${location.name}`}
-                    fill
-                    sizes="64px"
-                  />
-                </div>
-              </div>
+              <Image
+                key={location.name}
+                className={styles.logoLarge}
+                src={`/case/square-self-checkout/panorama-competitivo/logos/${location.logo}`}
+                alt={`Logo ${location.name}`}
+                width={location.w}
+                height={location.h}
+              />
             ))}
           </div>
         </div>
