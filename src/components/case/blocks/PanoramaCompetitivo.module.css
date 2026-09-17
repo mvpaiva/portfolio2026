@@ -58,9 +58,12 @@
   width: auto;
 }
 
+/* 10px, not 8px (Matheus, 2026-09-16, "o texto parece pequeno demais") —
+   8px was the only spot in the whole case below the 10px floor used
+   everywhere else (BackLink, Blueprint Crop, Onboarding Filmstrip). */
 .caption {
   font-family: var(--font-body);
-  font-size: 8px;
+  font-size: 10px;
   color: var(--color-ink);
   opacity: 0.65;
 }
