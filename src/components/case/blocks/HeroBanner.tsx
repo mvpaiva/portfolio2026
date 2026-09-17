@@ -1,6 +1,5 @@
 import Image from "next/image";
 import styles from "./HeroBanner.module.css";
-import liftStyles from "../BlockLift.module.css";
 
 // Copy source: Figma node 2239:179 "div.w-full" — a centered banner
 // directly below Hero, separate from it, now displayed at the same
@@ -19,7 +18,7 @@ export function HeroBanner() {
         width={2998}
         height={1492}
         priority
-        className={`${styles.image} ${liftStyles.item} lift-trigger`}
+        className={`${styles.image}`}
         sizes="(max-width: 1489px) 100vw, 1489px"
       />
     </div>

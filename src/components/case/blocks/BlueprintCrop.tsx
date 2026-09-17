@@ -1,13 +1,9 @@
 import Image from "next/image";
 import { CaseSection } from "../CaseSection";
 import styles from "./BlueprintCrop.module.css";
-import liftStyles from "../BlockLift.module.css";
 
 // Copy source: Figma node 2173:267 "Blueprint Crop", read verbatim via the
-// Figma API (2026-09-16). Corrected 2026-09-16 (Matheus): this is a
-// lift-trigger block (light opacity+translateY, no blur), not
-// spotlight-trigger — the initial call miscategorized it as meta-info
-// like Stats, same misjudgment already made once for Stats itself.
+// Figma API (2026-09-16).
 //
 // The Figma source has a connecting "timeline" line under the 3 stage
 // numbers (node 2227:641) — dropped per Matheus 2026-09-16 ("não
@@ -48,7 +44,7 @@ const STAGES = [
 export function BlueprintCrop() {
   return (
     <CaseSection id="blueprint-crop" spacing="tight">
-      <div className={`${styles.block} ${liftStyles.item} lift-trigger`}>
+      <div className={`${styles.block}`}>
         <p className={styles.label}>Recorte do service blueprint</p>
 
         <div className={styles.blueprintImage}>

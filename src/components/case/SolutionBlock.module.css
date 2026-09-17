@@ -104,6 +104,25 @@
   width: 100%;
 }
 
+/* Desktop and mobile each get their own flattened export (Matheus,
+   2026-09-17) rather than one image stretched across every breakpoint —
+   see SolutionBlock.tsx. Both <Image>s render; only one is display:none
+   at a time, avoiding a src-swap flash on resize. Breakpoint matches
+   .block's own row->column switch below. */
+.mobileBanner {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .desktopBanner {
+    display: none;
+  }
+
+  .mobileBanner {
+    display: block;
+  }
+}
+
 /* align-items:flex-start on .block is a desktop-row-mode concern (top-
    align the two columns instead of stretching contentColumn to
    labelColumn's sticky height). Once .block switches to a column flex

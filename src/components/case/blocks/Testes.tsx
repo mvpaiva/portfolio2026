@@ -3,19 +3,15 @@ import { CaseSection } from "../CaseSection";
 import { BlockGrid } from "../BlockGrid";
 import { LabelStack } from "../LabelStack";
 import styles from "./Testes.module.css";
-import liftStyles from "../BlockLift.module.css";
 
-// Copy source: Figma node 2173:413 "Testes", read verbatim via the
-// Figma API (2026-09-16). Both em dashes in the body paragraph
-// (authorial copy, not a quote) restructured with parentheses; same fix
-// applied to both proof-image labels ("Resultado real — X" → "Resultado
-// real: X"). Both proof images are real Maze exports (tree testing +
-// card sorting), downloaded from Figma's live asset URLs.
+// Copy source: Figma node 2173:413 "Testes", re-synced 2026-09-17 after
+// Matheus's full text refinement pass. Both proof-image labels
+// ("Resultado real — X") are baked into the flattened banner image, not
+// separate <p> tags.
 //
-// 2026-09-16 (Matheus): the 2 side-by-side proof panels were replaced
-// with a single flattened banner he exported from Figma — both labels
-// ("Resultado real: Tree Testing"/"Card Sorting") are baked into the
-// image now, not separate <p> tags.
+// "Achado principal" callout (added 2026-09-17, was missing from the
+// first build entirely): a bordered box sitting between the footnote
+// and the proof banner — ink 4% fill, 1px ink-100% border, no radius.
 const STATS = [
   { number: "5", label: "Rodadas de teste" },
   { number: "57", label: "Telas hi-fi testadas" },
@@ -26,14 +22,13 @@ export function Testes() {
   return (
     <CaseSection id="testes" divider>
       <BlockGrid
-        className={liftStyles.item}
         label={<LabelStack eyebrow="OS TESTES" question="Como validamos antes de decidir?" />}
       >
         <p className={styles.body}>
-          5 rodadas de teste (1 protótipo em papel, 2 rodadas mid-fi no totem,
-          2 rodadas hi-fi no app e no totem), usando Maze e testes
-          presenciais. Cada rodada revalidava as decisões da rodada anterior
-          antes de avançar de fidelidade.
+          5 rodadas de teste usando Maze e testes presenciais moderados e
+          não-moderados: 1 protótipo em papel, 2 rodadas mid-fi no totem, 2
+          rodadas hi-fi no app e no totem. Cada rodada revalidava as decisões
+          da rodada anterior antes de avançar de fidelidade.
         </p>
 
         <div className={styles.statsRow}>
@@ -48,6 +43,15 @@ export function Testes() {
         <p className={styles.footnote}>
           Benchmarking de acessibilidade WCAG AA em todas as rodadas hi-fi.
         </p>
+
+        <div className={styles.finding}>
+          <p className={styles.findingLabel}>Achado principal</p>
+          <p className={styles.findingText}>
+            Cada rodada validava a anterior antes de avançar de fidelidade —
+            as 5 soluções finais vieram de decisões já testadas, não de
+            suposições.
+          </p>
+        </div>
 
         <div className={styles.proofs}>
           <Image

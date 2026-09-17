@@ -47,6 +47,29 @@
   margin-top: var(--space-8);
 }
 
+.finding {
+  border: 1px solid var(--color-ink);
+  background: rgba(26, 26, 26, 0.04);
+  padding: var(--space-8);
+  margin-top: var(--space-8);
+}
+
+.findingLabel {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 13px;
+  color: var(--color-ink);
+}
+
+.findingText {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.4;
+  color: var(--color-ink);
+  margin-top: var(--space-3);
+}
+
 /* Matches the real banner's native ratio (1508x648, confirmed via
    `file` on the source export) — was 2 side-by-side proof panels
    before Matheus flattened them into one image (both proof labels

@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { CaseSection } from "../CaseSection";
 import styles from "./DesignPrototipacao.module.css";
-import liftStyles from "../BlockLift.module.css";
 
 // Copy source: Figma node 2173:395 "Design e Prototipação", read verbatim
 // via the Figma API (2026-09-16). Image-forward block (same pattern as
@@ -24,14 +23,14 @@ import liftStyles from "../BlockLift.module.css";
 export function DesignPrototipacao() {
   return (
     <CaseSection id="design-prototipacao" divider>
-      <div className={`${styles.column} ${liftStyles.item} lift-trigger`}>
+      <div className={`${styles.column}`}>
         <div className={styles.labelStack}>
-          <p className={styles.label}>Design &amp; Prototipação</p>
+          <p className={styles.label}>DESIGN &amp; PROTOTIPAÇÃO</p>
           <p className={styles.caption}>
             Evoluímos de rascunhos em papel para protótipos de alta fidelidade
             testados em hardware real. O mid-fi não aparece como imagem
-            separada aqui: essas decisões foram validadas direto no teste do
-            totem, não numa tela isolada.
+            separada aqui: essas decisões foram validadas no protótipo de
+            papel e indiretamente no teste do totem.
           </p>
         </div>
 

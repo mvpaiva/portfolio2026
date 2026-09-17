@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { CaseSection } from "../CaseSection";
 import styles from "./OnboardingFilmstrip.module.css";
-import liftStyles from "../BlockLift.module.css";
 
 // Copy source: Figma node 2252:183 "Onboarding — Filmstrip", read
 // verbatim via the Figma API (2026-09-16).
@@ -19,15 +18,20 @@ import liftStyles from "../BlockLift.module.css";
 // had several onboarding screens still in English ("Continue with
 // Apple", "Weigh item" etc.) — now fully localized to pt-BR, matching
 // the rest of the checkout flow shown elsewhere in the case.
+//
+// Replaced once more 2026-09-17 (Matheus) — same 2452x852 canvas, new
+// bytes; "-v3" is only a cache-busting rename (Next's /_next/image can
+// serve stale bytes indefinitely when a same-named public/ file is
+// overwritten, documented in handoff.md).
 export function OnboardingFilmstrip() {
   return (
     <CaseSection id="onboarding-filmstrip" divider>
-      <div className={`${styles.column} ${liftStyles.item} lift-trigger`}>
+      <div className={`${styles.column}`}>
         <p className={styles.label}>Sequência de onboarding: primeiro uso completo</p>
 
         <div className={styles.filmstrip}>
           <Image
-            src="/case/square-self-checkout/onboarding/onboarding-sequence-v2.png"
+            src="/case/square-self-checkout/onboarding/onboarding-sequence-v3.png"
             alt="Sequência de onboarding em 6 telas: bem-vindo ao Square, como funciona, escaneado, pesando um item, revisando e pagando, saindo da loja"
             fill
             sizes="1226px"

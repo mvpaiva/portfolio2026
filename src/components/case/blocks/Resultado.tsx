@@ -2,7 +2,6 @@ import { CaseSection } from "../CaseSection";
 import { BlockGrid } from "../BlockGrid";
 import { LabelStack } from "../LabelStack";
 import styles from "./Resultado.module.css";
-import liftStyles from "../BlockLift.module.css";
 
 // Copy source: Figma node 2173:471 "section#resultado", read verbatim
 // via the Figma API (2026-09-16). No top stroke on the real node
@@ -12,10 +11,9 @@ import liftStyles from "../BlockLift.module.css";
 // column is eyebrow-only (no question) — the headline sentence lives in
 // the content column instead, a different split from the other
 // BlockGrid blocks. Em dash in the headline (authorial copy, not a
-// quote) swapped for a colon. The "→" in "40% → 0%" is real before/
-// after data inside one stat, not a decorative arrow — kept as-is.
+// quote) swapped for a colon. Matheus removed the "40% → 0%" stat
+// 2026-09-17 (live Figma now has just these 2).
 const STATS = [
-  { number: "40% → 0%", label: "Erros de identificação de produto" },
   { number: "85,1%", label: "Sucesso de navegação direta (tree test)" },
   { number: "5/5", label: "Soluções remontadas a um pain point" },
 ];
@@ -23,7 +21,7 @@ const STATS = [
 export function Resultado() {
   return (
     <CaseSection id="resultado">
-      <BlockGrid className={liftStyles.item} label={<LabelStack eyebrow="ONDE CHEGOU" />}>
+      <BlockGrid label={<LabelStack eyebrow="ONDE CHEGOU" />}>
         <p className={styles.headline}>
           Cinco soluções, remontadas a cinco pain points específicos: validadas
           com as pessoas que realmente enfrentavam eles.

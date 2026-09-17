@@ -1,13 +1,9 @@
 import Image from "next/image";
 import { CaseSection } from "../CaseSection";
 import styles from "./PanoramaCompetitivo.module.css";
-import liftStyles from "../BlockLift.module.css";
 
 // Copy source: Figma node 2248:178 "Panorama Competitivo", read verbatim
-// via the Figma API (2026-09-16). Corrected 2026-09-16 (Matheus): this
-// is a lift-trigger block (light opacity+translateY, no blur), not
-// spotlight-trigger — the initial call miscategorized it as meta-info
-// like Stats, same misjudgment already made once for Stats itself.
+// via the Figma API (2026-09-16).
 // Label swapped from the Figma's em dash ("Totens no dia a dia —
 // observação de campo") to a colon — flagged to Matheus 2026-09-16 as
 // pending, resolved here per his answer to drop the travessão.
@@ -73,7 +69,7 @@ const LOCATIONS = [
 export function PanoramaCompetitivo() {
   return (
     <CaseSection id="panorama-competitivo" spacing="tight">
-      <div className={`${styles.block} ${liftStyles.item} lift-trigger`}>
+      <div className={`${styles.block}`}>
         <p className={styles.label}>Totens no dia a dia: observação de campo</p>
 
         <div className={styles.photoGrid}>

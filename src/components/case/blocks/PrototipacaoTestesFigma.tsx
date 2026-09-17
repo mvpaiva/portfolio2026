@@ -5,7 +5,6 @@ import type { KeyboardEvent as ReactKeyboardEvent, PointerEvent as ReactPointerE
 import Image from "next/image";
 import { CaseSection } from "../CaseSection";
 import styles from "./PrototipacaoTestesFigma.module.css";
-import liftStyles from "../BlockLift.module.css";
 
 // Copy source: Figma node 2367:884 "Prototipação & Testes (Figma)", read
 // verbatim via the Figma API (2026-09-16). Em dash in the caption
@@ -90,13 +89,13 @@ export function PrototipacaoTestesFigma() {
 
   return (
     <CaseSection id="prototipacao-testes-figma" divider>
-      <div className={`${styles.column} ${liftStyles.item} lift-trigger`}>
+      <div className={styles.column}>
         <div className={styles.labelStack}>
-          <p className={styles.label}>Prototipação &amp; Testes (Figma)</p>
+          <p className={styles.label}>PROTOTIPAÇÃO &amp; TESTES (FIGMA)</p>
           <p className={styles.caption}>
             A própria página de prototipação e testes no Figma, com o fluxo
             mapeado ponta a ponta para os dois dispositivos: do onboarding aos
-            casos de borda (erro, produto sem código, item +18).
+            edge cases (erro, produto sem código, item +18).
           </p>
         </div>
 

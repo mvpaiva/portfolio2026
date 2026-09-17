@@ -1,6 +1,5 @@
 import Image from "next/image";
 import styles from "./SolutionBlock.module.css";
-import liftStyles from "./BlockLift.module.css";
 
 type PainLink = { label: string; href: string };
 
@@ -24,6 +23,14 @@ export type SolutionBlockProps = {
    * 1/4/5, wider stacked-with-↓ for 2/3) drives the layout directly,
    * so there's no separate `layout` prop anymore. */
   banner: Banner;
+  /** Mobile-specific composition (Matheus, 2026-09-17) — the desktop
+   * banner's baked-in labels read too small once shrunk to a phone
+   * width, so each solution now has its own mobile export instead of
+   * reusing the same asset at every breakpoint. Both <Image>s render
+   * (only one is ever visible via CSS, see .desktopBanner/.mobileBanner
+   * in SolutionBlock.module.css) rather than swapping `src` in JS, so
+   * there's no layout-shift/flash on resize. */
+  mobileBanner: Omit<Banner, "alt">;
 };
 
 export function SolutionBlock({
@@ -34,13 +41,14 @@ export function SolutionBlock({
   quoteAttribution,
   body,
   banner,
+  mobileBanner,
 }: SolutionBlockProps) {
   return (
-    <div id={id} className={`${styles.block} ${liftStyles.item} lift-trigger`}>
+    <div id={id} className={styles.block}>
       <div className={styles.labelColumn}>
         <p className={styles.painLinkRow}>
           {painLinks.map((pain, i) => (
-            <span key={pain.href}>
+            <span key={pain.label}>
               {i > 0 ? <span className={styles.painSeparator}> / </span> : null}
               <a className={styles.painLink} href={pain.href}>
                 {pain.label}
@@ -56,8 +64,17 @@ export function SolutionBlock({
       </div>
 
       <div className={styles.contentColumn}>
-        <div className={styles.banner} style={{ aspectRatio: `${banner.width} / ${banner.height}` }}>
-          <Image src={banner.src} alt={banner.alt} fill sizes="(max-width: 900px) 100vw, 706px" />
+        <div
+          className={`${styles.banner} ${styles.desktopBanner}`}
+          style={{ aspectRatio: `${banner.width} / ${banner.height}` }}
+        >
+          <Image src={banner.src} alt={banner.alt} fill sizes="706px" />
+        </div>
+        <div
+          className={`${styles.banner} ${styles.mobileBanner}`}
+          style={{ aspectRatio: `${mobileBanner.width} / ${mobileBanner.height}` }}
+        >
+          <Image src={mobileBanner.src} alt={banner.alt} fill sizes="100vw" />
         </div>
       </div>
     </div>
