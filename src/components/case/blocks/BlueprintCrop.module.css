@@ -23,6 +23,43 @@
   aspect-ratio: 1226 / 520;
 }
 
+/* Direct link to the real service blueprint on Miro (Matheus,
+   2026-09-17) — floating pill overlapping the image's bottom edge,
+   same legibility pattern as the reference he shared (white pill,
+   soft shadow, external-link arrow). */
+.miroLink {
+  position: absolute;
+  bottom: var(--space-4);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 14px;
+  white-space: nowrap;
+  padding: var(--space-3) var(--space-6);
+  border-radius: 999px;
+  box-shadow: 0 4px 16px rgba(26, 26, 26, 0.16);
+  text-decoration: none;
+  transition: box-shadow 0.2s ease;
+}
+
+.miroLink:hover,
+.miroLink:focus-visible {
+  box-shadow: 0 6px 20px rgba(26, 26, 26, 0.24);
+}
+
+@media (max-width: 600px) {
+  .miroLink {
+    font-size: 12px;
+    padding: var(--space-2) var(--space-4);
+  }
+}
+
 .stages {
   display: flex;
   gap: clamp(32px, 8vw, 96px);

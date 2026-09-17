@@ -60,7 +60,38 @@ leia essa seção primeiro se for continuar esse trabalho especificamente,
 antes do resto deste arquivo (que documenta principalmente a fase de
 design no Figma).
 
-## Case page: build em código (Next.js) — estado atual (2026-09-16, fim de sessão)
+## Case page: build em código (Next.js) — estado atual (2026-09-17, projeto pausado aqui)
+
+**Resumo da sessão de 2026-09-17 (concluída, projeto pausado por enquanto):**
+- Texto de todos os blocos re-sincronizado com o Figma ao vivo (frame
+  2173:172), bloco por bloco — mudanças reais incluíram Contexto,
+  Pesquisa, Field Notes, Testes, Footer e as 5 Soluções (Solução 2 virou
+  "Peso e preço sem adivinhação", sobre a balança, não mais "categoria
+  antes da grade").
+- Cada Solução ganhou um banner mobile dedicado (`mobileBanner` em
+  `SolutionBlock`), alternado no breakpoint de 900px já existente —
+  resolve o texto pequeno demais do banner desktop esticado pra mobile.
+- Removido 1 stat de `section#resultado` (ficaram 2, batendo com o
+  Figma) e um bloco "Achado principal" em Testes que chegou a ser
+  adicionado e depois cortado no mesmo dia.
+- **Spotlight/lift (hover dim/blur/lift entre blocos): agora é
+  desktop-only.** Gate real via `@media (hover: hover) and (pointer:
+  fine)` em `BlockLift.module.css`/`BlockSpotlight.module.css`/
+  `ListSpotlight.module.css` — testa capacidade de mouse, não largura de
+  tela (um tablet touch em paisagem continua sem o efeito, mesmo com
+  tela larga). Houve uma reversão no meio do caminho: uma primeira
+  tentativa removeu o efeito também do desktop por engano, corrigida
+  logo em seguida — se for mexer nesses 3 arquivos de novo, preservar
+  esse `@media` em vez de um breakpoint de largura.
+- Link direto pro service blueprint real no Miro adicionado em
+  Blueprint Crop (`BlueprintCrop.tsx`/`.module.css`, classe `.miroLink`)
+  — pill flutuante sobre a borda inferior da imagem, mesmo padrão de
+  legibilidade de uma referência que Matheus trouxe (fundo sólido,
+  sombra leve, seta de link externo "↗").
+- Ver `git log` a partir do commit `99d459d` pra todo o detalhe —
+  commits desse dia têm mensagens longas e específicas por decisão.
+
+## Case page: build em código (Next.js) — estado no fim de 2026-09-16
 
 Rota ao vivo: `src/app/case/square-self-checkout/page.tsx`. Componentes em
 `src/components/case/` (primitivos compartilhados) e

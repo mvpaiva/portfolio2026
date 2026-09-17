@@ -55,6 +55,15 @@ export function BlueprintCrop() {
             fill
             sizes="(max-width: 768px) 100vw, 1226px"
           />
+          <a
+            className={styles.miroLink}
+            href="https://miro.com/app/board/uXjVHJ5Co14=/?moveToWidgets=AQC1Atap1LywhICAMNWgO6isFJ4BRnurATpWM7qkLv_ID7CNFQGTAwHCggwBAQEBAdCvDJP1LCIBVwGMAqkB3c0Ov-4K75QJAeICJwsVERQt3NQWr6QLiY0GrskD4gPa7gqkyAi1AcIBo-8L3sllAQEBAQEBAQEBAQEBAQEBAQEBAbTKNQEBAQEBAQEBAQEBAQEBAQEBAQFyAQEBAQEBAQEBAQEBAQEBAQEBATIBAQEBAQEBAQEBAQEBAgEDhAEBAQEBAQEBAQEBAQECBA8BAQEBAQEBAQEBAQECEwEBAQEBAQEBAQEBAQIDnQIBAQEBAQEBAQEBAQEBAQEBAQEBq-iRAdyYCJTlAtuXCOnKCo_8CpwE8vUKkgLksgr5A97oCdoBqLcJoQKnAqqACxDQxgqPAqECvQL75giLAoS2CIXQWQEBAQEBAQEBAQEBAQEBAQEB3-Y80e4JubwHiAGaAlVcuwLolBKNAbf_DFBE0gEBAdf_B_8GJgy-jwgnpwRfGB-lAa-4BecEJhAIDVzrkQbbAVhhGyU2Je_wB5QCNjQaDjcT5gEoDQ8ZLvWbCSSWiyLU4AvmBgG43QQBnwIB9asHAZ_8BgGSkwcBlLIEAQ"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Visualizar service blueprint completo
+            <span aria-hidden="true">↗</span>
+          </a>
         </div>
 
         <div className={styles.stages}>
