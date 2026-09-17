@@ -26,18 +26,19 @@ import liftStyles from "../BlockLift.module.css";
 // real pixel size scaled to a fixed 40px display height (CSS `width:
 // auto`) instead of forced into a fixed square — a square box would
 // squash a wide one down to fit, undoing Matheus's calibration in Figma
-// (node 2313:170). "-sm-v2" files are his second re-export round
-// (2026-09-16) — Zara went from a 74x40 wide crop back to a 38x57
-// portrait one; same cache-busting rename reason as the 11-strip below.
+// (node 2313:170). "-sm-v3" files are his third re-export round
+// (2026-09-16, already pre-scaled to their real 40px-tall display size —
+// e.g. Renner is 20x40, not 29x40 like the first round); cache-busting
+// rename, same reason as the 11-strip below.
 const TOTEMS = [
-  { name: "Renner", photo: "renner.png", logo: "renner-sm-v2.png", w: 29, h: 40 },
-  { name: "C&A", photo: "ca.png", logo: "cea-sm-v2.png", w: 40, h: 40 },
-  { name: "Zara", photo: "zara.png", logo: "zara-sm-v2.png", w: 38, h: 57 },
+  { name: "Renner", photo: "renner.png", logo: "renner-sm-v3.png", w: 20, h: 40 },
+  { name: "C&A", photo: "ca.png", logo: "cea-sm-v3.png", w: 40, h: 40 },
+  { name: "Zara", photo: "zara.png", logo: "zara-sm-v3.png", w: 42, h: 40 },
   {
     name: "Shopping Center Norte",
     photo: "shopping-center-norte.png",
-    logo: "centernorte-sm-v2.png",
-    w: 40,
+    logo: "centernorte-sm-v3.png",
+    w: 51,
     h: 40,
   },
 ];
