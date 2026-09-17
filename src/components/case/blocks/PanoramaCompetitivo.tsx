@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { CaseSection } from "../CaseSection";
 import styles from "./PanoramaCompetitivo.module.css";
+import liftStyles from "../BlockLift.module.css";
 
 // Copy source: Figma node 2248:178 "Panorama Competitivo", read verbatim
 // via the Figma API (2026-09-16).
@@ -69,7 +70,7 @@ const LOCATIONS = [
 export function PanoramaCompetitivo() {
   return (
     <CaseSection id="panorama-competitivo" spacing="tight">
-      <div className={`${styles.block}`}>
+      <div className={`${styles.block} ${liftStyles.item} lift-trigger`}>
         <p className={styles.label}>Totens no dia a dia: observação de campo</p>
 
         <div className={styles.photoGrid}>

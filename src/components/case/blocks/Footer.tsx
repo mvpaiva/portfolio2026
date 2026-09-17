@@ -1,5 +1,6 @@
 import { CaseSection } from "../CaseSection";
 import styles from "./Footer.module.css";
+import liftStyles from "../BlockLift.module.css";
 
 // Copy source: Figma node 2173:507 "Footer — Metadados", read verbatim
 // via the Figma API (2026-09-16). Real top stroke + asymmetric
@@ -24,7 +25,7 @@ import styles from "./Footer.module.css";
 export function Footer() {
   return (
     <CaseSection id="footer" spacing="tight" spacingBottom="normal" divider>
-      <div className={`${styles.grid}`}>
+      <div className={`${styles.grid} ${liftStyles.item} lift-trigger`}>
         <div className={styles.column}>
           <p className={styles.label}>PAPEL</p>
           <p className={styles.value}>Product Designer (solo)</p>

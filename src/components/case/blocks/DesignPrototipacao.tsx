@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { CaseSection } from "../CaseSection";
 import styles from "./DesignPrototipacao.module.css";
+import liftStyles from "../BlockLift.module.css";
 
 // Copy source: Figma node 2173:395 "Design e Prototipação", read verbatim
 // via the Figma API (2026-09-16). Image-forward block (same pattern as
@@ -23,7 +24,7 @@ import styles from "./DesignPrototipacao.module.css";
 export function DesignPrototipacao() {
   return (
     <CaseSection id="design-prototipacao" divider>
-      <div className={`${styles.column}`}>
+      <div className={`${styles.column} ${liftStyles.item} lift-trigger`}>
         <div className={styles.labelStack}>
           <p className={styles.label}>DESIGN &amp; PROTOTIPAÇÃO</p>
           <p className={styles.caption}>

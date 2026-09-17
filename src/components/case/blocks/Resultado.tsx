@@ -2,6 +2,7 @@ import { CaseSection } from "../CaseSection";
 import { BlockGrid } from "../BlockGrid";
 import { LabelStack } from "../LabelStack";
 import styles from "./Resultado.module.css";
+import liftStyles from "../BlockLift.module.css";
 
 // Copy source: Figma node 2173:471 "section#resultado", read verbatim
 // via the Figma API (2026-09-16). No top stroke on the real node
@@ -21,7 +22,7 @@ const STATS = [
 export function Resultado() {
   return (
     <CaseSection id="resultado">
-      <BlockGrid label={<LabelStack eyebrow="ONDE CHEGOU" />}>
+      <BlockGrid className={liftStyles.item} label={<LabelStack eyebrow="ONDE CHEGOU" />}>
         <p className={styles.headline}>
           Cinco soluções, remontadas a cinco pain points específicos: validadas
           com as pessoas que realmente enfrentavam eles.

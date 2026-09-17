@@ -2,6 +2,7 @@ import { CaseSection } from "../CaseSection";
 import { BlockGrid } from "../BlockGrid";
 import { LabelStack } from "../LabelStack";
 import styles from "./FieldNotes.module.css";
+import liftStyles from "../BlockLift.module.css";
 
 // Copy source: Figma node 2173:300 "Field Notes", read verbatim via the
 // Figma API (2026-09-17, re-synced after Matheus's full text refinement
@@ -20,6 +21,7 @@ export function FieldNotes() {
   return (
     <CaseSection id="field-notes" spacing="tight" spacingBottom="normal">
       <BlockGrid
+        className={liftStyles.item}
         label={
           <LabelStack eyebrow="OBSERVAÇÃO DE CAMPO" question="O que a exploração revelou?" />
         }

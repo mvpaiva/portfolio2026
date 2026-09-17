@@ -1,4 +1,5 @@
 import styles from "./Hero.module.css";
+import liftStyles from "../BlockLift.module.css";
 
 // Copy source: Figma refinamento frame, node 2173:174 "Hero" — read
 // verbatim via the Figma API. (docs/visual-language-specification.md §14
@@ -7,7 +8,7 @@ import styles from "./Hero.module.css";
 export function Hero() {
   return (
     <header className={styles.section}>
-      <div className={styles.content}>
+      <div className={`${styles.content} ${liftStyles.item} lift-trigger`}>
         <p className={styles.eyebrow}>Estudo de caso</p>
         <h1 className={styles.headline}>Pulando a fila do caixa.</h1>
         <p className={styles.subhead}>

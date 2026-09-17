@@ -1,4 +1,5 @@
 import Image from "next/image";
+import liftStyles from "./BlockLift.module.css";
 import styles from "./SolutionBlock.module.css";
 
 type PainLink = { label: string; href: string };
@@ -44,7 +45,7 @@ export function SolutionBlock({
   mobileBanner,
 }: SolutionBlockProps) {
   return (
-    <div id={id} className={styles.block}>
+    <div id={id} className={`${styles.block} ${liftStyles.item} lift-trigger`}>
       <div className={styles.labelColumn}>
         <p className={styles.painLinkRow}>
           {painLinks.map((pain, i) => (

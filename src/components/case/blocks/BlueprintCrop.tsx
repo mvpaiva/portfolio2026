@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { CaseSection } from "../CaseSection";
 import styles from "./BlueprintCrop.module.css";
+import liftStyles from "../BlockLift.module.css";
 
 // Copy source: Figma node 2173:267 "Blueprint Crop", read verbatim via the
 // Figma API (2026-09-16).
@@ -44,7 +45,7 @@ const STAGES = [
 export function BlueprintCrop() {
   return (
     <CaseSection id="blueprint-crop" spacing="tight">
-      <div className={`${styles.block}`}>
+      <div className={`${styles.block} ${liftStyles.item} lift-trigger`}>
         <p className={styles.label}>Recorte do service blueprint</p>
 
         <div className={styles.blueprintImage}>

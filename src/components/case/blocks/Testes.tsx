@@ -3,15 +3,15 @@ import { CaseSection } from "../CaseSection";
 import { BlockGrid } from "../BlockGrid";
 import { LabelStack } from "../LabelStack";
 import styles from "./Testes.module.css";
+import liftStyles from "../BlockLift.module.css";
 
 // Copy source: Figma node 2173:413 "Testes", re-synced 2026-09-17 after
 // Matheus's full text refinement pass. Both proof-image labels
 // ("Resultado real — X") are baked into the flattened banner image, not
 // separate <p> tags.
 //
-// "Achado principal" callout (added 2026-09-17, was missing from the
-// first build entirely): a bordered box sitting between the footnote
-// and the proof banner — ink 4% fill, 1px ink-100% border, no radius.
+// "Achado principal" callout: exists in the Figma source but Matheus
+// asked to cut it 2026-09-17 right after it was added — not rendered.
 const STATS = [
   { number: "5", label: "Rodadas de teste" },
   { number: "57", label: "Telas hi-fi testadas" },
@@ -22,6 +22,7 @@ export function Testes() {
   return (
     <CaseSection id="testes" divider>
       <BlockGrid
+        className={liftStyles.item}
         label={<LabelStack eyebrow="OS TESTES" question="Como validamos antes de decidir?" />}
       >
         <p className={styles.body}>
@@ -43,15 +44,6 @@ export function Testes() {
         <p className={styles.footnote}>
           Benchmarking de acessibilidade WCAG AA em todas as rodadas hi-fi.
         </p>
-
-        <div className={styles.finding}>
-          <p className={styles.findingLabel}>Achado principal</p>
-          <p className={styles.findingText}>
-            Cada rodada validava a anterior antes de avançar de fidelidade —
-            as 5 soluções finais vieram de decisões já testadas, não de
-            suposições.
-          </p>
-        </div>
 
         <div className={styles.proofs}>
           <Image

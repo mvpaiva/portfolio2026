@@ -55,14 +55,19 @@ export const metadata: Metadata = {
 // section headings) rather than map Discover/Define/Develop — see
 // TableOfContents.tsx for the matching label change.
 //
-// Spotlight/lift hover effects (dim/blur/lift on mouseover) were removed
-// site-wide 2026-09-17 (Matheus): "uma interação calma de scroll entre
-// os blocos é o suficiente" — the per-block Reveal (scroll-triggered
-// fade-in) below is the only motion cue left between blocks, on both
-// mobile and desktop.
+// Spotlight/lift hover cues (see BlockSpotlight.module.css and
+// BlockLift.module.css) are applied INSIDE each block, on the element
+// that exactly matches its 1226px content box — not wrapped here from
+// outside — so the hover zone never includes a block's own side
+// padding. `spotlightGroup` (plain global class) is the ancestor both
+// CSS files key off of. Desktop-only as of 2026-09-17 (Matheus: "só
+// tirar no mobile e tablet, não desktop" — an earlier pass removed the
+// effect everywhere by mistake): each CSS file now gates its hover
+// rules behind `@media (hover: hover) and (pointer: fine)`, so touch
+// devices never trigger it regardless of viewport width.
 export default function SquareSelfCheckoutPage() {
   return (
-    <main className={styles.main}>
+    <main className={`${styles.main} spotlightGroup`}>
       <BackLink />
       <TableOfContents />
       <Reveal>

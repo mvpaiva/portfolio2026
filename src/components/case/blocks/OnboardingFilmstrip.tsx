@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { CaseSection } from "../CaseSection";
 import styles from "./OnboardingFilmstrip.module.css";
+import liftStyles from "../BlockLift.module.css";
 
 // Copy source: Figma node 2252:183 "Onboarding — Filmstrip", read
 // verbatim via the Figma API (2026-09-16).
@@ -26,7 +27,7 @@ import styles from "./OnboardingFilmstrip.module.css";
 export function OnboardingFilmstrip() {
   return (
     <CaseSection id="onboarding-filmstrip" divider>
-      <div className={`${styles.column}`}>
+      <div className={`${styles.column} ${liftStyles.item} lift-trigger`}>
         <p className={styles.label}>Sequência de onboarding: primeiro uso completo</p>
 
         <div className={styles.filmstrip}>

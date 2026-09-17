@@ -2,6 +2,8 @@ import { CaseSection } from "../CaseSection";
 import { BlockGrid } from "../BlockGrid";
 import { LabelStack } from "../LabelStack";
 import styles from "./Jtbd.module.css";
+import liftStyles from "../BlockLift.module.css";
+import listSpotlight from "../ListSpotlight.module.css";
 
 // Copy source: Figma node 2173:379 "Jobs To Be Done (Arquétipos)", read
 // verbatim via the Figma API (2026-09-16) — eyebrow already on the
@@ -37,11 +39,12 @@ export function Jtbd() {
   return (
     <CaseSection id="jtbd" divider spacing="normal" spacingBottom="tight">
       <BlockGrid
+        className={liftStyles.item}
         label={<LabelStack eyebrow="JOBS TO BE DONE" question="O que cada perfil estava tentando resolver?" />}
       >
-        <div className={`${styles.list}`}>
+        <div className={`${styles.list} ${listSpotlight.group}`}>
           {ENTRIES.map((entry) => (
-            <div key={entry.headline} className={`${styles.entry}`}>
+            <div key={entry.headline} className={`${styles.entry} ${listSpotlight.item}`}>
               <p className={styles.headline}>{entry.headline}</p>
               <p className={styles.attribution}>{entry.attribution}</p>
             </div>

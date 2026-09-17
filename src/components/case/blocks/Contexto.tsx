@@ -2,6 +2,7 @@ import { CaseSection } from "../CaseSection";
 import { BlockGrid } from "../BlockGrid";
 import { LabelStack } from "../LabelStack";
 import styles from "./Contexto.module.css";
+import liftStyles from "../BlockLift.module.css";
 
 // Copy source: Figma refinamento frame, node 2173:205 "Contexto" — read
 // verbatim via the Figma API (not visual-language-specification.md §14,
@@ -13,6 +14,7 @@ export function Contexto() {
   return (
     <CaseSection id="contexto">
       <BlockGrid
+        className={liftStyles.item}
         label={
           <LabelStack
             eyebrow="O CONTEXTO"
