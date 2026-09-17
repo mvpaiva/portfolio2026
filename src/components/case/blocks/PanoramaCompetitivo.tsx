@@ -43,36 +43,31 @@ const TOTEMS = [
   },
 ];
 
-// Real logo crops exported by Matheus 2026-09-16 (Figma node 2544:663).
-// His original calibration fit each logo into a shared 77x64 canvas
-// capped at 24px target height / 64px max width — but wide wordmarks
-// (Renner, Carrefour, Walmart, Pão de Açúcar) hit the width cap long
-// before reaching 24px tall, so they rendered at as little as 10px while
-// compact marks (C&A, McDonald's) sat at the full 24px — exactly the
-// "tamanhos tão destoantes" Matheus flagged. Fixed the same way in
-// Figma and here: `sharp().trim()` each source down to its real content
-// bounding box (dropping the baked-in cap padding), then render every
-// logo at the SAME height with natural width (no cap) — the 11 real
-// aspect ratios sum to well under 1226px at a comfortable height, so
-// nothing needs to be squeezed. `w`/`h` below are each file's trimmed
-// pixel size (see `-trim.png` in public/) driving next/image's intrinsic
-// size; CSS scales down to the shared display height, width auto. No
-// caption under each logo per Matheus's call — the logo alone reads fine
-// at this density, `alt` carries the name for accessibility. Order
-// groups by category (moda → mercado → fast food → o shopping em si),
-// matching the final Figma arrangement.
+// Real logo crops, final round (Matheus, 2026-09-16, Figma node
+// 2550:277). Same sizing model established earlier — every logo at a
+// shared height with natural (uncapped) width, since the 11 real aspect
+// ratios sum to well under 1226px, so nothing needs to be squeezed —
+// but these are 2x/retina exports of the actual "Logo Slot" image nodes
+// straight out of Figma (crisper than the `sharp`-downscaled `-trim`
+// files used before). `w`/`h` below are each file's real pixel size
+// (already ~48px tall, 2x the 24px logical display height) driving
+// next/image's intrinsic size; CSS scales down to the shared display
+// height, width auto. No caption under each logo per Matheus's call —
+// the logo alone reads fine at this density, `alt` carries the name for
+// accessibility. Order groups by category (moda → mercado → fast food →
+// o shopping em si), matching the final Figma arrangement.
 const LOCATIONS = [
-  { name: "Zara", logo: "zara-trim.png", w: 57, h: 24 },
-  { name: "Riachuelo", logo: "riachuelo-trim.png", w: 64, h: 22 },
-  { name: "C&A", logo: "cea-trim.png", w: 47, h: 23 },
-  { name: "Renner", logo: "renner-trim.png", w: 64, h: 12 },
-  { name: "Honest Market", logo: "honest-trim.png", w: 60, h: 24 },
-  { name: "Walmart", logo: "walmart-trim.png", w: 63, h: 14 },
-  { name: "Extra", logo: "extra-trim.png", w: 50, h: 24 },
-  { name: "Carrefour", logo: "carrefour-trim.png", w: 64, h: 10 },
-  { name: "Pão de Açúcar", logo: "paodeacucar-trim.png", w: 64, h: 15 },
-  { name: "McDonald's", logo: "mc-trim.png", w: 36, h: 24 },
-  { name: "Shopping Center Norte", logo: "centernorte-trim.png", w: 38, h: 24 },
+  { name: "Zara", logo: "zara-slot.png", w: 117, h: 48 },
+  { name: "Riachuelo", logo: "riachuelo-slot.png", w: 142, h: 48 },
+  { name: "C&A", logo: "cea-slot.png", w: 96, h: 48 },
+  { name: "Renner", logo: "renner-slot.png", w: 245, h: 48 },
+  { name: "Honest Market", logo: "honest-slot.png", w: 122, h: 48 },
+  { name: "Walmart", logo: "walmart-slot.png", w: 206, h: 48 },
+  { name: "Extra", logo: "extra-slot.png", w: 100, h: 48 },
+  { name: "Carrefour", logo: "carrefour-slot.png", w: 298, h: 48 },
+  { name: "Pão de Açúcar", logo: "paodeacucar-slot.png", w: 206, h: 48 },
+  { name: "McDonald's", logo: "mc-slot.png", w: 73, h: 48 },
+  { name: "Shopping Center Norte", logo: "centernorte-slot.png", w: 75, h: 48 },
 ];
 
 export function PanoramaCompetitivo() {
