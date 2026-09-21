@@ -93,7 +93,7 @@ design no Figma).
 
 ## Case page: build em código (Next.js) — estado no fim de 2026-09-16
 
-Rota ao vivo: `src/app/case/square-self-checkout/page.tsx`. Componentes em
+Rota ao vivo: `src/app/square/page.tsx` (rota pública `/square`, era `/case/square-self-checkout`; assets seguem em `public/case/square-self-checkout/`). Componentes em
 `src/components/case/` (primitivos compartilhados) e
 `src/components/case/blocks/` (um arquivo por bloco de conteúdo, CSS
 Modules co-localizados).
