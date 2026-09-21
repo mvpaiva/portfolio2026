@@ -23,3 +23,28 @@
   width: 100%;
   aspect-ratio: 2452 / 852;
 }
+
+/* Tablet/mobile (Matheus, 2026-09-21): six wireframes in one flattened
+   image become illegible when shrunk to a phone width. Below 900px the
+   banner keeps a readable width (~200px per screen) and scrolls
+   horizontally by touch, same pattern as Design e Prototipação. */
+.filmstripScroll {
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .filmstripScroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .filmstripScroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filmstrip {
+    width: 1200px;
+    max-width: none;
+  }
+}

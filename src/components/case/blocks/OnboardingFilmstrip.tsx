@@ -30,13 +30,15 @@ export function OnboardingFilmstrip() {
       <div className={`${styles.column} ${liftStyles.item} lift-trigger`}>
         <p className={styles.label}>Sequência de onboarding: primeiro uso completo</p>
 
-        <div className={styles.filmstrip}>
+        <div className={styles.filmstripScroll}>
+          <div className={styles.filmstrip}>
           <Image
             src="/case/square-self-checkout/onboarding/onboarding-sequence-r3.png"
             alt="Sequência de onboarding em 6 telas: bem-vindo ao Square, como funciona, escaneado, pesando um item, revisando e pagando, saindo da loja"
             fill
             sizes="1226px"
           />
+        </div>
         </div>
       </div>
     </CaseSection>
