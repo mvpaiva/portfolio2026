@@ -60,6 +60,44 @@ leia essa seção primeiro se for continuar esse trabalho especificamente,
 antes do resto deste arquivo (que documenta principalmente a fase de
 design no Figma).
 
+## Estado atual (2026-09-21) — leia isto primeiro
+
+- **Repo:** `https://github.com/mvpaiva/portfolio2026` (branch `main`). O
+  remote antigo `portfolio.git` não é mais usado.
+- **Rota do case:** `/square` (`src/app/square/page.tsx`). O caminho antigo
+  `/case/square-self-checkout` redireciona (301) via `next.config.ts`. Os
+  assets seguem em `public/case/square-self-checkout/` (só caminho de
+  arquivo, não aparece na URL).
+- **SEO (root `layout.tsx`):** title "Matheus Paiva | Product Designer";
+  description sobre transformar problemas complexos em experiências
+  digitais mais claras via pesquisa, prototipagem, testes e design
+  iterativo.
+- **Home:** escala tipográfica 15px (tagline/painéis), 17px (cargo), 11px
+  (nome/menu). Square = "App e totem de autoatendimento para varejo."
+  No mobile o texto é `text-wrap: balance`, alinhado à esquerda.
+- **Locais visitados (Panorama Competitivo):** 11 logos (Cinemark e
+  Smartbreak entraram no lugar de Honest Market e McDonald's). Desktop:
+  uma linha só, `nowrap`, logos encolhem proporcionalmente (escala 0.8 do
+  export/2). Tablet (769–1100px): duas pilhas estáticas de 6 e 5. Mobile
+  (≤768px): dois marquees em cinza, direções opostas.
+- **Banners achatados em tablet/mobile:** Design e Prototipação (840px) e
+  Onboarding (1200px) mantêm largura legível e rolam na horizontal com o
+  dedo abaixo de 900px. Soluções usam `mobileBanner` (arquivos `-mob`).
+- **Imagens:** ao trocar um PNG, renomeie o arquivo em `public/` (sufixo
+  `-r3` etc.). O `/_next/image` serve bytes velhos se o nome se repete.
+  Fonte dos exports: `docs/assets/square-wireframes-raw/banners/`.
+- **Figma público** (links do Hero e Footer):
+  `figma.com/design/pjhYVUwiwVKJ6KSN1b8mrg/Square---Matheus-Paiva`.
+- **Hover spotlight/lift:** só desktop (`hover: hover` e `pointer: fine`).
+- **Deploy:** feito por integração GitHub→Vercel (push em `main`). Não há
+  Vercel CLI nem `.vercel/` na máquina onde isso foi escrito; confira no
+  painel da Vercel se o projeto aponta para `portfolio2026`.
+- **Pendências conhecidas:** lint reclama de `ref.current` durante o render
+  em `PrototipacaoTestesFigma.tsx` (bug antigo, não corrigido); frames
+  Figma 2326-170/2333-170 sem export novo associado; mudanças soltas em
+  `docs/assets` (edições do Matheus, ainda não commitadas). Nunca testado
+  em aparelhos reais de mobile/tablet, só emulação.
+
 ## Case page: build em código (Next.js) — estado atual (2026-09-17, projeto pausado aqui)
 
 **Resumo da sessão de 2026-09-17 (concluída, projeto pausado por enquanto):**

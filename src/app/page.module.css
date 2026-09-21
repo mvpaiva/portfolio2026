@@ -203,6 +203,6 @@
   .tagline,
   .panelText {
     text-wrap: balance;
-    text-align: center;
+    text-align: left;
   }
 }
