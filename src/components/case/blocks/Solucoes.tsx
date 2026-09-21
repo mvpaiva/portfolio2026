@@ -41,13 +41,13 @@ export function Solucoes() {
           quoteAttribution="Survey"
           body="O wireframe aprovado mantinha “pesar”, “código manual” e “pagar” sempre visíveis, competindo com a câmera. No UI final, eles se concentram em um único botão expansível. A tela de scan fica no essencial: câmera, carrinho e uma ação. Essa lógica de reduzir ao essencial guiou o redesign inteiro."
           banner={{
-            src: "/case/square-self-checkout/solucoes/solucao-1-banner-v3.png",
+            src: "/case/square-self-checkout/solucoes/solucao-1-banner-r3.png",
             alt: "Antes: wireframe mid-fi do fluxo de escaneamento. Depois: UI final com câmera ativa sobre uma foto real de produto e bottom sheet do carrinho",
             width: 1412,
             height: 1478,
           }}
           mobileBanner={{
-            src: "/case/square-self-checkout/solucoes/solucao-1-banner-mob.png",
+            src: "/case/square-self-checkout/solucoes/solucao-1-banner-mob-r3.png",
             width: 1412,
             height: 1440,
           }}
@@ -64,13 +64,13 @@ export function Solucoes() {
           quoteAttribution="Xênia, 54"
           body="A tela mostra o peso em tempo real assim que o item toca a balança, com o preço calculado junto. O status indica quando a leitura está estável, e o botão de confirmar conduz o usuário ao próximo passo. Assim, ele consegue acompanhar o que a máquina está fazendo e validar o valor antes de continuar."
           banner={{
-            src: "/case/square-self-checkout/solucoes/solucao-2-banner-v2.png",
+            src: "/case/square-self-checkout/solucoes/solucao-2-banner-r3.png",
             alt: "Antes: wireframe high-fi da tela de escolha do produto com opção de pesagem. Depois: UI final da tela de pesagem do item, com foto do produto e carrinho lateral",
             width: 1412,
             height: 1832,
           }}
           mobileBanner={{
-            src: "/case/square-self-checkout/solucoes/solucao-2-banner-mob.png",
+            src: "/case/square-self-checkout/solucoes/solucao-2-banner-mob-r3.png",
             width: 1412,
             height: 1832,
           }}
@@ -124,13 +124,13 @@ export function Solucoes() {
           quoteAttribution="Manuela, 33"
           body="Um hub de lista dedicado deixa a pessoa montar uma lista genérica antes de sair de casa. Durante o escaneamento, duas abas ficam visíveis (Escaneados e Na Lista) e uma barra de progresso mostra o quanto falta. Os itens se marcam sozinhos conforme são escaneados."
           banner={{
-            src: "/case/square-self-checkout/solucoes/solucao-5-banner-v2.png",
+            src: "/case/square-self-checkout/solucoes/solucao-5-banner-r3.png",
             alt: "Antes: wireframe high-fi da lista de compras da semana com abas de escaneados e na lista. Depois: UI final do escaneamento com a lista visível e câmera ativa sobre foto real de produto",
             width: 1412,
             height: 1478,
           }}
           mobileBanner={{
-            src: "/case/square-self-checkout/solucoes/solucao-5-banner-mob.png",
+            src: "/case/square-self-checkout/solucoes/solucao-5-banner-mob-r3.png",
             width: 1412,
             height: 1440,
           }}

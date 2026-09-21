@@ -53,19 +53,61 @@ const TOTEMS = [
 // the logo alone reads fine at this density, `alt` carries the name for
 // accessibility. Order groups by category (moda → mercado → fast food →
 // o shopping em si), matching the final Figma arrangement.
+// Final logo set (Matheus, 2026-09-21, Figma 2593:105): Honest Market and
+// McDonald's were swapped for Cinemark and Smartbreak. Each file is a 2x
+// export whose height already encodes its optical size, so display size
+// is file size / 2 scaled by 0.8 on desktop (Figma option 2: whole row
+// fits the 1226 grid, chosen over the overflowing option 1 to keep the page
+// calm and grid-aligned) and 0.7 in the mobile marquee. Order = the Figma row.
 const LOCATIONS = [
-  { name: "Zara", logo: "zara-slot.png", w: 117, h: 48 },
-  { name: "Riachuelo", logo: "riachuelo-slot.png", w: 142, h: 48 },
-  { name: "C&A", logo: "cea-slot.png", w: 96, h: 48 },
-  { name: "Renner", logo: "renner-slot.png", w: 245, h: 48 },
-  { name: "Honest Market", logo: "honest-slot.png", w: 122, h: 48 },
-  { name: "Walmart", logo: "walmart-slot.png", w: 206, h: 48 },
-  { name: "Extra", logo: "extra-slot.png", w: 100, h: 48 },
-  { name: "Carrefour", logo: "carrefour-slot.png", w: 298, h: 48 },
-  { name: "Pão de Açúcar", logo: "paodeacucar-slot.png", w: 206, h: 48 },
-  { name: "McDonald's", logo: "mc-slot.png", w: 73, h: 48 },
-  { name: "Shopping Center Norte", logo: "centernorte-slot.png", w: 75, h: 48 },
+  { name: "Zara", logo: "zara-r3.png", w: 108, h: 44 },
+  { name: "Riachuelo", logo: "riachuelo-r3.png", w: 212, h: 42 },
+  { name: "Renner", logo: "renner-r3.png", w: 265, h: 52 },
+  { name: "C&A", logo: "cea-r3.png", w: 96, h: 48 },
+  { name: "Smartbreak", logo: "smartbreak-r3.png", w: 334, h: 58 },
+  { name: "Carrefour", logo: "carrefour-r3.png", w: 350, h: 57 },
+  { name: "Walmart", logo: "walmart-r3.png", w: 258, h: 60 },
+  { name: "Extra", logo: "extra-r3.png", w: 132, h: 64 },
+  { name: "Pão de Açúcar", logo: "paodeacucar-r3.png", w: 274, h: 64 },
+  { name: "Cinemark", logo: "cinemark-r3.png", w: 266, h: 48 },
+  { name: "Shopping Center Norte", logo: "centernorte-r3.png", w: 134, h: 48 },
 ];
+
+// Mobile marquee rows: 6 + 5, opposite directions.
+const ROW_TOP = LOCATIONS.slice(0, 6);
+const ROW_BOTTOM = LOCATIONS.slice(6);
+
+function logoSrc(file: string) {
+  return `/case/square-self-checkout/panorama-competitivo/logos/${file}`;
+}
+
+function MarqueeRow({
+  items,
+  reverse,
+}: {
+  items: typeof LOCATIONS;
+  reverse?: boolean;
+}) {
+  return (
+    <div className={styles.marquee} aria-hidden="true">
+      <div className={`${styles.marqueeTrack} ${reverse ? styles.reverse : ""}`}>
+        {[0, 1].map((copy) =>
+          items.map((l) => (
+            <Image
+              key={`${copy}-${l.name}`}
+              className={styles.marqueeLogo}
+              src={logoSrc(l.logo)}
+              alt=""
+              width={l.w}
+              height={l.h}
+              style={{ width: (l.w / 2) * 0.7, height: "auto" }}
+            />
+          )),
+        )}
+      </div>
+    </div>
+  );
+}
 
 export function PanoramaCompetitivo() {
   return (
@@ -106,12 +148,17 @@ export function PanoramaCompetitivo() {
               <Image
                 key={location.name}
                 className={styles.logoLarge}
-                src={`/case/square-self-checkout/panorama-competitivo/logos/${location.logo}`}
+                src={logoSrc(location.logo)}
                 alt={`Logo ${location.name}`}
                 width={location.w}
                 height={location.h}
+                style={{ width: (location.w / 2) * 0.8, height: "auto" }}
               />
             ))}
+          </div>
+          <div className={styles.marquees}>
+            <MarqueeRow items={ROW_TOP} />
+            <MarqueeRow items={ROW_BOTTOM} reverse />
           </div>
         </div>
       </div>

@@ -85,8 +85,8 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: flex-start;
-  column-gap: var(--space-8);
+  justify-content: space-between;
+  column-gap: var(--space-4);
   row-gap: var(--space-6);
   width: 100%;
 }
@@ -99,8 +99,7 @@
    `alt` on the <Image> carries the name for accessibility. Fixed height
    (matches Figma's 24px target), width auto per logo's real aspect. */
 .logoLarge {
-  height: 24px;
-  width: auto;
+  height: auto;
   filter: grayscale(1);
   transition: filter 0.3s ease;
 }
@@ -124,11 +123,62 @@
     flex: 1 1 calc(50% - var(--space-3));
   }
 
-  /* "11 locais visitados" hidden on mobile (Matheus, 2026-09-17) — the
-     11-logo strip and its label add height without adding new
-     information the 4 featured photos above haven't already conveyed
-     at this screen size. */
-  .locations {
+  .logoStrip {
     display: none;
+  }
+}
+
+/* Mobile (Matheus, 2026-09-21): the strip becomes two grayscale
+   marquee rows — top right-to-left, bottom left-to-right. Logos are
+   grayscale always (no hover on touch). */
+.marquees {
+  display: none;
+  flex-direction: column;
+  gap: var(--space-6);
+  overflow: hidden;
+}
+
+.marquee {
+  overflow: hidden;
+  width: 100%;
+}
+
+.marqueeTrack {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: marquee-left 28s linear infinite;
+}
+
+.marqueeTrack.reverse {
+  animation-name: marquee-right;
+}
+
+.marqueeLogo {
+  flex: none;
+  margin-right: var(--space-8);
+  filter: grayscale(1);
+  opacity: 0.85;
+}
+
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes marquee-right {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
+@media (max-width: 768px) {
+  .marquees {
+    display: flex;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marqueeTrack {
+    animation: none;
   }
 }

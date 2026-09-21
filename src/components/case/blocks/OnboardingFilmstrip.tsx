@@ -32,7 +32,7 @@ export function OnboardingFilmstrip() {
 
         <div className={styles.filmstrip}>
           <Image
-            src="/case/square-self-checkout/onboarding/onboarding-sequence-v3.png"
+            src="/case/square-self-checkout/onboarding/onboarding-sequence-r3.png"
             alt="Sequência de onboarding em 6 telas: bem-vindo ao Square, como funciona, escaneado, pesando um item, revisando e pagando, saindo da loja"
             fill
             sizes="1226px"
