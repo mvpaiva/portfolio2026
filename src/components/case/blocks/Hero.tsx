@@ -38,7 +38,7 @@ export function Hero() {
         <div className={styles.links}>
           <a
             className={styles.link}
-            href="https://www.figma.com/design/UOGBjtsvGNFNs8O8qUSxjk/SquareUp---Matheus-Paiva?node-id=12084-23891"
+            href="https://www.figma.com/design/pjhYVUwiwVKJ6KSN1b8mrg/Square---Matheus-Paiva?m=auto"
             target="_blank"
             rel="noopener noreferrer"
           >

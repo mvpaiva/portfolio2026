@@ -83,7 +83,7 @@
    row" math the old fixed-column system needed. */
 .logoStrip {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
   column-gap: var(--space-4);
@@ -206,4 +206,11 @@
     justify-content: space-between;
     width: 100%;
   }
+}
+
+/* Desktop: always a single row (Matheus, 2026-09-21). Logos may shrink
+   proportionally just above the tablet breakpoint instead of wrapping. */
+.logoStrip .logoLarge {
+  min-width: 0;
+  flex: 0 1 auto;
 }

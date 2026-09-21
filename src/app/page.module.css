@@ -196,3 +196,13 @@
     transform: none;
   }
 }
+
+/* Phones (375-393px): balance the lines so the right edge doesn't look
+   like the text was cut off by a natural break (Matheus, 2026-09-21). */
+@media (max-width: 768px) {
+  .tagline,
+  .panelText {
+    text-wrap: balance;
+    text-align: center;
+  }
+}
