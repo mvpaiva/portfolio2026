@@ -18,9 +18,9 @@ const instrumentSans = Instrument_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Matheus Paiva — Product Designer",
+  title: "Matheus Paiva | Product Designer Júnior",
   description:
-    "Product designer júnior em interação e IA. Procurando vaga full-time em São Paulo.",
+    "Product Designer Júnior focado em UX Research, interação e produtos com IA. Portfólio de projetos em UX/UI, pesquisa e design de produtos.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

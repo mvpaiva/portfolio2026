@@ -53,7 +53,7 @@ export function HomeStage() {
               aria-hidden={active !== "projetos"}
             >
               <a
-                href="/case/square-self-checkout"
+                href="/square"
                 tabIndex={active === "projetos" ? 0 : -1}
               >
                 Square
