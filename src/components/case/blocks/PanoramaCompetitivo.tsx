@@ -156,6 +156,23 @@ export function PanoramaCompetitivo() {
               />
             ))}
           </div>
+          <div className={styles.logoStacks}>
+            {[ROW_TOP, ROW_BOTTOM].map((row, i) => (
+              <div key={i} className={styles.logoStack}>
+                {row.map((location) => (
+                  <Image
+                    key={location.name}
+                    className={styles.logoLarge}
+                    src={logoSrc(location.logo)}
+                    alt={`Logo ${location.name}`}
+                    width={location.w}
+                    height={location.h}
+                    style={{ width: (location.w / 2) * 0.8, height: "auto" }}
+                  />
+                ))}
+              </div>
+            ))}
+          </div>
           <div className={styles.marquees}>
             <MarqueeRow items={ROW_TOP} />
             <MarqueeRow items={ROW_BOTTOM} reverse />

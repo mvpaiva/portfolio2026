@@ -59,7 +59,7 @@ export function HomeStage() {
                 Square
               </a>
               <span className={styles.faded}>
-                . App e totem de autoatendimento para{" "}supermercados.
+                . App e totem de autoatendimento para varejo.
               </span>
             </p>
 

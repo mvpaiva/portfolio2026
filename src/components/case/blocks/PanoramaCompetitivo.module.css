@@ -182,3 +182,28 @@
     animation: none;
   }
 }
+
+/* Tablet (769-1100px, Matheus 2026-09-21): two fixed static stacks,
+   6 + 5 logos, instead of the single desktop row or the mobile marquee. */
+.logoStacks {
+  display: none;
+}
+
+@media (min-width: 769px) and (max-width: 1100px) {
+  .logoStrip {
+    display: none;
+  }
+
+  .logoStacks {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .logoStack {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+}

@@ -39,3 +39,28 @@
   width: 100%;
   aspect-ratio: 2452 / 1302;
 }
+
+/* Tablet/mobile (Matheus, 2026-09-21): the flattened 4-panel banner has
+   its stage labels baked in, so squeezing it into a phone width made the
+   panels and labels unreadable. Below 900px it keeps a readable minimum
+   width and scrolls horizontally instead (snap-free, native touch). */
+.galleryScroll {
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .galleryScroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .galleryScroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  .gallery {
+    width: 840px;
+    max-width: none;
+  }
+}
