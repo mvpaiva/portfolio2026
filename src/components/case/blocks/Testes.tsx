@@ -16,9 +16,25 @@ import liftStyles from "../BlockLift.module.css";
 // Horizontal-scroll treatment added 2026-09-22 (Matheus) — same pattern
 // as Design e Prototipação/Onboarding: this banner packs fine print (tree
 // test percentages, a full similarity matrix) that goes illegible shrunk
-// to a phone width. Fixed at 754px, matching its existing desktop render
-// size (native 1508x648 is already a 2x export of that), so mobile reads
-// exactly as sharp as desktop instead of shrinking further.
+// to a phone width.
+//
+// Split into two separate images same day (Matheus: "dividi o banner...
+// separando as duas técnicas para melhor scroll") — was one flattened
+// 1508x648 banner with both proofs side by side; each proof (730x648) now
+// scrolls into view as its own unit instead of a single wide banner where
+// the second proof only appeared mid-scroll. Each panel renders at 365px
+// (native/2), matching the previous banner's 2x-export scale.
+const PROOFS = [
+  {
+    src: "/case/square-self-checkout/testes/tree-testing-r1.png",
+    alt: "Resultado real do tree test no Maze: 14 tarefas, maioria com 100% de sucesso direto",
+  },
+  {
+    src: "/case/square-self-checkout/testes/card-sorting-r1.png",
+    alt: "Resultado real do card sorting: matriz de similaridade completa",
+  },
+];
+
 const STATS = [
   { number: "5", label: "Rodadas de teste" },
   { number: "57", label: "Telas hi-fi testadas" },
@@ -53,14 +69,11 @@ export function Testes() {
         </p>
 
         <div className={styles.proofsScroll}>
-          <div className={styles.proofs}>
-            <Image
-              src="/case/square-self-checkout/testes/provas-rodada1-tree-testing.png"
-              alt="Provas reais dos testes: resultado do tree test no Maze (14 tarefas, maioria com 100% de sucesso direto) e matriz de similaridade do card sorting"
-              fill
-              sizes="(max-width: 900px) 754px, 754px"
-            />
-          </div>
+          {PROOFS.map((proof) => (
+            <div key={proof.src} className={styles.proof}>
+              <Image src={proof.src} alt={proof.alt} fill sizes="365px" />
+            </div>
+          ))}
         </div>
       </BlockGrid>
     </CaseSection>

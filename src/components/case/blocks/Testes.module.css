@@ -47,24 +47,29 @@
   margin-top: var(--space-8);
 }
 
-/* Matches the real banner's native ratio (1508x648, confirmed via
-   `file` on the source export) — was 2 side-by-side proof panels
-   before Matheus flattened them into one image (both proof labels
-   baked in). */
+/* Two separate proof images side by side (Matheus, 2026-09-22: split
+   from one flattened 1508x648 banner into two 730x648 exports, one per
+   technique, "para melhor scroll"). Desktop: both shrink/grow together
+   to fill the row, same as the old single banner did. */
 .proofsScroll {
+  display: flex;
+  gap: var(--space-6);
   width: 100%;
   margin-top: var(--space-8);
 }
 
-.proofs {
+.proof {
   position: relative;
-  width: 100%;
-  aspect-ratio: 1508 / 648;
+  flex: 1;
+  min-width: 0;
+  aspect-ratio: 730 / 648;
 }
 
 /* Below 900px, scroll horizontally by touch instead of shrinking further
    (Matheus, 2026-09-22) — same pattern as Design e Prototipação/
-   Onboarding. 754px matches the image's existing desktop render size. */
+   Onboarding. Each panel locks to 365px (native/2, matching its previous
+   desktop render scale) so a swipe moves from one full proof to the
+   next instead of crawling across one wide combined banner. */
 @media (max-width: 900px) {
   .proofsScroll {
     overflow-x: auto;
@@ -76,8 +81,9 @@
     display: none;
   }
 
-  .proofs {
-    width: 754px;
+  .proof {
+    flex: 0 0 365px;
+    width: 365px;
   }
 }
 
