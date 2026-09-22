@@ -115,6 +115,20 @@ design no Figma).
   distingue toque de arrasto de forma confiável. Se algum bloco novo
   precisar de zoom DENTRO de algo que já captura ponteiro (drag,
   carrossel, etc.), use esse padrão — não o `<Zoomable>` simples.
+  **Sem zoom no HeroBanner** (Matheus: não precisa — é composição
+  hero, não material de referência com letra miúda). Totens no dia a
+  dia e o service blueprint nunca tiveram zoom aplicado. O carrossel do
+  Figma usa exports dedicados de zoom (`proto-app-zoom.png`/
+  `proto-totem-zoom.png`, 7509×2435 — bem maior que a miniatura
+  1868×777) pro lightbox mostrar detalhe real, não só esticar os
+  mesmos pixels; exigiu aumentar `deviceSizes` em `next.config.ts`
+  (o padrão do Next tampa em 3840px e serviria a imagem borrada).
+- **Imagem do Onboarding renomeada `-r3` → `-r4` (2026-09-22):** Matheus
+  reportou a imagem quebrada (ícone de imagem inválida) em produção; não
+  reproduzi localmente (arquivo íntegro, carrega normal em todo
+  breakpoint) — consistente com o bug de cache do `/_next/image`/CDN já
+  documentado aqui, não um arquivo realmente quebrado. Renomear força
+  um fetch novo em todo lugar.
 - **Bug real corrigido em `BlockGrid.module.css` (2026-09-22):** a segunda
   coluna do grid era `1fr` puro, que não encolhe abaixo do min-content do
   conteúdo — um filho de largura fixa (o wrapper de scroll do banner de
