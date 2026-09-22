@@ -195,6 +195,7 @@ export function PrototipacaoTestesFigma() {
         height={SLIDES[index].zoomHeight}
         open={zoomOpen}
         onClose={() => setZoomOpen(false)}
+        interactive
       />
     </CaseSection>
   );

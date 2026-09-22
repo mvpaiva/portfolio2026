@@ -24,6 +24,12 @@ import liftStyles from "../BlockLift.module.css";
 // scrolls into view as its own unit instead of a single wide banner where
 // the second proof only appeared mid-scroll. Each panel renders at 365px
 // (native/2), matching the previous banner's 2x-export scale.
+//
+// Both proofs' lightbox is interactive (scroll/pinch + drag), not just
+// the plain fit-to-viewport zoom every other banner gets — Card Sorting's
+// full similarity matrix is still illegible at the fit size (confirmed
+// visually 2026-09-22), and giving Tree Testing the same treatment keeps
+// the pair consistent rather than one zooming differently from the other.
 const PROOFS = [
   {
     src: "/case/square-self-checkout/testes/tree-testing-r2.png",
@@ -81,6 +87,7 @@ export function Testes() {
                 width={proof.width}
                 height={proof.height}
                 sizes="365px"
+                interactive
               />
             </div>
           ))}
