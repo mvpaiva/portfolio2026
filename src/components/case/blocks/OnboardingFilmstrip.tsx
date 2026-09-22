@@ -33,7 +33,7 @@ export function OnboardingFilmstrip() {
         <div className={styles.filmstripScroll}>
           <div className={styles.filmstrip}>
             <Zoomable
-              src="/case/square-self-checkout/onboarding/onboarding-sequence-r4.png"
+              src="/case/square-self-checkout/onboarding/onboarding-sequence-r5.png"
               alt="Sequência de onboarding em 6 telas: bem-vindo ao Square, como funciona, escaneado, pesando um item, revisando e pagando, saindo da loja"
               width={2452}
               height={852}

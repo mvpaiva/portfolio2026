@@ -27,13 +27,17 @@ import liftStyles from "../BlockLift.module.css";
 // (2026-09-16, already pre-scaled to their real 40px-tall display size —
 // e.g. Renner is 20x40, not 29x40 like the first round); cache-busting
 // rename, same reason as the 11-strip below.
+//
+// Photos re-exported optimized 2026-09-22 (Matheus, `banners/otimizados/
+// field-exploration1-4.png`, same content/dimensions, much smaller file
+// size) — "-r2" suffix on the same filenames.
 const TOTEMS = [
-  { name: "Renner", photo: "renner.png", logo: "renner-sm-v3.png", w: 20, h: 40 },
-  { name: "C&A", photo: "ca.png", logo: "cea-sm-v3.png", w: 40, h: 40 },
-  { name: "Zara", photo: "zara.png", logo: "zara-sm-v3.png", w: 42, h: 40 },
+  { name: "Renner", photo: "renner-r2.png", logo: "renner-sm-v3.png", w: 20, h: 40 },
+  { name: "C&A", photo: "ca-r2.png", logo: "cea-sm-v3.png", w: 40, h: 40 },
+  { name: "Zara", photo: "zara-r2.png", logo: "zara-sm-v3.png", w: 42, h: 40 },
   {
     name: "Shopping Center Norte",
-    photo: "shopping-center-norte.png",
+    photo: "shopping-center-norte-r2.png",
     logo: "centernorte-sm-v3.png",
     w: 51,
     h: 40,

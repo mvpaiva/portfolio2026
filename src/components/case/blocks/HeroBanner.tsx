@@ -25,7 +25,7 @@ export function HeroBanner() {
   return (
     <div className={styles.wrap}>
       <Image
-        src="/case/square-self-checkout/banners/hero-r3.png"
+        src="/case/square-self-checkout/banners/hero-r4.png"
         alt="Composição do redesign do autoatendimento Square: totem e app lado a lado"
         width={2998}
         height={1492}
@@ -34,7 +34,7 @@ export function HeroBanner() {
         sizes="(max-width: 1489px) 100vw, 1489px"
       />
       <Image
-        src="/case/square-self-checkout/banners/hero-mob-r1.png"
+        src="/case/square-self-checkout/banners/hero-mob-r2.png"
         alt="Composição do redesign do autoatendimento Square: totem e app lado a lado"
         width={2372}
         height={1882}

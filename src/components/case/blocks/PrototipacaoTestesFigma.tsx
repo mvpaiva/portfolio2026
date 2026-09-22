@@ -44,7 +44,7 @@ const SLIDES = [
     // 7509x2435, much bigger than the thumbnail's 1868x777, so zooming
     // in actually reveals more detail instead of just reflowing the
     // same pixels larger.
-    zoomSrc: "/case/square-self-checkout/banners/proto-app-zoom.png",
+    zoomSrc: "/case/square-self-checkout/banners/proto-app-zoom-r2.png",
     zoomWidth: 7509,
     zoomHeight: 2435,
   },
@@ -54,7 +54,7 @@ const SLIDES = [
     alt: "Fluxo completo do totem mapeado no Figma: onboarding, scan, balança, pagamento, verificação de idade e saída",
     width: 1868,
     height: 777,
-    zoomSrc: "/case/square-self-checkout/banners/proto-totem-zoom.png",
+    zoomSrc: "/case/square-self-checkout/banners/proto-totem-zoom-r2.png",
     zoomWidth: 7509,
     zoomHeight: 2435,
   },

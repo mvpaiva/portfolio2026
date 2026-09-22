@@ -41,13 +41,13 @@ export function Solucoes() {
           quoteAttribution="Survey"
           body="O wireframe aprovado mantinha “pesar”, “código manual” e “pagar” sempre visíveis, competindo com a câmera. No UI final, eles se concentram em um único botão expansível. A tela de scan fica no essencial: câmera, carrinho e uma ação. Essa lógica de reduzir ao essencial guiou o redesign inteiro."
           banner={{
-            src: "/case/square-self-checkout/solucoes/solucao-1-banner-r3.png",
+            src: "/case/square-self-checkout/solucoes/solucao-1-banner-r4.png",
             alt: "Antes: wireframe mid-fi do fluxo de escaneamento. Depois: UI final com câmera ativa sobre uma foto real de produto e bottom sheet do carrinho",
             width: 1412,
             height: 1478,
           }}
           mobileBanner={{
-            src: "/case/square-self-checkout/solucoes/solucao-1-banner-mob-r3.png",
+            src: "/case/square-self-checkout/solucoes/solucao-1-banner-mob-r4.png",
             width: 1412,
             height: 1440,
           }}
@@ -64,13 +64,13 @@ export function Solucoes() {
           quoteAttribution="Xênia, 54"
           body="A tela mostra o peso em tempo real assim que o item toca a balança, com o preço calculado junto. O status indica quando a leitura está estável, e o botão de confirmar conduz o usuário ao próximo passo. Assim, ele consegue acompanhar o que a máquina está fazendo e validar o valor antes de continuar."
           banner={{
-            src: "/case/square-self-checkout/solucoes/solucao-2-banner-r3.png",
+            src: "/case/square-self-checkout/solucoes/solucao-2-banner-r4.png",
             alt: "Antes: wireframe high-fi da tela de escolha do produto com opção de pesagem. Depois: UI final da tela de pesagem do item, com foto do produto e carrinho lateral",
             width: 1412,
             height: 1832,
           }}
           mobileBanner={{
-            src: "/case/square-self-checkout/solucoes/solucao-2-banner-mob-r3.png",
+            src: "/case/square-self-checkout/solucoes/solucao-2-banner-mob-r4.png",
             width: 1412,
             height: 1832,
           }}
@@ -84,13 +84,13 @@ export function Solucoes() {
           quoteAttribution="Observação de campo"
           body="Quando o sistema sinaliza um item com restrição de idade, ele oferece três caminhos: confirmar com um CPF já cadastrado, verificar pelo app, ou pedir ajuda. Nenhum caminho exige se destacar. Se o CPF já está cadastrado, a verificação é automática. O participante P5 se recusou a digitar o CPF até ler que ele não seria compartilhado. O aviso de privacidade agora aparece antes do campo, não depois."
           banner={{
-            src: "/case/square-self-checkout/solucoes/solucao-3-banner-v3.png",
+            src: "/case/square-self-checkout/solucoes/solucao-3-banner-v4.png",
             alt: "Antes: wireframe mid-fi da tela de verificação de idade no totem, com opções de digitar CPF, verificar pelo app ou chamar atendente. Depois: modal final de confirmação de idade",
             width: 1412,
             height: 1832,
           }}
           mobileBanner={{
-            src: "/case/square-self-checkout/solucoes/solucao-3-banner-mob.png",
+            src: "/case/square-self-checkout/solucoes/solucao-3-banner-mob-r1.png",
             width: 1412,
             height: 1832,
           }}
@@ -104,13 +104,13 @@ export function Solucoes() {
           quoteAttribution="Teste em papel"
           body="Inicialmente, não existia caminho de recuperação além de chamar um funcionário. Foi criado uma tela dedicada: duas opções de largura total, impossíveis de não ver, que deixam o cliente se autodeclarar e liberar a saída sem esperar por ajuda. A solução mantém a segurança do processo ao registrar a ocorrência e sinalizar a necessidade de verificação, sem transformar o erro em um bloqueio."
           banner={{
-            src: "/case/square-self-checkout/solucoes/solucao-4-banner-v2.png",
+            src: "/case/square-self-checkout/solucoes/solucao-4-banner-v3.png",
             alt: "Antes: wireframe high-fi da tela de erro do sensor de saída. Depois: tela final de recuperação na saída, com duas opções de largura total para se autodeclarar",
             width: 1412,
             height: 1478,
           }}
           mobileBanner={{
-            src: "/case/square-self-checkout/solucoes/solucao-4-banner-mob.png",
+            src: "/case/square-self-checkout/solucoes/solucao-4-banner-mob-r1.png",
             width: 1412,
             height: 1440,
           }}
@@ -124,13 +124,13 @@ export function Solucoes() {
           quoteAttribution="Manuela, 33"
           body="Um hub de lista dedicado deixa a pessoa montar uma lista genérica antes de sair de casa. Durante o escaneamento, duas abas ficam visíveis (Escaneados e Na Lista) e uma barra de progresso mostra o quanto falta. Os itens se marcam sozinhos conforme são escaneados."
           banner={{
-            src: "/case/square-self-checkout/solucoes/solucao-5-banner-r3.png",
+            src: "/case/square-self-checkout/solucoes/solucao-5-banner-r4.png",
             alt: "Antes: wireframe high-fi da lista de compras da semana com abas de escaneados e na lista. Depois: UI final do escaneamento com a lista visível e câmera ativa sobre foto real de produto",
             width: 1412,
             height: 1478,
           }}
           mobileBanner={{
-            src: "/case/square-self-checkout/solucoes/solucao-5-banner-mob-r3.png",
+            src: "/case/square-self-checkout/solucoes/solucao-5-banner-mob-r4.png",
             width: 1412,
             height: 1440,
           }}

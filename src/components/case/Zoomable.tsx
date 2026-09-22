@@ -8,8 +8,10 @@ import styles from "./Zoomable.module.css";
 type LightboxProps = {
   src: string;
   alt: string;
-  /** Native pixel size of the source export — the lightbox renders at
-   * true size, scrollable if larger than the viewport. */
+  /** Native pixel size of the source export — used to preserve aspect
+   * ratio and to pick an appropriately-sized request from the image
+   * optimizer. The lightbox itself caps the *display* size well below
+   * this (see .fullImage) rather than rendering at true native size. */
   width: number;
   height: number;
   open: boolean;
@@ -61,7 +63,14 @@ export function ZoomableLightbox({ src, alt, width, height, open, onClose }: Lig
         ✕
       </button>
       <div className={styles.scroll}>
-        <Image src={src} alt={alt} width={width} height={height} sizes={`${width}px`} className={styles.fullImage} />
+        <Image
+          src={src}
+          alt={alt}
+          width={width}
+          height={height}
+          sizes="(max-width: 1400px) 100vw, 1400px"
+          className={styles.fullImage}
+        />
       </div>
     </div>,
     document.body,

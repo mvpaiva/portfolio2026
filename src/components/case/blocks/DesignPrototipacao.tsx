@@ -38,7 +38,7 @@ export function DesignPrototipacao() {
         <div className={styles.galleryScroll}>
           <div className={styles.gallery}>
             <Zoomable
-              src="/case/square-self-checkout/design-prototipacao/design-e-prototipacao-r3.png"
+              src="/case/square-self-checkout/design-prototipacao/design-e-prototipacao-r4.png"
               alt="Sequência de design e prototipação: 01 Crazy 8's (esboços em papel), 02 wireframe em papel, 03 protótipo de alta fidelidade com stress test, 04 UI final testada em produto real"
               width={2452}
               height={1302}
