@@ -51,11 +51,34 @@
    `file` on the source export) — was 2 side-by-side proof panels
    before Matheus flattened them into one image (both proof labels
    baked in). */
+.proofsScroll {
+  width: 100%;
+  margin-top: var(--space-8);
+}
+
 .proofs {
   position: relative;
   width: 100%;
   aspect-ratio: 1508 / 648;
-  margin-top: var(--space-8);
+}
+
+/* Below 900px, scroll horizontally by touch instead of shrinking further
+   (Matheus, 2026-09-22) — same pattern as Design e Prototipação/
+   Onboarding. 754px matches the image's existing desktop render size. */
+@media (max-width: 900px) {
+  .proofsScroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .proofsScroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  .proofs {
+    width: 754px;
+  }
 }
 
 @media (max-width: 768px) {

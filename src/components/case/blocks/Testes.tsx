@@ -12,6 +12,13 @@ import liftStyles from "../BlockLift.module.css";
 //
 // "Achado principal" callout: exists in the Figma source but Matheus
 // asked to cut it 2026-09-17 right after it was added — not rendered.
+//
+// Horizontal-scroll treatment added 2026-09-22 (Matheus) — same pattern
+// as Design e Prototipação/Onboarding: this banner packs fine print (tree
+// test percentages, a full similarity matrix) that goes illegible shrunk
+// to a phone width. Fixed at 754px, matching its existing desktop render
+// size (native 1508x648 is already a 2x export of that), so mobile reads
+// exactly as sharp as desktop instead of shrinking further.
 const STATS = [
   { number: "5", label: "Rodadas de teste" },
   { number: "57", label: "Telas hi-fi testadas" },
@@ -45,13 +52,15 @@ export function Testes() {
           Benchmarking de acessibilidade WCAG AA em todas as rodadas hi-fi.
         </p>
 
-        <div className={styles.proofs}>
-          <Image
-            src="/case/square-self-checkout/testes/provas-rodada1-tree-testing.png"
-            alt="Provas reais dos testes: resultado do tree test no Maze (14 tarefas, maioria com 100% de sucesso direto) e matriz de similaridade do card sorting"
-            fill
-            sizes="(max-width: 768px) 100vw, 754px"
-          />
+        <div className={styles.proofsScroll}>
+          <div className={styles.proofs}>
+            <Image
+              src="/case/square-self-checkout/testes/provas-rodada1-tree-testing.png"
+              alt="Provas reais dos testes: resultado do tree test no Maze (14 tarefas, maioria com 100% de sucesso direto) e matriz de similaridade do card sorting"
+              fill
+              sizes="(max-width: 900px) 754px, 754px"
+            />
+          </div>
         </div>
       </BlockGrid>
     </CaseSection>

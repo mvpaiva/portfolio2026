@@ -1,13 +1,18 @@
+/* minmax(0, 1fr), not bare 1fr: a bare 1fr track won't shrink below its
+   content's min-content size, so a wide fixed-width child (e.g. Testes'
+   horizontal-scroll proofs banner, Matheus 2026-09-22) pushed the whole
+   grid — and the page — wider than the viewport instead of scrolling
+   locally inside its own overflow-x:auto wrapper. */
 .grid {
   display: grid;
-  grid-template-columns: 440px 1fr;
+  grid-template-columns: 440px minmax(0, 1fr);
   gap: var(--gutter-desktop);
   align-items: start;
 }
 
 @media (max-width: 768px) {
   .grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: var(--space-6);
   }
 }
