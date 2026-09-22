@@ -82,14 +82,19 @@ design no Figma).
   uma linha só, `nowrap`, logos encolhem proporcionalmente (escala 0.8 do
   export/2). Tablet (769–1100px): duas pilhas estáticas de 6 e 5. Mobile
   (≤768px): dois marquees em cinza, direções opostas.
-- **Banners achatados em tablet/mobile:** Design e Prototipação (840px) e
-  Onboarding (1200px) mantêm largura legível e rolam na horizontal com o
-  dedo abaixo de 900px. Soluções usam `mobileBanner` (arquivos `-mob`).
-  HeroBanner também tem export mobile dedicado (`hero-mob-r1.png`), trocado
-  por CSS abaixo de 768px — sem scroll, é a composição inteira redesenhada
-  pro celular. **Testes (provas)** ainda NÃO tem essa tratativa — o banner
-  1508×648 só encolhe pra caber na tela; se ficar ilegível no mobile, é
-  candidato ao mesmo padrão de scroll-horizontal.
+- **Banners achatados em tablet/mobile:** Design e Prototipação (840px),
+  Onboarding (1200px) e Testes/provas (754px) mantêm largura legível e
+  rolam na horizontal com o dedo abaixo de 900px. Soluções usam
+  `mobileBanner` (arquivos `-mob`). HeroBanner também tem export mobile
+  dedicado (`hero-mob-r1.png`), trocado por CSS abaixo de 768px — sem
+  scroll, é a composição inteira redesenhada pro celular.
+- **Bug real corrigido em `BlockGrid.module.css` (2026-09-22):** a segunda
+  coluna do grid era `1fr` puro, que não encolhe abaixo do min-content do
+  conteúdo — um filho de largura fixa (o wrapper de scroll do banner de
+  Testes) empurrava o grid inteiro (e a página) mais largo que o viewport
+  em vez de rolar só localmente. Trocado pra `minmax(0, 1fr)`. Se algum
+  outro bloco baseado em `BlockGrid` ganhar um filho de largura fixa no
+  futuro, esse é o padrão a seguir.
 - **Espaçamento do HeroBanner:** padding vertical 32px (não 64px) em todo
   breakpoint — 64px estava somando com o padding inferior do Hero (64px) e
   o padding de topo do Contexto (128px), lendo como espaço em excesso
@@ -117,16 +122,13 @@ design no Figma).
 
 1. **Vídeo do teste em papel** — ainda não gravado/incorporado (item já
    antigo, da lista original do Matheus de 2026-09-16, nunca resolvido).
-2. **Banner de Testes (provas) sem versão mobile dedicada** — ver nota
-   acima; só encolhe hoje, pode precisar do mesmo tratamento de scroll
-   horizontal que Design e Prototipação/Onboarding já têm.
-3. **Confirmar se todos os wireframes pt-BR foram incorporados** — o item
+2. **Confirmar se todos os wireframes pt-BR foram incorporados** — o item
    original (2026-09-16) dizia "parcialmente entregue"
    (`docs/assets/square-wireframes-raw/{mobile,totem}/pt-br/`); não foi
    reconferido desde então.
-4. **Frame Figma 2333-170** sem export novo associado (2326-170 já foi
+3. **Frame Figma 2333-170** sem export novo associado (2326-170 já foi
    resolvido — era a galeria Design e Prototipação).
-5. `docs/assets` tem mudanças soltas não commitadas — são edições do
+4. `docs/assets` tem mudanças soltas não commitadas — são edições do
    Matheus, propositalmente deixadas de fora ("usaremos elas depois").
 
 **Resolvidas nesta sessão (2026-09-22), removidas da lista:** lint de
@@ -134,7 +136,9 @@ design no Figma).
 mede a largura via estado, capturada no `pointerdown`, não lendo o ref
 durante o render); alinhamento mobile do texto da home; espaçamento do
 HeroBanner; cobertura de `text-wrap: pretty`; teste em aparelho real;
-confirmação do deploy na Vercel.
+confirmação do deploy na Vercel; banner de Testes (provas) sem versão
+mobile (agora rola na horizontal, mesmo padrão de Design e Prototipação/
+Onboarding) + o bug de `1fr`/overflow em `BlockGrid` que isso revelou.
 
 ## Case page: build em código (Next.js) — estado atual (2026-09-17, projeto pausado aqui)
 
