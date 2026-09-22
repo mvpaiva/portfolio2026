@@ -108,8 +108,23 @@ design no Figma).
   legibilidade") — NÃO é mais tamanho nativo puro; isso vale em todo
   breakpoint, não só mobile/tablet. O carrossel do Figma usa exports
   dedicados de zoom ainda maiores que a miniatura (`proto-app-zoom-r2.png`/
-  `proto-totem-zoom-r2.png`, 7509×2435) — mesmo assim ficam confortáveis
-  de navegar graças ao cap de tamanho. Renderiza
+  `proto-totem-zoom-r2.png`, 7509×2435).
+- **Zoom interativo (scroll/pinça + arrasto), só onde é realmente denso
+  (2026-09-22):** o cap de 1400px/85vh acima deixa a maioria dos banners
+  legível, mas não o Card Sorting inteiro (matriz de similaridade
+  ilegível no fit, confirmado visualmente) — daí `ZoomPanImage` em
+  `Zoomable.tsx`: abre no tamanho fit normal, scroll/pinça amplia
+  (ancorado no centro, não no cursor — mais simples e menos frágil que
+  matemática de zoom-no-cursor) até uma escala calculada a partir da
+  resolução real da fonte, arrasto navega uma vez ampliado. Aplicado só
+  no carrossel Prototipação & Testes (Figma) e nos dois proofs de Testes
+  (os dois, não só Card Sorting, pra manter os dois proofs consistentes
+  entre si) — Design e Prototipação/Onboarding/Soluções ficam com o
+  lightbox estático simples, já são legíveis no fit. O handler de wheel
+  é anexado via `addEventListener(..., {passive:false})` num `useEffect`,
+  não via `onWheel` do JSX — React anexa wheel como passive por padrão,
+  o que faria `preventDefault()` virar no-op silencioso e a página
+  rolar atrás do lightbox durante o zoom. Renderiza
   via portal pro `document.body` — ancestrais como o `translateY` de hover
   do BlockLift ou os wrappers de scroll horizontal (`overflow-x:auto`)
   quebrariam um overlay `position:fixed` comum. **Pegadinha real
