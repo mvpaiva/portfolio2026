@@ -61,18 +61,12 @@ body {
 }
 
 /* No widow words, anywhere — browser-native, no manual &nbsp; wrangling.
-   Was already applied ad hoc on the home page (.tagline/.panelText in
-   page.module.css); promoted here so every case-page text block gets it
-   automatically instead of needing to remember it per component. */
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-li,
-blockquote {
+   Applied to every element (Matheus, 2026-09-22: chips, TOC links, stat
+   labels, etc. can wrap too, not just paragraphs/headings/lists) rather
+   than an explicit tag list — text-wrap only affects an element that's
+   actually doing its own line-wrapping, so this is a no-op everywhere
+   else. */
+* {
   text-wrap: pretty;
 }
 
