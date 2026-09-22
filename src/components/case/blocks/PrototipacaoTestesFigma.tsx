@@ -40,6 +40,13 @@ const SLIDES = [
     alt: "Fluxo completo do app mapeado no Figma: onboarding, scan, balança, pagamento via Pix e listas",
     width: 1868,
     height: 777,
+    // Dedicated high-res export for the lightbox (Matheus, 2026-09-22) —
+    // 7509x2435, much bigger than the thumbnail's 1868x777, so zooming
+    // in actually reveals more detail instead of just reflowing the
+    // same pixels larger.
+    zoomSrc: "/case/square-self-checkout/banners/proto-app-zoom.png",
+    zoomWidth: 7509,
+    zoomHeight: 2435,
   },
   {
     label: "Totem",
@@ -47,6 +54,9 @@ const SLIDES = [
     alt: "Fluxo completo do totem mapeado no Figma: onboarding, scan, balança, pagamento, verificação de idade e saída",
     width: 1868,
     height: 777,
+    zoomSrc: "/case/square-self-checkout/banners/proto-totem-zoom.png",
+    zoomWidth: 7509,
+    zoomHeight: 2435,
   },
 ];
 
@@ -179,10 +189,10 @@ export function PrototipacaoTestesFigma() {
       </div>
 
       <ZoomableLightbox
-        src={SLIDES[index].src}
+        src={SLIDES[index].zoomSrc}
         alt={SLIDES[index].alt}
-        width={SLIDES[index].width}
-        height={SLIDES[index].height}
+        width={SLIDES[index].zoomWidth}
+        height={SLIDES[index].zoomHeight}
         open={zoomOpen}
         onClose={() => setZoomOpen(false)}
       />

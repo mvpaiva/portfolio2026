@@ -1,4 +1,4 @@
-import { Zoomable } from "../Zoomable";
+import Image from "next/image";
 import styles from "./HeroBanner.module.css";
 import liftStyles from "../BlockLift.module.css";
 
@@ -18,29 +18,27 @@ import liftStyles from "../BlockLift.module.css";
 // (Next's /_next/image can serve stale bytes indefinitely when a
 // same-named public/ file is overwritten, documented in handoff.md).
 //
-// Tap-to-zoom added same day (Matheus) — both exports are 2x, so a
-// zoomed-in native-size view is genuinely sharper than the shrunk
-// thumbnail. See ../Zoomable.
+// No tap-to-zoom here (Matheus, 2026-09-22) — unlike the other flatten
+// banners, this one has no fine print to read; it's a hero composition,
+// not reference material.
 export function HeroBanner() {
   return (
     <div className={styles.wrap}>
-      <Zoomable
+      <Image
         src="/case/square-self-checkout/banners/hero-r3.png"
         alt="Composição do redesign do autoatendimento Square: totem e app lado a lado"
         width={2998}
         height={1492}
         priority
-        fill={false}
         className={`${styles.image} ${styles.desktopImage} ${liftStyles.item} lift-trigger`}
         sizes="(max-width: 1489px) 100vw, 1489px"
       />
-      <Zoomable
+      <Image
         src="/case/square-self-checkout/banners/hero-mob-r1.png"
         alt="Composição do redesign do autoatendimento Square: totem e app lado a lado"
         width={2372}
         height={1882}
         priority
-        fill={false}
         className={`${styles.image} ${styles.mobileImage} ${liftStyles.item} lift-trigger`}
         sizes="100vw"
       />
