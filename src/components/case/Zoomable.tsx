@@ -134,7 +134,14 @@ function ZoomPanImage({ src, alt, width, height }: { src: string; alt: string; w
           alt={alt}
           width={width}
           height={height}
-          sizes="(max-width: 1400px) 100vw, 1400px"
+          // Full native width, not the ~1400px fit-display hint the
+          // static lightbox uses — this image gets stretched up to
+          // maxScaleRef.current via CSS transform when the visitor
+          // zooms in, so the *fetched* bitmap has to already be at (or
+          // past) that zoomed-in size or the zoom just magnifies a
+          // blurry, too-small image (Matheus, 2026-09-22: "qualidade
+          // péssima, como se fosse a imagem padrão da página").
+          sizes={`${width}px`}
           className={styles.fullImage}
           draggable={false}
         />
