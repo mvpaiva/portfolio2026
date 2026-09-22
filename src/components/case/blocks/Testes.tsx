@@ -1,7 +1,7 @@
-import Image from "next/image";
 import { CaseSection } from "../CaseSection";
 import { BlockGrid } from "../BlockGrid";
 import { LabelStack } from "../LabelStack";
+import { Zoomable } from "../Zoomable";
 import styles from "./Testes.module.css";
 import liftStyles from "../BlockLift.module.css";
 
@@ -28,10 +28,14 @@ const PROOFS = [
   {
     src: "/case/square-self-checkout/testes/tree-testing-r1.png",
     alt: "Resultado real do tree test no Maze: 14 tarefas, maioria com 100% de sucesso direto",
+    width: 730,
+    height: 648,
   },
   {
     src: "/case/square-self-checkout/testes/card-sorting-r1.png",
     alt: "Resultado real do card sorting: matriz de similaridade completa",
+    width: 730,
+    height: 648,
   },
 ];
 
@@ -71,7 +75,13 @@ export function Testes() {
         <div className={styles.proofsScroll}>
           {PROOFS.map((proof) => (
             <div key={proof.src} className={styles.proof}>
-              <Image src={proof.src} alt={proof.alt} fill sizes="365px" />
+              <Zoomable
+                src={proof.src}
+                alt={proof.alt}
+                width={proof.width}
+                height={proof.height}
+                sizes="365px"
+              />
             </div>
           ))}
         </div>

@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import type { KeyboardEvent as ReactKeyboardEvent, PointerEvent as ReactPointerEvent } from "react";
 import Image from "next/image";
 import { CaseSection } from "../CaseSection";
+import { ZoomableLightbox } from "../Zoomable";
 import styles from "./PrototipacaoTestesFigma.module.css";
 import liftStyles from "../BlockLift.module.css";
 
@@ -37,11 +38,15 @@ const SLIDES = [
     label: "App",
     src: "/case/square-self-checkout/banners/proto-app.png",
     alt: "Fluxo completo do app mapeado no Figma: onboarding, scan, balança, pagamento via Pix e listas",
+    width: 1868,
+    height: 777,
   },
   {
     label: "Totem",
     src: "/case/square-self-checkout/banners/proto-totem.png",
     alt: "Fluxo completo do totem mapeado no Figma: onboarding, scan, balança, pagamento, verificação de idade e saída",
+    width: 1868,
+    height: 777,
   },
 ];
 
@@ -58,7 +63,16 @@ export function PrototipacaoTestesFigma() {
   // rendering since it isn't guaranteed to reflect the latest DOM state;
   // this only ever needs the width while a drag is in progress anyway.
   const [viewportWidth, setViewportWidth] = useState(1);
+  const [zoomOpen, setZoomOpen] = useState(false);
   const dragStartX = useRef(0);
+  // Whether the pointer moved past a small threshold during this
+  // gesture — distinguishes a tap (open the lightbox) from a drag
+  // (swipe), since `.viewport` calls setPointerCapture on every
+  // pointerdown for the swipe gesture, which silently swallows any
+  // native `click` a nested trigger button would otherwise get. Tap
+  // detection happens here, in the same pointerup handler that already
+  // reliably fires, instead of relying on that click.
+  const dragMovedRef = useRef(false);
 
   function goTo(next: number) {
     setIndex((next + SLIDES.length) % SLIDES.length);
@@ -66,6 +80,7 @@ export function PrototipacaoTestesFigma() {
 
   function handlePointerDown(event: ReactPointerEvent<HTMLDivElement>) {
     dragStartX.current = event.clientX;
+    dragMovedRef.current = false;
     setViewportWidth(event.currentTarget.offsetWidth || 1);
     setIsDragging(true);
     event.currentTarget.setPointerCapture(event.pointerId);
@@ -73,13 +88,17 @@ export function PrototipacaoTestesFigma() {
 
   function handlePointerMove(event: ReactPointerEvent<HTMLDivElement>) {
     if (!isDragging) return;
-    setDragX(event.clientX - dragStartX.current);
+    const delta = event.clientX - dragStartX.current;
+    if (Math.abs(delta) > 5) dragMovedRef.current = true;
+    setDragX(delta);
   }
 
   function endDrag() {
     if (!isDragging) return;
     if (Math.abs(dragX) > viewportWidth * DRAG_THRESHOLD) {
       goTo(dragX < 0 ? index + 1 : index - 1);
+    } else if (!dragMovedRef.current) {
+      setZoomOpen(true);
     }
     setIsDragging(false);
     setDragX(0);
@@ -88,6 +107,10 @@ export function PrototipacaoTestesFigma() {
   function handleKeyDown(event: ReactKeyboardEvent<HTMLDivElement>) {
     if (event.key === "ArrowRight") goTo(index + 1);
     if (event.key === "ArrowLeft") goTo(index - 1);
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      setZoomOpen(true);
+    }
   }
 
   const dragPercent = (dragX / viewportWidth) * 100;
@@ -127,7 +150,13 @@ export function PrototipacaoTestesFigma() {
             >
               {SLIDES.map((slide) => (
                 <div key={slide.label} className={styles.slide}>
-                  <Image src={slide.src} alt={slide.alt} fill sizes="1226px" draggable={false} />
+                  <Image
+                    src={slide.src}
+                    alt={slide.alt}
+                    fill
+                    sizes="1226px"
+                    draggable={false}
+                  />
                 </div>
               ))}
             </div>
@@ -148,6 +177,15 @@ export function PrototipacaoTestesFigma() {
           </div>
         </div>
       </div>
+
+      <ZoomableLightbox
+        src={SLIDES[index].src}
+        alt={SLIDES[index].alt}
+        width={SLIDES[index].width}
+        height={SLIDES[index].height}
+        open={zoomOpen}
+        onClose={() => setZoomOpen(false)}
+      />
     </CaseSection>
   );
 }

@@ -1,0 +1,63 @@
+.triggerFill {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: zoom-in;
+}
+
+.triggerBlock {
+  display: block;
+  width: 100%;
+  cursor: zoom-in;
+}
+
+.blockImage {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Rendered via a portal to document.body — several ancestors in this
+   case (BlockLift's hover :translateY, the horizontal-scroll wrappers'
+   overflow-x:auto) would otherwise clip or reposition a plain
+   position:fixed overlay. */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(26, 26, 26, 0.92);
+  cursor: zoom-out;
+}
+
+.scroll {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  padding: var(--space-8);
+  box-sizing: border-box;
+}
+
+.fullImage {
+  display: block;
+  margin: 0 auto;
+  cursor: zoom-out;
+}
+
+.close {
+  position: fixed;
+  top: var(--space-4);
+  right: var(--space-4);
+  z-index: 1001;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-size: 16px;
+  cursor: pointer;
+}

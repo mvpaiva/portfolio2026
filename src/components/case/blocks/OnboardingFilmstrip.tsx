@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { CaseSection } from "../CaseSection";
+import { Zoomable } from "../Zoomable";
 import styles from "./OnboardingFilmstrip.module.css";
 import liftStyles from "../BlockLift.module.css";
 
@@ -32,13 +32,14 @@ export function OnboardingFilmstrip() {
 
         <div className={styles.filmstripScroll}>
           <div className={styles.filmstrip}>
-          <Image
-            src="/case/square-self-checkout/onboarding/onboarding-sequence-r3.png"
-            alt="Sequência de onboarding em 6 telas: bem-vindo ao Square, como funciona, escaneado, pesando um item, revisando e pagando, saindo da loja"
-            fill
-            sizes="1226px"
-          />
-        </div>
+            <Zoomable
+              src="/case/square-self-checkout/onboarding/onboarding-sequence-r3.png"
+              alt="Sequência de onboarding em 6 telas: bem-vindo ao Square, como funciona, escaneado, pesando um item, revisando e pagando, saindo da loja"
+              width={2452}
+              height={852}
+              sizes="1226px"
+            />
+          </div>
         </div>
       </div>
     </CaseSection>

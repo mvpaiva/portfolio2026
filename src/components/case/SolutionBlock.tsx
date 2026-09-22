@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { Zoomable } from "./Zoomable";
 import liftStyles from "./BlockLift.module.css";
 import styles from "./SolutionBlock.module.css";
 
@@ -69,13 +69,25 @@ export function SolutionBlock({
           className={`${styles.banner} ${styles.desktopBanner}`}
           style={{ aspectRatio: `${banner.width} / ${banner.height}` }}
         >
-          <Image src={banner.src} alt={banner.alt} fill sizes="706px" />
+          <Zoomable
+            src={banner.src}
+            alt={banner.alt}
+            width={banner.width}
+            height={banner.height}
+            sizes="706px"
+          />
         </div>
         <div
           className={`${styles.banner} ${styles.mobileBanner}`}
           style={{ aspectRatio: `${mobileBanner.width} / ${mobileBanner.height}` }}
         >
-          <Image src={mobileBanner.src} alt={banner.alt} fill sizes="100vw" />
+          <Zoomable
+            src={mobileBanner.src}
+            alt={banner.alt}
+            width={mobileBanner.width}
+            height={mobileBanner.height}
+            sizes="100vw"
+          />
         </div>
       </div>
     </div>
