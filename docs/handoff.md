@@ -95,13 +95,21 @@ design no Figma).
   lado a lado no desktop e como duas unidades de scroll no mobile — o
   swipe leva de um resultado completo pro outro em vez de atravessar um
   banner largo.
-- **Tap-to-zoom em todo banner flatten (2026-09-22, `src/components/case/
-  Zoomable.tsx`):** todo banner do case é export 2x, então tem resolução
-  de sobra guardada quando exibido menor — clique/toque abre um lightbox
-  em tela cheia no tamanho nativo (scrollável se maior que o viewport),
-  fecha com Escape/clique/botão. Aplicado em HeroBanner, Design e
+- **Tap-to-zoom nos banners flatten com letra miúda (2026-09-22,
+  `src/components/case/Zoomable.tsx`):** clique/toque abre um lightbox
+  em tela cheia, fecha com Escape/clique/botão. Aplicado em Design e
   Prototipação, Onboarding, Testes (os dois proofs), as 5 Soluções
-  (desktop+mobile) e o carrossel Prototipação & Testes (Figma). Renderiza
+  (desktop+mobile) e o carrossel Prototipação & Testes (Figma) — **não**
+  no HeroBanner (Matheus: não precisa, é composição hero, sem letra
+  miúda pra ler) nem em Totens no dia a dia/service blueprint (nunca
+  tiveram). O tamanho de exibição do lightbox é limitado a `min(1400px,
+  100%)` de largura e `85vh` de altura (Matheus, 2026-09-22: "as imagens
+  em zoom ficaram grandes demais... diminuir o tamanho... mantendo boa
+  legibilidade") — NÃO é mais tamanho nativo puro; isso vale em todo
+  breakpoint, não só mobile/tablet. O carrossel do Figma usa exports
+  dedicados de zoom ainda maiores que a miniatura (`proto-app-zoom-r2.png`/
+  `proto-totem-zoom-r2.png`, 7509×2435) — mesmo assim ficam confortáveis
+  de navegar graças ao cap de tamanho. Renderiza
   via portal pro `document.body` — ancestrais como o `translateY` de hover
   do BlockLift ou os wrappers de scroll horizontal (`overflow-x:auto`)
   quebrariam um overlay `position:fixed` comum. **Pegadinha real
