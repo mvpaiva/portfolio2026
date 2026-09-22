@@ -60,7 +60,7 @@ leia essa seção primeiro se for continuar esse trabalho especificamente,
 antes do resto deste arquivo (que documenta principalmente a fase de
 design no Figma).
 
-## Estado atual (2026-09-21) — leia isto primeiro
+## Estado atual (2026-09-22) — leia isto primeiro
 
 - **Repo:** `https://github.com/mvpaiva/portfolio2026` (branch `main`). O
   remote antigo `portfolio.git` não é mais usado.
@@ -72,9 +72,11 @@ design no Figma).
   description sobre transformar problemas complexos em experiências
   digitais mais claras via pesquisa, prototipagem, testes e design
   iterativo.
-- **Home:** escala tipográfica 15px (tagline/painéis), 17px (cargo), 11px
-  (nome/menu). Square = "App e totem de autoatendimento para varejo."
-  No mobile o texto é `text-wrap: balance`, alinhado à esquerda.
+- **Home:** escala tipográfica 15px (tagline/painéis, 14px no mobile), 17px
+  (cargo), 11px (nome/menu). Square = "App e totem de autoatendimento para
+  varejo." No mobile o texto é `text-wrap: pretty`, alinhado à esquerda
+  (14px em vez de 15px especificamente no mobile — a 15px cada linha sobrava
+  ~50px à direita e parecia quebra errada; testado em 375/393px reais).
 - **Locais visitados (Panorama Competitivo):** 11 logos (Cinemark e
   Smartbreak entraram no lugar de Honest Market e McDonald's). Desktop:
   uma linha só, `nowrap`, logos encolhem proporcionalmente (escala 0.8 do
@@ -83,20 +85,56 @@ design no Figma).
 - **Banners achatados em tablet/mobile:** Design e Prototipação (840px) e
   Onboarding (1200px) mantêm largura legível e rolam na horizontal com o
   dedo abaixo de 900px. Soluções usam `mobileBanner` (arquivos `-mob`).
+  HeroBanner também tem export mobile dedicado (`hero-mob-r1.png`), trocado
+  por CSS abaixo de 768px — sem scroll, é a composição inteira redesenhada
+  pro celular. **Testes (provas)** ainda NÃO tem essa tratativa — o banner
+  1508×648 só encolhe pra caber na tela; se ficar ilegível no mobile, é
+  candidato ao mesmo padrão de scroll-horizontal.
+- **Espaçamento do HeroBanner:** padding vertical 32px (não 64px) em todo
+  breakpoint — 64px estava somando com o padding inferior do Hero (64px) e
+  o padding de topo do Contexto (128px), lendo como espaço em excesso
+  (Matheus, 2026-09-22).
+- **Prevenção de palavras-viúvas:** `text-wrap: pretty` está em `*` (não só
+  p/h1-6/li/blockquote) em `globals.css` — cobre chips, links do índice,
+  labels de estatística também (Matheus, 2026-09-22: "tenha certeza de não
+  haver palavras-viúvas no site inteiro").
 - **Imagens:** ao trocar um PNG, renomeie o arquivo em `public/` (sufixo
   `-r3` etc.). O `/_next/image` serve bytes velhos se o nome se repete.
   Fonte dos exports: `docs/assets/square-wireframes-raw/banners/`.
 - **Figma público** (links do Hero e Footer):
   `figma.com/design/pjhYVUwiwVKJ6KSN1b8mrg/Square---Matheus-Paiva`.
 - **Hover spotlight/lift:** só desktop (`hover: hover` e `pointer: fine`).
-- **Deploy:** feito por integração GitHub→Vercel (push em `main`). Não há
-  Vercel CLI nem `.vercel/` na máquina onde isso foi escrito; confira no
-  painel da Vercel se o projeto aponta para `portfolio2026`.
-- **Pendências conhecidas:** lint reclama de `ref.current` durante o render
-  em `PrototipacaoTestesFigma.tsx` (bug antigo, não corrigido); frames
-  Figma 2326-170/2333-170 sem export novo associado; mudanças soltas em
-  `docs/assets` (edições do Matheus, ainda não commitadas). Nunca testado
-  em aparelhos reais de mobile/tablet, só emulação.
+- **Deploy:** feito por integração GitHub→Vercel (push em `main`).
+  **Confirmado pelo Matheus (2026-09-22)** que o projeto na Vercel está
+  publicando a partir de `portfolio2026` e que o site foi testado em
+  aparelhos reais de mobile/tablet (não só emulação).
+- **README raiz:** reescrito (2026-09-22) pra abrir com o portfólio e o link
+  do case Square antes de qualquer coisa técnica — pensado pra quem só
+  escaneia o perfil do GitHub e não baixa o repo. A seção técnica (setup
+  local, estrutura de pastas) ficou depois de um `---`, não removida.
+
+### Pendências reais que restam (2026-09-22)
+
+1. **Vídeo do teste em papel** — ainda não gravado/incorporado (item já
+   antigo, da lista original do Matheus de 2026-09-16, nunca resolvido).
+2. **Banner de Testes (provas) sem versão mobile dedicada** — ver nota
+   acima; só encolhe hoje, pode precisar do mesmo tratamento de scroll
+   horizontal que Design e Prototipação/Onboarding já têm.
+3. **Confirmar se todos os wireframes pt-BR foram incorporados** — o item
+   original (2026-09-16) dizia "parcialmente entregue"
+   (`docs/assets/square-wireframes-raw/{mobile,totem}/pt-br/`); não foi
+   reconferido desde então.
+4. **Frame Figma 2333-170** sem export novo associado (2326-170 já foi
+   resolvido — era a galeria Design e Prototipação).
+5. `docs/assets` tem mudanças soltas não commitadas — são edições do
+   Matheus, propositalmente deixadas de fora ("usaremos elas depois").
+
+**Resolvidas nesta sessão (2026-09-22), removidas da lista:** lint de
+`ref.current` durante o render em `PrototipacaoTestesFigma.tsx` (agora
+mede a largura via estado, capturada no `pointerdown`, não lendo o ref
+durante o render); alinhamento mobile do texto da home; espaçamento do
+HeroBanner; cobertura de `text-wrap: pretty`; teste em aparelho real;
+confirmação do deploy na Vercel.
 
 ## Case page: build em código (Next.js) — estado atual (2026-09-17, projeto pausado aqui)
 
