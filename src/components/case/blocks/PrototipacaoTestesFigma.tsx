@@ -53,7 +53,11 @@ export function PrototipacaoTestesFigma() {
   const [index, setIndex] = useState(0);
   const [dragX, setDragX] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
-  const viewportRef = useRef<HTMLDivElement>(null);
+  // Measured on pointerdown (from the event target, not a ref read during
+  // render) — React's rules-of-hooks lint flags reading ref.current while
+  // rendering since it isn't guaranteed to reflect the latest DOM state;
+  // this only ever needs the width while a drag is in progress anyway.
+  const [viewportWidth, setViewportWidth] = useState(1);
   const dragStartX = useRef(0);
 
   function goTo(next: number) {
@@ -62,6 +66,7 @@ export function PrototipacaoTestesFigma() {
 
   function handlePointerDown(event: ReactPointerEvent<HTMLDivElement>) {
     dragStartX.current = event.clientX;
+    setViewportWidth(event.currentTarget.offsetWidth || 1);
     setIsDragging(true);
     event.currentTarget.setPointerCapture(event.pointerId);
   }
@@ -73,7 +78,6 @@ export function PrototipacaoTestesFigma() {
 
   function endDrag() {
     if (!isDragging) return;
-    const viewportWidth = viewportRef.current?.offsetWidth ?? 1;
     if (Math.abs(dragX) > viewportWidth * DRAG_THRESHOLD) {
       goTo(dragX < 0 ? index + 1 : index - 1);
     }
@@ -86,7 +90,7 @@ export function PrototipacaoTestesFigma() {
     if (event.key === "ArrowLeft") goTo(index - 1);
   }
 
-  const dragPercent = viewportRef.current ? (dragX / viewportRef.current.offsetWidth) * 100 : 0;
+  const dragPercent = (dragX / viewportWidth) * 100;
 
   return (
     <CaseSection id="prototipacao-testes-figma" divider>
@@ -106,7 +110,6 @@ export function PrototipacaoTestesFigma() {
           </p>
 
           <div
-            ref={viewportRef}
             className={styles.viewport}
             role="region"
             aria-roledescription="carrossel"
