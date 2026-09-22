@@ -44,15 +44,11 @@
   text-decoration-color: var(--color-ink);
 }
 
-/* Real Figma value (verified via the API, node 2179:223): the " / "
-   separator between Solução 2's two pain links is underlined too, same
-   weight/color as the links either side — not a link itself (its
-   hyperlink in the source is a Figma text-continuation artifact, not a
-   deliberate destination). */
+/* Matheus, 2026-09-22: dropped the underline the Figma source had on
+   this separator — it isn't a link, and rendered underlined it reads
+   like a broken/dead one. */
 .painSeparator {
-  text-decoration: underline;
-  text-decoration-color: var(--color-border-hover);
-  text-underline-offset: 2px;
+  color: var(--color-ink);
 }
 
 .headline {

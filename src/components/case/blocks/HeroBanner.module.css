@@ -18,6 +18,24 @@
   height: auto;
 }
 
+/* Mobile gets its own export (Matheus, 2026-09-22), same reasoning as
+   Solucoes' per-solution mobileBanner: the desktop composition reads
+   too small shrunk to a phone width. Both <Image>s render; only one is
+   display:none at a time, avoiding a src-swap flash on resize. */
+.mobileImage {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .desktopImage {
+    display: none;
+  }
+
+  .mobileImage {
+    display: block;
+  }
+}
+
 /* Top scrim (variant.com second opinion, 2026-09-16, point 1/2): the
    fixed "Voltar" button stays on screen while this image scrolls
    underneath it, so the first ~120px (the button's "dead zone") get a
