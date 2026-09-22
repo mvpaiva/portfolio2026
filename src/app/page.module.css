@@ -197,12 +197,18 @@
   }
 }
 
-/* Phones (375-393px): balance the lines so the right edge doesn't look
-   like the text was cut off by a natural break (Matheus, 2026-09-21). */
+/* Phones (375-393px): the wrap itself is correct (the next word
+   genuinely doesn't fit), but at 15px each line falls ~50px short of
+   the container width, reading as a broken/misaligned wrap (Matheus,
+   2026-09-22, screenshot). `pretty` (not `balance`, which forced
+   equal-ish line lengths regardless of fit) plus a smaller mobile-only
+   font size lets more of each line's words actually reach the edge. */
 @media (max-width: 768px) {
   .tagline,
   .panelText {
-    text-wrap: balance;
+    font-size: 14px;
+    line-height: 22px;
+    text-wrap: pretty;
     text-align: left;
   }
 }
