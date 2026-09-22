@@ -83,11 +83,38 @@ design no Figma).
   export/2). Tablet (769–1100px): duas pilhas estáticas de 6 e 5. Mobile
   (≤768px): dois marquees em cinza, direções opostas.
 - **Banners achatados em tablet/mobile:** Design e Prototipação (840px),
-  Onboarding (1200px) e Testes/provas (754px) mantêm largura legível e
-  rolam na horizontal com o dedo abaixo de 900px. Soluções usam
-  `mobileBanner` (arquivos `-mob`). HeroBanner também tem export mobile
-  dedicado (`hero-mob-r1.png`), trocado por CSS abaixo de 768px — sem
-  scroll, é a composição inteira redesenhada pro celular.
+  Onboarding (1200px) e Testes/provas (365px cada, divididos em duas
+  imagens — ver abaixo) mantêm largura legível e rolam na horizontal com o
+  dedo abaixo de 900px. Soluções usam `mobileBanner` (arquivos `-mob`).
+  HeroBanner também tem export mobile dedicado (`hero-mob-r1.png`),
+  trocado por CSS abaixo de 768px — sem scroll, é a composição inteira
+  redesenhada pro celular.
+- **Testes (provas) dividido em duas imagens (2026-09-22):** era um banner
+  único 1508×648 com os dois resultados lado a lado; agora são
+  `tree-testing-r1.png` e `card-sorting-r1.png` (730×648 cada), renderizados
+  lado a lado no desktop e como duas unidades de scroll no mobile — o
+  swipe leva de um resultado completo pro outro em vez de atravessar um
+  banner largo.
+- **Tap-to-zoom em todo banner flatten (2026-09-22, `src/components/case/
+  Zoomable.tsx`):** todo banner do case é export 2x, então tem resolução
+  de sobra guardada quando exibido menor — clique/toque abre um lightbox
+  em tela cheia no tamanho nativo (scrollável se maior que o viewport),
+  fecha com Escape/clique/botão. Aplicado em HeroBanner, Design e
+  Prototipação, Onboarding, Testes (os dois proofs), as 5 Soluções
+  (desktop+mobile) e o carrossel Prototipação & Testes (Figma). Renderiza
+  via portal pro `document.body` — ancestrais como o `translateY` de hover
+  do BlockLift ou os wrappers de scroll horizontal (`overflow-x:auto`)
+  quebrariam um overlay `position:fixed` comum. **Pegadinha real
+  encontrada:** o carrossel do Figma usa `setPointerCapture` no
+  `pointerdown` pro gesto de swipe, o que engole o `click` nativo de um
+  botão-gatilho aninhado — confirmado testando com clique real (via
+  ferramenta de automação) vs. `.click()` disparado por JS (que ignora o
+  pipeline nativo de eventos e sempre "funciona", mascarando o bug). Por
+  isso o carrossel usa `ZoomableLightbox` (variante controlada, sem botão
+  próprio) disparada pelo próprio `pointerup` do carrossel, que já
+  distingue toque de arrasto de forma confiável. Se algum bloco novo
+  precisar de zoom DENTRO de algo que já captura ponteiro (drag,
+  carrossel, etc.), use esse padrão — não o `<Zoomable>` simples.
 - **Bug real corrigido em `BlockGrid.module.css` (2026-09-22):** a segunda
   coluna do grid era `1fr` puro, que não encolhe abaixo do min-content do
   conteúdo — um filho de largura fixa (o wrapper de scroll do banner de
