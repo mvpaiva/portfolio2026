@@ -32,13 +32,13 @@ import liftStyles from "../BlockLift.module.css";
 // the pair consistent rather than one zooming differently from the other.
 const PROOFS = [
   {
-    src: "/case/square-self-checkout/testes/tree-testing-r2.png",
+    src: "/case/square-self-checkout/testes/tree-testing-r3.png",
     alt: "Resultado real do tree test no Maze: 14 tarefas, maioria com 100% de sucesso direto",
     width: 730,
     height: 648,
   },
   {
-    src: "/case/square-self-checkout/testes/card-sorting-r2.png",
+    src: "/case/square-self-checkout/testes/card-sorting-r3.png",
     alt: "Resultado real do card sorting: matriz de similaridade completa",
     width: 730,
     height: 648,

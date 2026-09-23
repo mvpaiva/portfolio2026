@@ -1,5 +1,5 @@
+import Image from "next/image";
 import { CaseSection } from "../CaseSection";
-import { Zoomable } from "../Zoomable";
 import styles from "./DesignPrototipacao.module.css";
 import liftStyles from "../BlockLift.module.css";
 
@@ -21,6 +21,10 @@ import liftStyles from "../BlockLift.module.css";
 // Banner replaced again same day with a corrected export: the original
 // had a duplicate "02" (Papel and the high-fi stress-test screen both
 // labeled 02) — now numbered 01–04 correctly. Alt text updated to match.
+//
+// No tap-to-zoom here (Matheus, 2026-09-22: "não acho que tenha
+// necessidade de zoom... em nenhum device") — legible at the fit size
+// on every breakpoint already, confirmed visually.
 export function DesignPrototipacao() {
   return (
     <CaseSection id="design-prototipacao" divider>
@@ -37,11 +41,10 @@ export function DesignPrototipacao() {
 
         <div className={styles.galleryScroll}>
           <div className={styles.gallery}>
-            <Zoomable
-              src="/case/square-self-checkout/design-prototipacao/design-e-prototipacao-r4.png"
+            <Image
+              src="/case/square-self-checkout/design-prototipacao/design-e-prototipacao-r5.png"
               alt="Sequência de design e prototipação: 01 Crazy 8's (esboços em papel), 02 wireframe em papel, 03 protótipo de alta fidelidade com stress test, 04 UI final testada em produto real"
-              width={2452}
-              height={1302}
+              fill
               sizes="1226px"
             />
           </div>

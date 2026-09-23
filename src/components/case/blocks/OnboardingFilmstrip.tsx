@@ -1,5 +1,5 @@
+import Image from "next/image";
 import { CaseSection } from "../CaseSection";
-import { Zoomable } from "../Zoomable";
 import styles from "./OnboardingFilmstrip.module.css";
 import liftStyles from "../BlockLift.module.css";
 
@@ -24,6 +24,10 @@ import liftStyles from "../BlockLift.module.css";
 // bytes; "-v3" is only a cache-busting rename (Next's /_next/image can
 // serve stale bytes indefinitely when a same-named public/ file is
 // overwritten, documented in handoff.md).
+//
+// No tap-to-zoom here (Matheus, 2026-09-22: "não acho que tenha
+// necessidade de zoom... em nenhum device") — legible at the fit size
+// on every breakpoint already, confirmed visually.
 export function OnboardingFilmstrip() {
   return (
     <CaseSection id="onboarding-filmstrip" divider>
@@ -32,11 +36,10 @@ export function OnboardingFilmstrip() {
 
         <div className={styles.filmstripScroll}>
           <div className={styles.filmstrip}>
-            <Zoomable
-              src="/case/square-self-checkout/onboarding/onboarding-sequence-r5.png"
+            <Image
+              src="/case/square-self-checkout/onboarding/onboarding-sequence-r6.png"
               alt="Sequência de onboarding em 6 telas: bem-vindo ao Square, como funciona, escaneado, pesando um item, revisando e pagando, saindo da loja"
-              width={2452}
-              height={852}
+              fill
               sizes="1226px"
             />
           </div>

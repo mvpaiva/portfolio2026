@@ -41,12 +41,14 @@ const SLIDES = [
     width: 1868,
     height: 777,
     // Dedicated high-res export for the lightbox (Matheus, 2026-09-22) —
-    // 7509x2435, much bigger than the thumbnail's 1868x777, so zooming
+    // 7502x2626, much bigger than the thumbnail's 1868x777, so zooming
     // in actually reveals more detail instead of just reflowing the
-    // same pixels larger.
-    zoomSrc: "/case/square-self-checkout/banners/proto-app-zoom-r2.png",
-    zoomWidth: 7509,
-    zoomHeight: 2435,
+    // same pixels larger. Re-exported "-r3" (2026-09-22) with corrected
+    // background color, which also shifted the canvas size slightly
+    // (was 7509x2435).
+    zoomSrc: "/case/square-self-checkout/banners/proto-app-zoom-r3.png",
+    zoomWidth: 7502,
+    zoomHeight: 2626,
   },
   {
     label: "Totem",
@@ -54,9 +56,9 @@ const SLIDES = [
     alt: "Fluxo completo do totem mapeado no Figma: onboarding, scan, balança, pagamento, verificação de idade e saída",
     width: 1868,
     height: 777,
-    zoomSrc: "/case/square-self-checkout/banners/proto-totem-zoom-r2.png",
-    zoomWidth: 7509,
-    zoomHeight: 2435,
+    zoomSrc: "/case/square-self-checkout/banners/proto-totem-zoom-r3.png",
+    zoomWidth: 7502,
+    zoomHeight: 2626,
   },
 ];
 
