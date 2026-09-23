@@ -107,8 +107,30 @@ design no Figma).
   em zoom ficaram grandes demais... diminuir o tamanho... mantendo boa
   legibilidade") — NÃO é mais tamanho nativo puro; isso vale em todo
   breakpoint, não só mobile/tablet. O carrossel do Figma usa exports
-  dedicados de zoom ainda maiores que a miniatura (`proto-app-zoom-r2.png`/
-  `proto-totem-zoom-r2.png`, 7509×2435).
+  dedicados de zoom ainda maiores que a miniatura (`proto-app-zoom-r3.png`/
+  `proto-totem-zoom-r3.png`, 7502×2626).
+- **Bug real corrigido (2026-09-22): zoom interativo baixava a imagem no
+  tamanho "fit" e só esticava via CSS `transform: scale()`.** O
+  `sizes` do `<Image>` dentro de `ZoomPanImage` usava o mesmo hint
+  capado do lightbox estático (`...1400px`), então o Next nunca buscava
+  mais que ~1400-1920px de largura — ampliar via scroll/pinça só
+  esticava esse bitmap já pequeno, ficando borrado (Matheus: "qualidade
+  péssima, como se fosse a imagem padrão da página"). Trocado pra
+  `sizes={`${width}px`}` (largura nativa completa); confirmado baixando
+  os bytes servidos que agora entrega a resolução nativa cheia. Só
+  afeta `ZoomPanImage`, não o lightbox estático (que continua capado de
+  propósito).
+- **Cor de fundo dos banners corrigida (2026-09-22):** todos os exports
+  tinham `#F1EEEC` fixo, ~4 pontos por canal mais escuro que o
+  `--color-bg` real (`#F5F2F0`) — confirmado por amostragem de pixel,
+  visível como uma borda sutil ao redor de cada banner. Matheus
+  reexportou tudo corrigido; arquivos trocados (ver convenção de
+  cache-bust). Os exports de zoom do carrossel Figma também tiveram o
+  canvas ligeiramente redimensionado no processo (7509×2435 →
+  7502×2626) — width/height atualizados no código.
+- **Zoom removido de Design e Prototipação e Onboarding (2026-09-22,
+  Matheus: "não acho que tenha necessidade de zoom... em nenhum
+  device")** — voltaram a `<Image>` simples, sem botão de zoom.
 - **Zoom interativo (scroll/pinça + arrasto), só onde é realmente denso
   (2026-09-22):** o cap de 1400px/85vh acima deixa a maioria dos banners
   legível, mas não o Card Sorting inteiro (matriz de similaridade
@@ -194,6 +216,15 @@ design no Figma).
    resolvido — era a galeria Design e Prototipação).
 4. `docs/assets` tem mudanças soltas não commitadas — são edições do
    Matheus, propositalmente deixadas de fora ("usaremos elas depois").
+5. **`hero-mob-r2.png` parece um export com problema, não um bug de CSS**
+   (Matheus reportou "espaçamento demais, parece deslocada" no mobile,
+   2026-09-22) — inspecionei o PNG direto: o mockup da esquerda está
+   cortado pela metade (dá pra ver fragmentos de texto "arras/ixo/ta
+   tela" vazando na borda esquerda) e sobra bastante espaço em branco.
+   O wrap/padding em `HeroBanner.module.css` está correto (32px, sem
+   gap estrutural entre Hero/HeroBanner/Contexto, confirmado medindo no
+   navegador) — o problema está na própria imagem. Precisa de um
+   reexport, mesmo padrão do fix de cor de fundo.
 
 **Resolvidas nesta sessão (2026-09-22), removidas da lista:** lint de
 `ref.current` durante o render em `PrototipacaoTestesFigma.tsx` (agora
