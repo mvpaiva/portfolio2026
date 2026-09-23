@@ -126,6 +126,13 @@
   .logoStrip {
     display: none;
   }
+
+  /* Matheus, 2026-09-22: "as 4 logos em totens no dia a dia parecem
+     estar muito grandes" — 40px reads oversized against a photoColumn
+     that's now only half the mobile viewport wide. */
+  .logoSmall {
+    height: 28px;
+  }
 }
 
 /* Mobile (Matheus, 2026-09-21): the strip becomes two grayscale
