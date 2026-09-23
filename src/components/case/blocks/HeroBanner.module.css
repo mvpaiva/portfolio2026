@@ -68,3 +68,15 @@
     padding: var(--space-8) 32px;
   }
 }
+
+/* Mobile only (Matheus, 2026-09-22: "o espaçamento VERTICAL parece meio
+   deslocado" — this block's own 32px top/bottom was stacking with
+   Hero's 64px bottom padding and Contexto's 64px top padding above/
+   below it, each combining to 96px on a viewport that's only 812px
+   tall — proportionally much heavier than the same absolute padding
+   reads on desktop). */
+@media (max-width: 768px) {
+  .wrap {
+    padding: var(--space-4) var(--gutter-mobile);
+  }
+}
