@@ -64,28 +64,42 @@ export function TableOfContents() {
   // progress thumb — decided it'd be a third floating element competing
   // with Voltar/TOC for the same screen edge, against the "reduce
   // chrome" principle we'd just applied to those two). A section counts
-  // as active when it crosses the vertical center of the viewport —
-  // rootMargin shrinks the observer's effective area to a thin band
-  // there instead of the whole viewport.
+  // as active when it crosses the vertical center of the viewport.
+  //
+  // Recomputed on scroll as "the last anchor whose top sits above the
+  // viewport center" (Matheus, 2026-09-24: after clicking a TOC item it
+  // stayed active while scrolling into other sections). The previous
+  // IntersectionObserver only fired while an anchor was *inside* a thin
+  // center band — the ghost-marker anchors are tiny, so once one had
+  // scrolled past nothing ever replaced it, and a clicked section stuck.
   useEffect(() => {
     const targets = SECTIONS.map((s) => document.getElementById(s.href.slice(1))).filter(
       (el): el is HTMLElement => el !== null,
     );
     if (targets.length === 0) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            setActiveHref(`#${entry.target.id}`);
-          }
-        }
-      },
-      { rootMargin: "-50% 0px -50% 0px" },
-    );
+    let frame = 0;
+    function update() {
+      frame = 0;
+      const center = window.innerHeight / 2;
+      let current: string | null = null;
+      for (const el of targets) {
+        if (el.getBoundingClientRect().top <= center) current = `#${el.id}`;
+      }
+      setActiveHref(current);
+    }
+    function onScroll() {
+      if (!frame) frame = requestAnimationFrame(update);
+    }
 
-    targets.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      if (frame) cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
   }, []);
 
   useEffect(() => {

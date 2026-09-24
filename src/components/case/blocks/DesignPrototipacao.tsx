@@ -27,7 +27,7 @@ import liftStyles from "../BlockLift.module.css";
 // on every breakpoint already, confirmed visually.
 export function DesignPrototipacao() {
   return (
-    <CaseSection id="design-prototipacao" divider>
+    <CaseSection id="design-prototipacao">
       <div className={`${styles.column} ${liftStyles.item} lift-trigger`}>
         <div className={styles.labelStack}>
           <p className={styles.label}>DESIGN &amp; PROTOTIPAÇÃO</p>
