@@ -220,12 +220,23 @@ design no Figma).
   `onboarding-sequence-r6.png` já publicado em `OnboardingFilmstrip.tsx`
   (mesmas 6 telas e textos). Nada a exportar.
 
-**Ideia em avaliação (2026-09-24): motion no case via código (sem Hera),**
-usando os wireframes finais do Figma (app `12535-901`, totem `12786-628`).
-Candidatos: entrada do HeroBanner, camada de UI do scan (câmera hoje é
-imagem fixa), contador de peso/preço, `CountUp` nos stats, sequência de
-compra aprovada no totem. Respeitar `prefers-reduced-motion`. Nada
-implementado ainda; ver decisão pendente do Matheus.
+**Motion no case (2026-09-24) — encerrado neste case.** Só o `CountUp`
+dos 4 stats do topo (`StatsSection`) foi pro código: 1.2s ease-out cubic,
+dispara a 60% de visibilidade, os 4 juntos (sem stagger), só o valor final
+pro leitor de tela, valor direto com `prefers-reduced-motion`. Testado em
+375px e 768px (grid 2×2, sem overflow). **Decidido não aplicar** em
+Testes/Resultado (redundante com os stats do topo; 5/5 não conta) nem no
+HeroBanner (é imagem achatada). O `review-animations` (Emil Kowalski, só
+o usuário pode invocar) não foi rodado no `CountUp`.
+Interações de scan/pesagem/compra aprovada ficam pro **próximo case**.
+Modelado no Figma, não codado: `Button/FAB` virou variant set
+(`State=Closed/Open`) e `Radial Option/Item` (`Action=Flash/Enter code
+manually/Weigh item`) na página "↳ Design System App", grupo Camera &
+Overlays; protótipo Smart Animate 0.3s ease-in-out nos frames
+`Scan v2 · proto · FAB closed/open` da página "↳ App". Regras de motion
+que valem pro próximo case: sem stagger, sem loop ambiente (cantos do
+scanner respirando), sem overlay escuro, sem números que não estejam no
+design (o "1,250 kg / R$ 15,63" sugerido por outro chat era inventado).
 
 **Resolvidas nesta sessão (2026-09-22), removidas da lista:** lint de
 `ref.current` durante o render em `PrototipacaoTestesFigma.tsx` (agora
