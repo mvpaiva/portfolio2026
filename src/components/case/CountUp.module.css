@@ -1,0 +1,24 @@
+/* Sizer and live text share one grid cell, so the cell is always as wide
+   as the final value and the count never shifts neighbouring layout. */
+.count {
+  display: inline-grid;
+  font-variant-numeric: tabular-nums;
+}
+
+.sizer,
+.live {
+  grid-area: 1 / 1;
+}
+
+.sizer {
+  visibility: hidden;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

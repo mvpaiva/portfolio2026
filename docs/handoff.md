@@ -208,23 +208,24 @@ design no Figma).
 
 1. **Vídeo do teste em papel** — ainda não gravado/incorporado (item já
    antigo, da lista original do Matheus de 2026-09-16, nunca resolvido).
-2. **Confirmar se todos os wireframes pt-BR foram incorporados** — o item
-   original (2026-09-16) dizia "parcialmente entregue"
-   (`docs/assets/square-wireframes-raw/{mobile,totem}/pt-br/`); não foi
-   reconferido desde então.
-3. **Frame Figma 2333-170** sem export novo associado (2326-170 já foi
-   resolvido — era a galeria Design e Prototipação).
 4. `docs/assets` tem mudanças soltas não commitadas — são edições do
    Matheus, propositalmente deixadas de fora ("usaremos elas depois").
-5. **`hero-mob-r2.png` parece um export com problema, não um bug de CSS**
-   (Matheus reportou "espaçamento demais, parece deslocada" no mobile,
-   2026-09-22) — inspecionei o PNG direto: o mockup da esquerda está
-   cortado pela metade (dá pra ver fragmentos de texto "arras/ixo/ta
-   tela" vazando na borda esquerda) e sobra bastante espaço em branco.
-   O wrap/padding em `HeroBanner.module.css` está correto (32px, sem
-   gap estrutural entre Hero/HeroBanner/Contexto, confirmado medindo no
-   navegador) — o problema está na própria imagem. Precisa de um
-   reexport, mesmo padrão do fix de cor de fundo.
+
+**Fechadas em 2026-09-24 (confirmadas pelo Matheus ou conferidas):**
+- Item 2 (wireframes pt-BR incorporados) — ok, confirmado pelo Matheus.
+- Item 5 (`hero-mob`, export com problema) — ok, confirmado pelo Matheus.
+- Item 3 (Frame Figma 2333-170) — conferido contra o Figma ao vivo: é o
+  container da sequência de Onboarding (6 telas, ver
+  `benji-taylor-reference.md`), e o conteúdo é idêntico ao
+  `onboarding-sequence-r6.png` já publicado em `OnboardingFilmstrip.tsx`
+  (mesmas 6 telas e textos). Nada a exportar.
+
+**Ideia em avaliação (2026-09-24): motion no case via código (sem Hera),**
+usando os wireframes finais do Figma (app `12535-901`, totem `12786-628`).
+Candidatos: entrada do HeroBanner, camada de UI do scan (câmera hoje é
+imagem fixa), contador de peso/preço, `CountUp` nos stats, sequência de
+compra aprovada no totem. Respeitar `prefers-reduced-motion`. Nada
+implementado ainda; ver decisão pendente do Matheus.
 
 **Resolvidas nesta sessão (2026-09-22), removidas da lista:** lint de
 `ref.current` durante o render em `PrototipacaoTestesFigma.tsx` (agora

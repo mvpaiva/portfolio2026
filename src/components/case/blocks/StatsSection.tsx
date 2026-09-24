@@ -8,10 +8,10 @@ export function StatsSection() {
   return (
     <div className={styles.section}>
       <div className={`${styles.grid} ${spotlightStyles.item} spotlight-trigger`}>
-        <Stat number="18" label="Entrevistas Profundas" />
-        <Stat number="247" label="Respostas de Survey" />
-        <Stat number="05" label="Rodadas de Teste" />
-        <Stat number="23" label="Pontos de Atrito" />
+        <Stat countUp number="18" label="Entrevistas Profundas" />
+        <Stat countUp number="247" label="Respostas de Survey" />
+        <Stat countUp number="05" label="Rodadas de Teste" />
+        <Stat countUp number="23" label="Pontos de Atrito" />
       </div>
     </div>
   );
